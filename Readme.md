@@ -1,6 +1,6 @@
 # Navigation
 
-- [Team](#team)
+- [Team](#team-mates)
 - [Front End](#front-end)
 - [Back End](#back-end)
 - [DataBase](#data-base)
@@ -50,6 +50,9 @@ classes and courses.
 
 ## Encryption
 - Bcrypt
+
+## Linter
+- ES Lint
 
 ## Team Mates:
 - Sean Valdivia--Central Time
@@ -150,3 +153,4 @@ classes and courses.
         '@@@@@@@@####@@@@@@#,&nbsp;
            `:+@@@@@@@#':`&nbsp;
 </details>
+
