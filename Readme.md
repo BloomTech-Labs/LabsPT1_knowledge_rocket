@@ -122,11 +122,6 @@ classes and courses.
 
 
 
-
-
-
-
-
 ## Valdivgoofia
 
 <details> 
