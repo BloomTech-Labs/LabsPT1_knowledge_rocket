@@ -1,6 +1,6 @@
 # Navigation
 
-- [Team](#team)
+- [Team](#team-mates)
 - [Front End](#front-end)
 - [Back End](#back-end)
 - [DataBase](#data-base)
