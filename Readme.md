@@ -51,6 +51,9 @@ classes and courses.
 ## Encryption
 - Bcrypt
 
+## Linter
+- ES Lint
+
 ## Team Mates:
 - Sean Valdivia--Central Time
 - Alexis Reyes--Eastern Time Zone
