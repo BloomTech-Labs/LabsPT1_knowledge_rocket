@@ -9,7 +9,6 @@
 - [Notifications](#notify)
 - [OAuth](#oauth)
 - [Encryption](#encryption)
-- [Creepy](#Valdivgoofia)
 
 
 ## Summary:
@@ -25,6 +24,10 @@ classes and courses.
 - Stripe
 - Axios
 - React Router
+
+### Middleware
+- Thunk
+- Logger
 
 ## Back End
 - Django
@@ -61,96 +64,3 @@ classes and courses.
 - Jesse Reichel--Western Time Zone
 - Bhavik Ravani--Eastern Time Zone
 - Stephanie Bowles--+(UTC + 8 hours)[to be determined...]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Valdivgoofia
-
-<details> 
-  <summary> Valdivgoofia </summary>
-  &nbsp;
-             `.:;'+##@@@@@:&nbsp;
-        .@@@@@@@#+''+@@@@@@@@+&nbsp;
-       @@@@;`           '@@#@@@@`&nbsp;
-     :@@+                     +@@@&nbsp;
-    :@@`                        '@@:&nbsp;
-   `@@`                           @@'&nbsp;
-   @@'                             @@:&nbsp;
-  :@@        .                     ;@@&nbsp;
-  @@'       @@@         '@@@        @@'&nbsp;
-  @@`       .+'          @@         @@@&nbsp;
- .@@                                @@@&nbsp;
- :@@     #                          @@@&nbsp;
- :@@     #@                 `@      @@@&nbsp;
- .@@      @@+             `@@`     #@@,&nbsp;
-  @@,      ;@@@#;,`  `.;@@@@`     .@@@&nbsp;
-  @@@        `'@@@@@@@@@@'`       @@@&nbsp;
-  `@@;                          `@@@.&nbsp;
-   '@@;                        '@@@&nbsp;
-    '@@@.                    :@@@:&nbsp;
-      @@@@#:              ,#@@@.&nbsp;
-        '@@@@@@@@####@@@@@@#,&nbsp;
-           `:+@@@@@@@#':`&nbsp;
-</details>
-
