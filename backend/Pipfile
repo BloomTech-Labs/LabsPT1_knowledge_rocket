@@ -4,12 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 gunicorn = "*"
 "psycopg2-binary" = "*"
 dj-database-url = "*"
 python-decouple = "*"
 whitenoise = "*"
+django = {extras = ["bcrypt"], version = "*"}
+djangorestframework = "*"
+django-rest-auth = "*"
+django-allauth = "*"
+django-cors-headers = "*"
+django-heroku = "*"
+django-rest-api = "*"
 
 [dev-packages]
 
