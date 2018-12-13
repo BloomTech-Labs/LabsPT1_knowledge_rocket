@@ -58,9 +58,9 @@ classes and courses.
 - ES Lint
 
 ## Team Mates:
-- [Sean Valdivia] (https://github.com/NewbieWanKenobi) --Central Time
-- [Alexis Reyes] (https://github.com/AlexisReyes90)--Eastern Time Zone
-- [Lisa Canini] (https://github.com/LisaCee)--Pacific Time Zone
-- [Jesse Reichel] (https://github.com/KryoKorpz)--Pacific Time Zone
-- [Bhavik Ravani] (https://github.com/ravb2019)--Eastern Time Zone
-- [Stephanie Bowles] (https://github.com/sbowl001)--+(UTC + 8 hours)[to be determined...]
+- [Sean Valdivia](https://github.com/NewbieWanKenobi) --Central Time
+- [Alexis Reyes](https://github.com/AlexisReyes90)--Eastern Time Zone
+- [Lisa Canini](https://github.com/LisaCee)--Pacific Time Zone
+- [Jesse Reichel](https://github.com/KryoKorpz)--Pacific Time Zone
+- [Bhavik Ravani](https://github.com/ravb2019)--Eastern Time Zone
+- [Stephanie Bowles](https://github.com/sbowl001) --+(UTC + 8 hours)[to be determined...]
