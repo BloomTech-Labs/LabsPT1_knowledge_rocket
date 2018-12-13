@@ -1,23 +1,26 @@
-import { LOADING, SUCCESS, ERROR } from '../actions';
+import { LOADING, REGISTER, LOGIN, CHANGE_LOADING } from '../actions';
 
 // team discussion on what the state should look like
 const defaultState = {
-    fetching: false,
+    user: [],
+    loading: false,
     error: ""
 }
 
-export default (state = defaultState, actions) => {
-    switch(actions.type) {
+export default (state = defaultState, action) => {
+    switch(action.type) {
         case LOADING:
-            return Object.assign({}, state, { LOADING: true })
+            return {...state, loading: true }
 
-        case SUCCESS:
-        // before LOADING: false, decide what the app state should be called
-            return Object.assign({}, state, { LOADING: false })
+        case REGISTER:
+            return {...state, user :[...state.user, action.payload ]}
 
-        case ERROR:
-        // before LOADING: false, decide what action.error should be
-            return Object.assign({}, state, { LOADING: false })
+        case LOGIN:
+            return {...state, loading: true }
+
+        case CHANGE_LOADING:
+            return {...state, loading: false }
+
 
         default:
             return state;
