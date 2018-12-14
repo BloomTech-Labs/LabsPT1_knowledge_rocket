@@ -9,13 +9,15 @@ gunicorn = "*"
 dj-database-url = "*"
 python-decouple = "*"
 whitenoise = "*"
-django = {extras = ["bcrypt"], version = "*"}
 djangorestframework = "*"
 django-rest-auth = "*"
 django-allauth = "*"
 django-cors-headers = "*"
 django-heroku = "*"
 django-rest-api = "*"
+djangorestframework-jwt = "*"
+django = "*"
+bcrypt = "*"
 
 [dev-packages]
 
