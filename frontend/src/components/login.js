@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
 
+import "../css/login.css";
+
 import { loginUser } from '../actions';
 
 class Login extends Component {
@@ -24,6 +26,7 @@ class Login extends Component {
     render() {
         return(
             <div>
+                <h1>Login</h1>
                 <Form>
                     <FormGroup>
                         <Input type='text' name='username' value={this.state.username} onChange={this.handleInputChange} placeholder='Username' />
