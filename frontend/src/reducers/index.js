@@ -16,11 +16,10 @@ export default (state = defaultState, action) => {
             return {...state, user :[...state.user, action.payload ]}
 
         case LOGIN:
-            return {...state, loading: true }
+            return {...state, user: [action.payload]}
 
         case CHANGE_LOADING:
             return {...state, loading: false }
-
 
         default:
             return state;
