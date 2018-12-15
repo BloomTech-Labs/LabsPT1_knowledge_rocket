@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_jwt.views import ObtainJSONWebToken
+from rocketsapp.views import CustomJWTSerializer, RegisterUsers
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^api-token-auth/', obtain_jwt_token)
+    re_path(r'^login/', ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer)),
+    re_path(r'^register/', csrf_exempt(RegisterUsers.as_view()))
 ]
