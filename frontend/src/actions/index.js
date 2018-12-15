@@ -5,9 +5,6 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const CHANGE_LOADING = 'CHANGE_LOADING';
 
-/*
-Have team decide what our api should be to use axios calls
- */
 export const registerUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING });
@@ -17,7 +14,7 @@ export const registerUser = (user) => {
                     type: REGISTER,
                     payload: response.data
                 })
-                dispatch({ type: CHANGE_LOADING });
+                // dispatch({ type: CHANGE_LOADING });
             })
             .catch(err => {
                 dispatch({ type: CHANGE_LOADING });

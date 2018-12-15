@@ -19,7 +19,7 @@ class App extends Component {
             <h1>Knowledge Rocket</h1>
           </Row>
           <Row>
-            <span class="fa-stack fa-5x">
+            <span className="fa-stack fa-5x">
               <i className="fas fa-circle fa-stack-2x" />
               <i className="fas fa-rocket fa-stack-1x" />
             </span>
