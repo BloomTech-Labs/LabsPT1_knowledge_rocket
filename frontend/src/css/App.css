@@ -1,0 +1,36 @@
+.App {
+  background-color: navy;
+  min-height: 100vh;
+  padding: 3%;
+}
+
+a {
+  color: #ff7400;
+  font-weight: bolder;
+  padding: 3%;
+  text-align: right;
+}
+
+h1 {
+  color: #ff7400;
+  margin: 0 auto;
+  font-weight: bolder;
+}
+
+div#links {
+  width: 100%;
+  text-align: end;
+}
+
+.fa-stack {
+  margin: 0 auto;
+  padding: 5%;
+}
+
+.fa-rocket {
+  color: #ff7400;
+}
+
+.fa-circle {
+  color: #17a2b8;
+}
