@@ -26,15 +26,14 @@ export const registerUser = (user) => {
     }
 }
 
-
 export const loginUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING })
         axios.post('http://localhost:8000/login/', user)
             .then(response => {
-                // response will carry token/ encryption from backend
                 dispatch({
-                    type: LOGIN
+                    type: LOGIN,
+                    payload: response.data
                 })
             })
             .catch(err => {
