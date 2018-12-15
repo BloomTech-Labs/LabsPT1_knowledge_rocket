@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 export const LOADING = 'LOADING';
-export const SUCCESS = 'SUCCESS';
-export const ERROR = 'ERROR';
+export const REGISTER = 'REGISTER';
+export const LOGIN = 'LOGIN';
+export const CHANGE_LOADING = 'CHANGE_LOADING';
 
 /*
 Have team decide what our api should be to use axios calls

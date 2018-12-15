@@ -25,9 +25,9 @@ class RegisterUsers(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         # data = json.loads(request.body)
-        username = request.get.data("username")
-        password1 = request.get.data("password1")
-        password2 = request.get.data("password2")
+        username = request.data.get("username")
+        password1 = request.data.get("password1")
+        password2 = request.data.get("password2")
         credentials = {
             'username': username,
             'password1': password1,
@@ -102,7 +102,3 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         except User.DoesNotExist:
             msg = 'Account with this username does not exists'
             raise serializers.ValidationError(msg)
-
-
-
-

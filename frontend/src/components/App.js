@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import "../css/App.css";
+
+import { Container, Row } from "reactstrap";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Container>
+          <Row>
+            <div id="links">
+              <a href="/register">Sign Up</a>
+              <a href="/login">Login</a>
+            </div>
+          </Row>
+          <Row>
+            <h1>Knowledge Rocket</h1>
+          </Row>
+          <Row>
+            <span class="fa-stack fa-5x">
+              <i className="fas fa-circle fa-stack-2x" />
+              <i className="fas fa-rocket fa-stack-1x" />
+            </span>
+          </Row>
+        </Container>
       </div>
     );
   }
