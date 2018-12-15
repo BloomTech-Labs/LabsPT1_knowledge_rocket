@@ -21,6 +21,6 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^login/', ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer)),
+    re_path(r'^login/', csrf_exempt(ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer))),
     re_path(r'^register/', csrf_exempt(RegisterUsers.as_view()))
 ]
