@@ -9,7 +9,7 @@ export const CHANGE_LOADING = 'CHANGE_LOADING';
 export const registerUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING });
-        axios.post('/register/', user)
+        axios.post('http://localhost:8000/register/', user)
             .then((response) => {
                 console.log(response)
                 dispatch({
@@ -29,7 +29,7 @@ export const registerUser = (user) => {
 export const loginUser = () => {
     return dispatch => {
         dispatch({ type: LOADING })
-        axios.get('/login/')
+        axios.get('http://localhost:8000/login/')
             .then(response => {
                 dispatch({
                     type: LOGIN,
