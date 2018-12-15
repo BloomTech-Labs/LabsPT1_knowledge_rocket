@@ -5,13 +5,11 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const CHANGE_LOADING = 'CHANGE_LOADING';
 
-
 export const registerUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING });
         axios.post('http://localhost:8000/register/', user)
-            .then((response) => {
-                console.log(response)
+            .then(response => {
                 dispatch({
                     type: REGISTER,
                     payload: response.data
@@ -25,11 +23,10 @@ export const registerUser = (user) => {
     }
 }
 
-
-export const loginUser = () => {
+export const loginUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING })
-        axios.get('http://localhost:8000/login/')
+        axios.post('http://localhost:8000/login/', user)
             .then(response => {
                 dispatch({
                     type: LOGIN,
