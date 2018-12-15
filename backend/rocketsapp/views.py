@@ -14,10 +14,17 @@ jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 
+class RegisterUserSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=30)
+    password1 = serializers.CharField(max_length=15)
+    password2 = serializers.CharField(max_length=15)
+
 class RegisterUsers(generics.CreateAPIView):
+    serializer_class = RegisterUserSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
+        # data = json.loads(request.body)
         username = request.data.get("username")
         password1 = request.data.get("password1")
         password2 = request.data.get("password2")

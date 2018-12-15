@@ -5,10 +5,13 @@ export const REGISTER = 'REGISTER';
 export const LOGIN = 'LOGIN';
 export const CHANGE_LOADING = 'CHANGE_LOADING';
 
+/*
+Have team decide what our api should be to use axios calls
+ */
 export const registerUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING });
-        axios.post('/register', user)
+        axios.post('http://localhost:8000/register/', user)
             .then(response => {
                 dispatch({
                     type: REGISTER,
@@ -23,15 +26,14 @@ export const registerUser = (user) => {
     }
 }
 
-
-export const loginUser = () => {
+export const loginUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING })
-        axios.get('/login')
+        axios.post('http://localhost:8000/login/', user)
             .then(response => {
-                // response will carry token/ encryption from backend
                 dispatch({
-                    type: LOGIN
+                    type: LOGIN,
+                    payload: response.data
                 })
             })
             .catch(err => {
