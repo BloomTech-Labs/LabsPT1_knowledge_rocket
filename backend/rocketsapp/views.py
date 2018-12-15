@@ -102,3 +102,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         except User.DoesNotExist:
             msg = 'Account with this username does not exists'
             raise serializers.ValidationError(msg)
+
+
+
+
