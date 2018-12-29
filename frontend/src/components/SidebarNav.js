@@ -7,11 +7,9 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
 } from "reactstrap";
+
+import '../css/SidebarNav.css';
 
 class Sidebar_Nav extends Component {
   constructor(props) {

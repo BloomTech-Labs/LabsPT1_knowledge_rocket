@@ -4,14 +4,12 @@ import "../css/App.css";
 
 import { Container, Row } from "reactstrap";
 
-import Sidebar_Nav from './Sidebar_Nav.js';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Container>
-          <Sidebar_Nav/>
           <Row>
             <div id="links">
               <a href="/register">Sign Up</a>
