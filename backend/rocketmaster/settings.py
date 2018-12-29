@@ -28,7 +28,8 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOST', Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
 
 
 # Application definition
@@ -88,6 +89,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES['default'] = dj_database_url.config(
+#     default=config('DATABASE_URL'), conn_max_age=600)
 
 # DATABASE_URL = config('DATABASE_URL')
 # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -160,11 +164,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
 
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config(
-#     default=config('DATABASE_URL'), conn_max_age=600)
 
 # del DATABASES['default']['OPTIONS']['sslmode']
