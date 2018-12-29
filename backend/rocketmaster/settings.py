@@ -90,11 +90,11 @@ DATABASES = {
     }
 }
 
-# DATABASES['default'] = dj_database_url.config(
-#     default=config('DATABASE_URL'), conn_max_age=600)
+DATABASES['default'] = dj_database_url.config(
+    default=config('DATABASE_URL'), conn_max_age=600)
 
-# DATABASE_URL = config('DATABASE_URL')
-# conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASE_URL = config('DATABASE_URL')
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # Password validation
