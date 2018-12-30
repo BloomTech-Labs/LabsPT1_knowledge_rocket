@@ -93,8 +93,8 @@ DATABASES = {
 DATABASES['default'] = dj_database_url.config(
     default=config('DATABASE_URL'), conn_max_age=600)
 
-DATABASE_URL = config('DATABASE_URL')
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+DATABASE_URL = os.environ['DATABASE_URL']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require'
 
 
 # Password validation
@@ -142,9 +142,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-CORS_ORIGIN_ALLOW_ALL=True
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -164,8 +161,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# import django_heroku
-# django_heroku.settings(locals())
+import django_heroku
+django_heroku.settings(locals())
 
 
 # del DATABASES['default']['OPTIONS']['sslmode']
