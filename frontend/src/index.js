@@ -14,6 +14,7 @@ import rootReducer from './reducers';
 import Register from './components/register';
 import Login from './components/login';
 import App from './components/App.js';
+import Classes from './components/Classes.js';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -30,6 +31,7 @@ ReactDOM.render(
                 <Route exact path="/" component={App} />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
+                <Route path="/classes" component={Classes} />
             </div>
         </Router>
     </Provider>
