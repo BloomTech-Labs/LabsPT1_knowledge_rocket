@@ -75,8 +75,6 @@ TEMPLATES = [
     },
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 WSGI_APPLICATION = 'rocketmaster.wsgi.application'
 
 
@@ -94,7 +92,7 @@ DATABASES['default'] = dj_database_url.config(
     default=config('DATABASE_URL'), conn_max_age=600)
 
 DATABASE_URL = os.environ['DATABASE_URL']
-conn = psycopg2.connect(DATABASE_URL, sslmode='require'
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 
 # Password validation
@@ -141,6 +139,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

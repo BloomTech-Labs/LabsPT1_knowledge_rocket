@@ -30,7 +30,7 @@ class Login extends Component {
                 <Form>
                     <FormGroup>
                         <Input type='text' name='username' value={this.state.username} onChange={this.handleInputChange} placeholder='Username' />
-                        <Input type='text' name='password' value={this.state.password} onChange={this.handleInputChange} placeholder='Password' />
+                        <Input type='password' name='password' value={this.state.password} onChange={this.handleInputChange} placeholder='Password' />
                         <Button color='info' onClick={this.handleSubmit}>Login!</Button>
                     </FormGroup>
                 </Form>
