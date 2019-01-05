@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from decouple import config, Csv
+from decouple import config
 import psycopg2
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = []
 
 
 
@@ -43,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rocketsapp',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -56,6 +55,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
 ]
 
 ROOT_URLCONF = 'rocketmaster.urls'
@@ -88,9 +89,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-DATABASES['default'] = dj_database_url.config(
-    default=config('DATABASE_URL'), conn_max_age=600)
 
 DATABASE_URL = os.environ['DATABASE_URL']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -140,7 +138,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL=True
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -160,6 +158,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howgit to/static-files/
 
 STATIC_URL = '/static/'
+
+import dj_database_url
+DATABASES['default'] = dj_database_url.config(
+    default=config('DATABASE_URL'), conn_max_age=600)
 
 import django_heroku
 django_heroku.settings(locals())
