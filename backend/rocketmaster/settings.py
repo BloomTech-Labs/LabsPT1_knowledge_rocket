@@ -29,8 +29,6 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -138,7 +136,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
-CORS_ORIGIN_ALLOW_ALL=True
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
     'https://boring-golick-d842d5.netlify.com/',
