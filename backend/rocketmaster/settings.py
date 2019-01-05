@@ -141,6 +141,7 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL=True
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
+    'https://boring-golick-d842d5.netlify.com/',
 )
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
