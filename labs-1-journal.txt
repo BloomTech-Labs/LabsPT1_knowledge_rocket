@@ -1,0 +1,46 @@
+Labs I 
+
+Getting started is always the hardest part.
+
+Trying to work together during a three-week holiday break was also challenging.
+
+Initially I worked with Bhavik on the backend, getting a basic database set up
+in Django. I used previous Lambda School Django repos as a reference, which 
+at the time seemed like the best idea as that was what I really understood. 
+
+The first version of the basic database had some problems with the directory 
+structure, and then Holly suggested that instead of following the instructions
+of a previous repo that I look at the Django docs themselves. I did, and this
+did help my understanding.
+
+I then worked with Lisa to build a navbar, we really just dropped a component
+she had been working on in CodePen, with a few modifications.
+
+My first instinct throughout Lambda has always been to first look at a 
+previous repo with similar material, because it is something that I understand
+to a degree, whereas extrapolating from the 'docs' is still pretty darn hard 
+for me, at least in Django, C, and Redux.
+
+I once felt the same way while looking at the React documentation, though,
+and I am now happy to say that I understand almost all of what I read in the 
+React docs.
+
+I keep going back and looking at the docs, as I have for over a year now,
+even when I don't fully understand, I still walk away from the experience
+having learned something.
+
+I am excited about what I've learned though, throughout Lambda School. I am aware of 
+what a tech stack is, and am able to do very basic stuff throughout the stack.
+
+The one thing I will say is that for me Lambda has always been both amazing and extremely
+stressful; with every single repo/sprint-challenge I've done with Lambda I always feel that 
+after extreme mental effort I am just barely beginning to grasp the material of that repo and then
+it's time to move on to the next thing...
+
+So for me, this has been both a good and a bad thing. It's a good thing because I've been drug, sometimes
+kicking and screaming, all over the tech stack that makes up a full-stack website. It's a bad thing because
+I feel that I need way more repetition in each area.
+
+But I grasp the stack, and dang that is so cool. I will never stop studying, I don't care how long it takes me, 
+I will get there.
+
