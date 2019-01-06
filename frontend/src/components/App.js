@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import "../css/App.css";
 
@@ -12,8 +13,8 @@ class App extends Component {
         <Container>
           <Row>
             <div id="links">
-              <a href="/register">Sign Up</a>
-              <a href="/login">Login</a>
+              <Link to={ "/register" }>Sign Up</Link>
+              <Link to={ "/login" }>Login</Link>
             </div>
           </Row>
           <Row>
