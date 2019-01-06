@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -53,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 
 ]
 
@@ -137,10 +136,10 @@ REST_FRAMEWORK = {
     ),
 }
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = (
-    'localhost:3000',
-    'https://boring-golick-d842d5.netlify.com/',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:3000',
+#     'https://boring-golick-d842d5.netlify.com/',
+# )
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
