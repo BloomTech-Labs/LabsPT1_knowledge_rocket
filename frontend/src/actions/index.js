@@ -8,7 +8,7 @@ export const CHANGE_LOADING = 'CHANGE_LOADING';
 //heroku: https://knowledgerocketjr.herokuapp.com/
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
 
-https: export const registerUser = user => {
+export const registerUser = user => {
   return dispatch => {
     dispatch({ type: LOADING });
     axios
