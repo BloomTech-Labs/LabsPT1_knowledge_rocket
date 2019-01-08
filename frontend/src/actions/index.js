@@ -10,7 +10,7 @@ export const CHANGE_LOADING = 'CHANGE_LOADING';
 export const registerUser = (user) => {
     return dispatch => {
         dispatch({ type: LOADING });
-        axios.post('https://knowledgerocketjr.herokuapp.com/register/', user)
+        axios.post('https://nameless-beyond-28288.herokuapp.com/register/', user)
             .then(response => {
                 dispatch({
                     type: REGISTER,
