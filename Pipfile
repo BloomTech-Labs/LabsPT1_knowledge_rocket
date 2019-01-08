@@ -12,12 +12,12 @@ whitenoise = "*"
 djangorestframework = "*"
 django-rest-auth = "*"
 django-allauth = "*"
-django-cors-headers = "*"
 django-heroku = "*"
 django-rest-api = "*"
 djangorestframework-jwt = "*"
 django = "*"
 bcrypt = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
