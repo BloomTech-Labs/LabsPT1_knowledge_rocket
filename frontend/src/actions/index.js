@@ -14,6 +14,8 @@ export const registerUser = user => {
     axios
       .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
       .then(response => {
+        const token = response.data.token
+        localStorage.setItem('token', token)
         dispatch({ type: REGISTER, payload: response.data });
         // dispatch({ type: CHANGE_LOADING });
       })
@@ -30,6 +32,8 @@ export const loginUser = (user) => {
         axios
           .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
           .then(response => {
+            const token = response.data.token
+            localStorage.setItem('token', token)
             dispatch({ type: LOGIN, payload: response.data });
           })
           .catch(err => {
