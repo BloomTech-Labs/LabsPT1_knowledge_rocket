@@ -6,6 +6,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { Container, Row } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";
+import "../css/Settings.css";
 
 const Settings = () => {
   return (
@@ -21,19 +22,47 @@ const Settings = () => {
               <BreadcrumbItem active>Settings</BreadcrumbItem>
             </Breadcrumb>
           </div>
-          <button>Log Out</button>
         </Row>
+        <button>Log Out</button>
         <Row>
-          <Form>
+          <Form className="form">
             <FormGroup>
-              <Label for="exampleEmail">Email</Label>
+              <Label for="exampleEmail">Email:</Label>
               <Input
                 type="email"
                 name="email"
                 id="exampleEmail"
-                placeholder="with a placeholder"
+                placeholder="user@mail.com"
               />
             </FormGroup>
+            <FormGroup>
+              <Label for="examplePassword">Current Password:</Label>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="password placeholder"
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="examplePassword">New Password:</Label>
+              <Input
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="password placeholder"
+              />
+            </FormGroup>
+                      <FormGroup>
+                          <Label for="examplePassword">Confirm New Password:</Label>
+                          <Input
+                              type="password"
+                              name="password"
+                              id="examplePassword"
+                              placeholder="password placeholder"
+                          />
+                      </FormGroup>
+            <Button>Update</Button>
           </Form>
         </Row>
       </Container>
