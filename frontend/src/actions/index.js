@@ -15,7 +15,7 @@ export const registerUser = user => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR })
     axios
-      .post("http://127.0.0.1:8000/register/", user)
+      .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
       .then(response => {
         const token = response.data.token
         localStorage.setItem('token', token);
@@ -34,7 +34,7 @@ export const loginUser = (user) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         axios
-          .post("http://127.0.0.1:8000/login/", user)
+          .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
           .then(response => {
             const token = response.data.token
             localStorage.setItem('token', token);

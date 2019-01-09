@@ -44,7 +44,7 @@ class Register extends Component {
             this.props.registerUser( this.state );
         }
 
-        // if(this.props.state.error) {
+        // if(this.props.state.success) {
         //     this.props.history.push('/')
         // }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Input, FormGroup} from 'reactstrap';
+import { Button, Form, Input, FormGroup } from 'reactstrap';
 import { Link } from "react-router-dom";
 
 
@@ -33,11 +33,11 @@ class Login extends Component {
         } else {
             this.props.loginUser( this.state );
 
+        }
             // if(this.props.state.error) {
             //     this.props.history.push('/')
             // }
-        }
-        
+            
         this.setState({ username: '', password: ''})
     }
 
