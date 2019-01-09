@@ -17,7 +17,7 @@ class Teacher(models.Model):
 class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
-    teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
+    Teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
     Classes       = models.ManyToManyField(Class)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
