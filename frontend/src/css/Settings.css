@@ -4,6 +4,6 @@
 form {
    background-color: white;
    padding: 2%;
-   margin: 0 auto;
-   width: 80%;
+   /* margin: 0 auto; */
+   min-width: 60%;
 }

@@ -24,6 +24,7 @@ class Settings extends Component {
           </Col>
           <Col>
             <Row>
+              <Col>
               <div>
                 <Breadcrumb>
                   <BreadcrumbItem>
@@ -32,8 +33,10 @@ class Settings extends Component {
                   <BreadcrumbItem active>Settings</BreadcrumbItem>
                 </Breadcrumb>
               </div>
+              </Col>
             </Row>
             <Row>
+              <Col>
               <Form>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
@@ -53,6 +56,7 @@ class Settings extends Component {
               </FormGroup>
               <Button>Update</Button>
               </Form>
+            </Col>
             </Row>
           </Col>
         </Row>

@@ -3,9 +3,7 @@
     flex-direction: row;
 }
 
-.navbar-expand-sm .navbar-nav {}
-
-@media (min-width: 576px) {
+@media (min-width: 992px) {
     .sidebar {
         display: flex;
         display: block;
