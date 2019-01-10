@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
+import { Link } from "react-router-dom";
+
 
 import "../css/register.css";
 
@@ -10,7 +12,9 @@ class Register extends Component {
     state = {
         username: '',
         password1: '',
-        password2: ''
+        password2: '',
+        error: false,
+        errorMsg:''
     }
 
     handleInputChange = e => {
@@ -19,9 +23,32 @@ class Register extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.registerUser( this.state );
-        this.setState({ username: '', password: '', password2: '' })
-        this.props.history.push('/');
+        this.setState({ error: false })
+
+        if( this.state.username.length < 3 ) {
+            this.setState({
+                error: true,
+                errorMsg: 'Username must be more than 3 characters',
+            })
+        } else if ( this.state.password1.length < 5) {
+            this.setState({
+                error: true,
+                errorMsg: 'Password must be more than 5 characters',
+            })
+        } else if (this.state.password1 !== this.state.password2) {
+            this.setState({
+                error: true,
+                errorMsg: 'Passwords must match',
+            })
+        } else {
+            this.props.registerUser( this.state );
+        }
+
+        // if(this.props.state.success) {
+        //     this.props.history.push('/')
+        // }
+
+        this.setState({ username: '', password1: '', password2: '' })
     }
 
     render() {
@@ -31,12 +58,20 @@ class Register extends Component {
                 <Form>
                     <FormGroup>
                         <Input type='text' name='username' value={this.state.username} onChange={this.handleInputChange} placeholder='Username' />
-                        <Input type='password' name='password1' value={this.state.password} onChange={this.handleInputChange} placeholder='Password' />
+                        <Input type='password' name='password1' value={this.state.password1} onChange={this.handleInputChange} placeholder='Password' />
                         <Input type='password' name='password2' value={this.state.password2} onChange={this.handleInputChange} placeholder='Confirm Password' />
                         <Button color='info' onClick={this.handleSubmit}>Sign Up!</Button>
                     </FormGroup>
                 </Form>
+                <div>
+                    {this.state.error ? <p>{this.state.errorMsg}</p> : null}
+                </div>
+                <div>
+                    {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null }
+                </div>
+                <Link to={"/"}> Home </Link> 
             </div>
+
         );
     }
 }

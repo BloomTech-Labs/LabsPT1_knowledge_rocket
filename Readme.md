@@ -44,7 +44,7 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 - Heroku
 
 ## Front End Host:
-- To Be Determined
+- Netlify
 
 ## Billing:
 - Stripe
@@ -62,7 +62,6 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 - ES Lint
 
 ## Team Members:
-- [Stephanie Bowles](https://github.com/sbowl001) --+(UTC + 8 hours)[to be determined...]
 - [Lisa Canini](https://github.com/LisaCee)--Pacific Time Zone
 - [Bhavik Ravani](https://github.com/ravb2019)--Eastern Time Zone
 - [Jesse Reichel](https://github.com/KryoKorpz)--Pacific Time Zone

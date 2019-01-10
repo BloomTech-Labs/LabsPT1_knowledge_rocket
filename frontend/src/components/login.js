@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
+import { Link } from "react-router-dom";
+
 
 import "../css/login.css";
 
@@ -9,7 +11,9 @@ import { loginUser } from '../actions';
 class Login extends Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        error: false,
+        errorMsg: ''
     }
 
     handleInputChange = e => {
@@ -18,9 +22,23 @@ class Login extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.props.loginUser( this.state );
+        this.setState({ error: false })
+
+        if (!this.state.username || !this.state.password) {
+            this.setState({
+                error: true,
+                errorMsg: 'Need to provide a username and password',
+            })
+
+        } else {
+            this.props.loginUser( this.state );
+
+        }
+            // if(this.props.state.error) {
+            //     this.props.history.push('/')
+            // }
+            
         this.setState({ username: '', password: ''})
-        this.props.history.push('/');
     }
 
     render() {
@@ -34,9 +52,23 @@ class Login extends Component {
                         <Button color='info' onClick={this.handleSubmit}>Login!</Button>
                     </FormGroup>
                 </Form>
+                <div>
+                    {this.state.error ? <p>{this.state.errorMsg}</p> : null}
+                </div>
+                <div>
+                    {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null }
+                </div>
+                <Link to={"/"}> Home </Link> 
+
             </div>
         );
     }
 }
 
-export default connect(null, { loginUser })( Login );
+const mapStateToProps = (state) => {
+    return {
+        state: state,
+    }
+}
+
+export default connect(mapStateToProps, { loginUser })( Login );
