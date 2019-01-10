@@ -1,6 +1,9 @@
-#setting-form {
-    background-color: white;
-    margin: 0 auto;
-    max-width: 60%;
-    padding: 3%;
+div {
+    display: flex;
+}
+
+form {
+   background-color: white;
+   padding: 2%;
+   margin: 0 auto;
 }

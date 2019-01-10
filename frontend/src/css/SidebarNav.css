@@ -1,4 +1,4 @@
-#main {
+.main {
     min-width: 100vw;
     min-height: 100vh;
     background-color: navy;
@@ -15,7 +15,7 @@
 }
 
 @media (max-width: 766px) {
-    .breadcrumb {
+    .main.breadcrumb {
         margin-top: 15px;
     }
 }
@@ -24,7 +24,7 @@
     .navbar {
         position: absolute;
     }
-    .breadcrumb {
+    .main.breadcrumb {
         width: 75%;
         display: flex;
         float: right;
@@ -43,7 +43,7 @@
         min-height: 100vh;
         text-align: left;
     }
-    #main {
+    .main {
         width: 85%;
         float: right;
     }
