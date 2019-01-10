@@ -1,61 +1,63 @@
-import React from "react";
+import React, { Component } from "react";
 
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import { Button, Form, Label, Input } from "reactstrap";
-import { Container } from "reactstrap";
+import { Button, Form, Label, Input, FormGroup } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";
-import "../css/SidebarNav.css"
+import "../css/SidebarNav.css";
 import "../css/Settings.css";
 
-const Settings = () => {
-  return (
-    <div>
-      <SidebarNav />
-      
-      <div className="main">
-        <div>
-          <Breadcrumb>
-            <BreadcrumbItem>
-              <a href="/">Home</a>
-            </BreadcrumbItem>
-            <BreadcrumbItem active>Settings</BreadcrumbItem>
-          </Breadcrumb>
-        </div>
-        <Container>
-          <div id="setting-form">
-            <Form>
-              <Label for="exampleEmail">Email</Label>
-              <Input
-                type="email"
-                name="email"
-                id="exampleEmail"
-                placeholder="email"
-              />
+class Settings extends Component {
+  state = {
+    email: "",
+    current_password: "",
+    password1: "",
+    password2: ""
+  };
 
-              <Label for="examplePassword">Password</Label>
-              <Input
-                type="password"
-                name="password1"
-                id="examplePassword"
-                placeholder="password"
-              />
-
-              <Label for="examplePassword">Confirm Password</Label>
-              <Input
-                type="password"
-                name="password1"
-                id="examplePassword"
-                placeholder="password"
-              />
-
+  render() {
+    return <Container className="container">
+        <Row>
+          <Col sm="md" lg="3">
+            <SidebarNav />
+          </Col>
+          <Col>
+            <Row>
+              <div>
+                <Breadcrumb>
+                  <BreadcrumbItem>
+                    <a href="/">Home</a>
+                  </BreadcrumbItem>
+                  <BreadcrumbItem active>Settings</BreadcrumbItem>
+                </Breadcrumb>
+              </div>
+            </Row>
+            <Row>
+              <Form>
+                <FormGroup>
+                  <Label for="exampleEmail">Email</Label>
+                  <Input type="email" name="email" id="exampleEmail" placeholder="email" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="examplePassword">Current Password</Label>
+                  <Input type="password" name="password" id="examplePassword" placeholder="password" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="examplePassword">New Password</Label>
+                  <Input type="password" name="password1" id="examplePassword" placeholder="password" />
+                </FormGroup>
+              <FormGroup>
+                <Label for="examplePassword">Confirm Password</Label>
+                <Input type="password" name="password2" id="examplePassword" placeholder="password" />
+              </FormGroup>
               <Button>Update</Button>
-            </Form>
-          </div>
-        </Container>
-      </div>
-    </div>
-  );
-};
+              </Form>
+            </Row>
+          </Col>
+        </Row>
+      </Container>;
+  }
+}
 
 export default Settings;
