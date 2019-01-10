@@ -11,13 +11,16 @@ import "../css/Settings.css";
 class Settings extends Component {
   state = {
     email: "",
-    current_password: "",
+    password: "",
     password1: "",
     password2: ""
   };
-
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
   render() {
-    return <Container className="container">
+    console.log(this.state)
+    return( <Container className="container">
         <Row>
           <Col sm="md" lg="3">
             <SidebarNav />
@@ -40,19 +43,19 @@ class Settings extends Component {
               <Form>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
-                  <Input type="email" name="email" id="exampleEmail" placeholder="email" />
+                  <Input type="email" name="email" id="exampleEmail" placeholder="email" value={ this.state.email } onChange={ this.handleInputChange } />
                 </FormGroup>
                 <FormGroup>
                   <Label for="examplePassword">Current Password</Label>
-                  <Input type="password" name="password" id="examplePassword" placeholder="password" />
+                  <Input type="password" name="password" id="examplePassword" placeholder="password" value={ this.state.password } onChange={ this.handleInputChange } />
                 </FormGroup>
                 <FormGroup>
                   <Label for="examplePassword">New Password</Label>
-                  <Input type="password" name="password1" id="examplePassword" placeholder="password" />
+                  <Input type="password" name="password1" id="examplePassword" placeholder="password" value={ this.state.password1 } onChange={ this.handleInputChange } />
                 </FormGroup>
               <FormGroup>
                 <Label for="examplePassword">Confirm Password</Label>
-                <Input type="password" name="password2" id="examplePassword" placeholder="password" />
+                  <Input type="password" name="password2" id="examplePassword" placeholder="password" value={ this.state.password2 } onChange={ this.handleInputChange } />
               </FormGroup>
               <Button>Update</Button>
               </Form>
@@ -60,7 +63,7 @@ class Settings extends Component {
             </Row>
           </Col>
         </Row>
-      </Container>;
+      </Container>)
   }
 }
 

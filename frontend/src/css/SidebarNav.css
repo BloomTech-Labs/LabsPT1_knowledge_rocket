@@ -1,6 +1,7 @@
 .sidebar {
     display: flex;
     flex-direction: row;
+    padding: 1%;
 }
 
 @media (min-width: 992px) {
