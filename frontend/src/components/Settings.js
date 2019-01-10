@@ -43,41 +43,41 @@ class Settings extends Component {
               <Col>
                 <Form>
                   <FormGroup>
-                    <Label for="exampleEmail">Email</Label>
+                    <Label for="email">Email</Label>
                     <Input
                       type="email"
                       name="email"
-                      id="exampleEmail"
+                      id="email"
                       placeholder="email"
                       value={this.state.email}
                       onChange={this.handleInputChange}
                     />
 
-                    <Label for="examplePassword">Current Password</Label>
+                    <Label for="currentPassword">Current Password</Label>
                     <Input
                       type="password"
                       name="password"
-                      id="examplePassword"
+                      id="current_password"
                       placeholder="password"
                       value={this.state.password}
                       onChange={this.handleInputChange}
                     />
 
-                    <Label for="examplePassword">New Password</Label>
+                    <Label for="newPassword1">New Password</Label>
                     <Input
                       type="password"
                       name="password1"
-                      id="examplePassword"
+                      id="newPassword1"
                       placeholder="password"
                       value={this.state.password1}
                       onChange={this.handleInputChange}
                     />
 
-                    <Label for="examplePassword">Confirm Password</Label>
+                    <Label for="newPassword2">Confirm Password</Label>
                     <Input
                       type="password"
                       name="password2"
-                      id="examplePassword"
+                      id="newPassword2"
                       placeholder="password"
                       value={this.state.password2}
                       onChange={this.handleInputChange}
