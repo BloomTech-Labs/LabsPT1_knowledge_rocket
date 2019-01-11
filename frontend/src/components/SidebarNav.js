@@ -42,7 +42,7 @@ class Sidebar_Nav extends Component {
                 <NavLink href="#">Billing</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/settings">Settings</NavLink>
+                <NavLink href="#">Settings</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
