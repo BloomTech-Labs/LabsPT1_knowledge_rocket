@@ -19,7 +19,6 @@ class Settings extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
-    console.log(this.state);
     return (
       <Container className="container">
         <Row>
