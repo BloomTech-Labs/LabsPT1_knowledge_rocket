@@ -7,7 +7,6 @@ export const CHANGE_LOADING = 'CHANGE_LOADING';
 export const ERROR = 'ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
-//heroku: https://knowledgerocketjr.herokuapp.com/
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
 
 export const registerUser = user => {
