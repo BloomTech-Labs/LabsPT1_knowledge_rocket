@@ -16,6 +16,8 @@ import Login from "./components/login";
 import App from "./components/App.js";
 import Classes from "./components/Classes.js";
 import Settings from "./components/Settings.js";
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import BillingForm from './components/Billing';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -25,17 +27,28 @@ const store = createStore(
   composeEnhancer(applyMiddleware(thunk, logger))
 );
 
+const elementFontSize = window.innerWidth < 450 ? '14px' : '18px'
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <div className="page-container">
-        <Route exact path="/" component={App} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route path="/classes" component={Classes} />
-        <Route path="/settings" component={Settings} />
-      </div>
-    </Router>
+    <StripeProvider apiKey="pk_test_ZnGFt3f2iYBAtIv4xyKVQoOr">
+      <Router>
+        <div className="page-container">
+          <Route exact path="/" component={App} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/classes" component={Classes} />
+          <Route path="/settings" component={Settings} />
+          <Elements>
+            <Route
+              path='/billing'
+              render={(props) => <BillingForm {...props} fontSize={elementFontSize} />}
+            />
+            {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
+          </Elements>
+        </div>
+      </Router>
+    </StripeProvider>
   </Provider>,
   document.getElementById("root")
 );

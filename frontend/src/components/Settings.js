@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { withRouter } from 'react-router';
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Button, Form, Label, Input, FormGroup } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
@@ -93,4 +93,4 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+export default withRouter(Settings);
