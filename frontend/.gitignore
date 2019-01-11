@@ -12,7 +12,7 @@
 /build
 
 # misc
-*.pyc
+/rocketmaster/__pycache__
 .env
 .DS_Store
 .env.local
