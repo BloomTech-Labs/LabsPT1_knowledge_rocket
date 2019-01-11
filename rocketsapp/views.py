@@ -16,6 +16,7 @@ jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 
 class RegisterUserSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=30)
+    email = serializers.CharField(max_length=100)
     password1 = serializers.CharField(max_length=15)
     password2 = serializers.CharField(max_length=15)
 
@@ -26,17 +27,19 @@ class RegisterUsers(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
         # data = json.loads(request.body)
         username = request.data.get("username")
+        email = request.data.get("email")
         password1 = request.data.get("password1")
         password2 = request.data.get("password2")
         credentials = {
             'username': username,
+            'email': email,
             'password1': password1,
             'password2': password2
         }
         if not all(credentials.values()):
             return JsonResponse(
                 {
-                    "error": "username, password and confirm_password is required to register user"
+                    "error": "username, email password and confirm_password is required to register user"
                 },
                 safe=True,
                 status=status.HTTP_400_BAD_REQUEST
@@ -59,9 +62,12 @@ class RegisterUsers(generics.CreateAPIView):
                 response = JsonResponse({"error":"Password must be at least 5 characters."}, safe=True, status=500)
             elif password1 != password2:
                 response = JsonResponse({"error":"The two password fields didn't match."}, safe=True, status=500)
+            elif len(email) < 4:
+                response = JsonResponse({"error":"Email must be at least 4 characters."}, safe=True, status=500)
+
             else:
                 new_user = User.objects.create_user(
-                    username=username, password=password1
+                    username=username, email=email, password=password1
                 )
                 payload = jwt_payload_handler(new_user)
                 response = JsonResponse({
@@ -102,7 +108,3 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         except User.DoesNotExist:
             msg = 'Account with this username does not exists'
             raise serializers.ValidationError(msg)
-
-
-
-

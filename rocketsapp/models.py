@@ -13,6 +13,16 @@ class Teacher(models.Model):
         db_table            = 'Teachers'
         verbose_name_plural = 'teachers'
 
+class Class(models.Model):
+    id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    name          = models.CharField(max_length=100, blank = False)
+    Teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
+    created_at    = models.DateTimeField(auto_now_add = True)
+    last_modified = models.DateTimeField(auto_now = True)
+
+    class Meta:
+        db_table            = 'Classes'
+        verbose_name_plural = 'classes'
 
 class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
@@ -51,16 +61,6 @@ class Choice(models.Model):
         db_table            = 'Choices'
         verbose_name_plural = 'choices'
 
-class Class(models.Model):
-    id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    name          = models.CharField(max_length=100, blank = False)
-    Teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
-    created_at    = models.DateTimeField(auto_now_add = True)
-    last_modified = models.DateTimeField(auto_now = True)
-
-    class Meta:
-        db_table            = 'Classes'
-        verbose_name_plural = 'classes'
 
 class Student(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
