@@ -12,7 +12,7 @@
 /build
 
 # misc
-.pyc
+*.pyc
 .env
 .DS_Store
 .env.local
