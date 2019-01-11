@@ -1,22 +1,40 @@
-.sidebar {
-    display: flex;
-    flex-direction: row;
-    padding: 1%;
+#main {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: navy;
 }
 
-@media (min-width: 992px) {
-    .sidebar {
+.navbar {
+    position: absolute;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 1rem;
+}
+
+@media (min-width: 767px) {
+    .breadcrumb {
+        width: 75%;
         display: flex;
-        display: block;
+        float: right;
+    }
+    .sidebar {
+        max-width: 20%;
+        flex-direction: column;
+        height: 100vh;
+    }
+    div.collapse.navbar-collapse {
         min-height: 100vh;
     }
-    .collapse {
-        display: flex;
-    }
-    a.nav-link {
-        margin: 0 auto;
-    }
-    .navbar-expand-sm .navbar-nav {
+    .sidebar .navbar-nav {
+        padding: 3%;
         flex-direction: column;
+        min-height: 100vh;
+        text-align: left;
+    }
+    #main {
+        width: 85%;
+        float: right;
     }
 }

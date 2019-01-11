@@ -1,11 +1,9 @@
-/* .App {
+.App {
   background-color: navy;
   min-height: 100vh;
   padding: 3%;
-} */
-body {
-  background-color: navy;
 }
+
 a {
   color: #ff7400;
   font-weight: bolder;
@@ -31,7 +29,6 @@ div#links {
 
 .fa-rocket {
   color: #ff7400;
-  text-shadow: 2px 2px white;
 }
 
 .fa-circle {
