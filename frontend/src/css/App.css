@@ -3,9 +3,11 @@
   min-height: 100vh;
   padding: 3%;
 } */
+
 body {
   background-color: navy;
 }
+
 a {
   color: #ff7400;
   font-weight: bolder;
