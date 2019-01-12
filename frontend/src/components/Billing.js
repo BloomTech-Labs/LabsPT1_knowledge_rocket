@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
 
@@ -47,7 +47,6 @@ class BillingForm extends Component {
           '::placeholder': {
             color: '#aab7c4',
           },
-        //   ...(padding ? {padding} : {}),
         },
         invalid: {
           color: '#9e2146',
@@ -58,55 +57,53 @@ class BillingForm extends Component {
 
   render() {
     return (
-    //   <div className="checkout">
-    //     <p>Would you like to complete the purchase?</p>
-    //     <CardElement />
-    //     <button onClick={this.submit}>Send</button>
-    //   </div>
-    <form onSubmit={this.submit}>
-    
-        <label>
-        Card number
-        <CardNumberElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-        />
-        </label>
-        <label>
-        Expiration date
-        <CardExpiryElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-        />
-        </label>
-        <label>
-        CVC
-        <CardCVCElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-        />
-        </label>
-        <label>
-        Postal code
-        <PostalCodeElement
-            onBlur={this.handleBlur}
-            onChange={this.handleChange}
-            onFocus={this.handleFocus}
-            onReady={this.handleReady}
-            {...this.createOptions(this.props.fontSize)}
-        />
-        </label>
-        <button>Pay</button>
-    </form>    
+        <Fragment>
+            <h1>Billing</h1>
+            <form onSubmit={this.submit}>
+                <label>
+                    Card number
+                </label>
+                <CardNumberElement
+                    onBlur={this.handleBlur}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onReady={this.handleReady}
+                    {...this.createOptions(this.props.fontSize)}
+                />
+                <label>
+                    Expiration date
+                </label>
+                <CardExpiryElement
+                    onBlur={this.handleBlur}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onReady={this.handleReady}
+                    {...this.createOptions(this.props.fontSize)}
+                />
+                <label>
+                    CVC
+                </label>
+                <CardCVCElement
+                    onBlur={this.handleBlur}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onReady={this.handleReady}
+                    {...this.createOptions(this.props.fontSize)}
+                />
+                <label>
+                    Postal code
+                </label>
+                <PostalCodeElement
+                    onBlur={this.handleBlur}
+                    onChange={this.handleChange}
+                    onFocus={this.handleFocus}
+                    onReady={this.handleReady}
+                    {...this.createOptions(this.props.fontSize)}
+                />
+                <input type="checkbox" name="subPrice" />1 Year Subscription - $9.99<br/>
+                <button>Buy Now</button>
+            </form>    
+        </Fragment>
     );
   }
 }
