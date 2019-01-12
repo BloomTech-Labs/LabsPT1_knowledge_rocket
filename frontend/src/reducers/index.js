@@ -1,12 +1,13 @@
 import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR } from '../actions';
 
 // team discussion on what the state should look like
+
 const defaultState = {
     user: [],
     loading: false,
     success: false,
     error: false,
-    errorMsg: ""
+    errorMsg: "",
 }
 
 export default (state = defaultState, action) => {
