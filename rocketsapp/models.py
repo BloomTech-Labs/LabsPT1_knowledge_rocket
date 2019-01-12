@@ -1,11 +1,15 @@
 from django.db import models
 from uuid import uuid4
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Teacher(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    email         = models.CharField(max_length=100, unique=True, blank=False)
-    name          = models.CharField(max_length=30, blank=False)
+    user          = models.OneToOneField(User, blank = False, unique = True, on_delete=models.CASCADE)
+    name          = models.CharField(max_length=100, blank = False)
+    email         = models.EmailField(blank = False)
+    premium       = models.BooleanField(default = False)
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 

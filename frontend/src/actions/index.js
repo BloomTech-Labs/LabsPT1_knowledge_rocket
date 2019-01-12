@@ -8,13 +8,14 @@ export const ERROR = 'ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
+// http://127.0.0.1:8000/ **quick ref local deploy
 
 export const registerUser = user => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR })
     axios
-      .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
+      .post("http://127.0.0.1:8000/register/", user)
       .then(response => {
         const token = response.data.token
         localStorage.setItem('token', token);

@@ -7,6 +7,8 @@ class TeacherAdmin(admin.ModelAdmin):
     readonly_fields=('email', 'name', 'created_at')
 
 admin.site.register(Teacher, TeacherAdmin)
+
+# admin.site.register(Teacher)
 admin.site.register(Rocket)
 admin.site.register(Question)
 admin.site.register(Choice)

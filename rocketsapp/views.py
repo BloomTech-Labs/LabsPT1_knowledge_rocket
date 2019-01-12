@@ -9,6 +9,8 @@ from django.contrib.auth import authenticate, get_user_model
 from rest_framework import serializers, generics, permissions, status
 from rest_framework_jwt.settings import api_settings
 
+from .api import TeacherViewset
+
 User = get_user_model()
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -72,6 +74,7 @@ class RegisterUsers(generics.CreateAPIView):
                 payload = jwt_payload_handler(new_user)
                 response = JsonResponse({
                         'token': jwt_encode_handler(payload)
+
                     },
                     safe=True,
                     status=status.HTTP_201_CREATED
