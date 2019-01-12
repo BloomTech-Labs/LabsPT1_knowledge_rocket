@@ -16,6 +16,7 @@ import Login from './components/login';
 import App from './components/App.js';
 import Classes from './components/Classes.js';
 import Settings from './components/Settings.js';
+import CreateRocket from './components/CreateRocket.js';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -34,6 +35,7 @@ ReactDOM.render(
                 <Route path="/login" component={Login} />
                 <Route path="/classes" component={Classes} />
                 <Route path="/settings" component={Settings} />
+                <Route path="/create" component={CreateRocket} />
             </div>
         </Router>
     </Provider>
