@@ -43,8 +43,8 @@ class Login extends Component {
 
     render() {
         return(
-            <div>
-                <h1>Login</h1>
+            <div>oki
+                <h1>Login</h1>()
                 <Form>
                     <FormGroup>
                         <Input type='text' name='username' value={this.state.username} onChange={this.handleInputChange} placeholder='Username' />

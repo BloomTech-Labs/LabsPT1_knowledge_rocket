@@ -10,7 +10,6 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-<<<<<<< HEAD
 import rootReducer from './reducers';
 import Register from './components/register';
 import Login from './components/login';
@@ -18,14 +17,6 @@ import App from './components/App.js';
 import Classes from './components/Classes.js';
 import Settings from './components/Settings.js';
 import CreateRocket from './components/CreateRocket.js';
-=======
-import rootReducer from "./reducers";
-import Register from "./components/register";
-import Login from "./components/login";
-import App from "./components/App.js";
-import Classes from "./components/Classes.js";
-import Settings from "./components/Settings.js";
->>>>>>> eef665d2adb569eb1beb0079e26a6da429f5788e
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -36,7 +27,6 @@ const store = createStore(
 );
 
 ReactDOM.render(
-<<<<<<< HEAD
     <Provider store={store}>
         <Router>
             <div className="page-container">
@@ -50,21 +40,6 @@ ReactDOM.render(
         </Router>
     </Provider>
 , document.getElementById('root'));
-=======
-  <Provider store={store}>
-    <Router>
-      <div className="page-container">
-        <Route exact path="/" component={App} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route path="/classes" component={Classes} />
-        <Route path="/settings" component={Settings} />
-      </div>
-    </Router>
-  </Provider>,
-  document.getElementById("root")
-);
->>>>>>> eef665d2adb569eb1beb0079e26a6da429f5788e
 
 // keep as unregistered to work off of a port
 serviceWorker.unregister();
