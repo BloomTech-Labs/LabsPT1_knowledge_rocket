@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 import json
 
@@ -75,21 +76,24 @@ class RegisterUsers(generics.CreateAPIView):
                 payload = jwt_payload_handler(new_user)
                 response = JsonResponse({
                         'token': jwt_encode_handler(payload)
-
                     },
                     safe=True,
                     status=status.HTTP_201_CREATED
                 )
             return response
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username')
+
 class CustomJWTSerializer(JSONWebTokenSerializer):
     def validate(self, attrs):
         username = attrs.get("username")
         password = attrs.get("password")
-        
+    
         try:
             user = User.objects.get(username=username)
-            user2 = User.objects.get(username=username)
             credentials = {
                 'username': username,
                 'password': password
@@ -99,8 +103,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
                 if user:
                     payload = jwt_payload_handler(user)
                     return {
-                        # 'token': jwt_encode_handler(payload),
-                        'user': user2,
+                        'token': jwt_encode_handler(payload)
                     }
                 else:
                     msg = 'Unable to log in with provided credentials.'
@@ -120,12 +123,11 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 
-class UpdateProfile(generics.CreateAPIView):
+class UserGet(generics.CreateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        username = request.data.get("username")
-        email = request.data.get("email")
-
+        username = request.user.username
+        email = request.user.email
         return JsonResponse({'username': username, 'email': email})
