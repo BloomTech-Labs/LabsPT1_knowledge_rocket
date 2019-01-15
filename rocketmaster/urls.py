@@ -20,7 +20,7 @@ from rest_framework_jwt.views import ObtainJSONWebToken, verify_jwt_token
 from rocketsapp.views import CustomJWTSerializer, RegisterUsers, UserGet
 from django.views.decorators.csrf import csrf_exempt
 
-# from rocketsapp.api import TeacherViewset
+from rocketsapp.api import RegisterClasses
 
 # router = routers.DefaultRouter()
 # router.register(r'rocketsapp', TeacherViewset)
@@ -30,5 +30,6 @@ urlpatterns = [
     # path('teacher/', include(router.urls)),
     re_path(r'^login/', csrf_exempt(ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer))),
     re_path(r'^register/', csrf_exempt(RegisterUsers.as_view())),
-    re_path(r'^userget/', csrf_exempt(UserGet.as_view()))
+    re_path(r'^userget/', csrf_exempt(UserGet.as_view())),
+    re_path(r'^addclass/', csrf_exempt(RegisterClasses.as_view())),
 ]

@@ -82,11 +82,6 @@ class RegisterUsers(generics.CreateAPIView):
                 )
             return response
 
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'username')
-
 class CustomJWTSerializer(JSONWebTokenSerializer):
     def validate(self, attrs):
         username = attrs.get("username")

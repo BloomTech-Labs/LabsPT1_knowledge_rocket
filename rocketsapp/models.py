@@ -20,7 +20,7 @@ class Teacher(models.Model):
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
-    Teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
+    user          = models.ForeignKey(User, blank = False, on_delete=models.CASCADE)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 

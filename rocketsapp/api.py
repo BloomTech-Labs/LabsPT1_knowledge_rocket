@@ -1,5 +1,27 @@
-from rest_framework import serializers, viewsets
-from .models import Teacher, Rocket, Question, Choice, Class, Student
+from rest_framework import serializers, viewsets, generics, permissions, status
+from django.http import JsonResponse
+from .models import Rocket, Question, Choice, Class, Student
+
+class ClassSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+
+class RegisterClasses(generics.CreateAPIView):
+    serializer_class = ClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+ 
+    def post(self, request, *args, **kwargs):
+        name = request.data.get("name")
+        Class(name=name).save()
+        # user = request.user.username
+        response = JsonResponse({
+                'msg': 'successful'
+            },
+            safe=True,
+            status=status.HTTP_201_CREATED
+        )
+        return response
+
+
 
 # class TeacherSerializer(serializers.HyperlinkedModelSerializer):
 #     class Meta:
