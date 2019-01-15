@@ -10,12 +10,12 @@ class ClassSerializer(serializers.Serializer):
 
 class RegisterClasses(generics.CreateAPIView):
     serializer_class = ClassSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated,) #takes the authorization header and decodes it to provide access to the gated route
  
     def post(self, request, *args, **kwargs):
-        username = request.user
-        name = request.data.get("name")
-        Class(name=name, user=username ).save()
+        username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
+        name = request.data.get("name") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
+        Class(name=name, user=username ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
         response = JsonResponse({
                 'msg': 'successful'
             },
