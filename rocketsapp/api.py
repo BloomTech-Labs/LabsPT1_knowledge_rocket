@@ -1,6 +1,9 @@
 from rest_framework import serializers, viewsets, generics, permissions, status
 from django.http import JsonResponse
 from .models import Rocket, Question, Choice, Class, Student
+from django.contrib.auth.models import User
+
+
 
 class ClassSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
@@ -10,9 +13,9 @@ class RegisterClasses(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
  
     def post(self, request, *args, **kwargs):
+        username = request.user
         name = request.data.get("name")
-        Class(name=name).save()
-        # user = request.user.username
+        Class(name=name, user=username ).save()
         response = JsonResponse({
                 'msg': 'successful'
             },
@@ -21,29 +24,26 @@ class RegisterClasses(generics.CreateAPIView):
         )
         return response
 
+class RocketSerializer(serializers.Serializer):
+    name = serializers.CharField(max_length=100)
+    className = serializers.CharField(max_length=100)
 
-
-# class TeacherSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = Teacher,
-#         fields = ('name', 'email')
-
-#     def create(self):
-#         print(f'{self}')
-#         user = self.context['request'].user
-#         teacher = Teacher.objects.create( name = user.name, email = user.email)
-#         return teacher
-
-# class TeacherViewset(viewsets.ModelViewSet):
-#     serializer_class = TeacherSerializer
-#     queryset = Teacher.objects.none()
-
-#     def get_queryset(self):
-#         user = self.request.user
-# class ClassSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = Class,
-#         fields = ('name', )
+class RegisterRockets(generics.CreateAPIView):
+    serializer_class = RocketSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+ 
+    def post(self, request, *args, **kwargs):
+        username = request.user
+        name = request.data.get("name")
+        className = request.data.get("className")
+        Rocket(name=name, className = className, user=username ).save()
+        response = JsonResponse({
+                'msg': 'successful'
+            },
+            safe=True,
+            status=status.HTTP_201_CREATED
+        )
+        return response
 
 
 
