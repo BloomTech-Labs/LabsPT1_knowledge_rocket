@@ -121,8 +121,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
 
-
-
 class UserGet(generics.CreateAPIView):
     serializer_class = ProfileSerializer
     permission_classes = (permissions.IsAuthenticated,)
