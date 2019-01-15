@@ -2,14 +2,15 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+
 import json
 
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
 from django.contrib.auth import authenticate, get_user_model
 from rest_framework import serializers, generics, permissions, status
 from rest_framework_jwt.settings import api_settings
-
-from .api import TeacherViewset
 
 User = get_user_model()
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -88,6 +89,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         
         try:
             user = User.objects.get(username=username)
+            user2 = User.objects.get(username=username)
             credentials = {
                 'username': username,
                 'password': password
@@ -97,8 +99,8 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
                 if user:
                     payload = jwt_payload_handler(user)
                     return {
-                        'token': jwt_encode_handler(payload),
-                        'user': user
+                        # 'token': jwt_encode_handler(payload),
+                        'user': user2,
                     }
                 else:
                     msg = 'Unable to log in with provided credentials.'
@@ -111,3 +113,19 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         except User.DoesNotExist:
             msg = 'Account with this username does not exists'
             raise serializers.ValidationError(msg)
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+
+
+
+class UpdateProfile(generics.CreateAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.data.get("username")
+        email = request.data.get("email")
+
+        return JsonResponse({'username': username, 'email': email})

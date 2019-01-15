@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from rest_framework_jwt.views import ObtainJSONWebToken
+from rest_framework_jwt.views import ObtainJSONWebToken, verify_jwt_token
 # from rest_framework import routers
-from rocketsapp.views import CustomJWTSerializer, RegisterUsers
+from rocketsapp.views import CustomJWTSerializer, RegisterUsers, UpdateProfile
 from django.views.decorators.csrf import csrf_exempt
+
 # from rocketsapp.api import TeacherViewset
 
 # router = routers.DefaultRouter()
@@ -28,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('teacher/', include(router.urls)),
     re_path(r'^login/', csrf_exempt(ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer))),
-    re_path(r'^register/', csrf_exempt(RegisterUsers.as_view()))
-    # re_path(r'^settings/', csrf_exempt(UpdateUser.as_view()))
+    re_path(r'^register/', csrf_exempt(RegisterUsers.as_view())),
+    re_path(r'^settings/', csrf_exempt(UpdateProfile.as_view())),
+
 ]

@@ -34,7 +34,7 @@ export const loginUser = (user) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         axios
-          .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
+          .post("http://127.0.0.1:8000/login/", user)
           .then(response => {
             const token = response.data.token
             localStorage.setItem('token', token);
