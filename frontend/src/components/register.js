@@ -11,6 +11,7 @@ import { registerUser } from '../actions';
 class Register extends Component {
     state = {
         username: '',
+        email:'',
         password1: '',
         password2: '',
         error: false,
@@ -48,7 +49,7 @@ class Register extends Component {
         //     this.props.history.push('/')
         // }
 
-        this.setState({ username: '', password1: '', password2: '' })
+        this.setState({ username: '', email: '', password1: '', password2: '' })
     }
 
     render() {
@@ -58,6 +59,7 @@ class Register extends Component {
                 <Form>
                     <FormGroup>
                         <Input type='text' name='username' value={this.state.username} onChange={this.handleInputChange} placeholder='Username' />
+                        <Input type='email' name='email' value={this.state.email} onChange={this.handleInputChange} placeholder='Email' />
                         <Input type='password' name='password1' value={this.state.password1} onChange={this.handleInputChange} placeholder='Password' />
                         <Input type='password' name='password2' value={this.state.password2} onChange={this.handleInputChange} placeholder='Confirm Password' />
                         <Button color='info' onClick={this.handleSubmit}>Sign Up!</Button>
