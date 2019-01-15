@@ -18,6 +18,7 @@ djangorestframework-jwt = "*"
 django = "*"
 bcrypt = "*"
 django-cors-headers = "*"
+stripe = "*"
 
 [dev-packages]
 
