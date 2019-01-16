@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Teacher, Rocket, Question, Choice, Class, Student
+from .models import Teacher, Rocket, Choice, Class, Student
 
 # Register your models here.
 
@@ -10,7 +10,6 @@ admin.site.register(Teacher, TeacherAdmin)
 
 # admin.site.register(Teacher)
 admin.site.register(Rocket)
-admin.site.register(Question)
 admin.site.register(Choice)
 admin.site.register(Class)
 admin.site.register(Student)

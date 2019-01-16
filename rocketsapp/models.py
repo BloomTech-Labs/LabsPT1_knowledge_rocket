@@ -31,12 +31,12 @@ class Class(models.Model):
 class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
-    interval      = models.CharField(max_length=10, blank = False)
+    interval      = models.CharField(max_length=10, default = 60, blank = False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
-    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE)
+    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='classes')
     reviewText    = models.CharField(max_length=512, blank = False)
     questionText  = models.CharField(max_length=512, blank = False)
-    choice        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE)
+    choice        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='choices')
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
@@ -55,11 +55,11 @@ class Rocket(models.Model):
 #     class Meta:
 #         db_table            = 'Questions'
 #         verbose_name_plural = 'questions'
-    
+
 
 class Choice(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket        = models.ForeignKey('Rocket', default = '',  on_delete = models.CASCADE)
+    rocket        = models.ForeignKey('Rocket', default = '',  on_delete = models.CASCADE, related_name='rockets')
     choice        = models.CharField(max_length=50, blank = False)
     isCorrect     = models.BooleanField()
     created_at    = models.DateTimeField(auto_now_add=True)
