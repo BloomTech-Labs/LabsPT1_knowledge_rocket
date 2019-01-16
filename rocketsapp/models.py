@@ -31,6 +31,7 @@ class Class(models.Model):
 class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
+    interval      = models.CharField(max_length=10, blank = False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE)
     reviewText    = models.CharField(max_length=512, blank = False)
@@ -58,7 +59,7 @@ class Rocket(models.Model):
 
 class Choice(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    Question      = models.ForeignKey('Rocket', default = '',  on_delete = models.CASCADE)
+    rocket        = models.ForeignKey('Rocket', default = '',  on_delete = models.CASCADE)
     choice        = models.CharField(max_length=50, blank = False)
     isCorrect     = models.BooleanField()
     created_at    = models.DateTimeField(auto_now_add=True)
@@ -74,8 +75,8 @@ class Student(models.Model):
     name          = models.CharField(max_length=50, blank=False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     email         = models.CharField(max_length=256, blank=False)
-    Classes       = models.ManyToManyField(Class)
-    Rockets       = models.ManyToManyField(Rocket)
+    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE)
+    rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE)
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
