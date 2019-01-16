@@ -141,7 +141,6 @@ JWT_AUTH = {
 
 AUTH_USER_MODEL = 'rocketsapp.User'
 
-
 CORS_ORIGIN_ALLOW_ALL=True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,29 +1,11 @@
 from django.db import models
 from uuid import uuid4
 from django.contrib.auth.models import User, AbstractUser
-from django.contrib.auth.models import AbstractUser
-
-
 
 # All models are subject to change and can be altered to meet our needs
 
-
 class User(AbstractUser):
     is_premium       = models.BooleanField(default = False)
-
-# Create your models here.
-# class Teacher(models.Model):
-#     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-#     user          = models.OneToOneField(User, blank = False, unique = True, on_delete=models.CASCADE)
-#     name          = models.CharField(max_length=100, blank = False)
-#     email         = models.EmailField(blank = False)
-#     premium       = models.BooleanField(default = False)
-#     created_at    = models.DateTimeField(auto_now_add=True)
-#     last_modified = models.DateTimeField(auto_now=True)
-
-#     class Meta:
-#         db_table            = 'Teachers'
-#         verbose_name_plural = 'teachers'
 
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)

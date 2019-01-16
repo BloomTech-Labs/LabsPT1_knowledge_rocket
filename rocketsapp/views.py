@@ -30,7 +30,6 @@ class RegisterUsers(generics.CreateAPIView):
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
-        # data = json.loads(request.body)
         username = request.data.get("username")
         email = request.data.get("email")
         password1 = request.data.get("password1")
