@@ -26,6 +26,7 @@ class RegisterClasses(generics.CreateAPIView):
 
 class RocketSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
+    className = serializers.CharField(max_length=100)
     interval = serializers.CharField(max_length=2)
     reviewText = serializers.CharField(max_length=512)
     questionText = serializers.CharField(max_length=512)
@@ -38,13 +39,21 @@ class RegisterRockets(generics.CreateAPIView):
 
         username = request.user
         name = request.data.get("name")
+        className = request.data.get("className")
         interval = request.data.get("interval")
         reviewText = request.data.get("reviewText")
         questionText = request.data.get("questionText")
-        classKey = Class.objects.all().filter(className=className).get(id)
-        
-        print(f'id {classKey}')
-        Rocket(name=name, className = className, user=username ).save()
+
+        classKey = Class.objects.get(name=className)
+
+        Rocket(
+            name = name, 
+            classKey = classKey, 
+            user = username, 
+            interval = interval,
+            reviewText = reviewText,
+            questionText = questionText,
+            ).save()
         response = JsonResponse({
                 'msg': 'successful'
             },

@@ -4,18 +4,18 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class Teacher(models.Model):
-    id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    user          = models.OneToOneField(User, blank = False, unique = True, on_delete=models.CASCADE)
-    name          = models.CharField(max_length=100, blank = False)
-    email         = models.EmailField(blank = False)
-    premium       = models.BooleanField(default = False)
-    created_at    = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
+# class Teacher(models.Model):
+#     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+#     user          = models.OneToOneField(User, blank = False, unique = True, on_delete=models.CASCADE)
+#     name          = models.CharField(max_length=100, blank = False)
+#     email         = models.EmailField(blank = False)
+#     premium       = models.BooleanField(default = False)
+#     created_at    = models.DateTimeField(auto_now_add=True)
+#     last_modified = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        db_table            = 'Teachers'
-        verbose_name_plural = 'teachers'
+#     class Meta:
+#         db_table            = 'Teachers'
+#         verbose_name_plural = 'teachers'
 
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
@@ -33,10 +33,10 @@ class Rocket(models.Model):
     name          = models.CharField(max_length=100, blank = False)
     interval      = models.CharField(max_length=10, default = 60, blank = False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
-    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='classes')
+    classKey      = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='classes')
     reviewText    = models.CharField(max_length=512, blank = False)
     questionText  = models.CharField(max_length=512, blank = False)
-    choice        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='choices')
+    # choice        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='choices')
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
