@@ -32,8 +32,10 @@ class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
-    # className     = models.ManyToManyField(Class) <---- We might need to figure out how to access the correct class to associate via foreign key
-    className     = models.CharField(max_length=100, blank = False)
+    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE)
+    reviewText    = models.CharField(max_length=512, blank = False)
+    questionText  = models.CharField(max_length=512, blank = False)
+    choice        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
@@ -42,22 +44,22 @@ class Rocket(models.Model):
         verbose_name_plural = 'rockets'
 
 
-class Question(models.Model):
-    id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    Rocket        = models.ForeignKey('Rocket', default = '', on_delete = models.CASCADE)
-    text          = models.TextField(blank = False)
-    created_at    = models.DateTimeField(auto_now_add = True)
-    last_modified = models.DateTimeField(auto_now = True)
+# class Question(models.Model):
+#     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+#     Rocket        = models.ForeignKey('Rocket', default = '', on_delete = models.CASCADE)
+#     text          = models.TextField(blank = False)
+#     created_at    = models.DateTimeField(auto_now_add = True)
+#     last_modified = models.DateTimeField(auto_now = True)
 
-    class Meta:
-        db_table            = 'Questions'
-        verbose_name_plural = 'questions'
+#     class Meta:
+#         db_table            = 'Questions'
+#         verbose_name_plural = 'questions'
     
 
 class Choice(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    Question      = models.ForeignKey('Question', default = '',  on_delete = models.CASCADE)
-    text          = models.TextField()
+    Question      = models.ForeignKey('Rocket', default = '',  on_delete = models.CASCADE)
+    choice        = models.CharField(max_length=50, blank = False)
     isCorrect     = models.BooleanField()
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)

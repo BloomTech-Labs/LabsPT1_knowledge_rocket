@@ -45,5 +45,5 @@ class RegisterRockets(generics.CreateAPIView):
         )
         return response
 
-
-
+class QuestionSerializer(serializers.Serializer):
+    text = serializers.CharField
