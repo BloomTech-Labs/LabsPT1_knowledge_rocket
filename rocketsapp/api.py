@@ -3,8 +3,6 @@ from django.http import JsonResponse
 from .models import Rocket, Choice, Class, Student
 from django.contrib.auth.models import User
 
-
-
 class ClassSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
 

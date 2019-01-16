@@ -1,9 +1,15 @@
 from django.db import models
 from uuid import uuid4
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+from django.contrib.auth.models import AbstractUser
+
+
 
 # All models are subject to change and can be altered to meet our needs
 
+
+class User(AbstractUser):
+    is_premium       = models.BooleanField(default = False)
 
 # Create your models here.
 # class Teacher(models.Model):
