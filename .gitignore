@@ -1,4 +1,7 @@
 .vscode/
 .env
 db.sqlite3
-rocketsapp/migrations/0001_initial.py
+rocketsapp/migrations/
+rocketsapp/__pycache__/
+rocketmaster/__pycache__/
+*.pyc

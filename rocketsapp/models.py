@@ -1,11 +1,15 @@
 from django.db import models
 from uuid import uuid4
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Teacher(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    email         = models.CharField(max_length=100, unique=True, blank=False)
-    name          = models.CharField(max_length=30, blank=False)
+    user          = models.OneToOneField(User, blank = False, unique = True, on_delete=models.CASCADE)
+    name          = models.CharField(max_length=100, blank = False)
+    email         = models.EmailField(blank = False)
+    premium       = models.BooleanField(default = False)
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
@@ -16,7 +20,7 @@ class Teacher(models.Model):
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
-    Teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
+    user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
@@ -27,8 +31,9 @@ class Class(models.Model):
 class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     name          = models.CharField(max_length=100, blank = False)
-    Teacher       = models.ForeignKey('Teacher', on_delete=models.CASCADE)
-    Classes       = models.ManyToManyField(Class)
+    user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
+    # className     = models.ManyToManyField(Class) <---- We might need to figure out how to access the correct class to associate via foreign key
+    className     = models.CharField(max_length=100, blank = False)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
@@ -39,7 +44,7 @@ class Rocket(models.Model):
 
 class Question(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    Rocket        = models.ForeignKey('Rocket', on_delete = models.CASCADE)
+    Rocket        = models.ForeignKey('Rocket', default = '', on_delete = models.CASCADE)
     text          = models.TextField(blank = False)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
@@ -51,7 +56,7 @@ class Question(models.Model):
 
 class Choice(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    Question      = models.ForeignKey('Question', on_delete = models.CASCADE)
+    Question      = models.ForeignKey('Question', default = '',  on_delete = models.CASCADE)
     text          = models.TextField()
     isCorrect     = models.BooleanField()
     created_at    = models.DateTimeField(auto_now_add=True)
@@ -65,6 +70,7 @@ class Choice(models.Model):
 class Student(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     name          = models.CharField(max_length=50, blank=False)
+    user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     email         = models.CharField(max_length=256, blank=False)
     Classes       = models.ManyToManyField(Class)
     Rockets       = models.ManyToManyField(Rocket)

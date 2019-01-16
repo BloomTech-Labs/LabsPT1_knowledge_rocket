@@ -1,7 +1,8 @@
-import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR } from '../actions';
+import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR, GET_USER } from '../actions';
 
 // team discussion on what the state should look like
 const defaultState = {
+    userKey: '',
     user: [],
     loading: false,
     success: false,
@@ -15,13 +16,16 @@ export default (state = defaultState, action) => {
             return {...state, loading: true }
 
         case REGISTER:
-            return {...state, user :[...state.user, action.payload ], success: true}
+            return {...state, userKey: [ action.payload ], success: true}
 
         case LOGIN:
-            return {...state, user: [action.payload], success: true}
+            return {...state, userKey: [ action.payload ], success: true}
 
         case CHANGE_LOADING:
             return {...state, loading: false }
+
+        case GET_USER:
+            return {...state, user: [action.payload], success: true }
         
         case ERROR:
             return {...state, error: true, errorMsg: action.payload}
