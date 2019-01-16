@@ -15,6 +15,7 @@ class App extends Component {
             <div id="links">
               <Link to={ "/register" }>Sign Up</Link>
               <Link to={ "/login" }>Login</Link>
+              <Link to={ "/getUser" }>getUser</Link>
             </div>
           </Row>
           <Row>

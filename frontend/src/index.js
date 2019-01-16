@@ -10,6 +10,7 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 import rootReducer from './reducers';
 import Register from './components/register';
 import Login from './components/login';
@@ -17,6 +18,8 @@ import App from './components/App.js';
 import Classes from './components/Classes.js';
 import Settings from './components/Settings.js';
 import CreateRocket from './components/CreateRocket.js';
+import GetUser from "./components/GetUser.js";
+
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -36,10 +39,12 @@ ReactDOM.render(
                 <Route path="/classes" component={Classes} />
                 <Route path="/settings" component={Settings} />
                 <Route path="/create" component={CreateRocket} />
+                <Route path="/getuser" component={GetUser} />
             </div>
         </Router>
     </Provider>
 , document.getElementById('root'));
+
 
 // keep as unregistered to work off of a port
 serviceWorker.unregister();
