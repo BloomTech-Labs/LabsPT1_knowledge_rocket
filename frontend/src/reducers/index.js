@@ -1,4 +1,4 @@
-import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR, GET_USER } from '../actions';
+import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR, GET_USER, CLEAR_REDIRECT, REDIRECT } from '../actions';
 
 // team discussion on what the state should look like
 const defaultState = {
@@ -7,7 +7,8 @@ const defaultState = {
     loading: false,
     success: false,
     error: false,
-    errorMsg: ""
+    errorMsg: "",
+    redirect: false
 }
 
 export default (state = defaultState, action) => {
@@ -32,6 +33,12 @@ export default (state = defaultState, action) => {
         
         case CLEAR_ERROR:
             return {...state, error: false, errorMsg: ''}
+
+        case REDIRECT:
+            return { ...state, redirect: true  }
+
+         case CLEAR_REDIRECT:
+            return { ...state, redirect: false } 
 
         default:
             return state;
