@@ -19,8 +19,7 @@ export const registerUser = user => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      // .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
-      .post("http://localhost:8000/register/", user)
+      .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
       .then(response => {
         const token = response.data.token
         localStorage.setItem('token', token);
@@ -41,8 +40,7 @@ export const loginUser = (user) => {
         dispatch({ type: CLEAR_ERROR });
         dispatch({ type: CLEAR_REDIRECT });
         axios
-          // .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
-          .post("http://localhost:8000/login/", user)
+          .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
           .then(response => {
             const token = response.data.token
             localStorage.setItem('token', token);
