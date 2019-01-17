@@ -124,3 +124,12 @@ class UserGet(generics.CreateAPIView):
         username = request.user.username
         email = request.user.email
         return JsonResponse({'username': username, 'email': email})
+
+# def redirect_home(request):
+#     if request.method == 'POST': 
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             return HttpResponseRedirect('/home')
+#         else:
+#             form = ContactForm(request.POST)   
+            
