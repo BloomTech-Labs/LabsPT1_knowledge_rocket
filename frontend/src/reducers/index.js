@@ -38,7 +38,7 @@ export default (state = defaultState, action) => {
             return { ...state, redirect: true  }
 
         case CLEAR_REDIRECT:
-            return { ...state, redirect:false }    
+            return { ...state, redirect: false }    
 
         default:
             return state;
