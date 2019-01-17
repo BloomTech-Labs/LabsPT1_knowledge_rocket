@@ -22,8 +22,7 @@ class Login extends Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        this.setState({ error: false })
-
+        this.setState({ error: false });
         if (!this.state.username || !this.state.password) {
             this.setState({
                 error: true,
@@ -32,7 +31,6 @@ class Login extends Component {
 
         } else {
             this.props.loginUser( this.state );
-
         }
             // if(this.props.state.error) {
             //     this.props.history.push('/')

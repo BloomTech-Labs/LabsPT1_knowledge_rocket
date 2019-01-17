@@ -17,6 +17,8 @@ import App from "./components/App.js";
 import Classes from "./components/Classes.js";
 import Settings from "./components/Settings.js";
 import GetUser from "./components/GetUser.js";
+import Home from "./components/Home.js";
+
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -36,6 +38,7 @@ ReactDOM.render(
         <Route path="/classes" component={Classes} />
         <Route path="/settings" component={Settings} />
         <Route path="/getuser" component={GetUser} />
+        <Route path="/home" component={ Home } />
       </div>
     </Router>
   </Provider>,
