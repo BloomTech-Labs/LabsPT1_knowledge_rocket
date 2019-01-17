@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 import "../css/login.css";
@@ -57,6 +57,9 @@ class Login extends Component {
                 </div>
                 <div>
                     {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null }
+                </div>
+                <div>
+                    {this.props.state.reidrect ? ( <Redirect to="/home" /> ): null }
                 </div>
                 <Link to={"/"}> Home </Link> 
 
