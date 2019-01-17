@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rocketsapp',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +129,18 @@ REST_FRAMEWORK = {
     ),
 }
 
+import datetime
+JWT_AUTH = {
+ 
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+    'JWT_AUTH_HEADER_PREFIX': 'Token',
+ 
+}
+
+AUTH_USER_MODEL = 'rocketsapp.User'
+
 CORS_ORIGIN_ALLOW_ALL=True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -161,4 +173,5 @@ STATIC_URL = '/static/'
 
 import django_heroku
 django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
+
+# del DATABASES['default']['OPTIONS']['sslmode']

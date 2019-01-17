@@ -1,6 +1,6 @@
 from decouple import config
 import stripe
-from ../models import Teacher
+from rocketsapp.models import User
 
 stripe.api_key = config("STRIPE_SECRET_KEY")
 algorithm = 'HS256'
@@ -15,7 +15,7 @@ class SubscribeCustomer:
         self.teacher = None
 
     def get_teacher(self):
-        return Teacher.objects.get(email=self.email)
+        return User.objects.get(username=self.username)
 
     def customer_exists(self):
         self.teacher = self.get_teacher()
@@ -30,8 +30,8 @@ class SubscribeCustomer:
 
     def create_customer(self):
         self.customer = stripe.Customer.create(
-            email=self.email
-            source=self.source,
+            email=self.email,
+            source=self.source
         )
 
     def create_subscription(self):
@@ -41,6 +41,6 @@ class SubscribeCustomer:
         )
     
     def update_teacher(self):
-        self.create_customer()
-        self.Teacher.customerID = self.customer.id
-        self.Teacher.save(update_fields=['customerID'])
+        self.teacher.is_premium = True
+        self.teacher.customerID = self.customer.id
+        self.teacher.save(update_fields=['customerID', 'is_premium'])

@@ -10,11 +10,16 @@ class BillingForm extends Component {
 
   async submit(e) {
     e.preventDefault();
-    let {token} = await this.props.stripe.createToken({name: "Name"});
-    let response = await fetch("/charge", {
+    let {token} = await this.props.stripe.createToken();
+    console.log(token.id);
+    console.log(`token ${localStorage.getItem('token')}`);
+    let response = await fetch("http://localhost:8000/subscribe", {
       method: "POST",
-      headers: {"Content-Type": "text/plain"},
-      body: token.id
+      headers: new Headers({
+        "Content-Type": "application/json",
+        "Authorization": `token ${localStorage.getItem('token')}`
+      }),
+      body: JSON.stringify({ source: token.id })
     });
   
     if (response.ok) console.log("Purchase Complete!")

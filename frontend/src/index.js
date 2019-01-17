@@ -18,6 +18,7 @@ import Classes from "./components/Classes.js";
 import Settings from "./components/Settings.js";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import BillingForm from './components/Billing';
+import GetUser from "./components/GetUser.js";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -46,9 +47,20 @@ ReactDOM.render(
             />
             {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
+          <Route path="/getuser" component={GetUser} />
         </div>
       </Router>
     </StripeProvider>
+    <Router>
+      <div className="page-container">
+        <Route exact path="/" component={App} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <Route path="/classes" component={Classes} />
+        <Route path="/settings" component={Settings} />
+        <Route path="/getuser" component={GetUser} />
+      </div>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );
