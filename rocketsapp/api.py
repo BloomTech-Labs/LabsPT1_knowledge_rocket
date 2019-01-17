@@ -93,9 +93,7 @@ class CreateSubscription(generics.CreateAPIView):
         subCustomer = SubscribeCustomer(payload['username'], payload['email'], source)
 
         customer_exists = subCustomer.customer_exists()
-        print(customer_exists)
         if (customer_exists):
-            print("Here")
             response = JsonResponse(json.dumps({
                     "msg": "customer already has subscription."
                 }),
@@ -103,7 +101,6 @@ class CreateSubscription(generics.CreateAPIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         else:
-            print("there")
             subCustomer.create_customer()
             subCustomer.create_subscription()
             subCustomer.update_teacher()
