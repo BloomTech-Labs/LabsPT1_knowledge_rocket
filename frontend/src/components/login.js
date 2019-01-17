@@ -59,7 +59,7 @@ class Login extends Component {
                     {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null }
                 </div>
                 <div>
-                    {this.props.state.reidrect ? ( <Redirect to="/home" /> ): null }
+                    {this.props.state.redirect ? ( <Redirect to="/home" /> ): null }
                 </div>
                 <Link to={"/"}> Home </Link> 
 
