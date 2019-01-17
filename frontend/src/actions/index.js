@@ -54,7 +54,7 @@ export const getUser = (userKey) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         axios
-          .get("https://cspt1knowledgerocket.herokuapp.com/userget/", { 'headers': { 'Authorization': `token ${userKey}` }})
+          .get("https://cspt1knowledgerocket.herokuapp.com/getuser/", { 'headers': { 'Authorization': `token ${userKey}` }})
           .then(response => {
             dispatch({ type: GET_USER, payload: response.data });
           })
