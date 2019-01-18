@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
 import json
 
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
@@ -19,17 +23,18 @@ class RegisterUserSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=100)
     password1 = serializers.CharField(max_length=15)
     password2 = serializers.CharField(max_length=15)
+    is_premium = serializers.BooleanField()
 
 class RegisterUsers(generics.CreateAPIView):
     serializer_class = RegisterUserSerializer
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
-        # data = json.loads(request.body)
         username = request.data.get("username")
         email = request.data.get("email")
         password1 = request.data.get("password1")
         password2 = request.data.get("password2")
+        is_premium = request.data.get('is_premium')
         credentials = {
             'username': username,
             'email': email,
@@ -67,7 +72,7 @@ class RegisterUsers(generics.CreateAPIView):
 
             else:
                 new_user = User.objects.create_user(
-                    username=username, email=email, password=password1
+                    username=username, email=email, password=password1, is_premium = is_premium
                 )
                 payload = jwt_payload_handler(new_user)
                 response = JsonResponse({
@@ -82,7 +87,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
     def validate(self, attrs):
         username = attrs.get("username")
         password = attrs.get("password")
-        
+    
         try:
             user = User.objects.get(username=username)
             credentials = {
@@ -94,8 +99,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
                 if user:
                     payload = jwt_payload_handler(user)
                     return {
-                        'token': jwt_encode_handler(payload),
-                        'user': user
+                        'token': jwt_encode_handler(payload)
                     }
                 else:
                     msg = 'Unable to log in with provided credentials.'
@@ -108,3 +112,16 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
         except User.DoesNotExist:
             msg = 'Account with this username does not exists'
             raise serializers.ValidationError(msg)
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+
+class GetUser(generics.CreateAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user.username
+        email = request.user.email
+        return JsonResponse({'username': username, 'email': email})
