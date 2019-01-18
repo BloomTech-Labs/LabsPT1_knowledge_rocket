@@ -10,15 +10,18 @@ import * as serviceWorker from "./serviceWorker";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 import rootReducer from "./reducers";
 import Register from "./components/register";
 import Login from "./components/login";
 import App from "./components/App.js";
 import Classes from "./components/Classes.js";
 import Settings from "./components/Settings.js";
-import {Elements, StripeProvider} from 'react-stripe-elements';
-import BillingForm from './components/Billing';
+import CreateRocket from "./components/CreateRocket.js";
+import {Elements, StripeProvider} from "react-stripe-elements";
+import BillingForm from "./components/Billing";
 import GetUser from "./components/GetUser.js";
+
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -31,6 +34,7 @@ const store = createStore(
 const elementFontSize = window.innerWidth < 450 ? '14px' : '18px'
 
 ReactDOM.render(
+
   <Provider store={store}>
     <StripeProvider apiKey="pk_test_ZnGFt3f2iYBAtIv4xyKVQoOr">
       <Router>
@@ -40,6 +44,8 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/classes" component={Classes} />
           <Route path="/settings" component={Settings} />
+          <Route path="/create" component={CreateRocket} />
+          <Route path="/getuser" component={GetUser} />
           <Elements>
             <Route
               path='/billing'
@@ -64,6 +70,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
+
 
 // keep as unregistered to work off of a port
 serviceWorker.unregister();
