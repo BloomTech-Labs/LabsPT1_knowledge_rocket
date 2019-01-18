@@ -74,3 +74,4 @@ class GetClasses(generics.CreateAPIView):
         classList = Class.objects.all().filter(user_id=username_id) #might be able to use a .get instead. too late to continue with that though
         serializer = serializer_class(classList, many=True)
         return JsonResponse( serializer.data, safe=False, status=status.HTTP_200_OK )
+
