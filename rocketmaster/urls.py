@@ -19,7 +19,7 @@ from rest_framework_jwt.views import ObtainJSONWebToken, verify_jwt_token
 from rocketsapp.views import CustomJWTSerializer, RegisterUsers, GetUser
 from django.views.decorators.csrf import csrf_exempt
 
-from rocketsapp.api import RegisterClasses, RegisterRockets, GetClasses
+from rocketsapp.api import RegisterClasses, RegisterRockets, GetClasses, CreateSubscription
 
 
 urlpatterns = [
@@ -30,4 +30,5 @@ urlpatterns = [
     re_path(r'^addclass/', csrf_exempt(RegisterClasses.as_view())),
     re_path(r'^addrocket/', csrf_exempt(RegisterRockets.as_view())),
     re_path(r'^getclass/', csrf_exempt(GetClasses.as_view())),
+    re_path(r'^subscribe', csrf_exempt(CreateSubscription.as_view()))
 ]

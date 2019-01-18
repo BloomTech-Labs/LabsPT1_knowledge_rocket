@@ -2,6 +2,13 @@ from rest_framework import serializers, viewsets, generics, permissions, status
 from django.http import JsonResponse
 from .models import Rocket, Choice, Class, Student
 from django.contrib.auth.models import User
+from rest_framework_jwt.settings import api_settings
+from rocketsapp.utilities.billing_helper import SubscribeCustomer
+
+jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
+jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
+import json
+
 
 class ClassSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
@@ -59,6 +66,52 @@ class RegisterRockets(generics.CreateAPIView):
             safe=True,
             status=status.HTTP_201_CREATED
         )
+        return response
+
+class SubscriptionSerializer(serializers.Serializer):
+    source = serializers.CharField(max_length=256)
+
+class CreateSubscription(generics.CreateAPIView):
+    serializer_class = SubscriptionSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+        source = request.data.get("source")
+        
+        try:
+            payload = jwt_decode_handler(token)
+        except jwt.ExpiredSignature:
+            msg = _('Signature has expired.')
+            raise exceptions.AuthenticationFailed(msg)
+        except jwt.DecodeError:
+            msg = _('Error decoding signature.')
+            raise exceptions.AuthenticationFailed(msg)
+        except jwt.InvalidTokenError:
+            raise exceptions.AuthenticationFailed()
+        
+        subCustomer = SubscribeCustomer(payload['username'], payload['email'], source)
+
+        customer_exists = subCustomer.customer_exists()
+        if (customer_exists):
+            response = JsonResponse(json.dumps({
+                    "msg": "customer already has subscription."
+                }),
+                safe=False,
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        else:
+            subCustomer.create_customer()
+            subCustomer.create_subscription()
+            subCustomer.update_teacher()
+
+            response = JsonResponse(json.dumps({
+                    "msg": "customer subscribed successfully."
+                }),
+                safe=False,
+                status=status.HTTP_201_CREATED
+            )
+        
         return response
 
 class QuestionSerializer(serializers.Serializer):
