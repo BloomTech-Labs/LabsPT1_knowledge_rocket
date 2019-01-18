@@ -23,7 +23,7 @@ class RegisterUserSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=100)
     password1 = serializers.CharField(max_length=15)
     password2 = serializers.CharField(max_length=15)
-    is_premium = serializers.BooleanField()
+    # is_premium = serializers.BooleanField()
 
 class RegisterUsers(generics.CreateAPIView):
     serializer_class = RegisterUserSerializer
@@ -34,7 +34,7 @@ class RegisterUsers(generics.CreateAPIView):
         email = request.data.get("email")
         password1 = request.data.get("password1")
         password2 = request.data.get("password2")
-        is_premium = request.data.get('is_premium')
+        # is_premium = request.data.get('is_premium')
         credentials = {
             'username': username,
             'email': email,
@@ -72,7 +72,7 @@ class RegisterUsers(generics.CreateAPIView):
 
             else:
                 new_user = User.objects.create_user(
-                    username=username, email=email, password=password1, is_premium = is_premium
+                    username=username, email=email, password=password1
                 )
                 payload = jwt_payload_handler(new_user)
                 response = JsonResponse({
