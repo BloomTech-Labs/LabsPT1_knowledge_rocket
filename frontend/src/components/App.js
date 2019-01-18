@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import { withRouter } from 'react-router';
 import "../css/App.css";
 
 import { Container, Row } from "reactstrap";
@@ -33,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
