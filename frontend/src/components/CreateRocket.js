@@ -179,7 +179,7 @@ class CreateRocket extends Component {
                   </FormGroup>
                   <FormGroup className="answerChoices">
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="week2Answer1"
                         name="week2SelectedAnswer"
                         value={this.state.week2SelectedAnswer}
@@ -196,7 +196,7 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="week2Answer2"
                         name="week2SelectedAnswer"
                         value={this.state.week2SelectedAnswer}
@@ -213,7 +213,7 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="week2Answer3"
                         name="week2SelectedAnswer"
                         value={this.state.week2SelectedAnswer}
@@ -230,7 +230,7 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="week2Answer4"
                         name="week2SelectedAnswer"
                         value={this.state.week2SelectedAnswer}
@@ -268,7 +268,7 @@ class CreateRocket extends Component {
                   </FormGroup>
                   <FormGroup className="answerChoices">
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="month2Answer1"
                         name="month2SelectedAnswer"
                         value={this.state.month2SelectedAnswer}
@@ -285,7 +285,7 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="month2Answer2"
                         name="month2SelectedAnswer"
                         value={this.state.month2SelectedAnswer}
@@ -302,7 +302,7 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="month2Answer3"
                         name="month2SelectedAnswer"
                         value={this.state.month2SelectedAnswer}
@@ -319,7 +319,7 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                    <Input type="radio"
+                      <Input type="radio"
                         id="month2Answer4"
                         name="month2SelectedAnswer"
                         value={this.state.month2SelectedAnswer}
