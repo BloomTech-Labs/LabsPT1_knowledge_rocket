@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router';
 import {
   Collapse,
   Navbar,
@@ -39,7 +40,7 @@ class Sidebar_Nav extends Component {
                 <NavLink href="#">Classes</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Billing</NavLink>
+                <NavLink href="/billing">Billing</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#">Settings</NavLink>
@@ -52,4 +53,4 @@ class Sidebar_Nav extends Component {
   }
 }
 
-export default Sidebar_Nav;
+export default withRouter(Sidebar_Nav);
