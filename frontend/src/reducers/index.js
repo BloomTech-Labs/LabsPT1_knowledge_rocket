@@ -1,6 +1,7 @@
 import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR, GET_USER, CLEAR_REDIRECT, REDIRECT } from '../actions';
 
 // team discussion on what the state should look like
+
 const defaultState = {
     userKey: '',
     user: [],
