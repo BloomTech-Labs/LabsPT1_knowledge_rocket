@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from rest_framework_jwt.views import ObtainJSONWebToken, verify_jwt_token
 from rocketsapp.views import CustomJWTSerializer, RegisterUsers, GetUser
 from django.views.decorators.csrf import csrf_exempt
@@ -30,5 +30,7 @@ urlpatterns = [
     re_path(r'^addclass/', csrf_exempt(RegisterClasses.as_view())),
     re_path(r'^addrocket/', csrf_exempt(RegisterRockets.as_view())),
     re_path(r'^getclass/', csrf_exempt(GetClasses.as_view())),
+    re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    re_path(r'^home/', csrf_exempt(GetUser.as_view())),
     re_path(r'^subscribe', csrf_exempt(CreateSubscription.as_view()))
 ]

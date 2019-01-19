@@ -9,7 +9,7 @@ from rest_framework.response import Response
 import json
 
 from rest_framework_jwt.serializers import JSONWebTokenSerializer
-from django.contrib.auth import authenticate, get_user_model
+from django.contrib.auth import authenticate, get_user_model, login
 from rest_framework import serializers, generics, permissions, status
 from rest_framework_jwt.settings import api_settings
 

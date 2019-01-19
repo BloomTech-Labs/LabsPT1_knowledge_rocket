@@ -21,6 +21,7 @@ import CreateRocket from "./components/CreateRocket.js";
 import {Elements, StripeProvider} from "react-stripe-elements";
 import BillingForm from "./components/Billing";
 import GetUser from "./components/GetUser.js";
+import Home from './components/Home.js'
 
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -65,6 +66,7 @@ ReactDOM.render(
         <Route path="/classes" component={Classes} />
         <Route path="/settings" component={Settings} />
         <Route path="/getuser" component={GetUser} />
+        <Route path="/home" component={ Home } />
       </div>
     </Router>
   </Provider>,
