@@ -54,7 +54,6 @@ ReactDOM.render(
             />
             {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
-          <Route path="/getuser" component={GetUser} />
         </div>
       </Router>
     </StripeProvider>
