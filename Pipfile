@@ -20,6 +20,7 @@ bcrypt = "*"
 django-cors-headers = "*"
 stripe = "*"
 django-oauth-toolkit = "*"
+"oauth2-provider" = "*"
 
 [dev-packages]
 
