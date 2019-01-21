@@ -61,4 +61,5 @@ urlpatterns = [
     re_path(r'^home/', csrf_exempt(GetUser.as_view())),
     re_path(r'^subscribe', csrf_exempt(CreateSubscription.as_view())),
     re_path(r'^api/test', ApiEndpoint.as_view()),
+    re_path(r'^logout/', csrf_exempt(RegisterUsers.as_view())),
 ]
