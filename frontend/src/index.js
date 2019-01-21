@@ -35,7 +35,6 @@ const store = createStore(
 const elementFontSize = window.innerWidth < 450 ? '14px' : '18px'
 
 ReactDOM.render(
-
   <Provider store={store}>
     <StripeProvider apiKey="pk_test_ZnGFt3f2iYBAtIv4xyKVQoOr">
       <Router>
@@ -49,16 +48,19 @@ ReactDOM.render(
           <Route path="/getuser" component={GetUser} />
           <Elements>
             <Route
-              path='/billing'
-              render={(props) => <BillingForm {...props} fontSize={elementFontSize} />}
+              path="/billing"
+              render={props => (
+                <BillingForm {...props} fontSize={elementFontSize} />
+              )}
             />
             {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
           <Route path="/getuser" component={GetUser} />
+          <Route path="/home" component={Home} />
         </div>
       </Router>
     </StripeProvider>
-    <Router>
+    {/* <Router>
       <div className="page-container">
         <Route exact path="/" component={App} />
         <Route path="/register" component={Register} />
@@ -66,9 +68,9 @@ ReactDOM.render(
         <Route path="/classes" component={Classes} />
         <Route path="/settings" component={Settings} />
         <Route path="/getuser" component={GetUser} />
-        <Route path="/home" component={ Home } />
+        
       </div>
-    </Router>
+    </Router> */}
   </Provider>,
   document.getElementById("root")
 );

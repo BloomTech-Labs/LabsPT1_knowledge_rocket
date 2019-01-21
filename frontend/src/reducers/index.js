@@ -8,7 +8,7 @@ import {
   GET_USER,
   CLEAR_REDIRECT,
   REDIRECT,
-  LOG_OUT,
+  LOGOUT_USER
 } from "../actions";
 
 // team discussion on what the state should look like
@@ -63,7 +63,7 @@ export default (state = defaultState, action) => {
     case CLEAR_REDIRECT:
       return { ...state, redirect: false };
 
-    case LOG_OUT:
+    case LOGOUT_USER:
           return { ...state, redirect: true, logged_in: false } 
 
     default:

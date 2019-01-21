@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
-
-import { logOut } from "../actions";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions";
 
 class Home extends Component {
   state = {
-    
-    logged_in: ''
+    logged_in: true,
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({ error: false });
-    this.props.logOut(this.state);
+      console.log('HOME STATE', this.state)
+    this.setState({ logged_in: false });
+    // this.props.logoutUser(this.state);
+    console.log('HOME STATE', this.state)
   };
   render() {
-    console.log(this.state);
     return (
       <div>
         <Button color="info" onClick={this.handleSubmit}>
@@ -25,5 +25,9 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
+export default connect(mapStateToProps, { logoutUser })(Home);
