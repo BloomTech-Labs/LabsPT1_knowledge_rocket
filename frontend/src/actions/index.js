@@ -79,8 +79,9 @@ export const createRocket = (rocket) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         const userKey = localStorage.getItem('token')
+        console.log(rocket)
         axios
-          .post("http://127.0.0.1:8000/addRocket/", rocket, { 'headers': { 'Authorization': `${userKey}` }})
+          .post("http://127.0.0.1:8000/addrocket/", rocket, { 'headers': { 'Authorization': `${userKey}` }})
           .then(response => {
             dispatch({ type: CREATE_ROCKET, payload: response.data });
           })

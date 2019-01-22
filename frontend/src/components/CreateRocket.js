@@ -20,7 +20,7 @@ class CreateRocket extends Component {
     day2Answer2: '',
     day2Answer3: '',
     day2Answer4: '',
-    day2SelectedAnswer: '',
+    // day2SelectedAnswer: '',
 
     week2QuestionName: '',
     week2ReviewText: '',
@@ -29,7 +29,7 @@ class CreateRocket extends Component {
     week2Answer2: '',
     week2Answer3: '',
     week2Answer4: '',
-    week2SelecedAnswer: '',
+    // week2SelectedAnswer: '',
 
     month2QuestionName: '',
     month2ReviewText: '',
@@ -38,7 +38,7 @@ class CreateRocket extends Component {
     month2Answer2: '',
     month2Answer3: '',
     month2Answer4: '',
-    month2SelectedAnswer: '',
+    // month2SelectedAnswer: '',
   }
 
   handleInputChange = e => {
@@ -101,7 +101,7 @@ class CreateRocket extends Component {
               <Col>
                 <Form>
                   <FormGroup>
-                    <h3> all fields must be filled out</h3>
+                    {/* <h3> all fields must be filled out</h3> */}
                     <Label for="name">Name</Label>
                     <Input
                       type="text"
@@ -143,7 +143,7 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
-                  <h3> Select Radio button for correct answer, limit 1 per question</h3>
+                  {/* <h3> Select Radio button for correct answer, limit 1 per question</h3> */}
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"
@@ -428,7 +428,7 @@ class CreateRocket extends Component {
                           name="month2Answer4"
                           id="m2answer4"
                           maxLength="45"
-                          value={this.state.day2Answer4}
+                          value={this.state.month2Answer4}
                           onChange={this.handleInputChange}
                         /></Label>
                     </div>
@@ -454,3 +454,7 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,{ createRocket } )(CreateRocket);
+
+
+
+

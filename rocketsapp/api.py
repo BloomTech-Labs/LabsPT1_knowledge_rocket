@@ -33,17 +33,17 @@ class RocketSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
     className = serializers.CharField(max_length=100)
     
-    questionName2d = serializers.CharField(max_length=100)
-    reviewText2d = serializers.CharField(max_length=512)
-    questionText2d = serializers.CharField(max_length=512)
+    day2QuestionName = serializers.CharField(max_length=100)
+    day2ReviewText = serializers.CharField(max_length=512)
+    day2QuestionText = serializers.CharField(max_length=512)
 
-    questionName2w = serializers.CharField(max_length=100)
-    reviewText2w = serializers.CharField(max_length=512)
-    questionText2w = serializers.CharField(max_length=512)
+    week2QuestionName = serializers.CharField(max_length=100)
+    week2ReviewText = serializers.CharField(max_length=512)
+    week2QuestionText = serializers.CharField(max_length=512)
 
-    questionName2m = serializers.CharField(max_length=100)
-    reviewText2m = serializers.CharField(max_length=512)
-    questionText2m = serializers.CharField(max_length=512)
+    month2QuestionName = serializers.CharField(max_length=100)
+    month2ReviewText = serializers.CharField(max_length=512)
+    month2QuestionText = serializers.CharField(max_length=512)
 
     interval = serializers.CharField(max_length=2)
     choiceText = serializers.CharField(max_length=50)
@@ -59,17 +59,17 @@ class RegisterRockets(generics.CreateAPIView):
         name = request.data.get("name")
         className = request.data.get("className")
 
-        questionName2d = request.data.get("questionName2d")
-        reviewText2d = request.data.get("reviewText2d")
-        questionText2d = request.data.get("questionText2d")
+        day2QuestionName = request.data.get("day2QuestionName")
+        day2ReviewText = request.data.get("day2ReviewText")
+        day2QuestionText = request.data.get("day2QuestionText")
 
-        questionName2w = request.data.get("questionName2w")
-        reviewText2w = request.data.get("reviewText2w")
-        questionText2w = request.data.get("questionText2w")
+        week2QuestionName = request.data.get("week2QuestionName")
+        week2ReviewText = request.data.get("week2ReviewText")
+        week2QuestionText = request.data.get("week2QuestionText")
 
-        questionName2m = request.data.get("questionName2m")
-        reviewText2m = request.data.get("reviewText2m")
-        questionText2m = request.data.get("questionText2m")
+        month2QuestionName = request.data.get("month2QuestionName")
+        month2ReviewText = request.data.get("month2ReviewText")
+        month2QuestionText = request.data.get("month2QuestionText")
 
         # interval = request.data.get("interval")
         # choiceText = request.data.get("choiceText")
@@ -83,39 +83,43 @@ class RegisterRockets(generics.CreateAPIView):
             user = username, 
         ).save()
         
-        rocket = Class.objects.get(name = name)
+        rocket = Rocket.objects.get(name = name)
 
         Question2D(
             rocket = rocket,
-            questionName2d = questionName2d,
-            reviewText2d = reviewText2d,
-            questionText2d = questionText2d,
+            day2QuestionName = day2QuestionName,
+            day2ReviewText = day2ReviewText,
+            day2QuestionText = day2QuestionText,
         ).save()
 
-        Question2D(
+        Question2W(
             rocket = rocket,
-            questionName2w = questionName2w,
-            reviewText2w = reviewText2w,
-            questionText2w = questionText2w,
+            week2QuestionName = week2QuestionName,
+            week2ReviewText = week2ReviewText,
+            week2QuestionText = week2QuestionText,
         ).save()
 
-        Question2D(
+        Question2M(
             rocket = rocket,
-            questionName2m = questionName2m,
-            reviewText2m = reviewText2m,
-            questionText2m = questionText2m,
+            month2QuestionName = month2QuestionName,
+            month2ReviewText = month2ReviewText,
+            month2QuestionText = month2QuestionText,
         ).save()
 
-        question = Question.objects.get(name = questionName )
+        question2d = Question2D.objects.get(day2QuestionName = day2QuestionName )
+        question2w = Question2W.objects.get(week2QuestionName = week2QuestionName )
+        question2m = Question2M.objects.get(month2QuestionName = month2QuestionName )
 
-        Choice(
-            question = question,
-            choiceText = choiceText,
-            isCorrect = isCorrect,
-        ).save()
+        # Choice(
+        #     question = question,
+        #     choiceText = choiceText,
+        #     isCorrect = isCorrect,
+        # ).save()
 
-        Rockets.objects.filter(name=name).update(
-            question = question, 
+        Rocket.objects.filter(name=name).update(
+            question2d = question2d, 
+            question2w = question2w, 
+            question2m = question2m, 
         )
 
         response = JsonResponse({

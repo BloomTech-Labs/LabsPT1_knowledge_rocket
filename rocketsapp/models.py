@@ -24,9 +24,9 @@ class Rocket(models.Model):
     name          = models.CharField(max_length=100, blank = False, unique = True)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     classKey      = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='rocketClasses')
-    question2d     = models.ForeignKey('Question2d', default = '', blank = False, on_delete = models.CASCADE, related_name='rocketquestion2d')
-    question2w     = models.ForeignKey('Question2w', default = '', blank = False, on_delete = models.CASCADE, related_name='rocketquestion2w')
-    question2m     = models.ForeignKey('Question2m', default = '', blank = False, on_delete = models.CASCADE, related_name='rocketquestion2m')
+    question2d     = models.ForeignKey('Question2d', null=True, blank = True, on_delete = models.CASCADE, related_name='rocketquestion2d')
+    question2w     = models.ForeignKey('Question2w', null=True, blank = True, on_delete = models.CASCADE, related_name='rocketquestion2w')
+    question2m     = models.ForeignKey('Question2m', null=True, blank = True, on_delete = models.CASCADE, related_name='rocketquestion2m')
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
@@ -35,51 +35,51 @@ class Rocket(models.Model):
         verbose_name_plural = 'rockets'
 
 class Question2D(models.Model):
-    id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
-    questionName2d= models.CharField(max_length=100, blank = False, unique = True)
-    reviewText2d  = models.CharField(max_length=512, blank = False)
-    questionText2d= models.CharField(max_length=512, blank = False)
-    # choice1       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice1')    
-    # choice2       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice2')    
-    # choice3       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice3')    
-    # choice4       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice4')  
-    created_at    = models.DateTimeField(auto_now_add = True)
-    last_modified = models.DateTimeField(auto_now = True)
+    id               = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    rocket           = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
+    day2QuestionName = models.CharField(max_length=100, blank = False, unique = True)
+    day2ReviewText   = models.CharField(max_length=512, blank = False)
+    day2QuestionText = models.CharField(max_length=512, blank = False)
+    # choice1        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice1')    
+    # choice2        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice2')    
+    # choice3        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice3')    
+    # choice4        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice4')  
+    created_at       = models.DateTimeField(auto_now_add = True)
+    last_modified    = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table            = 'Questions2d'
         verbose_name_plural = 'questions2d'
 
 class Question2W(models.Model):
-    id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
-    questionName2w= models.CharField(max_length=100, blank = False, unique = True)
-    reviewText2w  = models.CharField(max_length=512, blank = False)
-    questionText2w= models.CharField(max_length=512, blank = False)
-    # choice1       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice1')    
-    # choice2       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice2')    
-    # choice3       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice3')    
-    # choice4       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice4')  
-    created_at    = models.DateTimeField(auto_now_add = True)
-    last_modified = models.DateTimeField(auto_now = True)
+    id                = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    rocket            = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
+    week2QuestionName = models.CharField(max_length=100, blank = False, unique = True)
+    week2ReviewText   = models.CharField(max_length=512, blank = False)
+    week2QuestionText = models.CharField(max_length=512, blank = False)
+    # choice1         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice1')    
+    # choice2         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice2')    
+    # choice3         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice3')    
+    # choice4         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice4')  
+    created_at        = models.DateTimeField(auto_now_add = True)
+    last_modified     = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table            = 'Questions2w'
         verbose_name_plural = 'questions2w'
 
 class Question2M(models.Model):
-    id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
-    questionName2m= models.CharField(max_length=100, blank = False, unique = True)
-    reviewText2m  = models.CharField(max_length=512, blank = False)
-    questionText2m= models.CharField(max_length=512, blank = False)
-    # choice1       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice1')    
-    # choice2       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice2')    
-    # choice3       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice3')    
-    # choice4       = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice4')    
-    created_at    = models.DateTimeField(auto_now_add = True)
-    last_modified = models.DateTimeField(auto_now = True)
+    id                 = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    rocket             = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
+    month2QuestionName = models.CharField(max_length=100, blank = False, unique = True)
+    month2ReviewText   = models.CharField(max_length=512, blank = False)
+    month2QuestionText = models.CharField(max_length=512, blank = False)
+    # choice1          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice1')    
+    # choice2          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice2')    
+    # choice3          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice3')    
+    # choice4          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice4')    
+    created_at         = models.DateTimeField(auto_now_add = True)
+    last_modified      = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table            = 'Questions2m'
