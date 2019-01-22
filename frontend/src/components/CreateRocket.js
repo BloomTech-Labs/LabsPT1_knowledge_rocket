@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-
-import { Button, Form, Label, Input, FormGroup } from "reactstrap";
-import { Container, Row, Col } from "reactstrap";
+import { connect } from 'react-redux';
+import { Button, Form, Label, Input, FormGroup, Container, Row, Col } from "reactstrap";
+import { Link } from "react-router-dom";
 
 import SidebarNav from "./SidebarNav";
+import { createRocket } from '../actions';
+
 import "../css/SidebarNav.css";
 import "../css/CreateRocket.css";
 
@@ -36,7 +38,7 @@ class CreateRocket extends Component {
     month2Answer2: '',
     month2Answer3: '',
     month2Answer4: '',
-    month2SelectedAnswer: ''
+    month2SelectedAnswer: '',
   }
 
   handleInputChange = e => {
@@ -52,6 +54,39 @@ class CreateRocket extends Component {
   handleSubmit = e => {
     e.preventDefault();
 
+    this.props.createRocket(this.state)
+
+    // this.setState({
+    //   name: '',
+  
+    //   day2QuestionName: '',
+    //   day2ReviewText: '',
+    //   day2Question: '',
+    //   day2Answer1: '',
+    //   day2Answer2: '',
+    //   day2Answer3: '',
+    //   day2Answer4: '',
+    //   day2SelectedAnswer: '',
+  
+    //   week2QuestionName: '',
+    //   week2ReviewText: '',
+    //   week2Question: '',
+    //   week2Answer1: '',
+    //   week2Answer2: '',
+    //   week2Answer3: '',
+    //   week2Answer4: '',
+    //   week2SelecedAnswer: '',
+  
+    //   month2QuestionName: '',
+    //   month2ReviewText: '',
+    //   month2Question: '',
+    //   month2Answer1: '',
+    //   month2Answer2: '',
+    //   month2Answer3: '',
+    //   month2Answer4: '',
+    //   month2SelectedAnswer: '',
+    // });
+
   }
 
   render() {
@@ -66,6 +101,7 @@ class CreateRocket extends Component {
               <Col>
                 <Form>
                   <FormGroup>
+                    <h3> all fields must be filled out</h3>
                     <Label for="name">Name</Label>
                     <Input
                       type="text"
@@ -107,7 +143,7 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
-                  <div> Select Radio button for correct answer, limit 1 per question</div>
+                  <h3> Select Radio button for correct answer, limit 1 per question</h3>
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"
@@ -401,6 +437,7 @@ class CreateRocket extends Component {
                     </Button>
                   </FormGroup>
                 </Form>
+                <Link to={"/"}> Home </Link>
               </Col>
             </Row>
           </Col>
@@ -410,4 +447,10 @@ class CreateRocket extends Component {
   }
 }
 
-export default CreateRocket;
+const mapStateToProps = (state) => {
+  return {
+      state: state,
+  }
+}
+
+export default connect(mapStateToProps,{ createRocket } )(CreateRocket);
