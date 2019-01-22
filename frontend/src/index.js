@@ -54,21 +54,9 @@ ReactDOM.render(
             />
             {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
-          <Route path="/getuser" component={GetUser} />
         </div>
       </Router>
     </StripeProvider>
-    <Router>
-      <div className="page-container">
-        <Route exact path="/" component={App} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={Login} />
-        <Route path="/classes" component={Classes} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/getuser" component={GetUser} />
-        <Route path="/home" component={ Home } />
-      </div>
-    </Router>
   </Provider>,
   document.getElementById("root")
 );
