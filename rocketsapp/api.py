@@ -1,6 +1,6 @@
 from rest_framework import serializers, viewsets, generics, permissions, status
 from django.http import JsonResponse
-from .models import Rocket, Choice, Class, Student
+from .models import Rocket, Class, Question2D, Question2M, Question2W ##, Choice, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
@@ -32,9 +32,22 @@ class RegisterClasses(generics.CreateAPIView):
 class RocketSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
     className = serializers.CharField(max_length=100)
+    
+    questionName2d = serializers.CharField(max_length=100)
+    reviewText2d = serializers.CharField(max_length=512)
+    questionText2d = serializers.CharField(max_length=512)
+
+    questionName2w = serializers.CharField(max_length=100)
+    reviewText2w = serializers.CharField(max_length=512)
+    questionText2w = serializers.CharField(max_length=512)
+
+    questionName2m = serializers.CharField(max_length=100)
+    reviewText2m = serializers.CharField(max_length=512)
+    questionText2m = serializers.CharField(max_length=512)
+
     interval = serializers.CharField(max_length=2)
-    reviewText = serializers.CharField(max_length=512)
-    questionText = serializers.CharField(max_length=512)
+    choiceText = serializers.CharField(max_length=50)
+    isCorrect = serializers.BooleanField()
 
 class RegisterRockets(generics.CreateAPIView):
     serializer_class = RocketSerializer
@@ -45,20 +58,65 @@ class RegisterRockets(generics.CreateAPIView):
         username = request.user
         name = request.data.get("name")
         className = request.data.get("className")
-        interval = request.data.get("interval")
-        reviewText = request.data.get("reviewText")
-        questionText = request.data.get("questionText")
+
+        questionName2d = request.data.get("questionName2d")
+        reviewText2d = request.data.get("reviewText2d")
+        questionText2d = request.data.get("questionText2d")
+
+        questionName2w = request.data.get("questionName2w")
+        reviewText2w = request.data.get("reviewText2w")
+        questionText2w = request.data.get("questionText2w")
+
+        questionName2m = request.data.get("questionName2m")
+        reviewText2m = request.data.get("reviewText2m")
+        questionText2m = request.data.get("questionText2m")
+
+        # interval = request.data.get("interval")
+        # choiceText = request.data.get("choiceText")
+        # isCorrect = request.data.get("isCorrect")
 
         classKey = Class.objects.get(name=className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
-
+    
         Rocket(
             name = name, 
             classKey = classKey, 
             user = username, 
-            interval = interval,
-            reviewText = reviewText,
-            questionText = questionText,
-            ).save()
+        ).save()
+        
+        rocket = Class.objects.get(name = name)
+
+        Question2D(
+            rocket = rocket,
+            questionName2d = questionName2d,
+            reviewText2d = reviewText2d,
+            questionText2d = questionText2d,
+        ).save()
+
+        Question2D(
+            rocket = rocket,
+            questionName2w = questionName2w,
+            reviewText2w = reviewText2w,
+            questionText2w = questionText2w,
+        ).save()
+
+        Question2D(
+            rocket = rocket,
+            questionName2m = questionName2m,
+            reviewText2m = reviewText2m,
+            questionText2m = questionText2m,
+        ).save()
+
+        question = Question.objects.get(name = questionName )
+
+        Choice(
+            question = question,
+            choiceText = choiceText,
+            isCorrect = isCorrect,
+        ).save()
+
+        Rockets.objects.filter(name=name).update(
+            question = question, 
+        )
 
         response = JsonResponse({
                 'msg': 'successful'
