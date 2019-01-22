@@ -80,3 +80,25 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 
 ## License:
 Knowledge Rocket is [MIT licensed](https://opensource.org/licenses/MIT).
+
+JSON for adding Rocket:
+Be logged in
+
+{
+  
+  "name": "TestRocket",
+  "className":"CSPT1",
+
+  "day2QuestionName": "day2QuestionName",
+  "day2QuestionText": "day2QuestionText",
+  "day2ReviewText": "day2ReviewText",
+
+  "week2QuestionName": "week2QuestionName",
+  "week2QuestionText": "week2QuestionText",
+  "week2ReviewText": "week2ReviewText",
+
+  "month2QuestionName": "month2QuestionName",
+  "month2QuestionText": "month2QuestionText",
+  "month2ReviewText": "month2ReviewText"
+
+}

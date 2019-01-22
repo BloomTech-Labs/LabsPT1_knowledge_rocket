@@ -58,37 +58,6 @@ class CreateRocket extends Component {
 
     this.props.createRocket(this.state)
 
-    // this.setState({
-    //   name: '',
-  
-    //   day2QuestionName: '',
-    //   day2ReviewText: '',
-    //   day2Question: '',
-    //   day2Answer1: '',
-    //   day2Answer2: '',
-    //   day2Answer3: '',
-    //   day2Answer4: '',
-    //   day2SelectedAnswer: '',
-  
-    //   week2QuestionName: '',
-    //   week2ReviewText: '',
-    //   week2Question: '',
-    //   week2Answer1: '',
-    //   week2Answer2: '',
-    //   week2Answer3: '',
-    //   week2Answer4: '',
-    //   week2SelecedAnswer: '',
-  
-    //   month2QuestionName: '',
-    //   month2ReviewText: '',
-    //   month2Question: '',
-    //   month2Answer1: '',
-    //   month2Answer2: '',
-    //   month2Answer3: '',
-    //   month2Answer4: '',
-    //   month2SelectedAnswer: '',
-    // });
-
   }
 
   render() {
