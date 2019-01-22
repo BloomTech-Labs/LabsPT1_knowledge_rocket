@@ -35,51 +35,54 @@ class Rocket(models.Model):
         verbose_name_plural = 'rockets'
 
 class Question2D(models.Model):
-    id               = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket           = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
-    day2QuestionName = models.CharField(max_length=100, blank = False, unique = True)
-    day2ReviewText   = models.CharField(max_length=512, blank = False)
-    day2QuestionText = models.CharField(max_length=512, blank = False)
-    # choice1        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice1')    
-    # choice2        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice2')    
-    # choice3        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice3')    
-    # choice4        = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dChoice4')  
-    created_at       = models.DateTimeField(auto_now_add = True)
-    last_modified    = models.DateTimeField(auto_now = True)
+    id                = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    rocket            = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
+    day2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
+    day2ReviewText    = models.CharField(max_length=512, blank = False)
+    day2QuestionText  = models.CharField(max_length=512, blank = False)
+    day2AnswerA       = models.CharField(max_length=50, blank = False)       
+    day2AnswerB       = models.CharField(max_length=50, blank = False)       
+    day2AnswerC       = models.CharField(max_length=50, blank = False)       
+    day2AnswerD       = models.CharField(max_length=50, blank = False)
+    day2CorrectAnswer = models.CharField(max_length=50, blank = False)       
+    created_at        = models.DateTimeField(auto_now_add = True)
+    last_modified     = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table            = 'Questions2d'
         verbose_name_plural = 'questions2d'
 
 class Question2W(models.Model):
-    id                = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket            = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
-    week2QuestionName = models.CharField(max_length=100, blank = False, unique = True)
-    week2ReviewText   = models.CharField(max_length=512, blank = False)
-    week2QuestionText = models.CharField(max_length=512, blank = False)
-    # choice1         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice1')    
-    # choice2         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice2')    
-    # choice3         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice3')    
-    # choice4         = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wChoice4')  
-    created_at        = models.DateTimeField(auto_now_add = True)
-    last_modified     = models.DateTimeField(auto_now = True)
+    id                 = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    rocket             = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
+    week2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
+    week2ReviewText    = models.CharField(max_length=512, blank = False)
+    week2QuestionText  = models.CharField(max_length=512, blank = False)
+    week2AnswerA       = models.CharField(max_length=50, blank = False)       
+    week2AnswerB       = models.CharField(max_length=50, blank = False)       
+    week2AnswerC       = models.CharField(max_length=50, blank = False)       
+    week2AnswerD       = models.CharField(max_length=50, blank = False)
+    week2CorrectAnswer = models.CharField(max_length=50, blank = False)      
+    created_at         = models.DateTimeField(auto_now_add = True)
+    last_modified      = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table            = 'Questions2w'
         verbose_name_plural = 'questions2w'
 
 class Question2M(models.Model):
-    id                 = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    rocket             = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
-    month2QuestionName = models.CharField(max_length=100, blank = False, unique = True)
-    month2ReviewText   = models.CharField(max_length=512, blank = False)
-    month2QuestionText = models.CharField(max_length=512, blank = False)
-    # choice1          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice1')    
-    # choice2          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice2')    
-    # choice3          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice3')    
-    # choice4          = models.ForeignKey('Choice', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mChoice4')    
-    created_at         = models.DateTimeField(auto_now_add = True)
-    last_modified      = models.DateTimeField(auto_now = True)
+    id                  = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    rocket              = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
+    month2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
+    month2ReviewText    = models.CharField(max_length=512, blank = False)
+    month2QuestionText  = models.CharField(max_length=512, blank = False)
+    month2AnswerA       = models.CharField(max_length=50, blank = False)       
+    month2AnswerB       = models.CharField(max_length=50, blank = False)       
+    month2AnswerC       = models.CharField(max_length=50, blank = False)       
+    month2AnswerD       = models.CharField(max_length=50, blank = False)
+    month2CorrectAnswer = models.CharField(max_length=50, blank = False)        
+    created_at          = models.DateTimeField(auto_now_add = True)
+    last_modified       = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table            = 'Questions2m'
@@ -100,16 +103,16 @@ class Question2M(models.Model):
 #         verbose_name_plural = 'choices'
 
 
-# class Student(models.Model):
-#     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-#     name          = models.CharField(max_length=50, blank=False)
-#     teacher       = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
-#     email         = models.CharField(max_length=256, blank=False)
-#     className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='studentClasses' )
-#     rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='studentRockets')
-#     created_at    = models.DateTimeField(auto_now_add=True)
-#     last_modified = models.DateTimeField(auto_now=True)
+class Student(models.Model):
+    id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    name          = models.CharField(max_length=50, blank=False)
+    teacher       = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
+    email         = models.CharField(max_length=256, blank=False)
+    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='studentClasses' )
+    rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='studentRockets')
+    created_at    = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
-#     class Meta:
-#         db_table            = 'Students'
-#         verbose_name_plural = 'students'
+    class Meta:
+        db_table            = 'Students'
+        verbose_name_plural = 'students'

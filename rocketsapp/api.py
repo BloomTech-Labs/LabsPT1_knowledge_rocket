@@ -36,18 +36,29 @@ class RocketSerializer(serializers.Serializer):
     day2QuestionName = serializers.CharField(max_length=100)
     day2ReviewText = serializers.CharField(max_length=512)
     day2QuestionText = serializers.CharField(max_length=512)
+    day2AnswerA = serializers.CharField(max_length=50)
+    day2AnswerB = serializers.CharField(max_length=50)
+    day2AnswerC = serializers.CharField(max_length=50)
+    day2AnswerD = serializers.CharField(max_length=50)
+    day2CorrectAnswer = serializers.CharField(max_length=50)
 
     week2QuestionName = serializers.CharField(max_length=100)
     week2ReviewText = serializers.CharField(max_length=512)
     week2QuestionText = serializers.CharField(max_length=512)
+    week2AnswerA = serializers.CharField(max_length=50)
+    week2AnswerB = serializers.CharField(max_length=50)
+    week2AnswerC = serializers.CharField(max_length=50)
+    week2AnswerD = serializers.CharField(max_length=50)
+    week2CorrectAnswer = serializers.CharField(max_length=50)
 
     month2QuestionName = serializers.CharField(max_length=100)
     month2ReviewText = serializers.CharField(max_length=512)
     month2QuestionText = serializers.CharField(max_length=512)
-
-    interval = serializers.CharField(max_length=2)
-    choiceText = serializers.CharField(max_length=50)
-    isCorrect = serializers.BooleanField()
+    month2AnswerA = serializers.CharField(max_length=50)
+    month2AnswerB = serializers.CharField(max_length=50)
+    month2AnswerC = serializers.CharField(max_length=50)
+    month2AnswerD = serializers.CharField(max_length=50)
+    month2CorrectAnswer = serializers.CharField(max_length=50)
 
 class RegisterRockets(generics.CreateAPIView):
     serializer_class = RocketSerializer
@@ -62,18 +73,29 @@ class RegisterRockets(generics.CreateAPIView):
         day2QuestionName = request.data.get("day2QuestionName")
         day2ReviewText = request.data.get("day2ReviewText")
         day2QuestionText = request.data.get("day2QuestionText")
+        day2AnswerA = request.data.get("day2AnswerA")
+        day2AnswerB = request.data.get("day2AnswerB")
+        day2AnswerC = request.data.get("day2AnswerC")
+        day2AnswerD = request.data.get("day2AnswerD")
+        day2CorrectAnswer = request.data.get("day2CorrectAnswer")
 
         week2QuestionName = request.data.get("week2QuestionName")
         week2ReviewText = request.data.get("week2ReviewText")
         week2QuestionText = request.data.get("week2QuestionText")
+        week2AnswerA = request.data.get("week2AnswerA")
+        week2AnswerB = request.data.get("week2AnswerB")
+        week2AnswerC = request.data.get("week2AnswerC")
+        week2AnswerD = request.data.get("week2AnswerD")
+        week2CorrectAnswer = request.data.get("week2CorrectAnswer")
 
         month2QuestionName = request.data.get("month2QuestionName")
         month2ReviewText = request.data.get("month2ReviewText")
         month2QuestionText = request.data.get("month2QuestionText")
-
-        # interval = request.data.get("interval")
-        # choiceText = request.data.get("choiceText")
-        # isCorrect = request.data.get("isCorrect")
+        month2AnswerA = request.data.get("month2AnswerA")
+        month2AnswerB = request.data.get("month2AnswerB")
+        month2AnswerC = request.data.get("month2AnswerC")
+        month2AnswerD = request.data.get("month2AnswerD")
+        month2CorrectAnswer = request.data.get("month2CorrectAnswer")
 
         classKey = Class.objects.get(name = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
     
@@ -90,6 +112,11 @@ class RegisterRockets(generics.CreateAPIView):
             day2QuestionName = day2QuestionName,
             day2ReviewText = day2ReviewText,
             day2QuestionText = day2QuestionText,
+            day2AnswerA = day2AnswerA,
+            day2AnswerB = day2AnswerB,
+            day2AnswerC = day2AnswerC,
+            day2AnswerD = day2AnswerD,
+            day2CorrectAnswer = day2CorrectAnswer
         ).save()
 
         Question2W(
@@ -97,6 +124,11 @@ class RegisterRockets(generics.CreateAPIView):
             week2QuestionName = week2QuestionName,
             week2ReviewText = week2ReviewText,
             week2QuestionText = week2QuestionText,
+            week2AnswerA = week2AnswerA,
+            week2AnswerB = week2AnswerB,
+            week2AnswerC = week2AnswerC,
+            week2AnswerD = week2AnswerD,
+            week2CorrectAnswer = week2CorrectAnswer
         ).save()
 
         Question2M(
@@ -104,17 +136,16 @@ class RegisterRockets(generics.CreateAPIView):
             month2QuestionName = month2QuestionName,
             month2ReviewText = month2ReviewText,
             month2QuestionText = month2QuestionText,
+            month2AnswerA = month2AnswerA,
+            month2AnswerB = month2AnswerB,
+            month2AnswerC = month2AnswerC,
+            month2AnswerD = month2AnswerD,
+            month2CorrectAnswer = month2CorrectAnswer
         ).save()
 
         question2d = Question2D.objects.get(day2QuestionName = day2QuestionName )
         question2w = Question2W.objects.get(week2QuestionName = week2QuestionName )
         question2m = Question2M.objects.get(month2QuestionName = month2QuestionName )
-
-        # Choice(
-        #     question = question,
-        #     choiceText = choiceText,
-        #     isCorrect = isCorrect,
-        # ).save()
 
         Rocket.objects.filter(rocketName = rocketName).update(
             question2d = question2d, 

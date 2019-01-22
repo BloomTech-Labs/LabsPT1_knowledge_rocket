@@ -17,31 +17,30 @@ class CreateRocket extends Component {
     day2QuestionName: '',
     day2ReviewText: '',
     day2QuestionText: '',
-    // day2Answer1: '',
-    // day2Answer2: '',
-    // day2Answer3: '',
-    // day2Answer4: '',
-    // day2SelectedAnswer: '',
+    day2AnswerA: '',
+    day2AnswerB: '',
+    day2AnswerC: '',
+    day2AnswerD: '',
+    day2CorrectAnswer: '2dAA',
 
     week2QuestionName: '',
     week2ReviewText: '',
     week2QuestionText: '',
-    // week2Answer1: '',
-    // week2Answer2: '',
-    // week2Answer3: '',
-    // week2Answer4: '',
-    // week2SelectedAnswer: '',
+    week2AnswerA: '',
+    week2AnswerB: '',
+    week2AnswerC: '',
+    week2AnswerD: '',
+    week2CorrectAnswer: '2wAA',
 
     month2QuestionName: '',
     month2ReviewText: '',
     month2QuestionText: '',
-    // month2Answer1: '',
-    // month2Answer2: '',
-    // month2Answer3: '',
-    // month2Answer4: '',
-    // month2SelectedAnswer: '',
+    month2AnswerA: '',
+    month2AnswerB: '',
+    month2AnswerC: '',
+    month2AnswerD: '',
+    month2CorrectAnswer: '2mAA',
   }
-  
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -128,18 +127,18 @@ class CreateRocket extends Component {
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"
-                        id="day2Answer1"
-                        name="day2SelectedAnswer"
-                        value={this.state.day2SelectedAnswer}
+                        id="day2AnswerA"
+                        name="day2CorrectAnswer"
+                        value={this.state.day2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
                         <Input
                           type="text"
-                          name="day2Answer1"
-                          id="d2answer1"
+                          name="day2AnswerA"
+                          id="d2answerA"
                           maxLength="45"
-                          value={this.state.day2Answer1}
+                          value={this.state.day2AnswerA}
                           onChange={this.handleInputChange}
                         />
                       </Label>
@@ -147,18 +146,18 @@ class CreateRocket extends Component {
                     <div className="answer">
                       <Input 
                         type="radio"
-                        id="day2Answer2"
-                        name="day2SelectedAnswer"
-                        value={this.state.day2SelectedAnswer}
+                        id="day2AnswerB"
+                        name="day2CorrectAnswer"
+                        value={this.state.day2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
                         <Input
                           type="text"
-                          name="day2Answer2"
-                          id="d2answer2"
+                          name="day2AnswerB"
+                          id="d2answerB"
                           maxLength="45"
-                          value={this.state.day2Answer2}
+                          value={this.state.day2AnswerB}
                           onChange={this.handleInputChange}
                         />
                       </Label>
@@ -166,18 +165,18 @@ class CreateRocket extends Component {
                     <div className="answer">
                       <Input 
                         type="radio"
-                        name="day2SelectedAnswer"
-                        id="day2Answer3"
-                        value={this.state.day2SelectedAnswer}
+                        name="day2CorrectAnswer"
+                        id="day2AnswerC"
+                        value={this.state.day2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
                         <Input
                           type="text"
-                          name="day2Answer3"
-                          id="d2answer3"
+                          name="day2AnswerC"
+                          id="d2answerC"
                           maxLength="45"
-                          value={this.state.day2Answer3}
+                          value={this.state.day2AnswerC}
                           onChange={this.handleInputChange}
                         />
                       </Label>
@@ -185,18 +184,18 @@ class CreateRocket extends Component {
                     <div className="answer">
                       <Input 
                         type="radio"
-                        name="day2SelectedAnswer"
-                        id="day2Answer4"
-                        value={this.state.day2SelectedAnswer}
+                        name="day2CorrectAnswer"
+                        id="day2AnswerD"
+                        value={this.state.day2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
                        <Input
                           type="text"
-                          name="day2Answer4"
-                          id="d2answer4"
+                          name="day2AnswerD"
+                          id="d2answerD"
                           maxLength="45"
-                          value={this.state.day2Answer4}
+                          value={this.state.day2AnswerD}
                           onChange={this.handleInputChange}
                         />
                       </Label>
@@ -238,72 +237,72 @@ class CreateRocket extends Component {
                     <div className="answer">
                       <Input 
                         type="radio"
-                        id="week2Answer1"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
+                        id="week2AnswerA"
+                        name="week2CorrectAnswer"
+                        value={this.state.week2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
                         <Input
                           type="text"
-                          name="week2Answer1"
-                          id="w2answer1"
+                          name="week2AnswerA"
+                          id="w2answerA"
                           maxLength="45"
-                          value={this.state.week2Answer1}
+                          value={this.state.week2AnswerA}
                           onChange={this.handleInputChange}
                         />
                       </Label>
                     </div>
                     <div className="answer">
                       <Input type="radio"
-                        id="week2Answer2"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
+                        id="week2AnswerB"
+                        name="week2CorrectAnswer"
+                        value={this.state.week2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
                         <Input
                           type="text"
-                          name="week2Answer2"
-                          id="w2answer2"
+                          name="week2AnswerB"
+                          id="w2answerB"
                           maxLength="45"
-                          value={this.state.week2Answer2}
+                          value={this.state.week2AnswerB}
                           onChange={this.handleInputChange}
                         />
                       </Label>
                     </div>
                     <div className="answer">
                       <Input type="radio"
-                        id="week2Answer3"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
+                        id="week2AnswerC"
+                        name="week2CorrectAnswer"
+                        value={this.state.week2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
                         <Input
                           type="text"
-                          name="week2Answer3"
-                          id="w2answer3"
+                          name="week2AnswerC"
+                          id="w2answerC"
                           maxLength="45"
-                          value={this.state.week2Answer3}
+                          value={this.state.week2AnswerC}
                           onChange={this.handleInputChange}
                         />
                       </Label>
                     </div>
                     <div className="answer">
                       <Input type="radio"
-                        id="week2Answer4"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
+                        id="week2AnswerD"
+                        name="week2CorrectAnswer"
+                        value={this.state.week2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
                         <Input
                           type="text"
-                          name="week2Answer4"
-                          id="w2answer4"
+                          name="week2AnswerD"
+                          id="w2answerD"
                           maxLength="45"
-                          value={this.state.week2Answer4}
+                          value={this.state.week2AnswerD}
                           onChange={this.handleInputChange}
                         />
                       </Label>
@@ -344,72 +343,72 @@ class CreateRocket extends Component {
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"
-                        id="month2Answer1"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
+                        id="month2AnswerA"
+                        name="month2CorrectAnswer"
+                        value={this.state.month2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
                         <Input
                           type="text"
-                          name="month2Answer1"
-                          id="m2answer1"
+                          name="month2AnswerA"
+                          id="m2answerA"
                           maxLength="45"
-                          value={this.state.month2Answer1}
+                          value={this.state.month2AnswerA}
                           onChange={this.handleInputChange}
                         />
                       </Label>
                     </div>
                     <div className="answer">
                       <Input type="radio"
-                        id="month2Answer2"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
+                        id="month2AnswerB"
+                        name="month2CorrectAnswer"
+                        value={this.state.month2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
                         <Input
                           type="text"
-                          name="month2Answer2"
-                          id="m2answer2"
+                          name="month2AnswerB"
+                          id="m2answerB"
                           maxLength="45"
-                          value={this.state.month2Answer2}
+                          value={this.state.month2AnswerB}
                           onChange={this.handleInputChange}
                         />
                       </Label>
                     </div>
                     <div className="answer">
                       <Input type="radio"
-                        id="month2Answer3"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
+                        id="month2AnswerC"
+                        name="month2CorrectAnswer"
+                        value={this.state.month2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
                         <Input
                           type="text"
-                          name="month2Answer3"
-                          id="m2answer3"
+                          name="month2AnswerC"
+                          id="m2answerC"
                           maxLength="45"
-                          value={this.state.month2Answer3}
+                          value={this.state.month2AnswerC}
                           onChange={this.handleInputChange}
                         />
                       </Label>
                     </div>
                     <div className="answer">
                       <Input type="radio"
-                        id="month2Answer4"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
+                        id="month2AnswerD"
+                        name="month2CorrectAnswer"
+                        value={this.state.month2CorrectAnswer}
                         onClick={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
                         <Input
                           type="text"
-                          name="month2Answer4"
-                          id="m2answer4"
+                          name="month2AnswerD"
+                          id="m2answerD"
                           maxLength="45"
-                          value={this.state.month2Answer4}
+                          value={this.state.month2AnswerD}
                           onChange={this.handleInputChange}
                         /></Label>
                     </div>
