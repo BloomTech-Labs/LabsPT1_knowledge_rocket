@@ -11,35 +11,37 @@ import "../css/CreateRocket.css";
 
 class CreateRocket extends Component {
   state = {
-    name: '',
+    rocketName: '',
+    className:'',
 
     day2QuestionName: '',
     day2ReviewText: '',
-    day2Question: '',
-    day2Answer1: '',
-    day2Answer2: '',
-    day2Answer3: '',
-    day2Answer4: '',
+    day2QuestionText: '',
+    // day2Answer1: '',
+    // day2Answer2: '',
+    // day2Answer3: '',
+    // day2Answer4: '',
     // day2SelectedAnswer: '',
 
     week2QuestionName: '',
     week2ReviewText: '',
-    week2Question: '',
-    week2Answer1: '',
-    week2Answer2: '',
-    week2Answer3: '',
-    week2Answer4: '',
+    week2QuestionText: '',
+    // week2Answer1: '',
+    // week2Answer2: '',
+    // week2Answer3: '',
+    // week2Answer4: '',
     // week2SelectedAnswer: '',
 
     month2QuestionName: '',
     month2ReviewText: '',
-    month2Question: '',
-    month2Answer1: '',
-    month2Answer2: '',
-    month2Answer3: '',
-    month2Answer4: '',
+    month2QuestionText: '',
+    // month2Answer1: '',
+    // month2Answer2: '',
+    // month2Answer3: '',
+    // month2Answer4: '',
     // month2SelectedAnswer: '',
   }
+  
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -102,13 +104,23 @@ class CreateRocket extends Component {
                 <Form>
                   <FormGroup>
                     {/* <h3> all fields must be filled out</h3> */}
-                    <Label for="name">Name</Label>
+                    <Label for="rocketName">Rocket Name</Label>
                     <Input
                       type="text"
-                      name="name"
+                      name="rocketName"
                       id="name"
                       maxLength="95"
                       placeholder="Enter Rocket Name"
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                    />
+                    <Label for="className">Class Name</Label>
+                    <Input
+                      type="text"
+                      name="className"
+                      id="className"
+                      maxLength="95"
+                      placeholder="Enter Class Name"
                       value={this.state.name}
                       onChange={this.handleInputChange}
                     />
@@ -132,14 +144,14 @@ class CreateRocket extends Component {
                       value={this.state.day2ReviewText}
                       onChange={this.handleInputChange}
                     />
-                    <Label for="day2Question">Two Days - Question</Label>
+                    <Label for="day2QuestionText">Two Days - Question</Label>
                     <Input
                       type="text"
-                      name="day2Question"
-                      id="d2Question"
+                      name="day2QuestionText"
+                      id="d2QuestionText"
                       maxLength="505"
                       placeholder="Enter Day 2 Question: "
-                      value={this.state.day2Question}
+                      value={this.state.day2QuestionText}
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
@@ -242,14 +254,14 @@ class CreateRocket extends Component {
                       value={this.state.week2ReviewText}
                       onChange={this.handleInputChange}
                     />
-                  <Label for="week2Question">Two Weeks - Question</Label>
+                  <Label for="week2QuestionText">Two Weeks - Question</Label>
                     <Input
                       type="text"
-                      name="week2Question"
-                      id="w2Question"
+                      name="week2QuestionText"
+                      id="w2QuestionText"
                       maxLength="505"
                       placeholder="Enter Week 2 Question: "
-                      value={this.state.week2Question}
+                      value={this.state.week2QuestionText}
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
@@ -349,14 +361,14 @@ class CreateRocket extends Component {
                       value={this.state.month2ReviewText}
                       onChange={this.handleInputChange}
                     />
-                    <Label for="month2Question">Two Months - Question</Label>
+                    <Label for="month2QuestionText">Two Months - Question</Label>
                     <Input
                       type="text"
-                      name="month2Question"
-                      id="m2Question"
+                      name="month2QuestionText"
+                      id="m2QuestionText"
                       maxLength="505"
                       placeholder="Enter Month 2 Question: "
-                      value={this.state.month2Question}
+                      value={this.state.month2QuestionText}
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>

@@ -30,7 +30,7 @@ class RegisterClasses(generics.CreateAPIView):
         return response
 
 class RocketSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
+    rocketName = serializers.CharField(max_length=100)
     className = serializers.CharField(max_length=100)
     
     day2QuestionName = serializers.CharField(max_length=100)
@@ -56,7 +56,7 @@ class RegisterRockets(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
 
         username = request.user
-        name = request.data.get("name")
+        rocketName = request.data.get("rocketName")
         className = request.data.get("className")
 
         day2QuestionName = request.data.get("day2QuestionName")
@@ -75,15 +75,15 @@ class RegisterRockets(generics.CreateAPIView):
         # choiceText = request.data.get("choiceText")
         # isCorrect = request.data.get("isCorrect")
 
-        classKey = Class.objects.get(name=className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
+        classKey = Class.objects.get(name = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
     
         Rocket(
-            name = name, 
+            rocketName = rocketName, 
             classKey = classKey, 
             user = username, 
         ).save()
         
-        rocket = Rocket.objects.get(name = name)
+        rocket = Rocket.objects.get(rocketName = rocketName)
 
         Question2D(
             rocket = rocket,
@@ -116,7 +116,7 @@ class RegisterRockets(generics.CreateAPIView):
         #     isCorrect = isCorrect,
         # ).save()
 
-        Rocket.objects.filter(name=name).update(
+        Rocket.objects.filter(rocketName = rocketName).update(
             question2d = question2d, 
             question2w = question2w, 
             question2m = question2m, 
