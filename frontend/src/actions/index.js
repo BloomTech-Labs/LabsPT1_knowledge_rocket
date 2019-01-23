@@ -10,17 +10,19 @@ export const GET_USER = 'GET_USER';
 export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
 export const CLEAR_STATE = 'CLEAR_STATE';
+export const CREATE_ROCKET = 'CREATE_ROCKET';
+
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
 // http://127.0.0.1:8000/ **quick ref local deploy
 
-export const registerUser = user => {
+export const registerUser = (user) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
+      .post("http://127.0.0.1:8000/register/", user)
       .then(response => {
         const token = response.data.token
         localStorage.setItem('token', token);
@@ -41,7 +43,7 @@ export const loginUser = (user) => {
         dispatch({ type: CLEAR_ERROR });
         dispatch({ type: CLEAR_REDIRECT });
         axios
-          .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
+          .post("http://127.0.0.1:8000/login/", user)
           .then(response => {
             const token = response.data.token
             localStorage.setItem('token', token);
@@ -71,9 +73,29 @@ export const getUser = (userKey) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         axios
-          .get("https://cspt1knowledgerocket.herokuapp.com/getuser/", { 'headers': { 'Authorization': `token ${userKey}` }})
+          .get("http://127.0.0.1:8000/getuser/", { 'headers': { 'Authorization': `token ${userKey}` }})
           .then(response => {
             dispatch({ type: GET_USER, payload: response.data });
+          })
+          .catch(error => {
+            dispatch({ type: CHANGE_LOADING });
+            dispatch({ type: ERROR, payload: error.response.data.error });
+            console.log( error.response.data);
+          });
+    };
+};
+
+export const createRocket = (rocket) => {
+    return dispatch => {
+        dispatch({ type: LOADING });
+        dispatch({ type: CLEAR_ERROR });
+        const userKey = localStorage.getItem('token')
+        console.log(userKey)
+        console.log(rocket)
+        axios
+          .post("http://127.0.0.1:8000/addrocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+          .then(response => {
+            dispatch({ type: CREATE_ROCKET, payload: response.data });
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });

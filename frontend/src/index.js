@@ -42,7 +42,7 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/classes" component={Classes} />
           <Route path="/settings" component={Settings} />
-          <Route path="/create" component={CreateRocket} />
+          <Route path="/createRocket" component={CreateRocket} />
           <Route path="/getuser" component={GetUser} />
           <Elements>
             <Route
