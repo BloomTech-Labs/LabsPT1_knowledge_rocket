@@ -6,7 +6,7 @@ from django.contrib.auth.models import User, AbstractUser
 
 class User(AbstractUser):
     is_premium       = models.BooleanField(default = False)
-    customer_ID       = models.CharField(max_length=256, blank=True, default='')
+    customerID       = models.CharField(max_length=256, blank=True, default='')
 
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
