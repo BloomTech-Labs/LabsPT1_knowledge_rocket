@@ -53,7 +53,6 @@ ReactDOM.render(
             />
             {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
-          <Route path="/getuser" component={GetUser} />
           <Route path="/home" component={Home} />
         </div>
       </Router>
