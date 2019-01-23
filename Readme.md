@@ -80,3 +80,40 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 
 ## License:
 Knowledge Rocket is [MIT licensed](https://opensource.org/licenses/MIT).
+
+JSON for adding Rocket:
+Be logged in
+
+    {
+    
+    "rocketName": "TestRocket2313",
+    "className":"CSPT1",
+  
+    "day2QuestionName": "day2QuestionName",
+    "day2QuestionText": "day2QuestionText",
+    "day2ReviewText": "day2ReviewText",
+    "day2AnswerA": "day2AnswerA",
+    "day2AnswerB": "day2AnswerB",
+    "day2AnswerC": "day2AnswerC",
+    "day2AnswerD": "day2AnswerD",
+    "day2CorrectAnswer": "day2Answer",
+  
+    "week2QuestionName": "week2QuestionName",
+    "week2QuestionText": "week2QuestionText",
+    "week2ReviewText": "week2ReviewText",
+    "week2AnswerA": "week2AnswerA",
+    "week2AnswerB": "week2AnswerB",
+    "week2AnswerC": "week2AnswerC",
+    "week2AnswerD": "week2AnswerD",
+    "week2CorrectAnswer": "week2Answer",
+  
+    "month2QuestionName": "month2QuestionName",
+    "month2QuestionText": "month2QuestionText",
+    "month2ReviewText": "month2ReviewText",
+    "month2AnswerA": "month2AnswerA",
+    "month2AnswerB": "month2AnswerB",
+    "month2AnswerC": "month2AnswerC",
+    "month2AnswerD": "month2AnswerD",
+    "month2CorrectAnswer": "month2Answer"
+  
+  }
