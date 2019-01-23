@@ -8,7 +8,6 @@ import {
   GET_USER,
   CLEAR_REDIRECT,
   REDIRECT,
-  LOGOUT_USER
 } from "../actions";
 
 // team discussion on what the state should look like
@@ -21,7 +20,6 @@ const defaultState = {
   error: false,
   errorMsg: "",
   redirect: false,
-  logged_in: false
 };
 
 export default (state = defaultState, action) => {
@@ -33,16 +31,14 @@ export default (state = defaultState, action) => {
       return {
         ...state,
         userKey: [action.payload],
-        success: true,
-        logged_in: true
+        success: true
       };
 
     case LOGIN:
       return {
         ...state,
         userKey: [action.payload],
-        success: true,
-        logged_in: true
+        success: true
       };
 
     case CHANGE_LOADING:
@@ -62,9 +58,6 @@ export default (state = defaultState, action) => {
 
     case CLEAR_REDIRECT:
       return { ...state, redirect: false };
-
-    case LOGOUT_USER:
-          return { ...state, redirect: true, logged_in: false } 
 
     default:
       return state;

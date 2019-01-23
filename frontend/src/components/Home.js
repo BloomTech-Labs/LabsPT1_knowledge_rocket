@@ -1,23 +1,17 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
-import { connect } from "react-redux";
-import { logoutUser } from "../actions";
 
 class Home extends Component {
-  state = {
-    logged_in: true,
-  };
-  handleSubmit = e => {
+ 
+  handleLogout = e => {
     e.preventDefault();
-      console.log('HOME STATE', this.state)
-    this.setState({ logged_in: false });
-    // this.props.logoutUser(this.state);
-    console.log('HOME STATE', this.state)
+    return localStorage.clear();
   };
   render() {
+    console.log('STATE', this.state)
     return (
       <div>
-        <Button color="info" onClick={this.handleSubmit}>
+        <Button color="info" onClick={this.handleLogout}>
           Logout!
         </Button>
         <h1>Redirected!!!</h1>
@@ -25,9 +19,5 @@ class Home extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    state: state
-  };
-};
-export default connect(mapStateToProps, { logoutUser })(Home);
+
+export default Home;

@@ -9,7 +9,6 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const GET_USER = 'GET_USER';
 export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
-export const LOGOUT_USER = 'LOGOUT_USER'
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
 // http://127.0.0.1:8000/ **quick ref local deploy
@@ -71,26 +70,4 @@ export const getUser = (userKey) => {
             console.log( error.response.data);
           });
     };
-};
-
-export const logoutUser = (user) => {
-  return dispatch => {
-    dispatch({ type: LOADING });
-    dispatch({ type: CLEAR_ERROR });
-    dispatch({ type: CLEAR_REDIRECT });
-    axios
-      .get("https://cspt1knowledgerocket.herokuapp.com/", { 'headers': {} })
-      .then(response => {
-        dispatch({ type: LOGOUT_USER, payload: response.data });
-        const token = response.data.token
-        localStorage.clear('token', token);
-        dispatch({ type: REDIRECT });
-        // this.props.location.push('/')
-      })
-      .catch(error => {
-        dispatch({ type: CHANGE_LOADING });
-        dispatch({ type: ERROR, payload: error.response.data.non_field_errors[0] });
-        console.log(error.response.data);
-      });
-  };
 };
