@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
+import { connect } from 'react-redux';
+
+import { logoutUser } from '../actions';
 
 class Home extends Component {
  
   handleLogout = e => {
     e.preventDefault();
-    return localStorage.clear();
+    this.props.logoutUser();
+    this.props.history.push('/');
   };
+
   render() {
     console.log('STATE', this.state)
     return (
@@ -20,4 +25,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+      state: state,
+  }
+}
+
+export default connect(mapStateToProps, { logoutUser })( Home );

@@ -9,6 +9,7 @@ export const CLEAR_ERROR = 'CLEAR_ERROR';
 export const GET_USER = 'GET_USER';
 export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
+export const CLEAR_STATE = 'CLEAR_STATE';
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
 // http://127.0.0.1:8000/ **quick ref local deploy
@@ -53,6 +54,16 @@ export const loginUser = (user) => {
             console.log( error.response.data);
           });
     };
+};
+
+export const logoutUser = () => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      dispatch({ type: CLEAR_REDIRECT });
+      localStorage.clear();
+      dispatch({ type: CLEAR_STATE });
+  };
 };
 
 export const getUser = (userKey) => {
