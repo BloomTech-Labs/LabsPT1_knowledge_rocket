@@ -8,8 +8,10 @@ import {
     GET_USER, 
     CLEAR_REDIRECT, 
     REDIRECT, 
+    CLEAR_STATE,
     CREATE_ROCKET,
 } from '../actions';
+
 
 // team discussion on what the state should look like
 
@@ -55,6 +57,9 @@ export default (state = defaultState, action) => {
 
         case CREATE_ROCKET:
             return { ...state, rocket: action.payload }
+        
+        case CLEAR_STATE:
+            return {};
 
         default:
             return state;
