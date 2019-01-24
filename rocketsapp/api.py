@@ -12,7 +12,7 @@ import json
 
 
 class ClassSerializer(serializers.Serializer):
-    name = serializers.CharField(max_length=100)
+    className = serializers.CharField(max_length=100)
 
 class RegisterClasses(generics.CreateAPIView):
     serializer_class = ClassSerializer
@@ -20,8 +20,11 @@ class RegisterClasses(generics.CreateAPIView):
  
     def post(self, request, *args, **kwargs):
         username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
-        name = request.data.get("name") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
-        Class( name=name, user=username ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
+        className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
+        Class( 
+            className = className, 
+            user = username 
+            ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
         response = JsonResponse({
                 'msg': 'successful'
             },
@@ -100,7 +103,6 @@ class RegisterRockets(generics.CreateAPIView):
 
         classKey = Class.objects.get(name = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
         rocketCheck = Rocket.objects.filter(rocketName = rocketName)
-        print(f'words?{rocketCheck}')
         if (rocketCheck):
             return JsonResponse({ 
                 'error': 'Rocket field Must be Unique'
@@ -109,9 +111,7 @@ class RegisterRockets(generics.CreateAPIView):
                 status = status.HTTP_500_INTERNAL_SERVER_ERROR
         )
         else:
-            print(f'before Try')
             try:
-                print(f'after try called')
                 Rocket(
                     rocketName = rocketName, 
                     classKey = classKey, 
@@ -165,8 +165,6 @@ class RegisterRockets(generics.CreateAPIView):
                     safe=True,
                     status=status.HTTP_201_CREATED
                 )                
-                print(f'afterResponse')
-
 
             except IntegrityError:
                 Rocket.objects.filter(rocketName = rocketName).delete()
