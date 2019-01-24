@@ -40,18 +40,6 @@ class GetClasses(generics.CreateAPIView):
         username = request.user
         classes = Classes.objects.get(user = username)
         return JsonResponse({"classes": classes})
-
-class GetStudents(generics.CreateAPIView):
-    serializer_class = ClassSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get(self, request):
-        className = request.data.get("className")
-        rocketClass = Class.objects.get(className = className)
-        students = list(Student.objects.filter(className = rocketClass).values())
-        return JsonResponse( students,
-        safe = False
-        )
     
 
 class StudentSerializers(serializers.Serializer):
@@ -84,6 +72,18 @@ class RegisterStudents(generics.CreateAPIView):
             status=status.HTTP_201_CREATED
         )
         return response
+
+class GetStudents(generics.CreateAPIView):
+    serializer_class = ClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        className = request.data.get("className")
+        rocketClass = Class.objects.get(className = className)
+        students = list(Student.objects.filter(className = rocketClass).values())
+        return JsonResponse( students,
+        safe = False
+        )
 
 class RocketSerializer(serializers.Serializer):
     rocketName = serializers.CharField(max_length=100)
@@ -229,6 +229,22 @@ class RegisterRockets(generics.CreateAPIView):
                     status = status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
             return response
+
+class GetRockets(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user
+        rockets = Rocket.objects.filter(user = username).rocketName
+        # rocketNames = rockets.filter(rocketName)
+        # print(f'{rocketNames}')
+        return JsonResponse( rockets,
+        safe = False
+    )
+
+
+
+
 
 class SubscriptionSerializer(serializers.Serializer):
     source = serializers.CharField(max_length=256)
