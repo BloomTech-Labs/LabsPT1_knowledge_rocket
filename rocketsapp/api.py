@@ -1,7 +1,7 @@
 from rest_framework import serializers, viewsets, generics, permissions, status
 from django.db import IntegrityError
 from django.http import JsonResponse
-from .models import Rocket, Class, Question2D, Question2M, Question2W ##, Choice, Student
+from .models import Rocket, Class, Question2D, Question2M, Question2W, Student ##, Choice, 
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
@@ -25,6 +25,58 @@ class RegisterClasses(generics.CreateAPIView):
             className = className, 
             user = username 
             ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
+        response = JsonResponse({
+                'msg': 'successful'
+            },
+            safe=True,
+            status=status.HTTP_201_CREATED
+        )
+        return response
+
+class GetClasses(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user
+        classes = Classes.objects.get(user = username)
+        return JsonResponse({"classes": classes})
+
+class GetStudents(generics.CreateAPIView):
+    serializer_class = ClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        className = request.data.get("className")
+        rocketClass = Class.objects.get(className = className)
+        students = list(Student.objects.filter(className = rocketClass).values())
+        return JsonResponse( students,
+        safe = False
+        )
+    
+
+class StudentSerializers(serializers.Serializer):
+    studentName = serializers.CharField(max_length=100)
+    studentEmail = serializers.CharField(max_length=256)
+    className = serializers.CharField(max_length=100)
+
+class RegisterStudents(generics.CreateAPIView):
+    serializer_class = StudentSerializers
+    permission_classes = (permissions.IsAuthenticated,) #takes the authorization header and decodes it to provide access to the gated route
+ 
+    def post(self, request, *args, **kwargs):
+        username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
+        className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
+        studentName = request.data.get("studentName")
+        studentEmail = request.data.get("studentEmail")
+        className = Class.objects.get(className = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
+
+        Student( 
+            studentName = studentName,
+            studentEmail = studentEmail,
+            className = className, 
+            teacher = username 
+            ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
+
         response = JsonResponse({
                 'msg': 'successful'
             },
@@ -101,7 +153,7 @@ class RegisterRockets(generics.CreateAPIView):
         month2AnswerD = request.data.get("month2AnswerD")
         month2CorrectAnswer = request.data.get("month2CorrectAnswer")
 
-        classKey = Class.objects.get(name = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
+        className = Class.objects.get(className = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
         rocketCheck = Rocket.objects.filter(rocketName = rocketName)
         if (rocketCheck):
             return JsonResponse({ 
@@ -114,7 +166,7 @@ class RegisterRockets(generics.CreateAPIView):
             try:
                 Rocket(
                     rocketName = rocketName, 
-                    classKey = classKey, 
+                    className = className, 
                     user = username, 
                 ).save()
                 rocket = Rocket.objects.get(rocketName = rocketName)
@@ -165,6 +217,7 @@ class RegisterRockets(generics.CreateAPIView):
                     safe=True,
                     status=status.HTTP_201_CREATED
                 )                
+
 
             except IntegrityError:
                 Rocket.objects.filter(rocketName = rocketName).delete()
