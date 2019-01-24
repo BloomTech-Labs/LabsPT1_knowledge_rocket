@@ -1,4 +1,17 @@
-import { LOADING, REGISTER, LOGIN, CHANGE_LOADING, ERROR, CLEAR_ERROR, GET_USER, CLEAR_REDIRECT, REDIRECT } from '../actions';
+import { 
+    LOADING, 
+    REGISTER, 
+    LOGIN, 
+    CHANGE_LOADING, 
+    ERROR, 
+    CLEAR_ERROR, 
+    GET_USER, 
+    CLEAR_REDIRECT, 
+    REDIRECT, 
+    CLEAR_STATE,
+    CREATE_ROCKET,
+} from '../actions';
+
 
 // team discussion on what the state should look like
 
@@ -9,7 +22,8 @@ const defaultState = {
     success: false,
     error: false,
     errorMsg: "",
-    redirect: false
+    redirect: false,
+    rocket: [],
 }
 
 export default (state = defaultState, action) => {
@@ -38,8 +52,14 @@ export default (state = defaultState, action) => {
         case REDIRECT:
             return { ...state, redirect: true  }
 
-         case CLEAR_REDIRECT:
+        case CLEAR_REDIRECT:
             return { ...state, redirect: false } 
+
+        case CREATE_ROCKET:
+            return { ...state, rocket: action.payload }
+        
+        case CLEAR_STATE:
+            return {};
 
         default:
             return state;
