@@ -10,7 +10,7 @@ class User(AbstractUser):
 
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    name          = models.CharField(max_length=100, blank = False)
+    className     = models.CharField(max_length=100, blank = False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
@@ -105,7 +105,7 @@ class Question2M(models.Model):
 
 class Student(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    name          = models.CharField(max_length=50, blank=False)
+    studentName   = models.CharField(max_length=50, blank=False)
     teacher       = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     email         = models.CharField(max_length=256, blank=False)
     className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='studentClasses' )
