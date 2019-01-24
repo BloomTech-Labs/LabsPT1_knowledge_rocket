@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button } from 'reactstrap';
 import { withRouter } from 'react-router';
 import "../css/App.css";
 
@@ -11,22 +12,30 @@ class App extends Component {
     return (
       <div className="App">
         <Container>
-          <Row>
+          <Row className="btn-links">
             <div id="links">
-              <Link to={ "/register" }>Sign Up</Link>
-              <Link to={ "/login" }>Login</Link>
-              <Link to={ "/getUser" }>GetUser</Link>
-              <Link to={ "/billing" }>Billing</Link>
-              <Link to={ "/createRocket" }>Create Rocket</Link>
+              <Link to={ "/register" }><Button>Sign Up</Button></Link>
+              <Link to={ "/login" }><Button>Login</Button></Link>
             </div>
           </Row>
           <Row>
             <h1>Knowledge Rocket</h1>
           </Row>
           <Row>
-            <span className="fa-stack fa-5x">
-              <i className="fas fa-circle fa-stack-2x" />
-              <i className="fas fa-rocket fa-stack-1x" />
+          <div id="moon"></div>
+            <span className="fa-stack">
+              <div class="jc-rocket-container">
+              <div class="jc-rocket">
+              <div class="jc-rocket-head">
+              </div>
+              <div class="jc-rocket-window">
+              </div>
+              <div class="jc-booster">
+              </div>
+              <div class="jc-booster-flames">
+              </div>
+            </div>
+            </div>
             </span>
           </Row>
         </Container>

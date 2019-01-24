@@ -1,41 +1,173 @@
-/* .App {
-  background-color: navy;
+.page-container {
+  background-color: #e6e6e6;
+  box-shadow: inset 0 0 8rem black;
+}
+
+@keyframes flames{
+  0%{
+    transform:scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  }
+  20%{
+    transform: scale(1) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  }
+  50%{
+    transform: scale(0.6) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  }
+  70%{
+    transform:scale(1) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  }
+  100%{
+    transform:scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  }
+}
+@keyframes rocketfly{
+  0%,100%{
+    transform: translateX(-10px);
+  }
+  20%,25%{
+     transform: translateX(10px);
+  }
+  40%,45%{
+    transform: translate(5px);
+  }
+  60%,65%{
+    transform: translate(15px);
+  }
+  80%,85%{
+    transform: translate(10px);
+  }
+}
+
+.jc-rocket-container{
+  z-index:1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+.jc-rocket{
+  background-color: #fff;
+  height: 150px;
+  width: 50px;
+  animation: rocketfly 5s ease-in-out infinite;
+}
+.jc-rocket:before{
+  content:'';
+  position:absolute;
+  top:50%;
+  right:100%;
+  border-bottom: 100px solid #ff7400;
+	border-left: 30px solid transparent;
+}
+.jc-rocket:after{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:100%;
+  border-bottom: 100px solid #ff7400;
+	border-right: 30px solid transparent;
+}
+.jc-rocket-head{
+  position:relative;
+  top: -35%;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid #ff7400;
+}
+.jc-rocket-window{
+  position:relative;
+  top: 0;
+  left: 15%;
+  background-color: skyblue;
+  border: 5px solid gray;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+}
+.jc-booster{
+  height:20px;
+  width:50px;
+  position:absolute;
+  top:100%;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-top: 20px solid gray;
+  box-sizing: border-box;
+}
+.jc-booster-flames{
+  background-color:#17a2b8;
+  position:absolute;
+  top:120%;
+  left: 0%;
+  height:50px;
+  width:50px;
+ border-radius: 0 50% 50% 50%;
+  transform:rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  animation: flames 2s linear infinite;
+  box-sizing: border-box;
+}
+
+#moon {
+  transform: scale(1.5);
+  position: relative;
+  top: 8rem;
+  left: 38rem;
+  width: 150px;
+  height: 150px;
+  background-color: #fae4a8;
+  border-radius: 50%;
+  background-image: radial-gradient(circle at 40% 80%, #ddc997 10%, transparent 0), radial-gradient(circle at 55% 70%, #ddc997 5%, transparent 0), radial-gradient(circle at 58% 85%, #ddc997 6%, transparent 0), radial-gradient(circle at 80% 40%, #ddc997 12%, transparent 0), radial-gradient(circle at 87% 58%, #ddc997 4%, transparent 0);
+}
+
+.App {
+  display: flex;
   min-height: 100vh;
-  padding: 3%;
-} */
-
-body {
-  background-color: navy;
+  padding: 1%;
 }
 
-a {
-  color: #ff7400;
-  font-weight: bolder;
-  padding: 3%;
-  text-align: right;
+.btn-links {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 45rem;
 }
 
-h1 {
-  color: #ff7400;
-  margin: 0 auto;
-  font-weight: bolder;
-}
 
-div#links {
+.row h1 {
+  font-size: 5rem;
   width: 100%;
-  text-align: end;
+  text-align: center;
 }
+
+
+button.btn {
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius: 35px;
+  width: 15rem;
+  background: #fff; /* fallback for browsers that don't understand rgba */
+  border: solid 2px #ff7400; /* fallback for browsers that don't understand rgba */
+  background-color: transparent; /* slighly transparent white */
+  border-color: #ff7400; /*Very transparent black*/
+  color: #17a2b8;
+  font-size: 1.5rem;
+  box-shadow: 0 0 0 #ff7400;
+  padding: .70rem;
+  margin: 0 3rem;
+}
+
+button.btn:hover {
+  background-color: #ff7400;
+  border-color: #ff7400;
+  color: white;
+}
+
 
 .fa-stack {
+  position: relative;
+  top: 12rem;
+  right: 5rem;
   margin: 0 auto;
   padding: 5%;
-}
-
-.fa-rocket {
-  color: #ff7400;
-  text-shadow: 2px 2px white;
-}
-
-.fa-circle {
-  color: #17a2b8;
+  transform: scale(1.5);
 }

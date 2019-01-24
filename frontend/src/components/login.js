@@ -8,6 +8,7 @@ import "../css/login.css";
 
 import { loginUser } from '../actions';
 
+
 class Login extends Component {
     state = {
         username: '',
@@ -41,7 +42,9 @@ class Login extends Component {
         this.setState({ username: '', password: ''})
     }
 
-    render() {
+    
+
+    render() { 
         return(
             <div>
                 <h1>Login</h1>
