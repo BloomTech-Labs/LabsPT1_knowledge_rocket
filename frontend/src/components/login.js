@@ -4,7 +4,7 @@ import { Button, Form, Input, FormGroup } from 'reactstrap';
 import { Link, Redirect } from "react-router-dom";
 
 
-import "../css/login.css";
+import "../css/register.css";
 
 import { loginUser } from '../actions';
 
