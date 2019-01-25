@@ -2,3 +2,26 @@
     color: white;
     border: 1px solid white;
 }
+
+.card {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+}
+
+.card-img {
+    height: auto;
+    max-height: 50%;
+    width: auto;
+    max-width: 65%;
+}
+
+.breadcrumb {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+h1 {
+    padding: 1%;
+    margin-top: 2%;
+}

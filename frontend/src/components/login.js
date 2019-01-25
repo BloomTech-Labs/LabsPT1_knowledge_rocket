@@ -35,9 +35,6 @@ class Login extends Component {
             this.props.loginUser( this.state );
 
         }
-            // if(this.props.state.error) {
-            //     this.props.history.push('/')
-            // }
             
         this.setState({ username: '', password: ''})
     }
@@ -62,7 +59,7 @@ class Login extends Component {
                     {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null }
                 </div>
                 <div>
-                    {this.props.state.redirect ? ( <Redirect to="/home" /> ): null }
+                    {this.props.state.redirect ? ( <Redirect to="/classes" /> ): null }
                 </div>
                 <Link to={"/"}> Home </Link> 
 
