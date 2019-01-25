@@ -81,39 +81,84 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 ## License:
 Knowledge Rocket is [MIT licensed](https://opensource.org/licenses/MIT).
 
-JSON for adding Rocket:
-Be logged in
+JSON for Routes
+Be logged in for all but http://127.0.0.1:8000/register/ and http://127.0.0.1:8000/login/
 
-    {
-    
-    "rocketName": "TestRocket2313",
-    "className":"CSPT1",
+All other routes require an active Authorization header:
+
+Authorization token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InRlc3R1c2VyMzIzIiwiZXhwIjoxNTQ4Mzk0NDgwLCJlbWFpbCI6InRlc3R1c2VyMTIzQHRlc3QuY29tIn0.fkBJi6NXPFTOj54dlMFsso5K67H6Q7XMdYdt_nZW8hg
+
+http://127.0.0.1:8000/register/
+{
+	"username": "testuser123",
+	"email": "testuser123@test.com",
+	"password1": "testuser123",
+	"password2": "testuser123"
+}
+
+http://127.0.0.1:8000/login/
+{
+	"username": "testuser123",
+	"password": "thisisNew"
+}
+
+
+http://127.0.0.1:8000/updateuser/
+{
+	"newUsername": "thisguy",
+	"newEmail": "NOPE!323"
+}
+
+http://127.0.0.1:8000/updatepassword/
+{
+	"newPassword": "thisisNew"
+}
+
+http://127.0.0.1:8000/addclass/
+{
+	"className": "CSPT3"
+}
+
+http://127.0.0.1:8000/addrocket/
+{
+
+"rocketName": "TestRocket2313",
+"className":"CSPT1",
+
+"day2QuestionName": "day2QuestionName",
+"day2QuestionText": "day2QuestionText",
+"day2ReviewText": "day2ReviewText",
+"day2AnswerA": "day2AnswerA",
+"day2AnswerB": "day2AnswerB",
+"day2AnswerC": "day2AnswerC",
+"day2AnswerD": "day2AnswerD",
+"day2CorrectAnswer": "day2Answer",
+
+"week2QuestionName": "week2QuestionName",
+"week2QuestionText": "week2QuestionText",
+"week2ReviewText": "week2ReviewText",
+"week2AnswerA": "week2AnswerA",
+"week2AnswerB": "week2AnswerB",
+"week2AnswerC": "week2AnswerC",
+"week2AnswerD": "week2AnswerD",
+"week2CorrectAnswer": "week2Answer",
+
+"month2QuestionName": "month2QuestionName",
+"month2QuestionText": "month2QuestionText",
+"month2ReviewText": "month2ReviewText",
+"month2AnswerA": "month2AnswerA",
+"month2AnswerB": "month2AnswerB",
+"month2AnswerC": "month2AnswerC",
+"month2AnswerD": "month2AnswerD",
+"month2CorrectAnswer": "month2Answer"
+
+}
+
+http://127.0.0.1:8000/addstudent/
+{
+	"studentName": "student4",
+	"studentEmail": "student@student.com",
+	"className": "CSPT1"
+}
+
   
-    "day2QuestionName": "day2QuestionName",
-    "day2QuestionText": "day2QuestionText",
-    "day2ReviewText": "day2ReviewText",
-    "day2AnswerA": "day2AnswerA",
-    "day2AnswerB": "day2AnswerB",
-    "day2AnswerC": "day2AnswerC",
-    "day2AnswerD": "day2AnswerD",
-    "day2CorrectAnswer": "day2Answer",
-  
-    "week2QuestionName": "week2QuestionName",
-    "week2QuestionText": "week2QuestionText",
-    "week2ReviewText": "week2ReviewText",
-    "week2AnswerA": "week2AnswerA",
-    "week2AnswerB": "week2AnswerB",
-    "week2AnswerC": "week2AnswerC",
-    "week2AnswerD": "week2AnswerD",
-    "week2CorrectAnswer": "week2Answer",
-  
-    "month2QuestionName": "month2QuestionName",
-    "month2QuestionText": "month2QuestionText",
-    "month2ReviewText": "month2ReviewText",
-    "month2AnswerA": "month2AnswerA",
-    "month2AnswerB": "month2AnswerB",
-    "month2AnswerC": "month2AnswerC",
-    "month2AnswerD": "month2AnswerD",
-    "month2CorrectAnswer": "month2Answer"
-  
-  }
