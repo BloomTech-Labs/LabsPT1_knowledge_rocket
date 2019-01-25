@@ -1,6 +1,7 @@
 from rest_framework import serializers, viewsets, generics, permissions, status
 from django.db import IntegrityError
 from django.http import JsonResponse
+from rest_framework.renderers import JSONRenderer
 from .models import Rocket, Class, Question2D, Question2M, Question2W, Student ##, Choice, 
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
@@ -230,17 +231,28 @@ class RegisterRockets(generics.CreateAPIView):
                 )
             return response
 
-class GetRockets(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
+# class GetRocketClassSerializer(serializers.ModelSerializer):
+#     # className = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+#     rocketName = serializers.StringRelatedField(many = True)
+#     class Meta:
+#         model = Rocket
+#         fields = ('className', 'rocketName')
 
-    def get(self, request):
-        username = request.user
-        rockets = Rocket.objects.filter(user = username).rocketName
-        # rocketNames = rockets.filter(rocketName)
-        # print(f'{rocketNames}')
-        return JsonResponse( rockets,
-        safe = False
-    )
+
+# class GetRockets(generics.CreateAPIView):
+#     permission_classes = (permissions.IsAuthenticated,)
+
+#     def get(self, request):
+#         username = request.user
+#         rockets = Rocket.objects.filter(user = username)
+
+#         print(f'{rockets}')
+#         for rocket in rockets:
+#             serializer = GetRocketClassSerializer(rocket)
+#             print(f'{serializer.data}')
+#         return JsonResponse({"msg": "HATE"},
+#         safe = False
+#     )
 
 
 
