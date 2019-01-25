@@ -35,17 +35,17 @@ class Classes extends Component {
             <Row>
               <Col>
                   <Breadcrumb>
+                  <BreadcrumbItem active>Classes</BreadcrumbItem>
                     <BreadcrumbItem>
                       <a href="/">Logout</a>
                     </BreadcrumbItem>
-                    <BreadcrumbItem active>Classes</BreadcrumbItem>
                   </Breadcrumb>
                 {/* </div> */}
               </Col>
             </Row>
             <Row>
               <Col>
-                <h1>Welcome!</h1>
+                <h1 className="wel" >Welcome!</h1>
                 <Row> 
                     {dummyClasses.map((unit) => (
                         <Col md="4" sm="6" xs="12" className="mb-4">

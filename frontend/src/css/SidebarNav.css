@@ -4,6 +4,15 @@
     align-items: flex-start;
     border-radius: 35px;
     border: solid 2px #ff7400;
+    margin-bottom: 15px;
+}
+a.nav-link {
+    border-radius: 35px
+}
+a.nav-link:hover {
+    color: white !important;
+    background-color: #ff7400;
+    border-radius: 10px;
 }
 
 @media (min-width: 992px) {
@@ -22,6 +31,11 @@
         font-size: 1.5rem;
         justify-content: flex-start;
         margin: 10px 10px 10px 10px;
+    }
+    a.nav-link:hover {
+        color: white !important;
+        background-color: #ff7400;
+        border-radius: 35px;
     }
     .collapse {
         display: flex;
