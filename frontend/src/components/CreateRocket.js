@@ -44,19 +44,20 @@ class CreateRocket extends Component {
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-    console.log(this.state);
   }
 
-  handleRadioSelect = e => {
-    this.setState({ [e.target.name]: this.state[e.target.id] })
-    console.log(this.state);
-  }
-
+  
   handleSubmit = e => {
     e.preventDefault();
 
     this.props.createRocket(this.state)
 
+  }
+
+  handleRadioSelect = e => {
+    this.setState({ [e.target.name]: e.target.value }, () => {
+      console.log(this.state);
+    });
   }
 
   render() {
@@ -124,13 +125,15 @@ class CreateRocket extends Component {
                     />
                   </FormGroup>
                   {/* <h3> Select Radio button for correct answer, limit 1 per question</h3> */}
+                  {/* <h3> To make only one selectable at a time, we simply give them the same name </h3> */}
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"
                         id="day2AnswerA"
                         name="day2CorrectAnswer"
-                        value={this.state.day2CorrectAnswer}
-                        onClick={this.handleRadioSelect}
+                        value={"day2AnswerA"}
+                        checked={this.state.day2CorrectAnswer === "day2AnswerA"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
                         <Input
@@ -148,8 +151,9 @@ class CreateRocket extends Component {
                         type="radio"
                         id="day2AnswerB"
                         name="day2CorrectAnswer"
-                        value={this.state.day2CorrectAnswer}
-                        onClick={this.handleRadioSelect}
+                        value={"day2AnswerB"}
+                        checked={this.state.day2CorrectAnswer === "day2AnswerB"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
                         <Input
@@ -167,8 +171,9 @@ class CreateRocket extends Component {
                         type="radio"
                         name="day2CorrectAnswer"
                         id="day2AnswerC"
-                        value={this.state.day2CorrectAnswer}
-                        onClick={this.handleRadioSelect}
+                        value={"day2AnswerC"}
+                        checked={this.state.day2CorrectAnswer === "day2AnswerC"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
                         <Input
@@ -186,8 +191,9 @@ class CreateRocket extends Component {
                         type="radio"
                         name="day2CorrectAnswer"
                         id="day2AnswerD"
-                        value={this.state.day2CorrectAnswer}
-                        onClick={this.handleRadioSelect}
+                        value={"day2AnswerD"}
+                        checked={this.state.day2CorrectAnswer === "day2AnswerD"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
                        <Input
@@ -235,19 +241,13 @@ class CreateRocket extends Component {
                   </FormGroup>
                   <FormGroup className="answerChoices">
                     <div className="answer">
-<<<<<<< HEAD
-                      <Input type="radio"
-                        id="week2Answer1"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
-=======
-                      <Input 
+                    <Input 
                         type="radio"
-                        id="week2AnswerA"
                         name="week2CorrectAnswer"
-                        value={this.state.week2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="week2AnswerA"
+                        value={"week2AnswerA"}
+                        checked={this.state.week2CorrectAnswer === "week2AnswerA"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
                         <Input
@@ -261,17 +261,13 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="week2Answer2"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
-=======
-                        id="week2AnswerB"
+                    <Input 
+                        type="radio"
                         name="week2CorrectAnswer"
-                        value={this.state.week2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="week2AnswerB"
+                        value={"week2AnswerB"}
+                        checked={this.state.week2CorrectAnswer === "week2AnswerB"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
                         <Input
@@ -285,17 +281,13 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="week2Answer3"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
-=======
-                        id="week2AnswerC"
+                    <Input 
+                        type="radio"
                         name="week2CorrectAnswer"
-                        value={this.state.week2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="week2AnswerC"
+                        value={"week2AnswerC"}
+                        checked={this.state.week2CorrectAnswer === "week2AnswerC"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
                         <Input
@@ -309,17 +301,13 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="week2Answer4"
-                        name="week2SelectedAnswer"
-                        value={this.state.week2SelectedAnswer}
-=======
-                        id="week2AnswerD"
+                    <Input 
+                        type="radio"
                         name="week2CorrectAnswer"
-                        value={this.state.week2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="week2AnswerD"
+                        value={"week2AnswerD"}
+                        checked={this.state.week2CorrectAnswer === "week2AnswerD"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
                         <Input
@@ -367,17 +355,13 @@ class CreateRocket extends Component {
                   </FormGroup>
                   <FormGroup className="answerChoices">
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="month2Answer1"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
-=======
-                        id="month2AnswerA"
+                    <Input 
+                        type="radio"
                         name="month2CorrectAnswer"
-                        value={this.state.month2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="month2AnswerA"
+                        value={"month2AnswerA"}
+                        checked={this.state.month2CorrectAnswer === "month2AnswerA"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
                         <Input
@@ -391,17 +375,13 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="month2Answer2"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
-=======
-                        id="month2AnswerB"
+                    <Input 
+                        type="radio"
                         name="month2CorrectAnswer"
-                        value={this.state.month2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="month2AnswerB"
+                        value={"month2AnswerB"}
+                        checked={this.state.month2CorrectAnswer === "month2AnswerB"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
                         <Input
@@ -415,17 +395,13 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="month2Answer3"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
-=======
-                        id="month2AnswerC"
+                    <Input 
+                        type="radio"
                         name="month2CorrectAnswer"
-                        value={this.state.month2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="month2AnswerC"
+                        value={"month2AnswerC"}
+                        checked={this.state.month2CorrectAnswer === "month2AnswerC"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
                         <Input
@@ -439,17 +415,13 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                     <div className="answer">
-                      <Input type="radio"
-<<<<<<< HEAD
-                        id="month2Answer4"
-                        name="month2SelectedAnswer"
-                        value={this.state.month2SelectedAnswer}
-=======
-                        id="month2AnswerD"
+                    <Input 
+                        type="radio"
                         name="month2CorrectAnswer"
-                        value={this.state.month2CorrectAnswer}
->>>>>>> 23424c69f76b1c7e9f2db4efc46cb43e39898a11
-                        onClick={this.handleRadioSelect}
+                        id="month2AnswerD"
+                        value={"month2AnswerD"}
+                        checked={this.state.month2CorrectAnswer === "month2AnswerD"}
+                        onChange={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
                         <Input
