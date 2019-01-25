@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
 import { Link } from "react-router-dom";
 
+import { registerUser } from '../actions';
 
 import "../css/register.css";
-
-import { registerUser } from '../actions';
 
 class Register extends Component {
   state = {
