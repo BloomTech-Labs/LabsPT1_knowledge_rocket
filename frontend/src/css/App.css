@@ -3,79 +3,85 @@
   box-shadow: inset 0 0 8rem black;
 }
 
-/* @keyframes flames{
-  0%{
-    transform:scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+@keyframes flames {
+  0% {
+    transform: scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   }
-  20%{
+  20% {
     transform: scale(1) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   }
-  50%{
+  50% {
     transform: scale(0.6) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   }
-  70%{
-    transform:scale(1) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  70% {
+    transform: scale(1) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   }
-  100%{
-    transform:scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  100% {
+    transform: scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   }
 }
-@keyframes rocketfly{
-  0%,100%{
+
+@keyframes rocketfly {
+  0%, 100% {
     transform: translateX(-10px);
   }
-  20%,25%{
-     transform: translateX(10px);
+  20%, 25% {
+    transform: translateX(10px);
   }
-  40%,45%{
+  40%, 45% {
     transform: translate(5px);
   }
-  60%,65%{
+  60%, 65% {
     transform: translate(15px);
   }
-  80%,85%{
+  80%, 85% {
     transform: translate(10px);
   }
-} */
+}
 
-.jc-rocket-container{
-  z-index:1;
+.jc-rocket-container {
+  z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%) rotate(45deg);
+  transform: translate(-50%, -50%) rotate(45deg);
 }
-.jc-rocket{
+
+.jc-rocket {
   background-color: #fff;
   height: 150px;
   width: 50px;
   animation: rocketfly 5s ease-in-out infinite;
 }
-.jc-rocket:before{
-  content:'';
-  position:absolute;
-  top:50%;
-  right:100%;
+
+.jc-rocket:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 100%;
   border-bottom: 100px solid #ff7400;
-	border-left: 30px solid transparent;
+  border-left: 30px solid transparent;
 }
-.jc-rocket:after{
-  content:'';
-  position:absolute;
-  top:50%;
-  left:100%;
+
+.jc-rocket:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
   border-bottom: 100px solid #ff7400;
-	border-right: 30px solid transparent;
+  border-right: 30px solid transparent;
 }
-.jc-rocket-head{
-  position:relative;
+
+.jc-rocket-head {
+  position: relative;
   top: -35%;
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 50px solid #ff7400;
 }
-.jc-rocket-window{
-  position:relative;
+
+.jc-rocket-window {
+  position: relative;
   top: 0;
   left: 15%;
   background-color: skyblue;
@@ -84,25 +90,27 @@
   height: 25px;
   width: 25px;
 }
-.jc-booster{
-  height:20px;
-  width:50px;
-  position:absolute;
-  top:100%;
-  border-left:10px solid transparent;
-  border-right:10px solid transparent;
+
+.jc-booster {
+  height: 20px;
+  width: 50px;
+  position: absolute;
+  top: 100%;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
   border-top: 20px solid gray;
   box-sizing: border-box;
 }
-.jc-booster-flames{
-  background-color:#17a2b8;
-  position:absolute;
-  top:120%;
+
+.jc-booster-flames {
+  background-color: #17a2b8;
+  position: absolute;
+  top: 120%;
   left: 0%;
-  height:50px;
-  width:50px;
- border-radius: 0 50% 50% 50%;
-  transform:rotate(45deg) skew(8deg, 8deg) rotate(180deg);
+  height: 50px;
+  width: 50px;
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   animation: flames 2s linear infinite;
   box-sizing: border-box;
 }
@@ -132,23 +140,26 @@
   top: 45rem;
 }
 
-
 .row h1 {
   font-size: 5rem;
   width: 100%;
   text-align: center;
+  font-family: "Righteous", cursive;
 }
 
-
 button.btn {
-  -moz-border-radius:10px;
-  -webkit-border-radius:10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
   border-radius: 35px;
   width: 15rem;
-  background: #fff; /* fallback for browsers that don't understand rgba */
-  border: solid 2px #ff7400; /* fallback for browsers that don't understand rgba */
-  background-color: transparent; /* slighly transparent white */
-  border-color: #ff7400; /*Very transparent black*/
+  background: #fff;
+  /* fallback for browsers that don't understand rgba */
+  border: solid 2px #ff7400;
+  /* fallback for browsers that don't understand rgba */
+  background-color: transparent;
+  /* slighly transparent white */
+  border-color: #ff7400;
+  /*Very transparent black*/
   color: #17a2b8;
   font-size: 1.5rem;
   box-shadow: 0 0 0 #ff7400;
@@ -161,7 +172,6 @@ button.btn:hover {
   border-color: #ff7400;
   color: white;
 }
-
 
 .fa-stack {
   position: relative;

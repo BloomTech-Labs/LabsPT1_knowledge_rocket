@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-import { Card, Button, Badge, CardTitle, CardText, CardDeck } from 'reactstrap';
+import { Card, Button, Badge, CardTitle, CardText } from 'reactstrap';
 import { connect } from 'react-redux';
 import add_icon from '../img/add_icon.png';
 import "../css/Classes.css";
