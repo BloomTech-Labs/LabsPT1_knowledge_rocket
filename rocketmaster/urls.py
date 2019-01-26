@@ -22,8 +22,8 @@ from rocketsapp.views import CustomJWTSerializer, RegisterUsers, GetUser, Update
 from django.views.decorators.csrf import csrf_exempt
 import oauth2_provider.views as oauth2_views
 
-from rocketsapp.api import RegisterClasses, RegisterRockets, GetClasses, CreateSubscription, RegisterStudents, GetStudents #,GetRockets
 from rocketsapp.oAuthView import ApiEndpoint
+from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, GetClasses, GetStudents, CreateSubscription, UpdateClass#, UpdateRockets, GetClasses ,GetRockets
 
 # endpoints for oAuth
 oauth2_endpoint_views = [
@@ -57,6 +57,7 @@ urlpatterns = [
     re_path(r'^updateuser/', csrf_exempt(UpdateUser.as_view())),
     re_path(r'^updatepassword/', csrf_exempt(UpdatePassword.as_view())),
     re_path(r'^addclass/', csrf_exempt(RegisterClasses.as_view())),
+    re_path(r'^updateclass/', csrf_exempt(UpdateClass.as_view())),
     re_path(r'^addrocket/', csrf_exempt(RegisterRockets.as_view())),
     re_path(r'^addstudent/', csrf_exempt(RegisterStudents.as_view())),
     re_path(r'^getclasses/', csrf_exempt(GetClasses.as_view())),
