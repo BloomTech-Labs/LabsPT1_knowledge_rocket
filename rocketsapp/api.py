@@ -111,6 +111,47 @@ class GetStudents(generics.CreateAPIView):
         safe = False
         )
 
+class UpdateStudentSerializers(serializers.Serializer):
+    oldStudentName = serializers.CharField(max_length=100)
+    newStudentName = serializers.CharField(max_length=100, required = False)
+    newStudentEmail = serializers.CharField(max_length=256, required = False)
+    className = serializers.CharField(max_length=100)
+
+class UpdateStudent(generics.CreateAPIView):
+    serializer_class = UpdateStudentSerializers
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        className = request.data.get("className")
+        oldStudentName = request.data.get('oldStudentName')
+        newStudentName = request.data.get('newStudentName')
+        newStudentEmail = request.data.get('newStudentEmail')
+
+        currentClass = Class.objects.get(className = className)
+        
+        if (newStudentName and not newStudentEmail):
+            Student.objects.filter(className = currentClass).filter(studentName = oldStudentName).update(
+            studentName = newStudentName
+            )
+
+        if (newStudentEmail and not newStudentName):
+            Student.objects.filter(className = currentClass).filter(studentName = oldStudentName).update(
+            studentEmail = newStudentEmail
+            )
+
+        if (newStudentName and newStudentEmail):
+            Student.objects.filter(className = currentClass).filter(studentName = oldStudentName).update(
+            studentEmail = newStudentEmail,
+            studentName = newStudentName
+            )
+        response = JsonResponse({
+            'msg': 'update successful'
+            },
+            safe=True,
+            status=status.HTTP_200_OK
+        )
+        return response            
+
 class RocketSerializer(serializers.Serializer):
     rocketName = serializers.CharField(max_length=100)
     className = serializers.CharField(max_length=100)
