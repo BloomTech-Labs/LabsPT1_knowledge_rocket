@@ -92,20 +92,6 @@ class Question2M(models.Model):
         verbose_name_plural = 'questions2m'
 
 
-# class Choice(models.Model):
-#     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-#     rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='choiceRocket')    
-#     interval      = models.CharField(max_length=10, blank = False)
-#     choiceText    = models.CharField(max_length=50, blank = False)
-#     isCorrect     = models.BooleanField()
-#     created_at    = models.DateTimeField(auto_now_add=True)
-#     last_modified = models.DateTimeField(auto_now=True)
-
-#     class Meta:
-#         db_table            = 'Choices'
-#         verbose_name_plural = 'choices'
-
-
 class Student(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     studentName   = models.CharField(max_length=100, blank=False, default = '')

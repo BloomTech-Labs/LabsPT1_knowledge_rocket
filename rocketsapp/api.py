@@ -1,8 +1,7 @@
 from rest_framework import serializers, viewsets, generics, permissions, status
 from django.db import IntegrityError
 from django.http import JsonResponse
-from rest_framework.renderers import JSONRenderer
-from .models import Rocket, Class, Question2D, Question2M, Question2W, Student ##, Choice, 
+from .models import Rocket, Class, Question2D, Question2M, Question2W, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
@@ -41,7 +40,33 @@ class GetClasses(generics.CreateAPIView):
         username = request.user
         classes = Classes.objects.get(user = username)
         return JsonResponse({"classes": classes})
+
+
+class UpdateClassSerializer(serializers.Serializer):
+    newClassName = serializers.CharField(max_length=100)
+    oldClassName = serializers.CharField(max_length=100)
     
+class UpdateClass(generics.CreateAPIView):
+    serializer_class = UpdateClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post (self, request):
+        username = request.user
+        newClassName = request.data.get("newClassName") 
+        oldClassName = request.data.get("oldClassName") 
+
+        Class.objects.filter(className = oldClassName).update(
+            className = newClassName
+        )
+        response = JsonResponse({
+            'msg': 'update successful'
+            },
+            safe=True,
+            status=status.HTTP_200_OK
+        )
+        return response      
+        
+
 
 class StudentSerializers(serializers.Serializer):
     studentName = serializers.CharField(max_length=100)
