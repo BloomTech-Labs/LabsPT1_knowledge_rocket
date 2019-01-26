@@ -2,3 +2,38 @@
     color: white;
     border: 1px solid white;
 }
+
+.card {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.card-img {
+    height: auto;
+    max-height: 50%;
+    width: auto;
+    max-width: 65%;
+}
+
+.breadcrumb {
+    border-radius: 35px;
+    padding: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: solid 2px #424242;
+}
+h1.wel {
+    padding: 1%;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    font-size: 4em;
+}
+@media (min-width: 992px) {
+    h1.wel {
+        padding: 1%;
+        margin-top: 10%;
+        font-size: 5em;
+    }
+}

@@ -34,10 +34,10 @@ class Sidebar_Nav extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#">Rockets</NavLink>
+                <NavLink href="createRocket">Rockets</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Classes</NavLink>
+                <NavLink href="classes">Classes</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/billing">Billing</NavLink>

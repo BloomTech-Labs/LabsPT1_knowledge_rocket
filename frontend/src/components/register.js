@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
+import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 
 import { registerUser } from '../actions';
@@ -55,47 +56,53 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <h1>Register</h1>
-        <Form>
-          <FormGroup>
-            <Input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleInputChange}
-              placeholder="Username"
-            />
-            <Input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-              placeholder="Email"
-            />
-            <Input
-              type="password"
-              name="password1"
-              value={this.state.password1}
-              onChange={this.handleInputChange}
-              placeholder="Password"
-            />
-            <Input
-              type="password"
-              name="password2"
-              value={this.state.password2}
-              onChange={this.handleInputChange}
-              placeholder="Confirm Password"
-            />
-            <Button color="info" onClick={this.handleSubmit}>
-              Sign Up!
-            </Button>
-          </FormGroup>
-        </Form>
-        <div>{this.state.error ? <p>{this.state.errorMsg}</p> : null}</div>
-        <div>
-          {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}
-        </div>
-        <Link to={"/"}> Home </Link>
+        <Container>
+          <Row>
+            <Col>
+            <h1>Register</h1>
+                <Form>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      name="username"
+                      value={this.state.username}
+                      onChange={this.handleInputChange}
+                      placeholder="Username"
+                    />
+                    <Input
+                      type="email"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                      placeholder="Email"
+                    />
+                    <Input
+                      type="password"
+                      name="password1"
+                      value={this.state.password1}
+                      onChange={this.handleInputChange}
+                      placeholder="Password"
+                    />
+                    <Input
+                      type="password"
+                      name="password2"
+                      value={this.state.password2}
+                      onChange={this.handleInputChange}
+                      placeholder="Confirm Password"
+                    />
+                    <Button style={{ margin: 0, marginTop: 20, transform: .5 }}color="info" onClick={this.handleSubmit}>
+                      Sign Up!
+                    </Button>
+                  </FormGroup>
+                </Form>
+                <div>{this.state.error ? <p>{this.state.errorMsg}</p> : null}</div>
+                <div>
+                  {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}
+                </div>
+                <Link to={"/"}> Home </Link>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }
