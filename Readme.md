@@ -88,6 +88,7 @@ All other routes require an active Authorization header:
 
 Authorization token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InRlc3R1c2VyMzIzIiwiZXhwIjoxNTQ4Mzk0NDgwLCJlbWFpbCI6InRlc3R1c2VyMTIzQHRlc3QuY29tIn0.fkBJi6NXPFTOj54dlMFsso5K67H6Q7XMdYdt_nZW8hg
 
+
 http://127.0.0.1:8000/register/
 {
 	"username": "testuser123",
@@ -119,6 +120,10 @@ http://127.0.0.1:8000/addclass/
 	"className": "CSPT3"
 }
 
+**no request needed**
+http://127.0.0.1:8000/getclasses/
+
+**all fields must be unique to all rocket/questions currently in table(all users)**
 http://127.0.0.1:8000/addrocket/
 {
 
@@ -161,4 +166,67 @@ http://127.0.0.1:8000/addstudent/
 	"className": "CSPT1"
 }
 
+http://127.0.0.1:8000/updateclass/
+{
+	"oldClassName" : "CSPT1234",
+	"newClassName" : "CSPT4321"
+}
+
+http://127.0.0.1:8000/updatestudent/
+{
+	"className": "CSPT4321",
+	"oldStudentName": "student12",
+	"newStudentName": "student12",
+	"newStudentEmail": "teacher@student.com"
+}
+
+**classes must already be created and exit**
+http://127.0.0.1:8000/updaterocket/
+{
+	"oldRocketName":"TestRocket3331",
+	"oldClassName": "CSPT3",
+	"newClassName": "CSPT4321"
+}
+
+http://127.0.0.1:8000/updatequestion2d/
+{   
+    "oldDay2QuestionName": "day2Quest1ionName11",
+    "newDay2QuestionName": "day2Quest1ionName121313",
+    
+    "day2QuestionText": "day2Questi1onText11",
+    "day2ReviewText": "day2ReviewTe1xt11",
+    "day2AnswerA": "day2Answ11erA1",
+    "day2AnswerB": "day2Answe1rB1",
+    "day2AnswerC": "day2Answe1rC1",
+    "day2AnswerD": "day2Answe1rD1",
+    "day2CorrectAnswer": "day12Answer1"
+}
+
+http://127.0.0.1:8000/updatequestion2w/
+{   
+    "oldWeek2QuestionName": "week2Quest1ionName11",
+    "newWeek2QuestionName": "week2Quest1ionName121313",
+    
+    "week2QuestionText": "week2Questi1onText11",
+    "week2ReviewText": "week2ReviewTe1xt11",
+    "week2AnswerA": "week2Answ11erA1",
+    "week2AnswerB": "week2Answe1rB1",
+    "week2AnswerC": "week2Answe1rC1",
+    "week2AnswerD": "week2Answe1rD1",
+    "week2CorrectAnswer": "week22Answer1"
+}
+
+http://127.0.0.1:8000/updatequestion2m/
+{   
+    "oldMonth2QuestionName": "month2Quest1ionName11",
+    "newMonth2QuestionName": "month2Quest1ionName121313",
+    
+    "month2QuestionText": "month2Questi1onText11",
+    "month2ReviewText": "month2ReviewTe1xt11",
+    "month2AnswerA": "month2Answ11erA1",
+    "month2AnswerB": "month2Answe1rB1",
+    "month2AnswerC": "month2Answe1rC1",
+    "month2AnswerD": "month2Answe1rD1",
+    "month2CorrectAnswer": "month22Answer1"
+}
   
