@@ -34,7 +34,6 @@ class RegisterUsers(generics.CreateAPIView):
         email = request.data.get("email")
         password1 = request.data.get("password1")
         password2 = request.data.get("password2")
-        # is_premium = request.data.get('is_premium')
         credentials = {
             'username': username,
             'email': email,
@@ -113,9 +112,9 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
             msg = 'Account with this username does not exists'
             raise serializers.ValidationError(msg)
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
+class ProfileSerializer(serializers.Serializer):
+    newUsername = serializers.CharField(max_length=30,  required = False)
+    newEmail = serializers.CharField(max_length=100,  required = False)
 
 class GetUser(generics.CreateAPIView):
     serializer_class = ProfileSerializer
@@ -125,3 +124,40 @@ class GetUser(generics.CreateAPIView):
         username = request.user.username
         email = request.user.email
         return JsonResponse({'username': username, 'email': email})
+
+class UpdateUser(generics.CreateAPIView):
+    serializer_class = ProfileSerializer
+    permission_classes = (permissions.IsAuthenticated,) 
+
+    def post(self, request):
+        username = request.user
+        newUsername = request.data.get('newUsername')
+        newEmail = request.data.get('newEmail')
+
+        if(newUsername):
+            User.objects.filter(username__exact=username).update(username = newUsername)
+
+        if(newEmail):
+            User.objects.filter(username__exact=username).update(email = newEmail)
+
+        return JsonResponse({"msg": "username/email updated"})
+
+class PasswordSerializer(serializers.Serializer):
+    newPassword = serializers.CharField(max_length=15)
+
+class UpdatePassword(generics.CreateAPIView):
+    serializer_class = PasswordSerializer
+    permission_classes = (permissions.IsAuthenticated,) 
+
+    def post(self, request):
+        username = request.user
+        newPassword = request.data.get('newPassword')
+
+        user = User.objects.get(username__exact=username)
+        user.set_password(newPassword)
+        user.save()
+
+        return JsonResponse({"msg": "password updated"})
+
+        
+        
