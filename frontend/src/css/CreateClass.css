@@ -1,0 +1,11 @@
+.student-heading {
+    margin-bottom: 0rem;
+}
+
+form {
+    width: 100%;
+}
+
+form:first-child {
+    margin-top: 0;
+}
