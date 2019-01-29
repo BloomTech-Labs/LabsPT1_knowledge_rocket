@@ -26,7 +26,7 @@ class RegisterClasses(generics.CreateAPIView):
             user = username 
             ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
         response = JsonResponse({
-                'msg': 'successful'
+                'msg': 'class creation successful'
             },
             safe=True,
             status=status.HTTP_201_CREATED
@@ -39,7 +39,13 @@ class GetClasses(generics.CreateAPIView):
     def get(self, request):
         username = request.user
         classes = Classes.objects.get(user = username)
-        return JsonResponse({"classes": classes})
+        response =  JsonResponse({
+            "classes": classes
+            },
+            safe=True,
+            status=status.HTTP_200_OK
+        )
+        return response
 
 
 class UpdateClassSerializer(serializers.Serializer):
@@ -59,7 +65,7 @@ class UpdateClass(generics.CreateAPIView):
             className = newClassName
         )
         response = JsonResponse({
-            'msg': 'update successful'
+            'msg': 'class update successful'
             },
             safe=True,
             status=status.HTTP_200_OK
@@ -92,7 +98,7 @@ class RegisterStudents(generics.CreateAPIView):
             ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
 
         response = JsonResponse({
-                'msg': 'successful'
+                'msg': 'student creation successful'
             },
             safe=True,
             status=status.HTTP_201_CREATED
@@ -106,10 +112,9 @@ class GetStudents(generics.CreateAPIView):
     def get(self, request):
         className = request.data.get("className")
         rocketClass = Class.objects.get(className = className)
-        students = list(Student.objects.filter(className = rocketClass).values())
-        return JsonResponse( students,
-        safe = False
-        )
+        students = list(Student.objects.filter(className = rocketClass).values("studentName", "studentEmail"))
+        response =  JsonResponse({"students": students})
+        return response
 
 class UpdateStudentSerializers(serializers.Serializer):
     oldStudentName = serializers.CharField(max_length=100)
