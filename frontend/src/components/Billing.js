@@ -1,6 +1,9 @@
 import React, {Component, Fragment} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
+import { Row, Col, Container, Form, FormGroup, Label, Input, Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import SidebarNav from "./SidebarNav";
+import "../css/Billing.css";
 
 class BillingForm extends Component {
   constructor(props) {
@@ -62,53 +65,88 @@ class BillingForm extends Component {
 
   render() {
     return (
-        <Fragment>
-            <h1>Billing</h1>
-            <form onSubmit={this.submit}>
-                <label>
-                    Card number
-                </label>
-                <CardNumberElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                />
-                <label>
-                    Expiration date
-                </label>
-                <CardExpiryElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                />
-                <label>
-                    CVC
-                </label>
-                <CardCVCElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                />
-                <label>
-                    Postal code
-                </label>
-                <PostalCodeElement
-                    onBlur={this.handleBlur}
-                    onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onReady={this.handleReady}
-                    {...this.createOptions(this.props.fontSize)}
-                />
-                <input type="checkbox" name="subPrice" />1 Year Subscription - $9.99<br/>
-                <button>Buy Now</button>
-            </form>    
-        </Fragment>
+      <Container>
+        <Row>
+          <Col lg="3">
+              <SidebarNav />
+          </Col>
+          <Col lg="9">
+            <Row>
+              <Col>
+                  <Breadcrumb>
+                  <BreadcrumbItem active>Classes</BreadcrumbItem>
+                    <BreadcrumbItem>
+                      <a href="/">Logout</a>
+                    </BreadcrumbItem>
+                  </Breadcrumb>
+              </Col>
+            </Row>
+            <Row>
+              <h1>Billing</h1>
+              <Form onSubmit={this.submit}>
+                <FormGroup>
+                  <Label for="cardNumber">Card number</Label>
+                  <CardNumberElement
+                      id="cardNumber"
+                      onBlur={this.handleBlur}
+                      onChange={this.handleChange}
+                      onFocus={this.handleFocus}
+                      onReady={this.handleReady}
+                      {...this.createOptions(this.props.fontSize)}
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Label for="expirationDate">Expiration Date</Label>
+                  <CardExpiryElement
+                      id="expirationDate"
+                      onBlur={this.handleBlur}
+                      onChange={this.handleChange}
+                      onFocus={this.handleFocus}
+                      onReady={this.handleReady}
+                      {...this.createOptions(this.props.fontSize)}
+                  />
+                </FormGroup>
+
+                <FormGroup>
+                  <Label for="cvc">CVC</Label>
+                  <CardCVCElement
+                      id="cvc"
+                      onBlur={this.handleBlur}
+                      onChange={this.handleChange}
+                      onFocus={this.handleFocus}
+                      onReady={this.handleReady}
+                      {...this.createOptions(this.props.fontSize)}
+                  />
+                </FormGroup>  
+
+                <FormGroup>
+                  <Label for="postal_code">Postal Code</Label>
+                  <PostalCodeElement
+                      id="postal_code"
+                      onBlur={this.handleBlur}
+                      onChange={this.handleChange}
+                      onFocus={this.handleFocus}
+                      onReady={this.handleReady}
+                      {...this.createOptions(this.props.fontSize)}
+                  />
+                </FormGroup>
+
+                <FormGroup check>
+                  <Label check>
+                    <Input type="checkbox" name="subPrice" />{' '}
+                    <span>1 Year Subscription - $9.99</span>
+                  </Label>
+                </FormGroup>
+                
+                <Button>Buy Now</Button>
+              </Form>
+              
+            </Row>
+            
+            </Col>
+          </Row>
+        </Container>
     );
   }
 }

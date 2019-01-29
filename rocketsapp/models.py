@@ -10,10 +10,13 @@ class User(AbstractUser):
 
 class Class(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-    name          = models.CharField(max_length=100, blank = False)
+    className     = models.CharField(max_length=100, blank = False)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return f'{self.className}'
 
     class Meta:
         db_table            = 'Classes'
@@ -23,12 +26,15 @@ class Rocket(models.Model):
     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
     rocketName    = models.CharField(max_length=100, blank = False, unique = True)
     user          = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
-    classKey      = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='rocketClasses')
+    className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='rocketClasses')
     question2d    = models.ForeignKey('Question2d', null=True, blank = True, on_delete = models.CASCADE, related_name='rocketquestion2d')
     question2w    = models.ForeignKey('Question2w', null=True, blank = True, on_delete = models.CASCADE, related_name='rocketquestion2w')
     question2m    = models.ForeignKey('Question2m', null=True, blank = True, on_delete = models.CASCADE, related_name='rocketquestion2m')
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
+    
+    def __str__(self):
+        return f'{self.rocketName}'
 
     class Meta:
         db_table            = 'Rockets'
@@ -36,6 +42,7 @@ class Rocket(models.Model):
 
 class Question2D(models.Model):
     id                = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className         = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dClass')
     rocket            = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
     day2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     day2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -48,12 +55,16 @@ class Question2D(models.Model):
     created_at        = models.DateTimeField(auto_now_add = True)
     last_modified     = models.DateTimeField(auto_now = True)
 
+    def __str__(self):
+        return f'{self.day2QuestionName}'
+
     class Meta:
         db_table            = 'Questions2d'
         verbose_name_plural = 'questions2d'
 
 class Question2W(models.Model):
     id                 = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className          = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wClass')
     rocket             = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
     week2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     week2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -66,12 +77,16 @@ class Question2W(models.Model):
     created_at         = models.DateTimeField(auto_now_add = True)
     last_modified      = models.DateTimeField(auto_now = True)
 
+    def __str__(self):
+        return f'{self.week2QuestionName}'
+
     class Meta:
         db_table            = 'Questions2w'
         verbose_name_plural = 'questions2w'
 
 class Question2M(models.Model):
     id                  = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className           = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mClass')
     rocket              = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
     month2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     month2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -84,34 +99,26 @@ class Question2M(models.Model):
     created_at          = models.DateTimeField(auto_now_add = True)
     last_modified       = models.DateTimeField(auto_now = True)
 
+    def __str__(self):
+        return f'{self.month2QuestionName}'
+
     class Meta:
         db_table            = 'Questions2m'
         verbose_name_plural = 'questions2m'
 
 
-# class Choice(models.Model):
-#     id            = models.UUIDField(primary_key=True, default = uuid4, editable = False)
-#     rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='choiceRocket')    
-#     interval      = models.CharField(max_length=10, blank = False)
-#     choiceText    = models.CharField(max_length=50, blank = False)
-#     isCorrect     = models.BooleanField()
-#     created_at    = models.DateTimeField(auto_now_add=True)
-#     last_modified = models.DateTimeField(auto_now=True)
-
-#     class Meta:
-#         db_table            = 'Choices'
-#         verbose_name_plural = 'choices'
-
-
 class Student(models.Model):
     id            = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    name          = models.CharField(max_length=50, blank=False)
+    studentName   = models.CharField(max_length=100, blank=False, default = '')
     teacher       = models.ForeignKey(User, default = '', blank = False, on_delete=models.CASCADE)
-    email         = models.CharField(max_length=256, blank=False)
+    studentEmail  = models.CharField(max_length=256, blank=False)
     className     = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='studentClasses' )
-    rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='studentRockets')
+    # rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='studentRockets')
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.studentName}'
 
     class Meta:
         db_table            = 'Students'
