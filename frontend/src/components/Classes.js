@@ -60,11 +60,10 @@ class Classes extends Component {
                     <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
                             <CardTitle className="text-center">New Rocket</CardTitle>
-                            <Link to={"/createRocket"}><Button className="p-0"  style={{"border": 0, "border-radius": 0}}>
+                            <Link to={"/createRocket"}>
                                 <Badge href="#" color="light" className="p-0 b-0" style={{"border-radius": 0, "top": 0}}>
                                     <img className="card-img" src={add_icon} alt="Add Class" />
                                 </Badge>
-                              </Button>
                             </Link>
                         </Card>
                     </Col>
