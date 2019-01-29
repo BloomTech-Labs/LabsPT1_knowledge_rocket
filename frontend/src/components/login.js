@@ -4,9 +4,10 @@ import { Button, Form, Input, FormGroup } from 'reactstrap';
 import { Link, Redirect } from "react-router-dom";
 
 
-import "../css/login.css";
+import "../css/register.css";
 
 import { loginUser } from '../actions';
+
 
 class Login extends Component {
     state = {
@@ -34,14 +35,13 @@ class Login extends Component {
             this.props.loginUser( this.state );
 
         }
-            // if(this.props.state.error) {
-            //     this.props.history.push('/')
-            // }
             
         this.setState({ username: '', password: ''})
     }
 
-    render() {
+    
+
+    render() { 
         return(
             <div>
                 <h1>Login</h1>
@@ -59,7 +59,7 @@ class Login extends Component {
                     {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null }
                 </div>
                 <div>
-                    {this.props.state.redirect ? ( <Redirect to="/home" /> ): null }
+                    {this.props.state.redirect ? ( <Redirect to="/classes" /> ): null }
                 </div>
                 <Link to={"/"}> Home </Link> 
 

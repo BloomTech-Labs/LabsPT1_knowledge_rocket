@@ -2,13 +2,15 @@
     display: flex;
     flex-wrap: wrap;
     border: 1px solid black;
-    width: 33vw;
+    width: 55vw;
     height: 40vh;
+    align-items: center;
+    justify-content: center;
 }
 
 .answer {
-    width: 15vw;
+    width: 24vw;
     height: 10vh;
-    padding: 15px;
-    margin: 5px;
+    /* padding: 15px;
+    margin: 5px; */
 }
