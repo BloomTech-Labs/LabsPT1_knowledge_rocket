@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Input, FormGroup } from 'reactstrap';
 import { Container, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { registerUser } from '../actions';
 
@@ -99,6 +99,9 @@ class Register extends Component {
                 <div>
                   {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}
                 </div>
+              <div>
+                { this.props.state.redirect ? (<Redirect to="/classes" />) : null }
+              </div>
                 <Link to={"/"}> Home </Link>
             </Col>
           </Row>
