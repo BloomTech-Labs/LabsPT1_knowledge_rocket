@@ -389,6 +389,23 @@ class UpdateQuestion2D(generics.CreateAPIView):
 
         return response
 
+class GetQuestion2DSerializer(serializers.Serializer):
+    rocketName = serializers.CharField(max_length=100)
+
+class GetQuestion2D(generics.CreateAPIView):
+    serializer_class = GetQuestion2DSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user
+        rocketName = request.data.get("rocketName")
+        rocketQuery = Rocket.objects.filter(user = username)
+        rocket = rocketQuery.get(rocketName = rocketName)
+        questionName = rocket.question2d
+        question = list(Question2D.objects.filter(day2QuestionName = questionName).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
+        response = JsonResponse({"question": question})
+        return response
+
 class UpdateQuestion2WSerializer(serializers.Serializer):
     oldWeek2QuestionName = serializers.CharField( max_length=100)
     newWeek2QuestionName = serializers.CharField(required = False, max_length=100)
@@ -433,6 +450,23 @@ class UpdateQuestion2W(generics.CreateAPIView):
             status=status.HTTP_200_OK
         )    
 
+        return response
+
+class GetQuestion2WSerializer(serializers.Serializer):
+    rocketName = serializers.CharField(max_length=100)
+
+class GetQuestion2W(generics.CreateAPIView):
+    serializer_class = GetQuestion2WSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user
+        rocketName = request.data.get("rocketName")
+        rocketQuery = Rocket.objects.filter(user = username)
+        rocket = rocketQuery.get(rocketName = rocketName)
+        questionName = rocket.question2w
+        question = list(Question2W.objects.filter(week2QuestionName = questionName).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
+        response = JsonResponse({"question": question})
         return response
 
 class UpdateQuestion2MSerializer(serializers.Serializer):
@@ -483,6 +517,23 @@ class UpdateQuestion2M(generics.CreateAPIView):
 
         return response
 
+class GetQuestion2MSerializer(serializers.Serializer):
+    rocketName = serializers.CharField(max_length=100)
+
+class GetQuestion2M(generics.CreateAPIView):
+    serializer_class = GetQuestion2MSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user
+        rocketName = request.data.get("rocketName")
+        rocketQuery = Rocket.objects.filter(user = username)
+        rocket = rocketQuery.get(rocketName = rocketName)
+        questionName = rocket.question2m
+        question = list(Question2M.objects.filter(month2QuestionName = questionName).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
+        response = JsonResponse({"question": question})
+        return response
+
 class GetRockets(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -497,12 +548,8 @@ class GetRockets(generics.CreateAPIView):
             responseObject[f'rocketName{inc}'] = str(returnRocket)
             responseObject[f'className{inc}'] = str(returnRocket.className)
             inc += 1
-            # response = "rocketName": str(returnRocket), "className": str(returnRocket.className)
 
         return JsonResponse(responseObject)
-
-
-
 
 
 class SubscriptionSerializer(serializers.Serializer):
