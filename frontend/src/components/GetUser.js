@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Input, FormGroup } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Link } from "react-router-dom";
 
 import { getUser } from '../actions';
