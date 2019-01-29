@@ -23,7 +23,7 @@ from django.views.decorators.csrf import csrf_exempt
 import oauth2_provider.views as oauth2_views
 
 from rocketsapp.oAuthView import ApiEndpoint
-from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, GetClasses, GetStudents, CreateSubscription, UpdateClass#, UpdateRockets, GetClasses ,GetRockets
+from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, GetClasses, GetStudents, UpdateClass, UpdateStudent, UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, UpdateQuestion2M,  CreateSubscription#, UpdateRockets,GetRockets
 
 # endpoints for oAuth
 oauth2_endpoint_views = [
@@ -56,13 +56,22 @@ urlpatterns = [
     re_path(r'^getuser/', csrf_exempt(GetUser.as_view())),
     re_path(r'^updateuser/', csrf_exempt(UpdateUser.as_view())),
     re_path(r'^updatepassword/', csrf_exempt(UpdatePassword.as_view())),
+
     re_path(r'^addclass/', csrf_exempt(RegisterClasses.as_view())),
-    re_path(r'^updateclass/', csrf_exempt(UpdateClass.as_view())),
     re_path(r'^addrocket/', csrf_exempt(RegisterRockets.as_view())),
     re_path(r'^addstudent/', csrf_exempt(RegisterStudents.as_view())),
+
     re_path(r'^getclasses/', csrf_exempt(GetClasses.as_view())),
     # re_path(r'^getrockets/', csrf_exempt(GetRockets.as_view())),
     re_path(r'^getstudents/', csrf_exempt(GetStudents.as_view())),
+
+    re_path(r'^updateclass/', csrf_exempt(UpdateClass.as_view())),
+    re_path(r'^updatestudent/', csrf_exempt(UpdateStudent.as_view())),
+    re_path(r'^updaterocket/', csrf_exempt(UpdateRocket.as_view())),
+    re_path(r'^updatequestion2d/', csrf_exempt(UpdateQuestion2D.as_view())),
+    re_path(r'^updatequestion2w/', csrf_exempt(UpdateQuestion2W.as_view())),
+    re_path(r'^updatequestion2m/', csrf_exempt(UpdateQuestion2M.as_view())),
+
     re_path(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     re_path(r'^home/', csrf_exempt(GetUser.as_view())),
     re_path(r'^subscribe', csrf_exempt(CreateSubscription.as_view())),
