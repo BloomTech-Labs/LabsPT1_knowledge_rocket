@@ -1,8 +1,8 @@
 .page-container {
   background-color: #e6e6e6;
   box-shadow: inset 0 0 8rem black;
+  z-index: -2;
 }
-
 @keyframes flames {
   0% {
     transform: scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
@@ -20,7 +20,6 @@
     transform: scale(0.8) rotate(45deg) skew(8deg, 8deg) rotate(180deg);
   }
 }
-
 @keyframes rocketfly {
   0%, 100% {
     transform: translateX(-10px);
@@ -38,7 +37,6 @@
     transform: translate(10px);
   }
 }
-
 .jc-rocket-container {
   z-index: 1;
   position: absolute;
@@ -46,14 +44,12 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
 }
-
 .jc-rocket {
   background-color: #fff;
   height: 150px;
   width: 50px;
   animation: rocketfly 5s ease-in-out infinite;
 }
-
 .jc-rocket:before {
   content: '';
   position: absolute;
@@ -62,7 +58,6 @@
   border-bottom: 100px solid #ff7400;
   border-left: 30px solid transparent;
 }
-
 .jc-rocket:after {
   content: '';
   position: absolute;
@@ -71,7 +66,6 @@
   border-bottom: 100px solid #ff7400;
   border-right: 30px solid transparent;
 }
-
 .jc-rocket-head {
   position: relative;
   top: -35%;
@@ -79,7 +73,6 @@
   border-right: 25px solid transparent;
   border-bottom: 50px solid #ff7400;
 }
-
 .jc-rocket-window {
   position: relative;
   top: 0;
@@ -90,7 +83,6 @@
   height: 25px;
   width: 25px;
 }
-
 .jc-booster {
   height: 20px;
   width: 50px;
@@ -101,7 +93,6 @@
   border-top: 20px solid gray;
   box-sizing: border-box;
 }
-
 .jc-booster-flames {
   background-color: #17a2b8;
   position: absolute;
@@ -114,39 +105,160 @@
   animation: flames 2s linear infinite;
   box-sizing: border-box;
 }
-
 #moon {
   transform: scale(1.5);
   position: relative;
-  top: 8rem;
-  left: 38rem;
+  top: 2rem;
+  left: 48rem;
   width: 150px;
   height: 150px;
   background-color: #fae4a8;
   border-radius: 50%;
   background-image: radial-gradient(circle at 40% 80%, #ddc997 10%, transparent 0), radial-gradient(circle at 55% 70%, #ddc997 5%, transparent 0), radial-gradient(circle at 58% 85%, #ddc997 6%, transparent 0), radial-gradient(circle at 80% 40%, #ddc997 12%, transparent 0), radial-gradient(circle at 87% 58%, #ddc997 4%, transparent 0);
 }
-
+/* Text animation */
+.animation-container {
+  width: 1000rem;
+  height: 30rem;
+}
+@keyframes topFadeOut {
+  0% {
+    position: absolute;
+    top: -3rem;
+    opacity: 0;
+  }
+  75% {
+    position: absolute;
+    top: 25%;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes bottomFadeOut {
+  0% {
+    position: absolute;
+    bottom: -5rem;
+    opacity: 0;
+  }
+  75% {
+    position: absolute;
+    bottom: 25%;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+  
+}
+@keyframes topFadeOutVertical {
+  0% {
+    position: absolute;
+    top: -3rem;
+    opacity: 0;
+  }
+  75% {
+    position: absolute;
+    top: 45%;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes rightFadeInOut {
+  0% {
+    position: absolute;
+    right: -3rem;
+    opacity: 0;
+  }
+  75% {
+    position: absolute;
+    right: 10rem;
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    right: 10rem;
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+.first-text {
+  font-size: 3.5rem;
+  font-family: "Righteous", cursive;
+  position: absolute;
+  left: 2.5rem;
+  top: 5rem;
+  opacity: 0;
+  animation-name: topFadeOut;
+  animation-duration: 3.5s;
+  color: #bbbbbb;
+}
+.second-text {
+  font-size: 2.8rem;
+  font-family: "Righteous", cursive;
+  position: absolute;
+  top: 8.5rem;
+  opacity: 0;
+  animation-name: rightFadeInOut;
+  animation-delay: 3s;
+  animation-duration: 6s;
+  color: #bbbbbb;
+}
+.third-text {
+  transform: rotate(-90deg);
+  font-size: 1.5rem;
+  font-family: "Righteous", cursive;
+  position: absolute;
+  left: 45%;
+  top: 50%;
+  opacity: 0;
+  animation-name: topFadeOutVertical;
+  animation-delay: 7.5s;
+  animation-duration: 6s;
+  color: #A3DDF0;
+  white-space: nowrap;
+}
+.fourth-text {
+  font-size: 2.4rem;
+  font-family: "Righteous", cursive;
+  position: absolute;
+  top: 15.5rem;
+  left: 10%;
+  opacity: 0;
+  color: #F0A3BE;
+  animation-name: fadeInOut;
+  animation-delay: 8.5s;
+  animation-duration: 9s;
+}
 .App {
   display: flex;
   min-height: 100vh;
   padding: 1%;
 }
-
 .btn-links {
   display: flex;
   justify-content: center;
   position: relative;
   top: 45rem;
 }
-
 .row h1 {
-  font-size: 5rem;
   width: 100%;
   text-align: center;
+  font-size: 5rem;
   font-family: "Righteous", cursive;
 }
-
 button.btn {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -166,18 +278,19 @@ button.btn {
   padding: .70rem;
   margin: 0 3rem;
 }
-
 button.btn:hover {
   background-color: #ff7400;
   border-color: #ff7400;
   color: white;
 }
-
 .fa-stack {
+  width: 75%;
+  height: 19rem;
+  overflow: hidden;
   position: relative;
-  top: 12rem;
+  top: 5rem;
   right: 5rem;
   margin: 0 auto;
   padding: 5%;
-  transform: scale(1.5);
+  /* transform: scale(1.5); */
 }
