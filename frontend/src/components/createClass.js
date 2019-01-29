@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Label, CardBody, Input, FormGroup, Container, Row, Col, Card, Badge, CardTitle, CardText } from "reactstrap";
+import { Button, Form, Label, CardBody, Input, 
+         FormGroup, Container, Row, Col, Card,
+         Badge, CardTitle, CardText, FormText, Alert } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";
 
@@ -19,7 +21,8 @@ class CreateClass extends Component {
         studentLastName: '',
         studentFirstName: '',
         studentEmail: '',
-        rockets: []
+        rockets: [],
+        studentDetailsError: ""
     }
 
     handleChange = (e) => {
@@ -29,17 +32,23 @@ class CreateClass extends Component {
 
     handleAddStudent = (e) => {
         e.preventDefault();
+        if (this.state.studentLastName === "" || 
+            this.state.studentFirstName === "" || 
+            this.state.studentEmail === "") {
+                this.setState({"studentDetailsError": "All fields are required."})
+                return;
+        } 
         const students = this.state.students;
-        // let id = students.length;
-        // console.log(this.state.studentFirstName);
         students.push({
                        lastName: this.state.studentLastName,
                        firstName: this.state.studentFirstName,
                        email: this.state.studentEmail
                     })
-        // console.log(students);
-        this.setState({ students, studentFirstName: "", studentLastName: "", studentEmail:"" })
+        this.setState({ students, studentFirstName: "", studentLastName: "", studentEmail:"",
+                        studentDetailsError: "" })
     }
+
+    
 
     render() {
         return (
@@ -54,7 +63,7 @@ class CreateClass extends Component {
                                 <FormGroup>
                                     <h3>Settings</h3>
                                     <Row>
-                                        <Col>
+                                        <Col lg="10">
                                             <Input
                                             type="text" 
                                             name="className" 
@@ -65,16 +74,26 @@ class CreateClass extends Component {
                                             onChange={this.handleChange}
                                             />
                                         </Col>
-                                        {' '}
-                                        <Col>
+                                        <Col lg="1" className="form-checkbox">
+                                            {' '}
+                                        </Col>
+                                        <Col lg="1" className="form-checkbox">
                                             <Input type="checkbox" />
                                         </Col>
+                                        
                                     </Row>
                                 </FormGroup>
                             </Form>
                             <Form onSubmit={this.handleAddStudent}>
                                 <FormGroup>
                                     <h3>Add Students</h3>
+                                    { this.state.studentDetailsError !== "" &&
+                                        <Row className="student-alert">
+                                            <Alert color="danger">
+                                                { this.state.studentDetailsError }
+                                            </Alert>
+                                        </Row>
+                                        }
                                     <Row>
                                         <Col>
                                             <Input
@@ -86,6 +105,7 @@ class CreateClass extends Component {
                                                 value={this.state.studentLastName}
                                                 onChange={this.handleChange}
                                                 />
+                                              <FormText style={{"text-align": "left" }}>*required.</FormText>  
                                         </Col>
                                         <Col>
                                             <Input
@@ -97,6 +117,7 @@ class CreateClass extends Component {
                                                 value={this.state.studentFirstName}
                                                 onChange={this.handleChange}
                                                 />
+                                                <FormText style={{"text-align": "left" }}>*required.</FormText>
                                         </Col>
                                         <Col>
                                             <Input
@@ -108,9 +129,10 @@ class CreateClass extends Component {
                                                 value={this.state.studentEmail}
                                                 onChange={this.handleChange}
                                                 />
+                                                <FormText style={{"text-align": "left" }}>*required.</FormText>
                                         </Col>
                                         <Col>
-                                            <Button color="danger">Add</Button>
+                                            <Button>Add</Button>
                                         </Col>
                                     </Row>
                                 </FormGroup>
@@ -124,7 +146,7 @@ class CreateClass extends Component {
                                             <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
                                         <Card>
                                             <CardBody>
-                                                <CardTitle className="student-heading">
+                                                <CardTitle className="close-button">
                                                     <Button close />
                                                 </CardTitle>
                                                 <CardText className="text-center">
@@ -156,7 +178,6 @@ class CreateClass extends Component {
             // </Container>
         )
     }
-
 }
 
 export default CreateClass;

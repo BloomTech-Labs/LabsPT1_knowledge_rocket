@@ -1,4 +1,4 @@
-.student-heading {
+.close-button {
     margin-bottom: 0rem;
 }
 
@@ -8,4 +8,21 @@ form {
 
 form:first-child {
     margin-top: 0;
+}
+
+.text-muted {
+    color: red!important;
+}
+
+.alert-danger {
+    padding: 0;
+    color: red;
+    background-color: white;
+    border-color: white;
+    border: 0;
+    margin: 0;
+}
+
+.student-alert {
+    margin: 0;
 }
