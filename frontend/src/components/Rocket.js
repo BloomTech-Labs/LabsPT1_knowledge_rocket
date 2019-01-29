@@ -25,6 +25,10 @@ class Rocket extends Component {
         this.props.history.push('/');
     };
 
+    editClick = e => {
+        alert('This will go to an edit page')
+    }
+
     render() {
         return <Container className="container">
             <Row>
@@ -52,7 +56,7 @@ class Rocket extends Component {
                                         <Card body>
                                             <CardTitle className="text-center">{ unit.rocketName }</CardTitle>
                                             <CardText className="text-left">Classes Assigned: { unit.classesAssigned }</CardText>
-                                            <button>Edit</button>
+                                            <button onClick = {this.editClick}>Edit</button>
                                         </Card>
                                     </Col>
                                 )) }
