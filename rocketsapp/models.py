@@ -42,6 +42,7 @@ class Rocket(models.Model):
 
 class Question2D(models.Model):
     id                = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className         = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dClass')
     rocket            = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
     day2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     day2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -63,6 +64,7 @@ class Question2D(models.Model):
 
 class Question2W(models.Model):
     id                 = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className          = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wClass')
     rocket             = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
     week2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     week2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -84,6 +86,7 @@ class Question2W(models.Model):
 
 class Question2M(models.Model):
     id                  = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className           = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mClass')
     rocket              = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
     month2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     month2ReviewText    = models.CharField(max_length=512, blank = False)

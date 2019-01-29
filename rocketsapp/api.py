@@ -238,6 +238,7 @@ class RegisterRockets(generics.CreateAPIView):
                 ).save()
                 rocket = Rocket.objects.get(rocketName = rocketName)
                 Question2D(
+                    className = className,
                     rocket = rocket,
                     day2QuestionName = day2QuestionName,
                     day2ReviewText = day2ReviewText,
@@ -249,6 +250,7 @@ class RegisterRockets(generics.CreateAPIView):
                     day2CorrectAnswer = day2CorrectAnswer
                 ).save()
                 Question2W(
+                    className = className,
                     rocket = rocket,
                     week2QuestionName = week2QuestionName,
                     week2ReviewText = week2ReviewText,
@@ -260,6 +262,7 @@ class RegisterRockets(generics.CreateAPIView):
                     week2CorrectAnswer = week2CorrectAnswer
                 ).save()
                 Question2M(
+                    className = className,
                     rocket = rocket,
                     month2QuestionName = month2QuestionName,
                     month2ReviewText = month2ReviewText,
@@ -284,7 +287,6 @@ class RegisterRockets(generics.CreateAPIView):
                     safe=True,
                     status=status.HTTP_201_CREATED
                 )                
-
 
             except IntegrityError:
                 Rocket.objects.filter(rocketName = rocketName).delete()
@@ -402,8 +404,12 @@ class GetQuestion2D(generics.CreateAPIView):
         rocketQuery = Rocket.objects.filter(user = username)
         rocket = rocketQuery.get(rocketName = rocketName)
         questionName = rocket.question2d
+        className = str(Question2D.objects.get(day2QuestionName = questionName).className)
         question = list(Question2D.objects.filter(day2QuestionName = questionName).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
-        response = JsonResponse({"question": question})
+        response = JsonResponse({
+            "class": className,
+            "question": question
+            })
         return response
 
 class UpdateQuestion2WSerializer(serializers.Serializer):
@@ -465,8 +471,12 @@ class GetQuestion2W(generics.CreateAPIView):
         rocketQuery = Rocket.objects.filter(user = username)
         rocket = rocketQuery.get(rocketName = rocketName)
         questionName = rocket.question2w
+        className = str(Question2W.objects.get(week2QuestionName = questionName).className)
         question = list(Question2W.objects.filter(week2QuestionName = questionName).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
-        response = JsonResponse({"question": question})
+        response = JsonResponse({
+            "class": className,
+            "question": question
+            })
         return response
 
 class UpdateQuestion2MSerializer(serializers.Serializer):
@@ -530,8 +540,12 @@ class GetQuestion2M(generics.CreateAPIView):
         rocketQuery = Rocket.objects.filter(user = username)
         rocket = rocketQuery.get(rocketName = rocketName)
         questionName = rocket.question2m
+        className = str(Question2M.objects.get(month2QuestionName = questionName).className)
         question = list(Question2M.objects.filter(month2QuestionName = questionName).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
-        response = JsonResponse({"question": question})
+        response = JsonResponse({
+            "class": className,
+            "question": question
+            })
         return response
 
 class GetRockets(generics.CreateAPIView):
