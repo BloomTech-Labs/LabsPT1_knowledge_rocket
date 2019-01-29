@@ -15,6 +15,9 @@ class Class(models.Model):
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
 
+    def __str__(self):
+        return f'{self.className}'
+
     class Meta:
         db_table            = 'Classes'
         verbose_name_plural = 'classes'
@@ -30,8 +33,8 @@ class Rocket(models.Model):
     created_at    = models.DateTimeField(auto_now_add = True)
     last_modified = models.DateTimeField(auto_now = True)
     
-    # def __str__(self):
-    #     return f'{self.rocketName, self.className}'
+    def __str__(self):
+        return f'{self.rocketName}'
 
     class Meta:
         db_table            = 'Rockets'
@@ -39,6 +42,7 @@ class Rocket(models.Model):
 
 class Question2D(models.Model):
     id                = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className         = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dClass')
     rocket            = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2dRocket')    
     day2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     day2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -51,12 +55,16 @@ class Question2D(models.Model):
     created_at        = models.DateTimeField(auto_now_add = True)
     last_modified     = models.DateTimeField(auto_now = True)
 
+    def __str__(self):
+        return f'{self.day2QuestionName}'
+
     class Meta:
         db_table            = 'Questions2d'
         verbose_name_plural = 'questions2d'
 
 class Question2W(models.Model):
     id                 = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className          = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wClass')
     rocket             = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2wRocket')    
     week2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     week2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -69,12 +77,16 @@ class Question2W(models.Model):
     created_at         = models.DateTimeField(auto_now_add = True)
     last_modified      = models.DateTimeField(auto_now = True)
 
+    def __str__(self):
+        return f'{self.week2QuestionName}'
+
     class Meta:
         db_table            = 'Questions2w'
         verbose_name_plural = 'questions2w'
 
 class Question2M(models.Model):
     id                  = models.UUIDField(primary_key=True, default = uuid4, editable = False)
+    className           = models.ForeignKey('Class', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mClass')
     rocket              = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='question2mRocket')    
     month2QuestionName  = models.CharField(max_length=100, blank = False, unique = True)
     month2ReviewText    = models.CharField(max_length=512, blank = False)
@@ -86,6 +98,9 @@ class Question2M(models.Model):
     month2CorrectAnswer = models.CharField(max_length=50, blank = False)        
     created_at          = models.DateTimeField(auto_now_add = True)
     last_modified       = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return f'{self.month2QuestionName}'
 
     class Meta:
         db_table            = 'Questions2m'
@@ -101,6 +116,9 @@ class Student(models.Model):
     # rocket        = models.ForeignKey('Rocket', default = '', blank = False, on_delete = models.CASCADE, related_name='studentRockets')
     created_at    = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.studentName}'
 
     class Meta:
         db_table            = 'Students'
