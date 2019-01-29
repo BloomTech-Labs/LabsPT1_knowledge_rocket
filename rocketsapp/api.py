@@ -483,28 +483,23 @@ class UpdateQuestion2M(generics.CreateAPIView):
 
         return response
 
-# class GetRocketClassSerializer(serializers.ModelSerializer):
-#     # className = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-#     rocketName = serializers.StringRelatedField(many = True)
-#     class Meta:
-#         model = Rocket
-#         fields = ('className', 'rocketName')
+class GetRockets(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
 
+    def get(self, request):
+        username = request.user
+        rockets = Rocket.objects.filter(user = username)
+        responseObject = {}
+        inc = 1
+        for rocket in rockets:
+            returnRocket = Rocket.objects.get(rocketName = rocket)
+            print(f'{returnRocket}, {returnRocket.className}')
+            responseObject[f'rocketName{inc}'] = str(returnRocket)
+            responseObject[f'className{inc}'] = str(returnRocket.className)
+            inc += 1
+            # response = "rocketName": str(returnRocket), "className": str(returnRocket.className)
 
-# class GetRockets(generics.CreateAPIView):
-#     permission_classes = (permissions.IsAuthenticated,)
-
-#     def get(self, request):
-#         username = request.user
-#         rockets = Rocket.objects.filter(user = username)
-
-#         print(f'{rockets}')
-#         for rocket in rockets:
-#             serializer = GetRocketClassSerializer(rocket)
-#             print(f'{serializer.data}')
-#         return JsonResponse({"msg": "HATE"},
-#         safe = False
-#     )
+        return JsonResponse(responseObject)
 
 
 
