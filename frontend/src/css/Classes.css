@@ -13,10 +13,13 @@
 .card-img {
     height: auto;
     max-height: 50%;
-    width: auto;
+    /* width: auto; */
     max-width: 65%;
+    align-items: center;
 }
-
+img.card-img{
+    margin-left: 35px;
+}
 .breadcrumb {
     border-radius: 35px;
     padding: 15px;
