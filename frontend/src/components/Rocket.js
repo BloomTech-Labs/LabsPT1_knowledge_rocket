@@ -8,14 +8,15 @@ import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { logoutUser } from "../actions";
+import { logoutUser, getRockets } from "../actions";
 
-const dummyRockets = [{ rocketName: "CSS Basics", classesAssigned: 40 }];
+// const dummyRockets = [{ rocketName: "CSS Basics", classesAssigned: 40 }];
 
 class Rocket extends Component {
-  // componentDidMount() {
-
-  // }
+  handleRocket = () => {
+    const token = localStorage.getItem("token");
+    this.props.getRockets(token);
+  };
 
   handleLogout = e => {
     e.preventDefault();
@@ -48,9 +49,24 @@ class Rocket extends Component {
             </Row>
             <Row>
               <Col>
-                <h1 className="wel">Welcome!</h1>
+                <Button onClick={this.handleRocket}>Click for Rockets</Button>
+
                 <Row>
-                  {dummyRockets.map(unit => (
+                  {this.props.state.rockets ? (
+                    this.props.state.rockets[0].map(unit => (
+                      <Col md="4" sm="6" xs="12" className="mb-4">
+                        <Card body>
+                          <CardTitle className="text-center">
+                            {unit.className}
+                          </CardTitle>
+                        </Card>
+                      </Col>
+                    ))
+                  ) : (
+                    <p>Hi</p>
+                  )}
+                </Row>
+                {/* {dummyRockets.map(unit => (
                     <Col md="4" sm="6" xs="12" className="mb-4">
                       <Card body>
                         <CardTitle className="text-center">
@@ -62,20 +78,15 @@ class Rocket extends Component {
                         <button onClick={this.editClick}>Edit</button>
                       </Card>
                     </Col>
-                  ))}
-                  <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
-                    <Card body>
-                      <CardTitle className="text-center">New Rocket</CardTitle>
-                      <Link to={"/createRocket"}>
-                        <img
-                          className="card-img"
-                          src={add_icon}
-                          alt="Add Rocket"
-                        />
-                      </Link>
-                    </Card>
-                  </Col>
-                </Row>
+                  ))} */}
+              </Col>
+              <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
+                <Card body>
+                  <CardTitle className="text-center">New Rocket</CardTitle>
+                  <Link to={"/createRocket"}>
+                    <img className="card-img" src={add_icon} alt="Add Rocket" />
+                  </Link>
+                </Card>
               </Col>
             </Row>
           </Col>
@@ -93,5 +104,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, getRockets }
 )(Rocket);
