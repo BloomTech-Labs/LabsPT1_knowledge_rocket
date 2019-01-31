@@ -559,16 +559,15 @@ class GetRockets(generics.CreateAPIView):
     def get(self, request):
         username = request.user
         rockets = Rocket.objects.filter(user = username)
-        responseObject = {}
-        inc = 1
+        rocket_list = []
         for rocket in rockets:
             returnRocket = Rocket.objects.get(rocketName = rocket)
             print(f'{returnRocket}, {returnRocket.className}')
-            responseObject[f'rocketName{inc}'] = str(returnRocket)
-            responseObject[f'className{inc}'] = str(returnRocket.className)
-            inc += 1
+            rocket_list.append({'rocketname': str(returnRocket),
+                                'className': str(returnRocket.className
+                            )})
 
-        return JsonResponse(responseObject)
+        return JsonResponse(rocket_list, safe=False)
 
 
 class SubscriptionSerializer(serializers.Serializer):
