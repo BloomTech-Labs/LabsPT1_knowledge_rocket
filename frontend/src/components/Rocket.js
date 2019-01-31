@@ -46,12 +46,11 @@ class Rocket extends Component {
                 </Breadcrumb>
                 {/* </div> */}
               </Col>
-            </Row>
+            </Row> {/*end of breadcrumbs */}
             <Row>
               <Col>
                 <Button onClick={this.handleRocket}>Click for Rockets</Button>
-
-                <Row>
+                <div>
                   {this.props.state.rockets ? (
                     this.props.state.rockets[0].map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
@@ -65,21 +64,10 @@ class Rocket extends Component {
                   ) : (
                     <p>Hi</p>
                   )}
-                </Row>
-                {/* {dummyRockets.map(unit => (
-                    <Col md="4" sm="6" xs="12" className="mb-4">
-                      <Card body>
-                        <CardTitle className="text-center">
-                          {unit.rocketName}
-                        </CardTitle>
-                        <CardText className="text-left">
-                          Classes Assigned: {unit.classesAssigned}
-                        </CardText>
-                        <button onClick={this.editClick}>Edit</button>
-                      </Card>
-                    </Col>
-                  ))} */}
-              </Col>
+                  </div>
+                </Col>
+            </Row>
+             <Row>
               <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
                 <Card body>
                   <CardTitle className="text-center">New Rocket</CardTitle>
