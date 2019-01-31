@@ -10,7 +10,8 @@ import {
     REDIRECT, 
     CLEAR_STATE,
     CREATE_ROCKET,
-    GET_CLASSES
+    GET_CLASSES,
+    GET_ROCKETS
 } from '../actions';
 
 
@@ -47,6 +48,9 @@ export default (state = defaultState, action) => {
 
         case GET_CLASSES:
             return {...state, classes: [action.payload], success: true }
+
+        case GET_ROCKETS:
+            return { ...state, rockets: [action.payload], success: true }
         
         case ERROR:
             return {...state, error: true, errorMsg: action.payload}

@@ -12,6 +12,7 @@ export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CREATE_ROCKET = 'CREATE_ROCKET';
 export const GET_CLASSES = 'GET_CLASSES';
+export const GET_ROCKETS = 'GET_ROCKETS';
 
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
@@ -23,17 +24,18 @@ export const registerUser = (user) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
+      // .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
+      .post("http://127.0.0.1:8000/register/", user)
       .then(response => {
-        const token = response.data.token
-        localStorage.setItem('token', token);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
         dispatch({ type: REGISTER, payload: response.data });
         dispatch({ type: REDIRECT });
       })
       .catch(error => {
         dispatch({ type: CHANGE_LOADING });
         dispatch({ type: ERROR, payload: error.response.data.error });
-        console.log( error.response.data);
+        console.log(error.response.data);
       });
   };
 };
@@ -44,17 +46,21 @@ export const loginUser = (user) => {
         dispatch({ type: CLEAR_ERROR });
         dispatch({ type: CLEAR_REDIRECT });
         axios
-          .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
+          // .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
+          .post("http://127.0.0.1:8000/login/", user)
           .then(response => {
-            const token = response.data.token
-            localStorage.setItem('token', token);
+            const token = response.data.token;
+            localStorage.setItem("token", token);
             dispatch({ type: LOGIN, payload: response.data });
             dispatch({ type: REDIRECT });
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });
-            dispatch({ type: ERROR, payload: error.response.data.non_field_errors[0] });
-            console.log( error.response.data);
+            dispatch({
+              type: ERROR,
+              payload: error.response.data.non_field_errors[0]
+            });
+            console.log(error.response.data);
           });
     };
 };
@@ -74,14 +80,18 @@ export const getUser = (userKey) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         axios
-          .get("https://cspt1knowledgerocket.herokuapp.com/getuser/", { 'headers': { 'Authorization': `token ${userKey}` }})
+          // .get("https://cspt1knowledgerocket.herokuapp.com/getuser/", { 'headers': { 'Authorization': `token ${userKey}` }})
+          .get("http://127.0.0.1:8000/getuser/", { 'headers': { 'Authorization': `token ${userKey}` } })
           .then(response => {
             dispatch({ type: GET_USER, payload: response.data });
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });
-            dispatch({ type: ERROR, payload: error.response.data.error });
-            console.log( error.response.data);
+            dispatch({
+              type: ERROR,
+              payload: error.response.data.error
+            });
+            console.log(error.response.data);
           });
     };
 };
@@ -91,7 +101,10 @@ export const getClass = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get("https://cspt1knowledgerocket.herokuapp.com/getclasses/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      // .get("https://cspt1knowledgerocket.herokuapp.com/getclasses/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      .get("http://127.0.0.1:8000/getclasses/", {
+        headers: { Authorization: `token ${userKey}` }
+      })
       .then(response => {
         dispatch({ type: GET_CLASSES, payload: response.data });
       })
@@ -111,14 +124,40 @@ export const createRocket = (rocket) => {
         console.log(userKey)
         console.log(rocket)
         axios
-          .post("https://cspt1knowledgerocket.herokuapp.com/addrocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+          // .post("https://cspt1knowledgerocket.herokuapp.com/addrocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+          .post("http://127.0.0.1:8000/addrocket/", {
+            headers: { Authorization: `token ${userKey}` }
+          })
           .then(response => {
             dispatch({ type: CREATE_ROCKET, payload: response.data });
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });
-            dispatch({ type: ERROR, payload: error.response.data.error });
-            console.log( error.response.data);
+            dispatch({
+              type: ERROR,
+              payload: error.response.data.error
+            });
+            console.log(error.response.data);
           });
     };
+};
+
+export const getRockets = (userKey) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      // .get("https://cspt1knowledgerocket.herokuapp.com/getclasses/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      .get("http://127.0.0.1:8000/getrockets/", {
+        headers: { Authorization: `token ${userKey}` }
+      })
+      .then(response => {
+        dispatch({ type: GET_ROCKETS, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
 };
