@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { Button, Form, Label, Input, FormGroup, Container, Row, Col } from "reactstrap";
+import {
+  Button,
+  Form,
+  Label,
+  Input,
+  FormGroup,
+  Container,
+  Row,
+  Col,
+  Breadcrumb,
+  BreadcrumbItem
+} from "reactstrap";
 import { Link } from "react-router-dom";
 
 import SidebarNav from "./SidebarNav";
@@ -67,9 +78,20 @@ class CreateRocket extends Component {
           <Col sm="md" lg="3">
             <SidebarNav />
           </Col>
-          <Col>
+          <Col lg="9">
             <Row>
               <Col>
+                <Row>
+                  <Col>
+                    <Breadcrumb>
+                      <BreadcrumbItem active>Create Rocket</BreadcrumbItem>
+                      <BreadcrumbItem>
+                        <a href="/">Logout</a>
+                      </BreadcrumbItem>
+                    </Breadcrumb>
+                    {/* </div> */ }
+                  </Col>
+                </Row>
                 <Form>
                   <FormGroup>
                     {/* <h3> all fields must be filled out</h3> */}
