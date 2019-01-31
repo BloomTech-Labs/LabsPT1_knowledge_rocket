@@ -70,8 +70,9 @@ class CreateRocket extends Component {
           <Col>
             <Row>
               <Col>
-                <Form>
-                  <FormGroup>
+                <Form className="f">
+                <h3>Create Rocket</h3>
+                  <FormGroup className="fg">
                     {/* <h3> all fields must be filled out</h3> */}
                     <Label for="rocketName">Rocket Name</Label>
                     <Input
@@ -79,7 +80,6 @@ class CreateRocket extends Component {
                       name="rocketName"
                       id="name"
                       maxLength="95"
-                      placeholder="Enter Rocket Name"
                       value={this.state.name}
                       onChange={this.handleInputChange}
                     />
@@ -89,7 +89,6 @@ class CreateRocket extends Component {
                       name="className"
                       id="className"
                       maxLength="95"
-                      placeholder="Enter Class Name"
                       value={this.state.name}
                       onChange={this.handleInputChange}
                     />
@@ -99,7 +98,6 @@ class CreateRocket extends Component {
                       name="day2QuestionName"
                       id="d2QuestionName"
                       maxLength="95"
-                      placeholder="Enter Name for Question:"
                       value={this.state.day2QuestionName}
                       onChange={this.handleInputChange}
                     />
@@ -109,7 +107,6 @@ class CreateRocket extends Component {
                       name="day2ReviewText"
                       id="d2ReviewText"
                       maxLength="505"
-                      placeholder="Enter Day 2 Review Text: "
                       value={this.state.day2ReviewText}
                       onChange={this.handleInputChange}
                     />
@@ -119,7 +116,6 @@ class CreateRocket extends Component {
                       name="day2QuestionText"
                       id="d2QuestionText"
                       maxLength="505"
-                      placeholder="Enter Day 2 Question: "
                       value={this.state.day2QuestionText}
                       onChange={this.handleInputChange}
                     />
@@ -214,7 +210,6 @@ class CreateRocket extends Component {
                     name="week2QuestionName"
                     id="w2QuestionName"
                     maxLength="95"
-                    placeholder="Enter Name for Question:"
                     value={this.state.week2QuestionName}
                     onChange={this.handleInputChange}
                   />
@@ -224,7 +219,6 @@ class CreateRocket extends Component {
                       name="week2ReviewText"
                       id="w2ReviewText"
                       maxLength="505"
-                      placeholder="Enter Week 2 Review Text: "
                       value={this.state.week2ReviewText}
                       onChange={this.handleInputChange}
                     />
@@ -234,7 +228,6 @@ class CreateRocket extends Component {
                       name="week2QuestionText"
                       id="w2QuestionText"
                       maxLength="505"
-                      placeholder="Enter Week 2 Question: "
                       value={this.state.week2QuestionText}
                       onChange={this.handleInputChange}
                     />
@@ -328,7 +321,6 @@ class CreateRocket extends Component {
                       name="month2QuestionName"
                       id="m2QuestionName"
                       maxLength="95"
-                      placeholder="Enter Name for Question:"
                       value={this.state.month2QuestionName}
                       onChange={this.handleInputChange}
                     />
@@ -338,7 +330,6 @@ class CreateRocket extends Component {
                       name="month2ReviewText"
                       id="m2ReviewText"
                       maxLength="505"
-                      placeholder="Enter Month 2 Review Text: "
                       value={this.state.month2ReviewText}
                       onChange={this.handleInputChange}
                     />
@@ -348,7 +339,6 @@ class CreateRocket extends Component {
                       name="month2QuestionText"
                       id="m2QuestionText"
                       maxLength="505"
-                      placeholder="Enter Month 2 Question: "
                       value={this.state.month2QuestionText}
                       onChange={this.handleInputChange}
                     />
