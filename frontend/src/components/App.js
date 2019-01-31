@@ -28,7 +28,11 @@ class App extends Component {
               <div class="first-text">A tool for Teachers</div>
               <div class="second-text">Promotes effective learning</div>
               <div class="third-text">(:</div>
+<<<<<<< HEAD
                 <div class="fourth-text">Through virtual online quizzes</div>
+=======
+              <div class="fourth-text">Through virtual online quizes</div>
+>>>>>>> b59229ab1e78a6c312d14ecaede9935d931967b8
 
               <div class="jc-rocket-container">
                 <div class="jc-rocket">
