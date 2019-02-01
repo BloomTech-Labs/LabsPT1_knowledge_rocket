@@ -11,6 +11,8 @@ export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CREATE_ROCKET = 'CREATE_ROCKET';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const UPDATE_USER = 'UPDATE_USER';
 
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
@@ -65,6 +67,43 @@ export const logoutUser = () => {
       dispatch({ type: CLEAR_REDIRECT });
       localStorage.clear();
       dispatch({ type: CLEAR_STATE });
+  };
+};
+
+export const updatePassword = (updatePass) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem('token')
+    axios
+      .post("https://cspt1knowledgerocket.herokuapp.com/updatepassword/", updatePass, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .then(response => {
+        dispatch({ type: UPDATE_PASSWORD, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log( error.response.data);
+      });
+  };
+};
+
+export const updateEmail = (updateEmail) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    console.log(updateEmail);
+    const userKey = localStorage.getItem('token')
+    axios
+      .post("https://cspt1knowledgerocket.herokuapp.com/updateuser/", updateEmail, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .then(response => {
+        dispatch({ type: UPDATE_USER, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log( error.response.data);
+      });
   };
 };
 

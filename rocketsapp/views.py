@@ -113,8 +113,7 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
             raise serializers.ValidationError(msg)
 
 class ProfileSerializer(serializers.Serializer):
-    newUsername = serializers.CharField(max_length=30,  required = False)
-    newEmail = serializers.CharField(max_length=100,  required = False)
+    newEmail = serializers.CharField(max_length=100)
 
 class GetUser(generics.CreateAPIView):
     serializer_class = ProfileSerializer
@@ -131,16 +130,12 @@ class UpdateUser(generics.CreateAPIView):
 
     def post(self, request):
         username = request.user
-        newUsername = request.data.get('newUsername')
         newEmail = request.data.get('newEmail')
-
-        if(newUsername):
-            User.objects.filter(username__exact=username).update(username = newUsername)
 
         if(newEmail):
             User.objects.filter(username__exact=username).update(email = newEmail)
 
-        return JsonResponse({"msg": "username/email updated"})
+        return JsonResponse({"msg": "email updated"})
 
 class PasswordSerializer(serializers.Serializer):
     newPassword = serializers.CharField(max_length=15)
