@@ -50,7 +50,7 @@ class Rocket extends Component {
                       <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
                           <CardTitle className="text-center">
-                            {unit.rocketname}
+                            {unit.rocketName}
                           </CardTitle>
                           <Link to={"/createRocket"}>
                             <button>Edit</button>
