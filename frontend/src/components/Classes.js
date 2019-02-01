@@ -2,18 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-import { Card, Button, Badge, CardTitle, CardText } from "reactstrap";
+import { Card, Button, Badge, CardTitle } from "reactstrap";
 import { connect } from "react-redux";
 import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
 import { logoutUser, getUser, getClass } from "../actions";
-
-// const dummyClasses = [
-//   { class_name: "CSPT1", students: 11, participation: 75, rockets_sent: 8 },
-//   { class_name: "CSPT2", students: 11, participation: 75, rockets_sent: 8 }
-// ];
 
 class Classes extends Component {
     handleGet = () => {
