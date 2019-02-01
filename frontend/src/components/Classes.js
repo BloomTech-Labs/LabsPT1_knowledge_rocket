@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
 import { Card, Button, Badge, CardTitle } from "reactstrap";
 import { connect } from "react-redux";
@@ -11,75 +10,64 @@ import SidebarNav from "./SidebarNav.js";
 import { logoutUser, getUser, getClass } from "../actions";
 
 class Classes extends Component {
-    handleGet = () => {
-        const token = localStorage.getItem("token");
-        this.props.getUser(token);
-    };
+  handleGet = () => {
+    const token = localStorage.getItem("token");
+    this.props.getUser(token);
+  };
 
-    handleClass = () => {
-        const token = localStorage.getItem("token");
-        this.props.getClass(token);
-    };
+  handleClass = () => {
+    const token = localStorage.getItem("token");
+    this.props.getClass(token);
+  };
 
-    componentWillMount() {
-        this.handleGet();
-        this.handleClass();
-    }
+  componentWillMount() {
+    this.handleGet();
+    this.handleClass();
+  }
 
-    handleLogout = e => {
-        e.preventDefault();
-        this.props.logoutUser();
-        this.props.history.push("/");
-    };
+  handleLogout = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push("/");
+  };
 
-    render() {
-        return (
-            <Container className="container">
-                <Row>
-                    <Col sm="md" lg="3">
-                        <SidebarNav />
-                    </Col>
-                    <Col>
-                        <Row>
-                            <Col>
-                                <Breadcrumb>
-                                    <BreadcrumbItem active>Classes</BreadcrumbItem>
-                                    <BreadcrumbItem>
-                                        <a href="/">Logout</a>
-                                    </BreadcrumbItem>
-                                </Breadcrumb>
-                                {/* </div> */ }
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <Button onClick={ this.handleGet }>Click for User</Button>
-                                <Button onClick={ this.handleClass }>Click for Classes</Button>
-                                <div>
-                                    { this.props.state.user ? (
-                                        <h1 className="wel">
-                                            Welcome, { this.props.state.user[0].username }!
+  render() {
+    return (
+      <Container className="container">
+        <Row>
+          <Col sm="md" lg="3">
+            <SidebarNav />
+          </Col>
+          <Col>
+            <Row>
+              <Col>
+                <Button onClick={this.handleGet}>Click for User</Button>
+                <Button onClick={this.handleClass}>Click for Classes</Button>
+                <div>
+                  {this.props.state.user ? (
+                    <h1 className="wel">
+                      Welcome, {this.props.state.user[0].username}!
                     </h1>
-                                    ) : (
-                                            <h1 className="wel">Welcome!</h1>
-                                        ) }
-                                </div>
-                                <Row>
-                                    { this.props.state.classes ? (
-                                        this.props.state.classes[0].map(unit => (
-                                            <Col md="4" sm="6" xs="12" className="mb-4">
-                                                <Card body>
-                                                    <CardTitle className="text-center">
-                                                        { unit.className }
-                                                    </CardTitle>
-                                                </Card>
-                                            </Col>
-                                        ))
-                                    ) : (
-                                            <p>Hi</p>
-                                        ) }
-                                </Row>
-                                {/* {this.props.state.classes.map(unit => (
+                  ) : (
+                    <h1 className="wel">Welcome!</h1>
+                  )}
+                </div>
+                <Row>
+                  {this.props.state.classes ? (
+                    this.props.state.classes[0].map(unit => (
+                      <Col md="4" sm="6" xs="12" className="mb-4">
+                        <Card body>
+                          <CardTitle className="text-center">
+                            {unit.className}
+                          </CardTitle>
+                        </Card>
+                      </Col>
+                    ))
+                  ) : (
+                    <p>Hi</p>
+                  )}
+                </Row>
+                {/* {this.props.state.classes.map(unit => (
                     <Col md="4" sm="6" xs="12" className="mb-4">
                       <Card body>
                         <CardTitle className="text-center">
@@ -97,43 +85,43 @@ class Classes extends Component {
                       </Card>
                     </Col>
                   ))} */}
-                                <Row>
-                                    <Col md="4" sm="6" xs="12" className="mb-4">
-                                        <Card body>
-                                            <CardTitle className="text-center">New Class</CardTitle>
-                                            <Link to={ "/createClass" }>
-                                                <Badge
-                                                    href="#"
-                                                    color="light"
-                                                    className="p-0 b-0"
-                                                    style={ { "border-radius": 0, top: 0 } }
-                                                >
-                                                    <img
-                                                        className="card-img"
-                                                        src={ add_icon }
-                                                        alt="Add Class"
-                                                    />
-                                                </Badge>
-                                            </Link>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    </Col>
+                <Row>
+                  <Col md="4" sm="6" xs="12" className="mb-4">
+                    <Card body>
+                      <CardTitle className="text-center">New Class</CardTitle>
+                      <Link to={"/createClass"}>
+                        <Badge
+                          href="#"
+                          color="light"
+                          className="p-0 b-0"
+                          style={{ "border-radius": 0, top: 0 }}
+                        >
+                          <img
+                            className="card-img"
+                            src={add_icon}
+                            alt="Add Class"
+                          />
+                        </Badge>
+                      </Link>
+                    </Card>
+                  </Col>
                 </Row>
-            </Container>
-        );
-    }
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
 const mapStateToProps = state => {
-    return {
-        state: state
-    };
+  return {
+    state: state
+  };
 };
 
 export default connect(
-    mapStateToProps,
-    { logoutUser, getUser, getClass }
+  mapStateToProps,
+  { logoutUser, getUser, getClass }
 )(Classes);
