@@ -147,7 +147,7 @@ export const getRockets = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get("https://cspt1knowledgerocket.herokuapp.com/getclasses/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      .get("https://cspt1knowledgerocket.herokuapp.com/getrockets/", { 'headers': { 'Authorization': `token ${userKey}` } })
       // .get("http://127.0.0.1:8000/getrockets/", {
       //   headers: { Authorization: `token ${userKey}` }
       // })
