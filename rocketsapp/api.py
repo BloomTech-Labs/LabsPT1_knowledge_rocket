@@ -563,7 +563,7 @@ class GetRockets(generics.CreateAPIView):
         for rocket in rockets:
             returnRocket = Rocket.objects.get(rocketName = rocket)
             print(f'{returnRocket}, {returnRocket.className}')
-            rocket_list.append({'rocketname': str(returnRocket),
+            rocket_list.append({'rocketName': str(returnRocket),
                                 'className': str(returnRocket.className
                             )})
 
