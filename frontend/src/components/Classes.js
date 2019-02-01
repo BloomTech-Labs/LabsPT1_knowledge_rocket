@@ -21,6 +21,11 @@ class Classes extends Component {
         this.props.getClass(token);
     };
 
+    componentWillMount() {
+        this.handleGet();
+        this.handleClass();
+    }
+
     handleLogout = e => {
         e.preventDefault();
         this.props.logoutUser();
