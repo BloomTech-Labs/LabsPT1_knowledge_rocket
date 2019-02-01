@@ -7,7 +7,7 @@ import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { logoutUser, getRockets } from "../actions";
+import { getRockets } from "../actions";
 
 class Rocket extends Component {
   handleRocket = () => {
@@ -18,12 +18,6 @@ class Rocket extends Component {
   componentWillMount() {
     this.handleRocket();
   }
-
-  handleLogout = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-    this.props.history.push("/");
-  };
 
   render() {
     return (
@@ -83,5 +77,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logoutUser, getRockets }
+  { getRockets }
 )(Rocket);

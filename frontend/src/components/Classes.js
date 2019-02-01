@@ -7,7 +7,7 @@ import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { logoutUser, getUser, getClass } from "../actions";
+import { getUser, getClass } from "../actions";
 
 class Classes extends Component {
   handleGet = () => {
@@ -101,5 +101,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logoutUser, getUser, getClass }
+  { getUser, getClass }
 )(Classes);

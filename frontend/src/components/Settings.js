@@ -15,9 +15,11 @@ class Settings extends Component {
     password1: "",
     password2: ""
   };
+  
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   render() {
     return (
       <Container className="container">
