@@ -17,6 +17,7 @@ import App from "./components/App.js";
 import Classes from "./components/Classes.js";
 import Settings from "./components/Settings.js";
 import CreateRocket from "./components/CreateRocket.js";
+import Rocket from "./components/Rocket.js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
 import GetUser from "./components/GetUser.js";
@@ -42,6 +43,7 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/classes" component={Classes} />
           <Route path="/settings" component={Settings} />
+          <Route path="/rockets" component={ Rocket } />
           <Route path="/createRocket" component={CreateRocket} />
           <Route path="/getuser" component={GetUser} />
           <Route path="/CREATE" component={CreateClass} />

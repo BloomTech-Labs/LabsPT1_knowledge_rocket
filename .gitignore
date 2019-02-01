@@ -1,6 +1,6 @@
 .vscode/
 .env
-db.sqlite3
+*.sqlite3
 rocketsapp/__pycache__/
 rocketmaster/__pycache__/
 *.pyc
