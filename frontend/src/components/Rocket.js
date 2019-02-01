@@ -16,6 +16,10 @@ class Rocket extends Component {
     this.props.getRockets(token);
   };
 
+  componentWillMount() {
+    this.handleRocket();
+  };
+
   handleLogout = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -42,39 +46,39 @@ class Rocket extends Component {
             </Row>
             <Row>
               <Col>
-                <Button onClick={ this.handleRocket }>Click for Rockets</Button>
+                {/* <Button onClick={this.handleRocket}>Click for Rockets</Button> */}
                 <Row>
-                  { this.props.state.rockets ? (
+                  {this.props.state.rockets ? (
                     this.props.state.rockets[0].map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
                           <CardTitle className="text-center">
-                            { unit.className }
+                            {unit.className}
                           </CardTitle>
-                          <Link to={ "/createRocket" }>
+                          <Link to={"/createRocket"}>
                             <button>Edit</button>
                           </Link>
                         </Card>
                       </Col>
                     ))
                   ) : (
-                      <p>Hi</p>
-                    ) }
+                    <p>Hi</p>
+                  )}
                 </Row>
-              <Row>
-                <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
-                  <Card body>
-                    <CardTitle className="text-center">New Rocket</CardTitle>
-                    <Link to={ "/createRocket" }>
-                      <img
-                        className="card-img"
-                        src={ add_icon }
-                        alt="Add Rocket"
-                      />
-                    </Link>
-                  </Card>
-                </Col>
-              </Row>
+                <Row>
+                  <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
+                    <Card body>
+                      <CardTitle className="text-center">New Rocket</CardTitle>
+                      <Link to={"/createRocket"}>
+                        <img
+                          className="card-img"
+                          src={add_icon}
+                          alt="Add Rocket"
+                        />
+                      </Link>
+                    </Card>
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Col>
