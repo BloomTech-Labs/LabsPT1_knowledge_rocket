@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-import { Card, Button, Badge, CardTitle } from "reactstrap";
+import { Card, Badge, CardTitle } from "reactstrap";
 import { connect } from "react-redux";
 import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
@@ -41,8 +41,6 @@ class Classes extends Component {
           <Col>
             <Row>
               <Col>
-                <Button onClick={this.handleGet}>Click for User</Button>
-                <Button onClick={this.handleClass}>Click for Classes</Button>
                 <div>
                   {this.props.state.user ? (
                     <h1 className="wel">
@@ -64,28 +62,8 @@ class Classes extends Component {
                       </Col>
                     ))
                   ) : (
-                    <p>Hi</p>
+                    null
                   )}
-                </Row>
-                {/* {this.props.state.classes.map(unit => (
-                    <Col md="4" sm="6" xs="12" className="mb-4">
-                      <Card body>
-                        <CardTitle className="text-center">
-                          {unit.className}
-                        </CardTitle>
-                        <CardText className="text-left">
-                          Students: {unit.students}
-                        </CardText>
-                        <CardText className="text-left">
-                          Participation: {unit.participation}
-                        </CardText>
-                        <CardText className="text-left">
-                          Rockets Sent: {unit.rockets_sent}
-                        </CardText> 
-                      </Card>
-                    </Col>
-                  ))} */}
-                <Row>
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
                       <CardTitle className="text-center">New Class</CardTitle>

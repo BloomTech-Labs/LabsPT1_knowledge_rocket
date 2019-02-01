@@ -33,6 +33,11 @@ class Rocket extends Component {
             <SidebarNav />
           </Col>
           <Col>
+          <Row>
+            <Col>
+            <h1>Rockets</h1>
+            </Col>
+          </Row>
             <Row>
               {this.props.state.rockets ? (
                 this.props.state.rockets[0].map(unit => (
@@ -41,6 +46,9 @@ class Rocket extends Component {
                       <CardTitle className="text-center">
                         {unit.rocketname}
                       </CardTitle>
+                      <CardTitle className="text-center">
+                        { unit.className }
+                      </CardTitle>
                       <Link to={"/createRocket"}>
                         <button>Edit</button>
                       </Link>
@@ -48,7 +56,7 @@ class Rocket extends Component {
                   </Col>
                 ))
               ) : (
-                <p>Hi</p>
+                null
               )}
 
               <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
