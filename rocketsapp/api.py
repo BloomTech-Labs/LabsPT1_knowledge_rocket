@@ -40,19 +40,6 @@ class RegisterClasses(generics.CreateAPIView):
             )
             return response
 
-class GetClasses(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get(self, request):
-        username = request.user
-        classes = Classes.objects.get(user = username)
-        response =  JsonResponse({
-            "classes": classes
-            },
-            safe=True,
-            status=status.HTTP_200_OK
-        )
-        return response
 
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
@@ -471,7 +458,7 @@ class GetRockets(generics.CreateAPIView):
         rocket_list = list(Rocket.objects.filter(className = className).values("rocketName"))
         for rocket in rocket_list:
             rocket["className"] = str(className)
-            
+
         return JsonResponse(rocket_list, safe=False)
 
 class CreateSubscription(generics.CreateAPIView):
@@ -527,4 +514,3 @@ class GetClasses(generics.CreateAPIView):
         classList = Class.objects.all().filter(user_id=username_id) #might be able to use a .get instead. too late to continue with that though
         serializer = serializer_class(classList, many=True)
         return JsonResponse( serializer.data, safe=False, status=status.HTTP_200_OK )
-
