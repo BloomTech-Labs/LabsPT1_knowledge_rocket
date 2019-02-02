@@ -231,3 +231,27 @@ export const addClass = (clsName) => {
         });
   };
 };
+
+export const removeStudent = (student) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(userKey)
+      console.log(student)
+      axios
+        .post("http://localhost:8000/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          return axios.post("http://localhost:8000/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+              dispatch({ type: GET_STUDENTS, payload: response.data });
+            })
+        })
+        
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};

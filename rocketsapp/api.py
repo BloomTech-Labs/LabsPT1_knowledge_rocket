@@ -148,18 +148,15 @@ class UpdateStudent(generics.CreateAPIView):
         )
         return response
 
-class RemoveStudentSerializers(serializers.Serializer):
-    StudentName = serializers.CharField(max_length=100)
-    className = serializers.CharField(max_length=100)
-
 class RemoveStudent(generics.CreateAPIView):
-    serializer_class = RemoveStudentSerializers
+    serializer_class = StudentSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
         className = request.data.get("className")
         currentClass = Class.objects.get(className = className)
-        studentName = request.data.get('StudentName')
+        studentName = request.data.get("studentName")
+        studentEmail = request.data.get("studentEmail")
         user = request.user
         
         student = Student.objects.filter(className=currentClass, 

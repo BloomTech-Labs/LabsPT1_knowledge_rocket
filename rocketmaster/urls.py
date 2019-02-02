@@ -27,7 +27,8 @@ from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, \
                            GetClasses, GetStudents, GetRockets, GetQuestion2D, \
                            GetQuestion2W, GetQuestion2M, UpdateClass, UpdateStudent, \
                            UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, \
-                           UpdateQuestion2M, CreateSubscription, GetRocketsByClassName
+                           UpdateQuestion2M, CreateSubscription, GetRocketsByClassName, \
+                           RemoveStudent
 
 # endpoints for oAuth
 oauth2_endpoint_views = [
@@ -52,7 +53,6 @@ if settings.DEBUG:
             name="authorized-token-delete"),
     ]
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^login/', csrf_exempt(ObtainJSONWebToken.as_view(serializer_class=CustomJWTSerializer))),
@@ -64,6 +64,7 @@ urlpatterns = [
     re_path(r'^addclass/', csrf_exempt(RegisterClasses.as_view())),
     re_path(r'^addrocket/', csrf_exempt(RegisterRockets.as_view())),
     re_path(r'^addstudent/', csrf_exempt(RegisterStudents.as_view())),
+    re_path(r'^removestudent/', csrf_exempt(RemoveStudent.as_view())),
 
     re_path(r'^getclasses/', csrf_exempt(GetClasses.as_view())),
     re_path(r'^getrockets/', csrf_exempt(GetRockets.as_view())),
@@ -73,7 +74,6 @@ urlpatterns = [
     re_path(r'^getquestion2m/', csrf_exempt(GetQuestion2M.as_view())),
     re_path(r'^getrocketsbyclassname/', csrf_exempt(GetRocketsByClassName.as_view())),
     
-
     re_path(r'^updateclass/', csrf_exempt(UpdateClass.as_view())),
     re_path(r'^updatestudent/', csrf_exempt(UpdateStudent.as_view())),
     re_path(r'^updaterocket/', csrf_exempt(UpdateRocket.as_view())),

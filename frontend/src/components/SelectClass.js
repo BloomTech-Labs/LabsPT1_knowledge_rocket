@@ -17,7 +17,6 @@ class SelectClass extends Component {
 
     render() {
         const { classes, handleSelectClass, clsName } = this.props;
-        console.log(classes);
 
         return (
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -30,7 +29,6 @@ class SelectClass extends Component {
               <DropdownMenu>
 
               {classes.map((clss, id) => {
-                console.log(clss.className);
                 return (
                     <DropdownItem key={id} onClick={() => handleSelectClass(clss.className)}>
                         { clss.className }

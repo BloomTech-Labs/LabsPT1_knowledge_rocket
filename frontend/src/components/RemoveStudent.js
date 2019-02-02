@@ -15,15 +15,15 @@ class RemoveStudent extends Component {
     }
 
     render() {
-        const { name, id, handleRemoveStudent } = this.props;
+        const { student, handleRemoveStudent } = this.props;
 
         return (
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>
-                <div className="remove-student-name">{name}</div>
+                <div className="remove-student-name">{student.studentName}</div>
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={ ()=>handleRemoveStudent(id) }>
+                <DropdownItem onClick={ ()=>handleRemoveStudent(student) }>
                     Remove Student
                 </DropdownItem>
               </DropdownMenu>

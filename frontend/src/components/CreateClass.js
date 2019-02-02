@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import "react-datepicker/dist/react-datepicker.css";
 
 import { Link } from "react-router-dom";
 import { Button, Form, Label, CardBody, Input, 
@@ -7,14 +8,14 @@ import { Button, Form, Label, CardBody, Input,
          Badge, CardTitle, FormText, Alert 
         } from "reactstrap";
 
-import RocketSelectModal from './RocketSelectModal';
 import RemoveStudent from './RemoveStudent';
 import SelectClass from './SelectClass';
 import AddClass from './AddClass';
 import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 import add_icon from '../img/add_icon.png';
-import { getRockets, addStudent, getStudents, getClasses, getRocketsByClassName, addClass } from '../actions';
+import { getRockets, addStudent, getStudents, getClasses, 
+         getRocketsByClassName, addClass, removeStudent 
+       } from '../actions';
 
 
 import SidebarNav from "./SidebarNav";
@@ -62,6 +63,12 @@ class CreateClass extends Component {
         this.props.addStudent(student);
         this.setState({ studentFirstName: "", studentLastName: "", studentEmail:"",
                         studentDetailsError: "" })
+    }
+
+    handleRemoveStudent = (student) => {
+        this.props.removeStudent({studentName: student.studentName,
+                                  studentEmail: student.studentEmail,
+                                  className: this.state.clsName});
     }
 
     handleSelectClass = (clsName) => {
@@ -182,11 +189,10 @@ class CreateClass extends Component {
                                 <h3>Students</h3>
                                 <Row>
                                     {this.props.state.students.map((student, id) => {                                
-                                        const studentName = `${student.studentName}`
+                                        // const studentName = `${student.studentName}`
                                         return (
                                             <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
-                                            <RemoveStudent name={studentName} 
-                                                           id={id}
+                                            <RemoveStudent student={student}
                                                            handleRemoveStudent={this.handleRemoveStudent}
                                             />
                                     </Col>
@@ -216,10 +222,10 @@ class CreateClass extends Component {
                                     <Col md="4" sm="6" xs="12" className="mb-4">
                                         <Card body>
                                             <CardTitle className="text-center">New Rocket</CardTitle>
-                                            <Link to={"/createRocket"}>
-                                                <Badge href="#" color="light" style={{borderRadius: 0, top: 0, backgroundColor: "white"}}>
+                                            <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
+                                                {/* <Badge href="#" color="light" style={{borderRadius: 0, top: 0, backgroundColor: "white"}}> */}
                                                     <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
-                                                </Badge>
+                                                {/* </Badge> */}
                                             </Link>
                                         </Card>
                                     </Col>
@@ -240,6 +246,6 @@ const mapStateToProps = (state) => {
     }
   }
   
-  export default connect(mapStateToProps,{ getRockets, getStudents, addStudent, 
-                                           getClasses, getRocketsByClassName, 
-                                           addClass } )(CreateClass);
+export default connect(mapStateToProps,{ getRockets, getStudents, addStudent, 
+                                        getClasses, getRocketsByClassName, 
+                                        addClass, removeStudent } )(CreateClass);
