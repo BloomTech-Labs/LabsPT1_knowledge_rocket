@@ -10,6 +10,8 @@ import {
     REDIRECT, 
     CLEAR_STATE,
     CREATE_ROCKET,
+    UPDATE_PASSWORD,
+    UPDATE_USER,
 } from '../actions';
 
 
@@ -41,6 +43,12 @@ export default (state = defaultState, action) => {
             return {...state, loading: false }
 
         case GET_USER:
+            return {...state, user: [action.payload], success: true }
+
+        case UPDATE_PASSWORD:
+            return {...state, user: [action.payload], success: true }
+
+        case UPDATE_USER:
             return {...state, user: [action.payload], success: true }
         
         case ERROR:
