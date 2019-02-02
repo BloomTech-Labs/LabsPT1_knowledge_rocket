@@ -23,7 +23,11 @@ from django.views.decorators.csrf import csrf_exempt
 import oauth2_provider.views as oauth2_views
 
 from rocketsapp.oAuthView import ApiEndpoint
-from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, GetClasses, GetStudents, GetRockets, GetQuestion2D, GetQuestion2W, GetQuestion2M, UpdateClass, UpdateStudent, UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, UpdateQuestion2M, CreateSubscription
+from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, \
+                           GetClasses, GetStudents, GetRockets, GetQuestion2D, \
+                           GetQuestion2W, GetQuestion2M, UpdateClass, UpdateStudent, \
+                           UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, \
+                           UpdateQuestion2M, CreateSubscription, GetRocketsByClassName
 
 # endpoints for oAuth
 oauth2_endpoint_views = [
@@ -67,6 +71,8 @@ urlpatterns = [
     re_path(r'^getquestion2d/', csrf_exempt(GetQuestion2D.as_view())),
     re_path(r'^getquestion2w/', csrf_exempt(GetQuestion2W.as_view())),
     re_path(r'^getquestion2m/', csrf_exempt(GetQuestion2M.as_view())),
+    re_path(r'^getrocketsbyclassname/', csrf_exempt(GetRocketsByClassName.as_view())),
+    
 
     re_path(r'^updateclass/', csrf_exempt(UpdateClass.as_view())),
     re_path(r'^updatestudent/', csrf_exempt(UpdateStudent.as_view())),

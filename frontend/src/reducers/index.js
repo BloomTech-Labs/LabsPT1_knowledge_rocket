@@ -10,6 +10,10 @@ import {
     REDIRECT, 
     CLEAR_STATE,
     CREATE_ROCKET,
+    GET_ROCKETS,
+    GET_STUDENTS,
+    GET_CLASSES,
+    GET_ROCKETS_BY_CLASS
 } from '../actions';
 
 
@@ -24,6 +28,10 @@ const defaultState = {
     errorMsg: "",
     redirect: false,
     rocket: [],
+    rockets: [],
+    students: [],
+    classes: [],
+    classRockets: []
 }
 
 export default (state = defaultState, action) => {
@@ -60,6 +68,18 @@ export default (state = defaultState, action) => {
         
         case CLEAR_STATE:
             return {};
+
+        case GET_ROCKETS:
+            return { ...state, rockets: action.payload }    
+
+        case GET_STUDENTS:
+            return { ...state, students: action.payload }
+
+        case GET_CLASSES:
+            return { ...state, classes: action.payload }
+
+        case GET_ROCKETS_BY_CLASS:
+            return { ...state, classRockets: action.payload }
 
         default:
             return state;

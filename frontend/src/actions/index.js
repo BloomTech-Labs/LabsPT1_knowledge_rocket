@@ -11,7 +11,11 @@ export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CREATE_ROCKET = 'CREATE_ROCKET';
-
+export const GET_ROCKETS = 'GET_ROCKETS';
+export const ADD_STUDENT = 'ADD_STUDENT';
+export const GET_STUDENTS = 'GET_STUDENTS';
+export const GET_CLASSES = 'GET_CLASSES';
+export const GET_ROCKETS_BY_CLASS = 'GET_ROCKETS_BY_CLASS';
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
 // http://127.0.0.1:8000/ **quick ref local deploy
@@ -103,4 +107,127 @@ export const createRocket = (rocket) => {
             console.log( error.response.data);
           });
     };
+};
+
+export const getRockets = () => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      axios
+        .get("http://localhost:8000/getrockets", { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_ROCKETS, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const addStudent = (student) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(userKey)
+      console.log(student)
+      axios
+        .post("http://localhost:8000/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          return axios.post("http://localhost:8000/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+              dispatch({ type: GET_STUDENTS, payload: response.data });
+            })
+        })
+        
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const getStudents = (className) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token');
+      console.log(userKey);
+      console.log(className);
+      axios
+        .post("http://localhost:8000/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_STUDENTS, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const getClasses = () => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      axios
+        .get("http://localhost:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_CLASSES, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const getRocketsByClassName = (clsName) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(clsName);
+      axios
+        .post("http://localhost:8000/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const addClass = (clsName) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(userKey)
+      console.log(clsName)
+      axios
+        .post("http://localhost:8000/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          axios
+            .get("http://localhost:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+            dispatch({ type: GET_CLASSES, payload: response.data });
+          })
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
 };
