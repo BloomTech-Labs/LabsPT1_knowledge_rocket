@@ -26,30 +26,29 @@ class Sidebar_Nav extends Component {
     });
   }
   render() {
-    return (
-      <div>
+    return <div>
         <Navbar color="light" light expand="sm" className="sidebar">
           <NavbarBrand href="/">Knowledge Rocket</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="createRocket">Rockets</NavLink>
+                {/* <NavLink href="createRocket">Create Rocket</NavLink> */}
+                <NavLink href="rockets">Rockets</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="classes">Classes</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/billing">Billing</NavLink>
+                <NavLink href="billing">Billing</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Settings</NavLink>
+                <NavLink href="settings">Settings</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
-      </div>
-    );
+      </div>;
   }
 }
 

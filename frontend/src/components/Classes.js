@@ -10,7 +10,7 @@ import "../css/Classes.css";
 import SidebarNav from "./SidebarNav.js";
 import { logoutUser } from '../actions';
 
-const dummyClasses = [{ "class_name": "CSPT1", "students": 11, "participation": 75, "rockets_sent": 8 }, { "class_name": "CSPT2", "students": 11, "participation": 75, "rockets_sent": 8 }]
+// const dummyClasses = [{ "class_name": "CSPT1", "students": 11, "participation": 75, "rockets_sent": 8 }, { "class_name": "CSPT2", "students": 11, "participation": 75, "rockets_sent": 8 }]
 
 
 class Classes extends Component {
@@ -47,7 +47,7 @@ class Classes extends Component {
               <Col>
                 <h1 className="wel" >Welcome!</h1>
                 <Row> 
-                    {dummyClasses.map((unit) => (
+                    {/* {dummyClasses.map((unit) => (
                         <Col md="4" sm="6" xs="12" className="mb-4">
                             <Card body>
                                 <CardTitle className="text-center">{unit.class_name}</CardTitle>
@@ -56,7 +56,7 @@ class Classes extends Component {
                                 <CardText className="text-left">Rockets Sent: {unit.rockets_sent}</CardText>
                             </Card>
                         </Col>
-                        ))}
+                        ))} */}
                     <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
                             <CardTitle className="text-center">New Rocket</CardTitle>

@@ -21,13 +21,21 @@
     padding: 5%;
 }
 
+#name {
+    width: 50%;
+}
+
 .fg {
      margin-top: 5%;
-     
+     width: 90%;
 }
 
 .fg input {
     margin-bottom: 5%;
+}
+
+.rocketDesc {
+    color: #6c757d;
 }
 
 label {
