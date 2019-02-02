@@ -5,33 +5,40 @@ from .models import Rocket, Class, Question2D, Question2M, Question2W, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
+from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
 import json
 
-
-class ClassSerializer(serializers.Serializer):
-    className = serializers.CharField(max_length=100)
-
 class RegisterClasses(generics.CreateAPIView):
     serializer_class = ClassSerializer
-    permission_classes = (permissions.IsAuthenticated,) #takes the authorization header and decodes it to provide access to the gated route
+    permission_classes = (permissions.IsAuthenticated,
+    ) #takes the authorization header and decodes it to provide access to the gated route
  
     def post(self, request, *args, **kwargs):
         username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
         className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
-        Class( 
-            className = className, 
-            user = username 
-            ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
-        response = JsonResponse({
-                'msg': 'class creation successful'
-            },
-            safe=True,
-            status=status.HTTP_201_CREATED
-        )
-        return response
+        if(Class.objects.filter(className = className)):
+            response = JsonResponse({
+                    'error': 'class already exists'
+                },
+                safe=True,
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+            return response
+        else:
+            Class( 
+                className = className, 
+                user = username 
+                ).save() #accesses the desired model and creates a new object based on the passed in variables and specific model
+            response = JsonResponse({
+                    'msg': 'class creation successful'
+                },
+                safe=True,
+                status=status.HTTP_201_CREATED
+            )
+            return response
 
 class GetClasses(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
@@ -47,11 +54,6 @@ class GetClasses(generics.CreateAPIView):
         )
         return response
 
-
-class UpdateClassSerializer(serializers.Serializer):
-    newClassName = serializers.CharField(max_length=100)
-    oldClassName = serializers.CharField(max_length=100)
-    
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
@@ -72,15 +74,8 @@ class UpdateClass(generics.CreateAPIView):
         )
         return response      
         
-
-
-class StudentSerializers(serializers.Serializer):
-    studentName = serializers.CharField(max_length=100)
-    studentEmail = serializers.CharField(max_length=256)
-    className = serializers.CharField(max_length=100)
-
 class RegisterStudents(generics.CreateAPIView):
-    serializer_class = StudentSerializers
+    serializer_class = StudentSerializer
     permission_classes = (permissions.IsAuthenticated,) #takes the authorization header and decodes it to provide access to the gated route
  
     def post(self, request, *args, **kwargs):
@@ -116,14 +111,8 @@ class GetStudents(generics.CreateAPIView):
         response =  JsonResponse({"students": students})
         return response
 
-class UpdateStudentSerializers(serializers.Serializer):
-    oldStudentName = serializers.CharField(max_length=100)
-    newStudentName = serializers.CharField(max_length=100, required = False)
-    newStudentEmail = serializers.CharField(max_length=256, required = False)
-    className = serializers.CharField(max_length=100)
-
 class UpdateStudent(generics.CreateAPIView):
-    serializer_class = UpdateStudentSerializers
+    serializer_class = UpdateStudentSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
@@ -156,37 +145,6 @@ class UpdateStudent(generics.CreateAPIView):
             status=status.HTTP_200_OK
         )
         return response            
-
-class RocketSerializer(serializers.Serializer):
-    rocketName = serializers.CharField(max_length=100)
-    className = serializers.CharField(max_length=100)
-    
-    day2QuestionName = serializers.CharField(max_length=100)
-    day2ReviewText = serializers.CharField(max_length=512)
-    day2QuestionText = serializers.CharField(max_length=512)
-    day2AnswerA = serializers.CharField(max_length=50)
-    day2AnswerB = serializers.CharField(max_length=50)
-    day2AnswerC = serializers.CharField(max_length=50)
-    day2AnswerD = serializers.CharField(max_length=50)
-    day2CorrectAnswer = serializers.CharField(max_length=50)
-
-    week2QuestionName = serializers.CharField(max_length=100)
-    week2ReviewText = serializers.CharField(max_length=512)
-    week2QuestionText = serializers.CharField(max_length=512)
-    week2AnswerA = serializers.CharField(max_length=50)
-    week2AnswerB = serializers.CharField(max_length=50)
-    week2AnswerC = serializers.CharField(max_length=50)
-    week2AnswerD = serializers.CharField(max_length=50)
-    week2CorrectAnswer = serializers.CharField(max_length=50)
-
-    month2QuestionName = serializers.CharField(max_length=100)
-    month2ReviewText = serializers.CharField(max_length=512)
-    month2QuestionText = serializers.CharField(max_length=512)
-    month2AnswerA = serializers.CharField(max_length=50)
-    month2AnswerB = serializers.CharField(max_length=50)
-    month2AnswerC = serializers.CharField(max_length=50)
-    month2AnswerD = serializers.CharField(max_length=50)
-    month2CorrectAnswer = serializers.CharField(max_length=50)
 
 class RegisterRockets(generics.CreateAPIView):
     serializer_class = RocketSerializer
@@ -226,10 +184,10 @@ class RegisterRockets(generics.CreateAPIView):
         month2CorrectAnswer = request.data.get("month2CorrectAnswer")
 
         className = Class.objects.get(className = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
-        rocketCheck = Rocket.objects.filter(rocketName = rocketName)
+        rocketCheck = Rocket.objects.filter(rocketName = rocketName).filter(className = className)
         if (rocketCheck):
             return JsonResponse({ 
-                'error': 'Rocket field Must be Unique'
+                'error': 'A rocket for this class already exists'
                 },
                 safe = True,
                 status = status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -241,7 +199,7 @@ class RegisterRockets(generics.CreateAPIView):
                     className = className, 
                     user = username, 
                 ).save()
-                rocket = Rocket.objects.get(rocketName = rocketName)
+                rocket = Rocket.objects.filter(rocketName = rocketName).get(className = className)
                 Question2D(
                     className = className,
                     rocket = rocket,
@@ -278,10 +236,10 @@ class RegisterRockets(generics.CreateAPIView):
                     month2AnswerD = month2AnswerD,
                     month2CorrectAnswer = month2CorrectAnswer
                 ).save()
-                question2d = Question2D.objects.get(day2QuestionName = day2QuestionName )
-                question2w = Question2W.objects.get(week2QuestionName = week2QuestionName )
-                question2m = Question2M.objects.get(month2QuestionName = month2QuestionName )
-                Rocket.objects.filter(rocketName = rocketName).update(
+                question2d = Question2D.objects.get(rocket = rocket, className = className, day2QuestionName = day2QuestionName)
+                question2w = Question2W.objects.get(rocket = rocket, className = className, week2QuestionName = week2QuestionName)
+                question2m = Question2M.objects.get(rocket = rocket, className = className, month2QuestionName = month2QuestionName)
+                Rocket.objects.filter(rocketName = rocketName).filter(className = className).update(
                     question2d = question2d, 
                     question2w = question2w, 
                     question2m = question2m, 
@@ -297,19 +255,12 @@ class RegisterRockets(generics.CreateAPIView):
                 Rocket.objects.filter(rocketName = rocketName).delete()
                 print(f'Integrity Error')
                 return JsonResponse({ 
-                    'error': 'All Fields Must be Unique'
+                    'error': 'Error, There were some'
                     },
                     safe = True,
                     status = status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
             return response
-
-class UpdateRocketSerializer(serializers.Serializer):
-    oldRocketName = serializers.CharField(max_length=100)
-    newRocketName = serializers.CharField(required = False, max_length=100)
-    oldClassName = serializers.CharField(max_length=100)
-    newClassName = serializers.CharField(required = False, max_length=100)
-    
 
 class UpdateRocket(generics.CreateAPIView):
     serializer_class = UpdateRocketSerializer
@@ -349,24 +300,12 @@ class UpdateRocket(generics.CreateAPIView):
 
         return response
 
-class UpdateQuestion2DSerializer(serializers.Serializer):
-    oldDay2QuestionName = serializers.CharField(max_length=100)
-    newDay2QuestionName = serializers.CharField(required = False, max_length=100)
-
-    day2ReviewText = serializers.CharField(required = False, max_length=512)
-    day2QuestionText = serializers.CharField(required = False, max_length=512)
-    day2AnswerA = serializers.CharField(required = False, max_length=50)
-    day2AnswerB = serializers.CharField(required = False, max_length=50)
-    day2AnswerC = serializers.CharField(required = False, max_length=50)
-    day2AnswerD = serializers.CharField(required = False, max_length=50)
-    day2CorrectAnswer = serializers.CharField(required = False, max_length=50)
-
-
 class UpdateQuestion2D(generics.CreateAPIView):
     serializer_class = UpdateQuestion2DSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
+        className = request.data.get("className")
         oldDay2QuestionName = request.data.get("oldDay2QuestionName")
         newDay2QuestionName = request.data.get("newDay2QuestionName")
         day2ReviewText = request.data.get("day2ReviewText")
@@ -377,7 +316,9 @@ class UpdateQuestion2D(generics.CreateAPIView):
         day2AnswerD = request.data.get("day2AnswerD")
         day2CorrectAnswer = request.data.get("day2CorrectAnswer")
 
-        Question2D.objects.filter(day2QuestionName = oldDay2QuestionName).update(
+        queryClass = Class.filter.get(className = className)
+
+        Question2D.objects.filter(day2QuestionName = oldDay2QuestionName).filter(className=queryClass).update(
             day2QuestionName = newDay2QuestionName,
             day2ReviewText = day2ReviewText,
             day2QuestionText = day2QuestionText,
@@ -396,38 +337,23 @@ class UpdateQuestion2D(generics.CreateAPIView):
 
         return response
 
-class GetQuestion2DSerializer(serializers.Serializer):
-    rocketName = serializers.CharField(max_length=100)
-
 class GetQuestion2D(generics.CreateAPIView):
-    serializer_class = GetQuestion2DSerializer
+    serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
-        rocketQuery = Rocket.objects.filter(user = username)
-        rocket = rocketQuery.get(rocketName = rocketName)
-        questionName = rocket.question2d
-        className = str(Question2D.objects.get(day2QuestionName = questionName).className)
-        question = list(Question2D.objects.filter(day2QuestionName = questionName).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
+        className = request.data.get("className")
+        classQuery = Class.objects.get(className = className)
+        rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
+        questionName = Question2D.objects.get(className = classQuery, rocket = rocketQuery)
+        question = list(Question2D.objects.filter(rocket = rocketQuery, className = classQuery, day2QuestionName = str(questionName)).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "question": question
             })
         return response
-
-class UpdateQuestion2WSerializer(serializers.Serializer):
-    oldWeek2QuestionName = serializers.CharField( max_length=100)
-    newWeek2QuestionName = serializers.CharField(required = False, max_length=100)
-
-    week2ReviewText = serializers.CharField(required = False, max_length=512)
-    week2QuestionText = serializers.CharField(required = False, max_length=512)
-    week2AnswerA = serializers.CharField(required = False, max_length=50)
-    week2AnswerB = serializers.CharField(required = False, max_length=50)
-    week2AnswerC = serializers.CharField(required = False, max_length=50)
-    week2AnswerD = serializers.CharField(required = False, max_length=50)
-    week2CorrectAnswer = serializers.CharField(required = False, max_length=50)
 
 class UpdateQuestion2W(generics.CreateAPIView):
     serializer_class = UpdateQuestion2WSerializer
@@ -463,40 +389,23 @@ class UpdateQuestion2W(generics.CreateAPIView):
 
         return response
 
-class GetQuestion2WSerializer(serializers.Serializer):
-    rocketName = serializers.CharField(max_length=100)
-
 class GetQuestion2W(generics.CreateAPIView):
-    serializer_class = GetQuestion2WSerializer
+    serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
-        rocketQuery = Rocket.objects.filter(user = username)
-        rocket = rocketQuery.get(rocketName = rocketName)
-        questionName = rocket.question2w
-        className = str(Question2W.objects.get(week2QuestionName = questionName).className)
-        question = list(Question2W.objects.filter(week2QuestionName = questionName).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
+        className = request.data.get("className")
+        classQuery = Class.objects.get(className = className)
+        rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
+        questionName = Question2W.objects.get(className = classQuery, rocket = rocketQuery)
+        question = list(Question2W.objects.filter(rocket = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "question": question
             })
         return response
-
-class UpdateQuestion2MSerializer(serializers.Serializer):
-    
-    newMonth2QuestionName = serializers.CharField(max_length=100)
-    oldMonth2QuestionName = serializers.CharField(required = False, max_length=100)
-
-    month2ReviewText = serializers.CharField(required = False, max_length=512)
-    month2QuestionText = serializers.CharField(required = False, max_length=512)
-    month2AnswerA = serializers.CharField(required = False, max_length=50)
-    month2AnswerB = serializers.CharField(required = False, max_length=50)
-    month2AnswerC = serializers.CharField(required = False, max_length=50)
-    month2AnswerD = serializers.CharField(required = False, max_length=50)
-    month2CorrectAnswer = serializers.CharField(required = False, max_length=50)
-    
 
 class UpdateQuestion2M(generics.CreateAPIView):
     serializer_class = UpdateQuestion2MSerializer
@@ -532,21 +441,18 @@ class UpdateQuestion2M(generics.CreateAPIView):
 
         return response
 
-class GetQuestion2MSerializer(serializers.Serializer):
-    rocketName = serializers.CharField(max_length=100)
-
 class GetQuestion2M(generics.CreateAPIView):
-    serializer_class = GetQuestion2MSerializer
+    serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
-        rocketQuery = Rocket.objects.filter(user = username)
-        rocket = rocketQuery.get(rocketName = rocketName)
-        questionName = rocket.question2m
-        className = str(Question2M.objects.get(month2QuestionName = questionName).className)
-        question = list(Question2M.objects.filter(month2QuestionName = questionName).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
+        className = request.data.get("className")
+        classQuery = Class.objects.get(className = className)
+        rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
+        questionName = Question2M.objects.get(className = classQuery, rocket = rocketQuery)
+        question = list(Question2M.objects.filter(rocket = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "question": question
@@ -568,10 +474,6 @@ class GetRockets(generics.CreateAPIView):
                             )})
 
         return JsonResponse(rocket_list, safe=False)
-
-
-class SubscriptionSerializer(serializers.Serializer):
-    source = serializers.CharField(max_length=256)
 
 class CreateSubscription(generics.CreateAPIView):
     serializer_class = SubscriptionSerializer
@@ -615,9 +517,6 @@ class CreateSubscription(generics.CreateAPIView):
             )
         
         return response
-
-class QuestionSerializer(serializers.Serializer):
-    text = serializers.CharField
 
 class GetClasses(generics.CreateAPIView):
     serializer_class = ClassSerializer
