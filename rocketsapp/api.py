@@ -460,19 +460,18 @@ class GetQuestion2M(generics.CreateAPIView):
         return response
 
 class GetRockets(generics.CreateAPIView):
+    serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
         username = request.user
+        className = request.data.get("className")
+        className = Class.objects.get(className = className)
         rockets = Rocket.objects.filter(user = username)
-        rocket_list = []
-        for rocket in rockets:
-            returnRocket = Rocket.objects.get(rocketName = rocket)
-            print(f'{returnRocket}, {returnRocket.className}')
-            rocket_list.append({'rocketname': str(returnRocket),
-                                'className': str(returnRocket.className
-                            )})
-
+        rocket_list = list(Rocket.objects.filter(className = className).values("rocketName"))
+        for rocket in rocket_list:
+            rocket["className"] = str(className)
+            
         return JsonResponse(rocket_list, safe=False)
 
 class CreateSubscription(generics.CreateAPIView):
