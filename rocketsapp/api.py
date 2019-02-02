@@ -505,12 +505,9 @@ class CreateSubscription(generics.CreateAPIView):
         return response
 
 class GetClasses(generics.CreateAPIView):
-    serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        serializer_class = ClassSerializer #needed to change data from queryset to json for frontend to read response
-        username_id = request.user.id
-        classList = Class.objects.all().filter(user_id=username_id) #might be able to use a .get instead. too late to continue with that though
-        serializer = serializer_class(classList, many=True)
-        return JsonResponse( serializer.data, safe=False, status=status.HTTP_200_OK )
+        username = request.user
+        classList = list(Class.objects.filter(user=username).values("className"))
+        return JsonResponse( classList, safe=False, status=status.HTTP_200_OK )
