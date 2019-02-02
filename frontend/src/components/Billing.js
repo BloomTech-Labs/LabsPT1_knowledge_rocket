@@ -73,16 +73,10 @@ class BillingForm extends Component {
           <Col lg="9">
             <Row>
               <Col>
-                  <Breadcrumb>
-                  <BreadcrumbItem active>Classes</BreadcrumbItem>
-                    <BreadcrumbItem>
-                      <a href="/">Logout</a>
-                    </BreadcrumbItem>
-                  </Breadcrumb>
+              <h1>Billing</h1>
               </Col>
             </Row>
             <Row>
-              <h1>Billing</h1>
               <Form onSubmit={this.submit}>
                 <FormGroup>
                   <Label for="cardNumber">Card number</Label>

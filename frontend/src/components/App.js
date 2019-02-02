@@ -1,34 +1,31 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button } from 'reactstrap';
 import { withRouter } from 'react-router';
-import "../css/App.css";
+import { Container, Row, Button } from "reactstrap";
 
-import { Container, Row } from "reactstrap";
+import "../css/App.css";
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+      <header>
+        <Link to={"/login"}><Button className="btn">Login</Button></Link>
+        <Link to={"/register"}><Button>SignUp</Button></Link>
+      </header>
         <Container>
-          <Row className="btn-links">
-            <div id="links">
-              <Link to={"/register"}><Button>Sign Up</Button></Link>
-              <Link to={"/login"}><Button>Login</Button></Link>
-            </div>
-          </Row>
           <Row>
             <h1>Knowledge Rocket</h1>
           </Row>
           <Row>
             <div id="moon"></div>
-            <span className="fa-stack">
-
+            <span className="scrl-text">
               <div class="first-text">A tool for Teachers</div>
               <div class="second-text">Promotes effective learning</div>
               <div class="third-text">(:</div>
-                <div class="fourth-text">Through virtual online quizzes</div>
+              <div class="fourth-text">Through virtual online quizzes</div>
+            </span>
 
               <div class="jc-rocket-container">
                 <div class="jc-rocket">
@@ -42,7 +39,6 @@ class App extends Component {
                   </div>
                 </div>
               </div>
-            </span>
           </Row>
         </Container>
       </div>

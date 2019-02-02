@@ -13,22 +13,27 @@
 .card-img {
     height: auto;
     max-height: 50%;
-    /* width: auto; */
     max-width: 65%;
     align-items: center;
 }
 img.card-img{
     margin-left: 35px;
 }
-
-h1.wel {
-    padding: 1%;
-    margin-bottom: 10%;
+.breadcrumb {
+    border-radius: 35px;
+    padding: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: solid 2px #424242;
+}
+h1 {
+    padding: 15px;
     font-size: 4em;
 }
 @media (min-width: 992px) {
     h1.wel {
         padding: 1%;
+        margin-top: 10%;
         font-size: 5em;
     }
 }

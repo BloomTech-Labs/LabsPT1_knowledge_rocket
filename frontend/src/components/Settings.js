@@ -44,14 +44,7 @@ class Settings extends Component {
           <Col>
             <Row>
               <Col>
-                <div>
-                  <Breadcrumb>
-                    <BreadcrumbItem>
-                      <a href="/">Home</a>
-                    </BreadcrumbItem>
-                    <BreadcrumbItem active>Settings</BreadcrumbItem>
-                  </Breadcrumb>
-                </div>
+              <h2>Update your User password and/ or email</h2>
               </Col>
             </Row>
             <Row>

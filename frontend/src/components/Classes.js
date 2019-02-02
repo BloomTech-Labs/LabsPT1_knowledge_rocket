@@ -47,7 +47,7 @@ class Classes extends Component {
                       Welcome, {this.props.state.user[0].username}!
                     </h1>
                   ) : (
-                    <h1 className="wel">Welcome!</h1>
+                    <h1>Welcome!</h1>
                   )}
                 </div>
                 <Row>
