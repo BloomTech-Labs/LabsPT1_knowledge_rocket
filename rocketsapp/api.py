@@ -91,7 +91,7 @@ class GetStudents(generics.CreateAPIView):
     serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         className = request.data.get("className")
         rocketClass = Class.objects.get(className = className)
         students = list(Student.objects.filter(className = rocketClass).values("studentName", "studentEmail"))
@@ -328,7 +328,7 @@ class GetQuestion2D(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
@@ -380,7 +380,7 @@ class GetQuestion2W(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
@@ -432,7 +432,7 @@ class GetQuestion2M(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
@@ -450,7 +450,7 @@ class GetRockets(generics.CreateAPIView):
     serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         className = request.data.get("className")
         className = Class.objects.get(className = className)
