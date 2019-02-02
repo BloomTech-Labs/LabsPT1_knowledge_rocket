@@ -20,7 +20,6 @@ import CreateRocket from "./components/CreateRocket.js";
 import Rocket from "./components/Rocket.js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
-import GetUser from "./components/GetUser.js";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -44,7 +43,6 @@ ReactDOM.render(
           <Route path="/settings" component={Settings} />
           <Route path="/rockets" component={ Rocket } />
           <Route path="/createRocket" component={CreateRocket} />
-          <Route path="/getuser" component={GetUser} />
           <Elements>
             <Route
               path="/billing"

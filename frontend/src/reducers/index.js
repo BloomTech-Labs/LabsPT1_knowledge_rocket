@@ -10,6 +10,8 @@ import {
     REDIRECT, 
     CLEAR_STATE,
     CREATE_ROCKET,
+    GET_CLASSES,
+    GET_ROCKETS,
     UPDATE_PASSWORD,
     UPDATE_USER,
 } from '../actions';
@@ -19,13 +21,14 @@ import {
 
 const defaultState = {
     userKey: '',
-    user: [],
+    user: '',
     loading: false,
     success: false,
     error: false,
     errorMsg: "",
     redirect: false,
-    rocket: [],
+    rocket: '',
+    classes: '',
 }
 
 export default (state = defaultState, action) => {
@@ -45,11 +48,18 @@ export default (state = defaultState, action) => {
         case GET_USER:
             return {...state, user: [action.payload], success: true }
 
+        case GET_CLASSES:
+            return {...state, classes: [action.payload], success: true }
+
+        case GET_ROCKETS:
+            return { ...state, rockets: [action.payload], success: true }
+
         case UPDATE_PASSWORD:
             return {...state, user: [action.payload], success: true }
 
         case UPDATE_USER:
             return {...state, user: [action.payload], success: true }
+
         
         case ERROR:
             return {...state, error: true, errorMsg: action.payload}

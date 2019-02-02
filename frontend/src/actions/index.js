@@ -11,6 +11,8 @@ export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CREATE_ROCKET = 'CREATE_ROCKET';
+export const GET_CLASSES = 'GET_CLASSES';
+export const GET_ROCKETS = 'GET_ROCKETS';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
 
@@ -26,15 +28,15 @@ export const registerUser = (user) => {
     axios
       .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
       .then(response => {
-        const token = response.data.token
-        localStorage.setItem('token', token);
+        const token = response.data.token;
+        localStorage.setItem("token", token);
         dispatch({ type: REGISTER, payload: response.data });
         dispatch({ type: REDIRECT });
       })
       .catch(error => {
         dispatch({ type: CHANGE_LOADING });
         dispatch({ type: ERROR, payload: error.response.data.error });
-        console.log( error.response.data);
+        console.log(error.response.data);
       });
   };
 };
@@ -47,15 +49,18 @@ export const loginUser = (user) => {
         axios
           .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
           .then(response => {
-            const token = response.data.token
-            localStorage.setItem('token', token);
+            const token = response.data.token;
+            localStorage.setItem("token", token);
             dispatch({ type: LOGIN, payload: response.data });
             dispatch({ type: REDIRECT });
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });
-            dispatch({ type: ERROR, payload: error.response.data.non_field_errors[0] });
-            console.log( error.response.data);
+            dispatch({
+              type: ERROR,
+              payload: error.response.data.non_field_errors[0]
+            });
+            console.log(error.response.data);
           });
     };
 };
@@ -117,10 +122,30 @@ export const getUser = (userKey) => {
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });
-            dispatch({ type: ERROR, payload: error.response.data.error });
-            console.log( error.response.data);
+            dispatch({
+              type: ERROR,
+              payload: error.response.data.error
+            });
+            console.log(error.response.data);
           });
     };
+};
+
+export const getClass = (userKey) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .get("https://cspt1knowledgerocket.herokuapp.com/getclasses/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      .then(response => {
+        dispatch({ type: GET_CLASSES, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
 };
 
 export const createRocket = (rocket) => {
@@ -137,8 +162,28 @@ export const createRocket = (rocket) => {
           })
           .catch(error => {
             dispatch({ type: CHANGE_LOADING });
-            dispatch({ type: ERROR, payload: error.response.data.error });
-            console.log( error.response.data);
+            dispatch({
+              type: ERROR,
+              payload: error.response.data.error
+            });
+            console.log(error.response.data);
           });
     };
+};
+
+export const getRockets = (userKey, className) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", { 'headers': { 'Authorization': `token ${userKey}` } }, className)
+      .then(response => {
+        dispatch({ type: GET_ROCKETS, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
 };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from 'react-router';
+import { withRouter } from "react-router";
 import {
   Collapse,
   Navbar,
@@ -7,10 +7,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  NavLink
 } from "reactstrap";
 
-import '../css/SidebarNav.css';
+import "../css/SidebarNav.css";
 
 class Sidebar_Nav extends Component {
   constructor(props) {
@@ -20,20 +20,28 @@ class Sidebar_Nav extends Component {
       isOpen: false
     };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
+  handleLogout = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+    this.props.history.push("/");
+  };
+
   render() {
-    return <div>
+    return (
+      <div>
         <Navbar color="light" light expand="sm" className="sidebar">
           <NavbarBrand href="/">Knowledge Rocket</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                {/* <NavLink href="createRocket">Create Rocket</NavLink> */}
                 <NavLink href="rockets">Rockets</NavLink>
               </NavItem>
               <NavItem>
@@ -45,10 +53,16 @@ class Sidebar_Nav extends Component {
               <NavItem>
                 <NavLink href="settings">Settings</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/" onClick={this.logoutUser}>
+                  Log Out
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
-      </div>;
+      </div>
+    );
   }
 }
 
