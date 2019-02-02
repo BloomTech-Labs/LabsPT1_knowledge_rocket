@@ -40,19 +40,6 @@ class RegisterClasses(generics.CreateAPIView):
             )
             return response
 
-class GetClasses(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get(self, request):
-        username = request.user
-        classes = Classes.objects.get(user = username)
-        response =  JsonResponse({
-            "classes": classes
-            },
-            safe=True,
-            status=status.HTTP_200_OK
-        )
-        return response
 
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
@@ -460,18 +447,17 @@ class GetQuestion2M(generics.CreateAPIView):
         return response
 
 class GetRockets(generics.CreateAPIView):
+    serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
         username = request.user
+        className = request.data.get("className")
+        className = Class.objects.get(className = className)
         rockets = Rocket.objects.filter(user = username)
-        rocket_list = []
-        for rocket in rockets:
-            returnRocket = Rocket.objects.get(rocketName = rocket)
-            print(f'{returnRocket}, {returnRocket.className}')
-            rocket_list.append({'rocketName': str(returnRocket),
-                                'className': str(returnRocket.className
-                            )})
+        rocket_list = list(Rocket.objects.filter(className = className).values("rocketName"))
+        for rocket in rocket_list:
+            rocket["className"] = str(className)
 
         return JsonResponse(rocket_list, safe=False)
 
@@ -519,13 +505,9 @@ class CreateSubscription(generics.CreateAPIView):
         return response
 
 class GetClasses(generics.CreateAPIView):
-    serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request):
-        serializer_class = ClassSerializer #needed to change data from queryset to json for frontend to read response
-        username_id = request.user.id
-        classList = Class.objects.all().filter(user_id=username_id) #might be able to use a .get instead. too late to continue with that though
-        serializer = serializer_class(classList, many=True)
-        return JsonResponse( serializer.data, safe=False, status=status.HTTP_200_OK )
-
+        username = request.user
+        classList = list(Class.objects.filter(user=username).values("className"))
+        return JsonResponse( classList, safe=False, status=status.HTTP_200_OK )
