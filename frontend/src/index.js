@@ -20,6 +20,7 @@ import CreateRocket from "./components/CreateRocket.js";
 import Rocket from "./components/Rocket.js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
+import Quiz from "./components/Quiz";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -41,7 +42,7 @@ ReactDOM.render(
           <Route path="/login" component={Login} />
           <Route path="/classes" component={Classes} />
           <Route path="/settings" component={Settings} />
-          <Route path="/rockets" component={ Rocket } />
+          <Route path="/rockets" component={Rocket} />
           <Route path="/createRocket" component={CreateRocket} />
           <Elements>
             <Route
@@ -50,8 +51,8 @@ ReactDOM.render(
                 <BillingForm {...props} fontSize={elementFontSize} />
               )}
             />
-            {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
+          <Route path="/quiz" component={Quiz} />
         </div>
       </Router>
     </StripeProvider>

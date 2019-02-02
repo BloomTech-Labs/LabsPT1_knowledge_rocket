@@ -148,7 +148,7 @@ export const getClass = (userKey) => {
   };
 };
 
-export const createRocket = (rocket) => {
+export const createRocket = (rocket, className) => {
     return dispatch => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
@@ -156,7 +156,7 @@ export const createRocket = (rocket) => {
         console.log(userKey)
         console.log(rocket)
         axios
-          .post("https://cspt1knowledgerocket.herokuapp.com/addrocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+          .post("https://cspt1knowledgerocket.herokuapp.com/addrocket/", rocket, className, { 'headers': { 'Authorization': `token ${userKey}` }})
           .then(response => {
             dispatch({ type: CREATE_ROCKET, payload: response.data });
           })
@@ -176,7 +176,7 @@ export const getRockets = (userKey, className) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", { 'headers': { 'Authorization': `token ${userKey}` } }, className)
+      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", className, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: GET_ROCKETS, payload: response.data });
       })
