@@ -133,12 +133,12 @@ export const createRocket = (rocket) => {
     };
 };
 
-export const getRockets = (userKey) => {
+export const getRockets = (userKey, className) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get("https://cspt1knowledgerocket.herokuapp.com/getrockets/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", { 'headers': { 'Authorization': `token ${userKey}` } }, className)
       .then(response => {
         dispatch({ type: GET_ROCKETS, payload: response.data });
       })
