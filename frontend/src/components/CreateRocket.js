@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 
 import SidebarNav from "./SidebarNav";
 import { createRocket } from '../actions';
+import Textarea from './Textarea.js';
 
 import "../css/SidebarNav.css";
 import "../css/CreateRocket.css";
@@ -109,17 +110,17 @@ class CreateRocket extends Component {
                     These are automatically sent two days, two weeks, and two months after a lesson 
                     is taught and are intended to cause the student to recall what they have learned.
                     The rockets should not be used to provide an exhaustive review.
-                    Instead, they ask the student to "reload" the mental maps the acquired during the lesson.
+                    Instead, they ask the student to "reload" the mental maps they acquired during the lesson.
                     </div>
                     <br></br>
                     <Label for="day2ReviewText">
                       Two Days - Review Text
                     </Label>
-                    <Input
-                      type="textarea"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="className"
                       id="className"
-                      maxLength="512"
                       placeholder="This is a short section of text that describes or reminds about one part of the topic. 
                       It is not intended to be a complete review of the material, 
                       just a reminder of the most important parts. 
@@ -128,11 +129,11 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                     <Label for="day2QuestionName">Two Days - Question</Label>
-                    <Input
-                      type="textarea"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="day2QuestionName"
                       id="d2QuestionName"
-                      maxLength="95"
                       placeholder="This is a multiple choice question related to the topic. 
                       Again the goal is not to be exhaustive, just to call the material to mind.  
                       A good question will not simply call for the recollection of information, 
@@ -226,11 +227,11 @@ class CreateRocket extends Component {
                   </FormGroup>
                   <FormGroup className="fg">
                   <Label for="week2ReviewText">Two Weeks - Review Text</Label>
-                    <Input
-                      type="textarea"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="week2ReviewText"
                       id="w2ReviewText"
-                      maxLength="512"
                       placeholder="This is a short section of text that describes or reminds about one part of the topic. 
                       It is not intended to be a complete review of the material, 
                       just a reminder of the most important parts. 
@@ -239,11 +240,11 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                   <Label for="week2QuestionText">Two Weeks - Question</Label>
-                    <Input
-                      type="textarea"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="week2QuestionText"
                       id="w2QuestionText"
-                      maxLength="512"
                       placeholder="This is a multiple choice question related to the topic. 
                       Again the goal is not to be exhaustive, just to call the material to mind.  
                       A good question will not simply call for the recollection of information, 
@@ -336,11 +337,11 @@ class CreateRocket extends Component {
                   </FormGroup>
                   <FormGroup className="fg">
                     <Label for="month2ReviewText">Two Months - Review Text</Label>
-                    <Input
-                      type="textarea"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="month2ReviewText"
                       id="m2ReviewText"
-                      maxLength="512"
                       placeholder="This is a short section of text that describes or reminds about one part of the topic. 
                       It is not intended to be a complete review of the material, 
                       just a reminder of the most important parts. 
@@ -349,11 +350,11 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                     <Label for="month2QuestionText">Two Months - Question</Label>
-                    <Input
-                      type="textarea"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="month2QuestionText"
                       id="m2QuestionText"
-                      maxLength="512"
                       placeholder="This is a multiple choice question related to the topic. 
                       Again the goal is not to be exhaustive, just to call the material to mind.  
                       A good question will not simply call for the recollection of information, 
