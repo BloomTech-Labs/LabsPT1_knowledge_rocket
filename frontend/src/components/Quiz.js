@@ -7,16 +7,29 @@ import { getClass } from "../actions/index";
 import "../css/Quiz.css";
 
 class Quiz extends Component {
+  state = {
+    correct_answer: ""
+  };
+
+  handleClass = () => {
+    const token = localStorage.getItem("token");
+    this.props.getClass(token);
+  };
+
+  componentWillMount() {
+    this.handleClass();
+  };
+
   render() {
     console.log(this.props);
+    console.log(this.props.state.classes)
     return (
       <Container className="recap">
         <Form>
           <Row>
             <Col>
               <FormGroup>
-                <h2>CS14</h2>
-                {/* className */}
+                {this.props.state.classes ? <h2>{this.props.state.classes[0][0].className}</h2> : <h2>No class name</h2>}
                 <h2>Graphs - Two Week Boost</h2>
                 {/* rocketName */}
                 {/* time frame */}
@@ -55,34 +68,31 @@ class Quiz extends Component {
           </Row>
           <Row>
             <Col>
-              <radiogroup>
-                <radio id="1" label="1" />
-                <radio id="2" label="2" />
-                <radio id="3" label="3" />
-                <radio id="4" label="4" />
-                {/* <FormGroup check>
+              <FormGroup tag="fieldset">
+                <FormGroup check>
                   <Label check>
-                    <Input type="radio" /> Choice 1
+                    <Input type="radio" name="radio1" /> Answer 1
                   </Label>
                 </FormGroup>
                 <FormGroup check>
                   <Label check>
-                    <Input type="radio" /> Choice 2
+                    <Input type="radio" name="radio1" /> Answer 2
                   </Label>
                 </FormGroup>
-                <FormGroup check>
+                <FormGroup check disabled>
                   <Label check>
-                    <Input type="radio" /> Choice 3
+                    <Input type="radio" name="radio1" /> Answer 3
                   </Label>
                 </FormGroup>
-                <FormGroup check>
+                <FormGroup check disabled>
                   <Label check>
-                    <Input type="radio" /> Choice 4
+                    <Input type="radio" name="radio1" /> Answer 4
                   </Label>
-                </FormGroup> */}
-              </radiogroup>
+                </FormGroup>
+              </FormGroup>
             </Col>
           </Row>
+          <Button>Submit</Button>
         </Form>
       </Container>
     );
@@ -94,4 +104,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Quiz);
+export default connect(mapStateToProps, {getClass})(Quiz);

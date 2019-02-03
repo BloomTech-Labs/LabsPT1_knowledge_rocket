@@ -2,3 +2,7 @@
     text-align: left;
     color: black;
 }
+
+Input {
+    display: block;
+}
