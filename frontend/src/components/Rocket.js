@@ -11,7 +11,7 @@ import { getRockets } from "../actions";
 
 class Rocket extends Component {
   state = {
-    className: "CSPT1",
+    className: "",
   };
 
   handleRocket = () => {
