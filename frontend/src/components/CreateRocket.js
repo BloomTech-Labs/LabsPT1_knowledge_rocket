@@ -12,7 +12,6 @@ import {
   Breadcrumb,
   BreadcrumbItem
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 import SidebarNav from "./SidebarNav";
 import { createRocket } from '../actions';
@@ -84,16 +83,16 @@ class CreateRocket extends Component {
               <Col>
                 <Row>
                   <Col>
-                    <Breadcrumb>
-                      <BreadcrumbItem active>Create Rocket</BreadcrumbItem>
-                      <BreadcrumbItem>
-                        <a href="/">Logout</a>
-                      </BreadcrumbItem>
-                    </Breadcrumb>
                     {/* </div> */ }
                   </Col>
                 </Row>
                 <Form className="f">
+                  {/* <Breadcrumb className="crumb">
+                    <BreadcrumbItem active>Create Rocket</BreadcrumbItem>
+                    <BreadcrumbItem>
+                        <a href="/">Logout</a>
+                    </BreadcrumbItem> 
+                  </Breadcrumb> */}
                   <FormGroup className="fg">
                     {/* <h3> all fields must be filled out</h3> */}
                     <Input
@@ -448,7 +447,6 @@ class CreateRocket extends Component {
                     </Button>
                   </FormGroup>
                 </Form>
-                <Link to={"/"}> Home </Link>
               </Col>
             </Row>
           </Col>

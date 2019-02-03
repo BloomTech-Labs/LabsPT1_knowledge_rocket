@@ -16,11 +16,21 @@
 .Textarea {
     width: 100%;
 }
+
+.crumb {
+    width: 92%;
+}
+
+.link {
+    color: purple;
+}
+
 .f {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 5%;
+    border: solid 2px #ff7400;
 }
 
 #name {

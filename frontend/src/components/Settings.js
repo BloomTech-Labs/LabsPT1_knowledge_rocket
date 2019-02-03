@@ -59,7 +59,7 @@ class Settings extends Component {
                 <Form>
                     <FormGroup>
                       <Input
-                      
+        
                         type="newPassword"
                         name="newPassword"
                         id="current_password"

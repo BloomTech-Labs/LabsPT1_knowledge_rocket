@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
+import { Button } from 'reactstrap';
+
 import {
   Collapse,
   Navbar,
@@ -37,7 +39,7 @@ class Sidebar_Nav extends Component {
     return (
       <div>
         <Navbar color="light" light expand="sm" className="sidebar">
-          <NavbarBrand href="/">Knowledge Rocket</NavbarBrand>
+          <NavbarBrand href="/" className="home">Knowledge Rocket</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
