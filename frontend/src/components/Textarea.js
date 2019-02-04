@@ -28,6 +28,7 @@ export default class Textarea extends Component {
     state = {
         count: 0,
         rows: 3,
+        styler: {"color":"#6c757d"}
     };
 
     handleChange = () => {
@@ -61,6 +62,11 @@ export default class Textarea extends Component {
     render() {
         const { countLimit, countShow, ...restProps } = this.props;
         // did some serious tweaking on the render function
+        if (this.state.count >= 512 && this.state.styler.color === "#6c757d") {
+            this.setState({"styler": {"color":"red"}})
+        } else if (this.state.count < 512 && this.state.styler.color === "red") {
+            this.setState({"styler": {"color": "#6c757d"}})
+        }
         return (
             <div className="textarea__wrapper">
                 <textarea className="textarea"
@@ -70,7 +76,7 @@ export default class Textarea extends Component {
                     ref={ref => (this.textarea = ref)}
                     onInput={this.handleChange}
                 />
-                <div className="counter">
+                <div className="counter" style={this.state.styler}>
                     <div>
                     {countShow && this.renderCount()}
                     </div>

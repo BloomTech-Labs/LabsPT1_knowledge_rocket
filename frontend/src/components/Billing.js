@@ -73,12 +73,12 @@ class BillingForm extends Component {
           <Col lg="9">
             <Row>
               <Col>
-                  <Breadcrumb>
+                  {/* <Breadcrumb>
                   <BreadcrumbItem active>Classes</BreadcrumbItem>
                     <BreadcrumbItem>
                       <a href="/">Logout</a>
                     </BreadcrumbItem>
-                  </Breadcrumb>
+                  </Breadcrumb> */}
               </Col>
             </Row>
             <Row>

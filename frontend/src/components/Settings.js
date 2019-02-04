@@ -45,12 +45,12 @@ class Settings extends Component {
             <Row>
               <Col>
                 <div>
-                  <Breadcrumb>
+                  {/* <Breadcrumb>
                     <BreadcrumbItem>
                       <a href="/">Home</a>
                     </BreadcrumbItem>
                     <BreadcrumbItem active>Settings</BreadcrumbItem>
-                  </Breadcrumb>
+                  </Breadcrumb> */}
                 </div>
               </Col>
             </Row>

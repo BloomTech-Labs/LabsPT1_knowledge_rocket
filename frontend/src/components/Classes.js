@@ -72,7 +72,7 @@ class Classes extends Component {
                           href="#"
                           color="light"
                           className="p-0 b-0"
-                          style={{ "border-radius": 0, top: 0 }}
+                          style={{ "borderRadius": 0, top: 0 }}
                         >
                           <img
                             className="card-img"

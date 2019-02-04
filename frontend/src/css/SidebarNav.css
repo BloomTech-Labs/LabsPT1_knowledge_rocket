@@ -6,13 +6,24 @@
     border: solid 2px #ff7400;
     margin-bottom: 15px;
 }
-a.nav-link {
-    border-radius: 35px
+#home {
+    color: transparent;
 }
+#nLink {
+    color: white;
+}
+
+a.nav-link {
+    border-radius: 35px;
+    background-color: #ff7400;
+}
+
 a.nav-link:hover {
-    color: white !important;
+    color: #bfc6cc !important;
     background-color: #ff7400;
     border-radius: 10px;
+    text-shadow: .5px .5px black;
+    box-shadow: 1px 1px;
 }
 
 @media (min-width: 992px) {
@@ -21,7 +32,10 @@ a.nav-link:hover {
         border-radius: 35px;
         border: solid 2px #ff7400;
         align-items: flex-start;
-        min-height: 100vh;
+        /* min-height: 100vh; */
+        position: fixed;
+        width: 19%;
+        height: 82%;
     }
     a.nav-link {
         position: relative;
@@ -33,9 +47,11 @@ a.nav-link:hover {
         margin: 10px 10px 10px 10px;
     }
     a.nav-link:hover {
-        color: white !important;
+        color: #bfc6cc !important;
         background-color: #ff7400;
         border-radius: 35px;
+        text-shadow: .5px .5px black;
+        box-shadow: 1px 1px;
     }
     .collapse {
         display: flex;
@@ -45,6 +61,13 @@ a.nav-link:hover {
     }
     .navbar-expand-sm .navbar-nav {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 479px) {
+    .ml-auto {
+        display: flex;
+        border: 1px solid purple;
     }
 }
 
