@@ -13,7 +13,9 @@ import {
     GET_ROCKETS,
     GET_STUDENTS,
     GET_CLASSES,
-    GET_ROCKETS_BY_CLASS
+    GET_ROCKETS_BY_CLASS,
+    UPDATE_PASSWORD,
+    UPDATE_USER,
 } from '../actions';
 
 
@@ -21,17 +23,17 @@ import {
 
 const defaultState = {
     userKey: '',
-    user: [],
+    user: '',
     loading: false,
     success: false,
     error: false,
     errorMsg: "",
     redirect: false,
-    rocket: [],
     rockets: [],
     students: [],
     classes: [],
-    classRockets: []
+    classRockets: [],
+    rocket: ''
 }
 
 export default (state = defaultState, action) => {
@@ -50,6 +52,19 @@ export default (state = defaultState, action) => {
 
         case GET_USER:
             return {...state, user: [action.payload], success: true }
+
+        // case GET_CLASSES:
+        //     return {...state, classes: [action.payload], success: true }
+
+        case GET_ROCKETS:
+            return { ...state, rockets: [action.payload], success: true }
+
+        case UPDATE_PASSWORD:
+            return {...state, user: [action.payload], success: true }
+
+        case UPDATE_USER:
+            return {...state, user: [action.payload], success: true }
+
         
         case ERROR:
             return {...state, error: true, errorMsg: action.payload}
@@ -69,8 +84,8 @@ export default (state = defaultState, action) => {
         case CLEAR_STATE:
             return {};
 
-        case GET_ROCKETS:
-            return { ...state, rockets: action.payload }    
+        // case GET_ROCKETS:
+        //     return { ...state, rockets: action.payload }    
 
         case GET_STUDENTS:
             return { ...state, students: action.payload }

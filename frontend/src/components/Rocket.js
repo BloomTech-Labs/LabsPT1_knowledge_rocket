@@ -1,30 +1,32 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
-import { Card, Button, Badge, CardTitle, CardText } from "reactstrap";
+import { Card, CardTitle, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { logoutUser } from "../actions";
-
-const dummyRockets = [{ rocketName: "CSS Basics", classesAssigned: 40 }];
+import { getRockets } from "../actions";
 
 class Rocket extends Component {
-  // componentDidMount() {
-
-  // }
-
-  handleLogout = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-    this.props.history.push("/");
+  state = {
+    className: "",
   };
 
-  editClick = e => {
-    alert("This will go to an edit page");
+  handleRocket = () => {
+    const token = localStorage.getItem("token");
+    const className = this.state
+    this.props.getRockets(token, className);
+    this.setState({ className: ''})
+  };
+
+  // componentWillMount() {
+  //   this.handleRocket();
+  // }
+
+  handleInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -35,47 +37,47 @@ class Rocket extends Component {
             <SidebarNav />
           </Col>
           <Col>
+          <Row>
+            <Col>
+            <h1>Rockets</h1>
+            </Col>
+          </Row>
+          <Input
+                  type="className"
+                  name="className"
+                  value={this.state.className}
+                  onChange={this.handleInputChange}
+                  placeholder="ClassName"
+                  />
+                  <Button onClick = {this.handleRocket}> Get Rockets</Button>
             <Row>
-              <Col>
-                <Breadcrumb>
-                  <BreadcrumbItem active>Rockets</BreadcrumbItem>
-                  <BreadcrumbItem>
-                    <a href="/">Logout</a>
-                  </BreadcrumbItem>
-                </Breadcrumb>
-                {/* </div> */}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <h1 className="wel">Welcome!</h1>
-                <Row>
-                  {dummyRockets.map(unit => (
-                    <Col md="4" sm="6" xs="12" className="mb-4">
-                      <Card body>
-                        <CardTitle className="text-center">
-                          {unit.rocketName}
-                        </CardTitle>
-                        <CardText className="text-left">
-                          Classes Assigned: {unit.classesAssigned}
-                        </CardText>
-                        <button onClick={this.editClick}>Edit</button>
-                      </Card>
-                    </Col>
-                  ))}
-                  <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
+              {this.props.state.rockets ? (
+                this.props.state.rockets[0].map(unit => (
+                  <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
-                      <CardTitle className="text-center">New Rocket</CardTitle>
+                      <CardTitle className="text-center">
+                        {unit.rocketName}
+                      </CardTitle>
+                      <CardTitle className="text-center">
+                        { unit.className }
+                      </CardTitle>
                       <Link to={"/createRocket"}>
-                        <img
-                          className="card-img"
-                          src={add_icon}
-                          alt="Add Rocket"
-                        />
+                        <button>Edit</button>
                       </Link>
                     </Card>
                   </Col>
-                </Row>
+                ))
+              ) : (
+                null
+              )}
+
+              <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
+                <Card body>
+                  <CardTitle className="text-center">New Rocket</CardTitle>
+                  <Link to={"/createRocket"}>
+                    <img className="card-img" src={add_icon} alt="Add Rocket" />
+                  </Link>
+                </Card>
               </Col>
             </Row>
           </Col>
@@ -93,5 +95,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { getRockets }
 )(Rocket);

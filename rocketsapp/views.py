@@ -113,7 +113,8 @@ class CustomJWTSerializer(JSONWebTokenSerializer):
             raise serializers.ValidationError(msg)
 
 class ProfileSerializer(serializers.Serializer):
-    newEmail = serializers.CharField(max_length=100,  required = False)
+
+    newEmail = serializers.CharField(max_length=100)
 
 class GetUser(generics.CreateAPIView):
     serializer_class = ProfileSerializer

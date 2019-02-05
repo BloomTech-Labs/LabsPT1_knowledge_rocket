@@ -40,21 +40,17 @@ class RegisterClasses(generics.CreateAPIView):
             )
             return response
 
-class GetClasses(generics.CreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
+# class GetClasses(generics.CreateAPIView):
+#     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
-        username = request.user
-        classes = Class.objects.filter(user = username)
-        class_list = []
-        for clas in classes:
-            class_list.append({'className': clas.className})
-        return JsonResponse(class_list, safe=False)
+#     def get(self, request):
+#         username = request.user
+#         classes = Class.objects.filter(user = username)
+#         class_list = []
+#         for clas in classes:
+#             class_list.append({'className': clas.className})
+#         return JsonResponse(class_list, safe=False)
 
-class UpdateClassSerializer(serializers.Serializer):
-    newClassName = serializers.CharField(max_length=100)
-    oldClassName = serializers.CharField(max_length=100)
-    
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
@@ -377,7 +373,7 @@ class GetQuestion2D(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
@@ -429,7 +425,7 @@ class GetQuestion2W(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
@@ -481,7 +477,7 @@ class GetQuestion2M(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
@@ -496,18 +492,17 @@ class GetQuestion2M(generics.CreateAPIView):
         return response
 
 class GetRockets(generics.CreateAPIView):
+    serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-    def get(self, request):
+    def post(self, request):
         username = request.user
+        className = request.data.get("className")
+        className = Class.objects.get(className = className)
         rockets = Rocket.objects.filter(user = username)
-        rocket_list = []
-        for rocket in rockets:
-            returnRocket = Rocket.objects.get(rocketName = rocket)
-            print(f'{returnRocket}, {returnRocket.className}')
-            rocket_list.append({'rocketname': str(returnRocket),
-                                'className': str(returnRocket.className
-                            )})
+        rocket_list = list(Rocket.objects.filter(className = className).values("rocketName"))
+        for rocket in rocket_list:
+            rocket["className"] = str(className)
 
         return JsonResponse(rocket_list, safe=False)
 
@@ -554,9 +549,6 @@ class CreateSubscription(generics.CreateAPIView):
         
         return response
 
-class QuestionSerializer(serializers.Serializer):
-    text = serializers.CharField
-
 class GetRocketsByClassName(generics.CreateAPIView):
     serializer_class = ClassSerializer
     permission_classes = (permissions.IsAuthenticated,)
@@ -571,3 +563,11 @@ class GetRocketsByClassName(generics.CreateAPIView):
             rocket_list.append({ 'rocketname': rocket.rocketName })
 
         return JsonResponse(rocket_list, safe=False)
+
+class GetClasses(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request):
+        username = request.user
+        classList = list(Class.objects.filter(user=username).values("className"))
+        return JsonResponse( classList, safe=False, status=status.HTTP_200_OK )

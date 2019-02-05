@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
 import { Row, Col, Container, Form, FormGroup, Label, Input, Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
