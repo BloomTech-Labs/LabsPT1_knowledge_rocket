@@ -4,6 +4,7 @@
 }
 
 .card {
+    border: 1px solid grey;
     height: 100%;
     width: auto;
     max-width: 100%;
@@ -18,13 +19,6 @@
 }
 img.card-img{
     margin-left: 35px;
-}
-.breadcrumb {
-    border-radius: 35px;
-    padding: 15px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border: solid 2px #424242;
 }
 h1 {
     padding: 15px;

@@ -35,7 +35,7 @@ class Rocket extends Component {
             <Row>
               {this.props.state.rockets ? (
                 this.props.state.rockets[0].map(unit => (
-                  <Col md="4" sm="6" xs="12" className="mb-4">
+                  <Col md="4" sm="5" xs="12" className="mb-4">
                     <Card body>
                       <CardTitle className="text-center">
                         {unit.rocketname}

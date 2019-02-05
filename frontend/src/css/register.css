@@ -48,6 +48,8 @@ a {
     }
     
     .form-group {
+        right: 20%;
+        width: 1000%;
         padding: 1%;
         margin: 0 auto;
         width: 60%;
@@ -72,6 +74,11 @@ a {
     a {
         font-size: 1.5rem;
     }
+
+    .func-btn {
+        padding: 10px;
+        text-align: left;
+      }
 }
 
 

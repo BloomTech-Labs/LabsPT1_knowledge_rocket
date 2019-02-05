@@ -59,7 +59,7 @@ class Register extends Component {
         <Container>
           <Row>
             <Col>
-            <h1>Sign-Up</h1>
+            <h1>Sign Up</h1>
                 <Form>
                   <FormGroup>
                     <Input
@@ -90,10 +90,16 @@ class Register extends Component {
                       onChange={this.handleInputChange}
                       placeholder="Confirm Password"
                     />
-                    <Button style={{ margin: 0, marginTop: 20, transform: .5 }}color="info" onClick={this.handleSubmit}>
-                      Sign Up!
-                    </Button>
                   </FormGroup>
+                    <div className="func-btn">
+                      <Button color="info" onClick={this.handleSubmit}>
+                        Sign Up
+                      </Button>
+                      <Link to={"/"}> <Button color="info">
+                        Home
+                      </Button> 
+                      </Link>
+                    </div>
                 </Form>
                 <div>{this.state.error ? <p>{this.state.errorMsg}</p> : null}</div>
                 <div>
@@ -102,7 +108,6 @@ class Register extends Component {
               <div>
                 { this.props.state.redirect ? (<Redirect to="/classes" />) : null }
               </div>
-                <Link to={"/"}> Home </Link>
             </Col>
           </Row>
         </Container>

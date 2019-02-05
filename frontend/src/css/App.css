@@ -11,11 +11,7 @@
     max-width: 1750px;
     padding: 10px;
     border: 1px solid grey;
-    box-shadow:  1px -1px grey,
-         2px -2px grey,
-         3px -3px grey,
-         4px -4px grey,
-         8px 8px grey;
+    box-shadow: 12px 12px 2px 1px rgb(73, 73, 73);
   }
   @keyframes flames {
     0% {
