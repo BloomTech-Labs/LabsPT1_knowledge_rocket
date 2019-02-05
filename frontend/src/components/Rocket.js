@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-import { Card, CardTitle, Input } from "reactstrap";
+import { Card, CardTitle, Input, Button } from "reactstrap";
 import { connect } from "react-redux";
 import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
@@ -18,11 +18,12 @@ class Rocket extends Component {
     const token = localStorage.getItem("token");
     const className = this.state
     this.props.getRockets(token, className);
+    this.setState({ className: ''})
   };
 
-  componentWillMount() {
-    this.handleRocket();
-  }
+  // componentWillMount() {
+  //   this.handleRocket();
+  // }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -47,7 +48,8 @@ class Rocket extends Component {
                   value={this.state.className}
                   onChange={this.handleInputChange}
                   placeholder="ClassName"
-                />
+                  />
+                  <Button onClick = {this.handleRocket}> Get Rockets</Button>
             <Row>
               {this.props.state.rockets ? (
                 this.props.state.rockets[0].map(unit => (
