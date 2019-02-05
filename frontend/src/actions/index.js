@@ -153,8 +153,6 @@ export const createRocket = (rocket, className) => {
         dispatch({ type: LOADING });
         dispatch({ type: CLEAR_ERROR });
         const userKey = localStorage.getItem('token')
-        console.log(userKey)
-        console.log(rocket)
         axios
           .post("https://cspt1knowledgerocket.herokuapp.com/addrocket/", rocket, className, { 'headers': { 'Authorization': `token ${userKey}` }})
           .then(response => {
