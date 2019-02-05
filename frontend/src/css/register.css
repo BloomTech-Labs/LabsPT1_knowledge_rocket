@@ -42,12 +42,12 @@ a {
     form {
         border-radius: 35px;
         margin: 0 auto;
-        margin-top: 5%;
+        margin-top: 3%;
         border: solid 2px #424242;
-        margin-bottom: 2%;
     }
     
     .form-group {
+        right: 20%;
         padding: 1%;
         margin: 0 auto;
         width: 60%;
@@ -55,6 +55,7 @@ a {
     
     input.form-control {
         margin: 3%;
+        width: 150%;
     }
     
     h1 {
@@ -72,6 +73,11 @@ a {
     a {
         font-size: 1.5rem;
     }
+
+    .func-btn {
+        padding: 10px;
+        text-align: left;
+      }
 }
 
 

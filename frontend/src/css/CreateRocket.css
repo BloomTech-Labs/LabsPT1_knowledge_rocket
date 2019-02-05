@@ -8,6 +8,16 @@
     justify-content: center;
 }
 
+.card-img {
+    height: auto;
+    max-height: 50%;
+    max-width: 65%;
+    align-items: center;
+}
+img.card-img{
+    margin-left: 35px;
+}
+
 .answer {
     width: 24vw;
     height: 10vh;
