@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Form, Input, FormGroup } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import { Link, Redirect } from "react-router-dom";
 
 import "../css/register.css";
@@ -38,37 +39,48 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <h1>Login</h1>
-        <Form>
-          <FormGroup>
-            <Input
-              type="text"
-              name="username"
-              value={this.state.username}
-              onChange={this.handleInputChange}
-              placeholder="Username"
-            />
-            <Input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-              placeholder="Password"
-            />
-            <Button color="info" onClick={this.handleSubmit}>
-              Login!
-            </Button>
-          </FormGroup>
-        </Form>
-        <div>{this.state.error ? <p>{this.state.errorMsg}</p> : null}</div>
-        <div>
-          {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}
+        <Container>
+          <Row>
+            <Col>
+              <h1>Login</h1>
+                <Form>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      name="username"
+                      value={this.state.username}
+                      onChange={this.handleInputChange}
+                      placeholder="Username"
+                    />
+                    <Input
+                      type="password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                      placeholder="Password"
+                    />
+                  </FormGroup>
+                  <div className="func-btn">
+                      <Button color="info" onClick={this.handleSubmit}>
+                        Login
+                      </Button>
+                      <Link to={"/"}> <Button color="info">
+                        Home
+                      </Button> 
+                      </Link>
+                    </div>
+                </Form>
+                <div>{this.state.error ? <p>{this.state.errorMsg}</p> : null}</div>
+                <div>
+                  {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}
+                </div>
+                <div>
+                  {this.props.state.redirect ? <Redirect to="/classes" /> : null}
+                </div>
+              </Col>
+            </Row>
+          </Container>
         </div>
-        <div>
-          {this.props.state.redirect ? <Redirect to="/classes" /> : null}
-        </div>
-        <Link to={"/"}> Home </Link>
-      </div>
     );
   }
 }
