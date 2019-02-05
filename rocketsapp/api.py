@@ -5,6 +5,7 @@ from .models import Rocket, Class, Question2D, Question2M, Question2W, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
+from django.core.mail import send_mail
 from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
@@ -511,3 +512,21 @@ class GetClasses(generics.CreateAPIView):
         username = request.user
         classList = list(Class.objects.filter(user=username).values("className"))
         return JsonResponse( classList, safe=False, status=status.HTTP_200_OK )
+
+class BuildEmail(generics.CreateAPIView):
+    serializer_class = ClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        username = request.user
+        email = username.email
+        className = request.data.get("className")
+        className = Class.objects.get(className = className)
+        studentList = list(Student.objects.filter(className = className).values("email"))
+        send_mail(
+            'First Email',
+            'test!',
+            f'{email}',
+            f'{studentList}',
+            fail_silently=False,
+        )
