@@ -111,10 +111,10 @@ class CreateClass extends Component {
                                         </Col>
                                         <Col lg="5">
                                         <FormGroup check className="create-class-cc-checkbox">
-                                            <Label check>
+                                            {/* <Label check>
                                                 <Input type="checkbox" />{' '}
                                                 <span>CC Me On Rocket Emails</span>
-                                            </Label>
+                                            </Label> */}
                                         </FormGroup>
                                         </Col>
                                     </Row>
@@ -140,10 +140,11 @@ class CreateClass extends Component {
                                                 placeholder="Last Name"
                                                 value={this.state.studentLastName}
                                                 onChange={this.handleChange}
+                                                required
                                             />
-                                            <FormText className="create-class-help-text" >
+                                            {/* <FormText className="create-class-help-text" >
                                                         *required.
-                                            </FormText>  
+                                            </FormText>   */}
                                         </Col>
                                         <Col lg="3">
                                             <Input
@@ -154,33 +155,32 @@ class CreateClass extends Component {
                                                 placeholder="First Name"
                                                 value={this.state.studentFirstName}
                                                 onChange={this.handleChange}
+                                                required
                                             />
-                                            <FormText className="create-class-help-text" >
+                                            {/* <FormText className="create-class-help-text" >
                                                         *required.
-                                            </FormText>
+                                            </FormText> */}
                                         </Col>
                                         <Col lg="4">
                                             <Input
-                                                type="text" 
+                                                type="email" 
                                                 name="studentEmail" 
                                                 id="email" 
-                                                maxLength="50"
+                                                maxLength="256"
                                                 placeholder="Email"
                                                 value={this.state.studentEmail}
                                                 onChange={this.handleChange}
+                                                required
                                             />
-                                            <FormText className="create-class-help-text" >
+                                            {/* <FormText className="create-class-help-text" >
                                                         *required.
-                                            </FormText>
+                                            </FormText> */}
                                         </Col>
                                         <Col lg="2">
-                                            <Button className="create-class-add-student-btn">
-                                                <img className="card-img p-0 b-0 m-0" 
-                                                     style={{maxHeight: "2.25rem", maxWidth: "3rem"}}
+                                                <Input type="image" className="card-img p-0 b-0" 
+                                                     style={{margin: "3% 0", border: "1px solid white", maxHeight: "2.2rem", maxWidth: "2.5rem"}}
                                                      src={add_icon} alt="Add Class" 
                                                 />
-                                            </Button>
-                                            
                                         </Col>
                                     </Row>
                                 </FormGroup>
@@ -189,7 +189,6 @@ class CreateClass extends Component {
                                 <h3>Students</h3>
                                 <Row>
                                     {this.props.state.students.map((student, id) => {                                
-                                        // const studentName = `${student.studentName}`
                                         return (
                                             <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
                                             <RemoveStudent student={student}
