@@ -52,7 +52,8 @@ ReactDOM.render(
               )}
             />
           </Elements>
-          <Route path="/getquestion2d/" component={Quiz} />
+          <Route path="/quiz/" component={Quiz} />
+          {/* <Route path="/getquestion2d/" component={Quiz} /> */}
         </div>
       </Router>
     </StripeProvider>

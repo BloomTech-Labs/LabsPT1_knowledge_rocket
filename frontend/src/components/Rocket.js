@@ -21,9 +21,9 @@ class Rocket extends Component {
     this.setState({ className: ''})
   };
 
-  // componentWillMount() {
-  //   this.handleRocket();
-  // }
+  componentWillMount() {
+    this.handleRocket();
+  }
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
