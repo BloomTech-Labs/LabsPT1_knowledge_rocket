@@ -12,10 +12,10 @@ import {
   Breadcrumb,
   BreadcrumbItem
 } from "reactstrap";
-import { Link } from "react-router-dom";
 
 import SidebarNav from "./SidebarNav";
 import { createRocket } from '../actions';
+import Textarea from './Textarea.js';
 
 import "../css/SidebarNav.css";
 import "../css/CreateRocket.css";
@@ -83,66 +83,70 @@ class CreateRocket extends Component {
               <Col>
                 <Row>
                   <Col>
-                    <Breadcrumb>
-                      <BreadcrumbItem active>Create Rocket</BreadcrumbItem>
-                      <BreadcrumbItem>
-                        <a href="/">Logout</a>
-                      </BreadcrumbItem>
-                    </Breadcrumb>
                     {/* </div> */ }
                   </Col>
                 </Row>
-                <Form>
-                  <FormGroup>
+                <Form className="f">
+                  {/* <Breadcrumb className="crumb">
+                    <BreadcrumbItem active>Create Rocket</BreadcrumbItem>
+                    <BreadcrumbItem>
+                        <a href="/">Logout</a>
+                    </BreadcrumbItem> 
+                  </Breadcrumb> */}
+                  <FormGroup className="fg">
                     {/* <h3> all fields must be filled out</h3> */}
-                    <Label for="rocketName">Rocket Name</Label>
                     <Input
                       type="text"
                       name="rocketName"
-                      id="name"
+                      placeholder="Rocket Name"
+                      id="questionName"
                       maxLength="95"
-                      placeholder="Enter Rocket Name"
                       value={this.state.name}
                       onChange={this.handleInputChange}
                     />
-                    <Label for="className">Class Name</Label>
-                    <Input
-                      type="text"
+                    <div className="rocketDesc">
+                    Knowledge rockets are short paragraphs followed by a multiple choice question.  
+                    These are automatically sent two days, two weeks, and two months after a lesson 
+                    is taught and are intended to cause the student to recall what they have learned.
+                    The rockets should not be used to provide an exhaustive review.
+                    Instead, they ask the student to "reload" the mental maps they acquired during the lesson.
+                    </div>
+                    <br></br>
+                    <Label for="day2ReviewText">
+                      Two Days - Review Text
+                    </Label>
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="className"
                       id="className"
-                      maxLength="95"
-                      placeholder="Enter Class Name"
+                      placeholder="This is a short section of text that describes or reminds about one part of the topic. 
+                      It is not intended to be a complete review of the material, 
+                      just a reminder of the most important parts. 
+                      This section is limited to 512 characters. "
                       value={this.state.name}
                       onChange={this.handleInputChange}
                     />
-                    <Label for="day2QuestionName">Two Days - Question Name</Label>
+                    <Label for="day2QuestionName">Two Days - Question</Label>
                     <Input
                       type="text"
                       name="day2QuestionName"
-                      id="d2QuestionName"
+                      placeholder="Day 2 - Question Name"
+                      id="questionName"
                       maxLength="95"
-                      placeholder="Enter Name for Question:"
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                    />
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
+                      name="day2QuestionName"
+                      id="d2QuestionName"
+                      placeholder="This is a multiple choice question related to the topic. 
+                      Again the goal is not to be exhaustive, just to call the material to mind.  
+                      A good question will not simply call for the recollection of information, 
+                      but will require the application of knowledge."
                       value={this.state.day2QuestionName}
-                      onChange={this.handleInputChange}
-                    />
-                    <Label for="day2ReviewText">Two Days - Review Text</Label>
-                    <Input
-                      type="text"
-                      name="day2ReviewText"
-                      id="d2ReviewText"
-                      maxLength="505"
-                      placeholder="Enter Day 2 Review Text: "
-                      value={this.state.day2ReviewText}
-                      onChange={this.handleInputChange}
-                    />
-                    <Label for="day2QuestionText">Two Days - Question</Label>
-                    <Input
-                      type="text"
-                      name="day2QuestionText"
-                      id="d2QuestionText"
-                      maxLength="505"
-                      placeholder="Enter Day 2 Question: "
-                      value={this.state.day2QuestionText}
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
@@ -229,34 +233,39 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                   </FormGroup>
-                  <FormGroup>
-                  <Label for="week2QuestionName">Two Weeks - Question Name</Label>
+                  <FormGroup className="fg">
                   <Input
-                    type="text"
-                    name="week2QuestionName"
-                    id="w2QuestionName"
-                    maxLength="95"
-                    placeholder="Enter Name for Question:"
-                    value={this.state.week2QuestionName}
-                    onChange={this.handleInputChange}
-                  />
-                  <Label for="week2ReviewText">Two Weeks - Review Text</Label>
-                    <Input
                       type="text"
+                      name="week2QuestionName"
+                      placeholder="Week 2 - Question Name"
+                      id="questionName"
+                      maxLength="95"
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                    />
+                  <Label for="week2ReviewText">Two Weeks - Review Text</Label>
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="week2ReviewText"
                       id="w2ReviewText"
-                      maxLength="505"
-                      placeholder="Enter Week 2 Review Text: "
+                      placeholder="This is a short section of text that describes or reminds about one part of the topic. 
+                      It is not intended to be a complete review of the material, 
+                      just a reminder of the most important parts. 
+                      This section is limited to 512 characters."
                       value={this.state.week2ReviewText}
                       onChange={this.handleInputChange}
                     />
                   <Label for="week2QuestionText">Two Weeks - Question</Label>
-                    <Input
-                      type="text"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="week2QuestionText"
                       id="w2QuestionText"
-                      maxLength="505"
-                      placeholder="Enter Week 2 Question: "
+                      placeholder="This is a multiple choice question related to the topic. 
+                      Again the goal is not to be exhaustive, just to call the material to mind.  
+                      A good question will not simply call for the recollection of information, 
+                      but will require the application of knowledge."
                       value={this.state.week2QuestionText}
                       onChange={this.handleInputChange}
                     />
@@ -343,34 +352,39 @@ class CreateRocket extends Component {
                       </Label>
                     </div>
                   </FormGroup>
-                  <FormGroup>
-                    <Label for="month2QuestionName">Two Months - Question Name</Label>
-                    <Input
+                  <FormGroup className="fg">
+                  <Input
                       type="text"
                       name="month2QuestionName"
-                      id="m2QuestionName"
+                      placeholder="Month 2 - Question Name"
+                      id="questionName"
                       maxLength="95"
-                      placeholder="Enter Name for Question:"
-                      value={this.state.month2QuestionName}
+                      value={this.state.name}
                       onChange={this.handleInputChange}
                     />
                     <Label for="month2ReviewText">Two Months - Review Text</Label>
-                    <Input
-                      type="text"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="month2ReviewText"
                       id="m2ReviewText"
-                      maxLength="505"
-                      placeholder="Enter Month 2 Review Text: "
+                      placeholder="This is a short section of text that describes or reminds about one part of the topic. 
+                      It is not intended to be a complete review of the material, 
+                      just a reminder of the most important parts. 
+                      This section is limited to 512 characters."
                       value={this.state.month2ReviewText}
                       onChange={this.handleInputChange}
                     />
                     <Label for="month2QuestionText">Two Months - Question</Label>
-                    <Input
-                      type="text"
+                    <Textarea
+                      className="Textarea"
+                      countLimit="512"
                       name="month2QuestionText"
                       id="m2QuestionText"
-                      maxLength="505"
-                      placeholder="Enter Month 2 Question: "
+                      placeholder="This is a multiple choice question related to the topic. 
+                      Again the goal is not to be exhaustive, just to call the material to mind.  
+                      A good question will not simply call for the recollection of information, 
+                      but will require the application of knowledge."
                       value={this.state.month2QuestionText}
                       onChange={this.handleInputChange}
                     />
@@ -460,7 +474,6 @@ class CreateRocket extends Component {
                     </Button>
                   </FormGroup>
                 </Form>
-                <Link to={"/"}> Home </Link>
               </Col>
             </Row>
           </Col>
@@ -477,7 +490,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,{ createRocket } )(CreateRocket);
-
 
 
 
