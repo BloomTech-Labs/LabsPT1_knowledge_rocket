@@ -193,8 +193,9 @@ export const getQuestion2D = (userKey, rocketName, className) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", className, { 'headers': { 'Authorization': `token ${userKey}` } })
+      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", rocketName, className, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
+        console.log('RES', response);
         dispatch({ type: GET_ROCKETS, payload: response.data });
       })
       .catch(error => {
