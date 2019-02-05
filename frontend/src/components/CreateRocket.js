@@ -118,6 +118,7 @@ class CreateRocket extends Component {
                     <Textarea
                       className="Textarea"
                       countLimit="512"
+                      maxLength="512"
                       name="className"
                       id="className"
                       placeholder="This is a short section of text that describes or reminds about one part of the topic. 
@@ -127,7 +128,7 @@ class CreateRocket extends Component {
                       value={this.state.name}
                       onChange={this.handleInputChange}
                     />
-                    <Label for="day2QuestionName">Two Days - Question</Label>
+                    <Label for="day2QuestionName" id="question">Two Days - Question</Label>
                     <Input
                       type="text"
                       name="day2QuestionName"
@@ -140,6 +141,7 @@ class CreateRocket extends Component {
                     <Textarea
                       className="Textarea"
                       countLimit="512"
+                      maxLength="512"
                       name="day2QuestionName"
                       id="d2QuestionName"
                       placeholder="This is a multiple choice question related to the topic. 
@@ -234,19 +236,11 @@ class CreateRocket extends Component {
                     </div>
                   </FormGroup>
                   <FormGroup className="fg">
-                  <Input
-                      type="text"
-                      name="week2QuestionName"
-                      placeholder="Week 2 - Question Name"
-                      id="questionName"
-                      maxLength="95"
-                      value={this.state.name}
-                      onChange={this.handleInputChange}
-                    />
                   <Label for="week2ReviewText">Two Weeks - Review Text</Label>
                     <Textarea
                       className="Textarea"
                       countLimit="512"
+                      maxLength="512"
                       name="week2ReviewText"
                       id="w2ReviewText"
                       placeholder="This is a short section of text that describes or reminds about one part of the topic. 
@@ -256,10 +250,20 @@ class CreateRocket extends Component {
                       value={this.state.week2ReviewText}
                       onChange={this.handleInputChange}
                     />
-                  <Label for="week2QuestionText">Two Weeks - Question</Label>
+                  <Label for="week2QuestionText" id="question">Two Weeks - Question</Label>
+                  <Input
+                      type="text"
+                      name="week2QuestionName"
+                      placeholder="Week 2 - Question Name"
+                      id="questionName"
+                      maxLength="95"
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                    />
                     <Textarea
                       className="Textarea"
                       countLimit="512"
+                      maxLength="512"
                       name="week2QuestionText"
                       id="w2QuestionText"
                       placeholder="This is a multiple choice question related to the topic. 
@@ -353,19 +357,11 @@ class CreateRocket extends Component {
                     </div>
                   </FormGroup>
                   <FormGroup className="fg">
-                  <Input
-                      type="text"
-                      name="month2QuestionName"
-                      placeholder="Month 2 - Question Name"
-                      id="questionName"
-                      maxLength="95"
-                      value={this.state.name}
-                      onChange={this.handleInputChange}
-                    />
-                    <Label for="month2ReviewText">Two Months - Review Text</Label>
+                    <Label for="month2ReviewText" id="question">Two Months - Review Text</Label>
                     <Textarea
                       className="Textarea"
                       countLimit="512"
+                      maxLength="512"
                       name="month2ReviewText"
                       id="m2ReviewText"
                       placeholder="This is a short section of text that describes or reminds about one part of the topic. 
@@ -375,10 +371,20 @@ class CreateRocket extends Component {
                       value={this.state.month2ReviewText}
                       onChange={this.handleInputChange}
                     />
-                    <Label for="month2QuestionText">Two Months - Question</Label>
+                    <Label for="month2QuestionText" id="question">Two Months - Question</Label>
+                    <Input
+                      type="text"
+                      name="month2QuestionName"
+                      placeholder="Month 2 - Question Name"
+                      id="questionName"
+                      maxLength="95"
+                      value={this.state.name}
+                      onChange={this.handleInputChange}
+                    />
                     <Textarea
                       className="Textarea"
                       countLimit="512"
+                      maxLength="512"
                       name="month2QuestionText"
                       id="m2QuestionText"
                       placeholder="This is a multiple choice question related to the topic. 
@@ -469,7 +475,7 @@ class CreateRocket extends Component {
                           onChange={this.handleInputChange}
                         /></Label>
                     </div>
-                    <Button color="info" onClick={this.handleSubmit}>
+                    <Button className="rkt-btn" color="info" onClick={this.handleSubmit}>
                     Create Rocket!
                     </Button>
                   </FormGroup>
