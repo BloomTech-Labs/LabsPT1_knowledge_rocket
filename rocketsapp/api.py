@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
 from django.core.mail import send_mail
-from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer
+from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer, EmailSerializer
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
@@ -96,7 +96,7 @@ class GetStudents(generics.CreateAPIView):
         className = request.data.get("className")
         rocketClass = Class.objects.get(className = className)
         students = list(Student.objects.filter(className = rocketClass).values("studentName", "studentEmail"))
-        response =  JsonResponse({"students": students})
+        response =  JsonResponse(students, safe = False, status = status.HTTP_200_OK)
         return response
 
 class UpdateStudent(generics.CreateAPIView):
@@ -514,19 +514,30 @@ class GetClasses(generics.CreateAPIView):
         return JsonResponse( classList, safe=False, status=status.HTTP_200_OK )
 
 class BuildEmail(generics.CreateAPIView):
-    serializer_class = ClassSerializer
+    serializer_class = EmailSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
-        username = request.user
-        email = username.email
+        teacherEmail = request.user.email
+        url = request.data.get("url")
+        title = request.data.get("title")
+        message = request.data.get("message")
         className = request.data.get("className")
+
         className = Class.objects.get(className = className)
-        studentList = list(Student.objects.filter(className = className).values("email"))
-        send_mail(
-            'First Email',
-            'test!',
-            f'{email}',
-            f'{studentList}',
-            fail_silently=False,
-        )
+        studentList = list(Student.objects.filter(className = className).values_list("studentEmail", flat=True))
+        if(studentList):
+
+            send_mail(
+                f'{title}',
+                f'{message} \n {url}',
+                f'{teacherEmail}',
+                studentList,
+                fail_silently=False,
+            )
+
+            return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        else:
+            return JsonResponse( {"error": "Need a list of students to send emails to"}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+ 

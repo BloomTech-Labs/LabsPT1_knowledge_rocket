@@ -51,16 +51,6 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 
 ## Notifications:
 - Sendgrid
-    proper syntax for sending email via python shell:
-        from django.core.mail import send_mail
-        send_mail(
-            'First Email',
-            'test!',
-            'jesse.reichel@live.com',
-            ['cspt1knowledgerocket@gmail.com'],
-            fail_silently=False,
-        )
-
 
 ## Auth:
 - JWT
@@ -246,3 +236,10 @@ http://127.0.0.1:8000/getquestion2m/
 	"rocketName" : "TestRocket3331"
 }
   
+http://127.0.0.1:8000/buildemail/
+{
+	"className": "CSPT4",
+	"title": "test email",
+	"message": "hopefully this works?",
+	"url": "https://giphy.com/gifs/soccer-celebrations-u2us-CFciH20rL836M"
+}
