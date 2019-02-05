@@ -16,21 +16,26 @@ class Quiz extends Component {
     this.props.getClass(token);
   };
 
+
   componentWillMount() {
     this.handleClass();
-  };
+
+  }
 
   render() {
     console.log(this.props);
-    console.log(this.props.state.classes)
     return (
       <Container className="recap">
         <Form>
           <Row>
             <Col>
               <FormGroup>
-                {this.props.state.classes ? <h2>{this.props.state.classes[0][0].className}</h2> : <h2>No class name</h2>}
-                <h2>Graphs - Two Week Boost</h2>
+                {this.props.state.classes ? (
+                  <h2>{this.props.state.classes[0][0].className}</h2>
+                ) : (
+                  <h2>No class name</h2>
+                )}
+                <h2> - Two Week Boost</h2>
                 {/* rocketName */}
                 {/* time frame */}
                 {/* reviewText */}

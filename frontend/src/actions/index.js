@@ -187,3 +187,20 @@ export const getRockets = (userKey, className) => {
       });
   };
 };
+
+export const getQuestion2D = (userKey, rocketName, className) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", className, { 'headers': { 'Authorization': `token ${userKey}` } })
+      .then(response => {
+        dispatch({ type: GET_ROCKETS, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
