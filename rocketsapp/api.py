@@ -40,6 +40,16 @@ class RegisterClasses(generics.CreateAPIView):
             )
             return response
 
+# class GetClasses(generics.CreateAPIView):
+#     permission_classes = (permissions.IsAuthenticated,)
+
+#     def get(self, request):
+#         username = request.user
+#         classes = Class.objects.filter(user = username)
+#         class_list = []
+#         for clas in classes:
+#             class_list.append({'className': clas.className})
+#         return JsonResponse(class_list, safe=False)
 
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
@@ -66,6 +76,7 @@ class RegisterStudents(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,) #takes the authorization header and decodes it to provide access to the gated route
  
     def post(self, request, *args, **kwargs):
+        print("here")
         username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
         className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
         studentName = request.data.get("studentName")
@@ -95,7 +106,7 @@ class GetStudents(generics.CreateAPIView):
         className = request.data.get("className")
         rocketClass = Class.objects.get(className = className)
         students = list(Student.objects.filter(className = rocketClass).values("studentName", "studentEmail"))
-        response =  JsonResponse({"students": students})
+        response =  JsonResponse(students, safe=False)
         return response
 
 class UpdateStudent(generics.CreateAPIView):
@@ -131,7 +142,41 @@ class UpdateStudent(generics.CreateAPIView):
             safe=True,
             status=status.HTTP_200_OK
         )
-        return response            
+        return response
+
+class RemoveStudent(generics.CreateAPIView):
+    serializer_class = StudentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        className = request.data.get("className")
+        currentClass = Class.objects.get(className = className)
+        studentName = request.data.get("studentName")
+        studentEmail = request.data.get("studentEmail")
+        user = request.user
+        
+        student = Student.objects.filter(className=currentClass, 
+                                         teacher=user,
+                                         studentName=studentName,
+                                         studentEmail=studentEmail
+                                        ).first()
+
+        if not student:
+            return JsonResponse({
+                'msg': 'student not found'
+            },
+            safe=True,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+        student.delete()
+        
+        return JsonResponse({
+                'msg': 'student removed successfully'
+            },
+            safe=True,
+            status=status.HTTP_200_OK
+        )
 
 class RegisterRockets(generics.CreateAPIView):
     serializer_class = RocketSerializer
@@ -503,6 +548,21 @@ class CreateSubscription(generics.CreateAPIView):
             )
         
         return response
+
+class GetRocketsByClassName(generics.CreateAPIView):
+    serializer_class = ClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        user = request.user
+        className = request.data.get('className')
+        clss = Class.objects.get(className=className)
+        rockets = Rocket.objects.filter(user=user, className=clss)
+        rocket_list = []
+        for rocket in rockets:
+            rocket_list.append({ 'rocketname': rocket.rocketName })
+
+        return JsonResponse(rocket_list, safe=False)
 
 class GetClasses(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
