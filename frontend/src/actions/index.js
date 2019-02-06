@@ -180,9 +180,9 @@ export const addStudent = (student) => {
       console.log(userKey)
       console.log(student)
       axios
-        .post("http://localhost:8000/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post("http://localhost:8000/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_STUDENTS, payload: response.data });
             })
@@ -204,7 +204,7 @@ export const getStudents = (className) => {
       console.log(userKey);
       console.log(className);
       axios
-        .post("http://localhost:8000/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_STUDENTS, payload: response.data });
         })
@@ -222,7 +222,7 @@ export const getClasses = () => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .get("http://localhost:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+        .get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_CLASSES, payload: response.data });
         })
@@ -241,7 +241,7 @@ export const getRocketsByClassName = (clsName) => {
       const userKey = localStorage.getItem('token')
       console.log(clsName);
       axios
-        .post("http://localhost:8000/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
         })
@@ -261,10 +261,10 @@ export const addClass = (clsName) => {
       console.log(userKey)
       console.log(clsName)
       axios
-        .post("http://localhost:8000/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           axios
-            .get("http://localhost:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+            .get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
             dispatch({ type: GET_CLASSES, payload: response.data });
           })
@@ -285,9 +285,9 @@ export const removeStudent = (student) => {
       console.log(userKey)
       console.log(student)
       axios
-        .post("http://localhost:8000/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post("http://localhost:8000/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_STUDENTS, payload: response.data });
             })

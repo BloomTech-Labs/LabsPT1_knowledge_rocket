@@ -40,10 +40,10 @@ ReactDOM.render(
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route exact path="/classes" component={Classes} />
           <Route path="/settings" component={Settings} />
           <Route path="/rockets" component={ Rocket } />
           <Route path="/createRocket" component={CreateRocket} />
+          <Route exact path="/classes" component={Classes} />
           <Route path="/classes/create" component={CreateClass} />
           <Elements>
             <Route
