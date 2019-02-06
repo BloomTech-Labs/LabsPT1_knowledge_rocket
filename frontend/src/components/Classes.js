@@ -51,7 +51,7 @@ class Classes extends Component {
                   )}
                 </div>
                 <Row>
-                  {this.props.state.dummyClasses ? (
+                  {this.props.state.classes ? (
                     this.props.state.classes[0].map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
