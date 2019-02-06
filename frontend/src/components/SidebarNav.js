@@ -17,7 +17,7 @@ class Sidebar_Nav extends Component {
     super(props);
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
   }
 
@@ -37,7 +37,7 @@ class Sidebar_Nav extends Component {
     return (
       <div>
         <Navbar color="light" light expand="sm" className="sidebar">
-          <NavbarBrand href="/">Knowledge Rocket</NavbarBrand>
+          <NavbarBrand className="nav-header" href="/">Knowledge Rocket</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

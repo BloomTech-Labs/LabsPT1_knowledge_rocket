@@ -4,7 +4,7 @@
 }
 
 form {
-    border-radius: 35px;
+    border-radius: 15px;
     margin: 0 auto;
     margin-top: 5%;
     border: solid 2px #424242;
@@ -40,10 +40,13 @@ a {
 
 @media (min-width: 992px) {
     form {
-        border-radius: 35px;
+        max-width: 100px;
+        border-radius: 15px;
         margin: 0 auto;
-        margin-top: 3%;
-        border: solid 2px #424242;
+        margin-top: 5%;
+        -webkit-box-shadow: 3px 3px 5px 6px #ccc; 
+        -moz-box-shadow:    3px 3px 5px 6px #ccc; 
+        box-shadow:         3px 3px 5px 6px #ccc;
     }
     
     .form-group {
