@@ -10,6 +10,7 @@
         width: auto;
         max-width: 100%;
         border-radius: 15px;
+        overflow: hidden;
     }
      /* Add animation (fade in the popup) */
     @-webkit-keyframes riseUp {

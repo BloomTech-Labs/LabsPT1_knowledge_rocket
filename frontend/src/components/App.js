@@ -36,9 +36,9 @@ class App extends Component {
             </div>
             {/* rocket close */}
               <div className="cta-container">
-                <li class="first-text">A tool for Teachers</li>
-                <li class="second-text">Promotes effective learning</li>
-                <li class="fourth-text">Through virtual online quizzes</li>
+                <div class="first-text">A tool for Teachers</div>
+                <div class="second-text">Promotes effective learning</div>
+                <div class="fourth-text">Through virtual online quizzes</div>
               </div>
           </Row>
         </Container>
