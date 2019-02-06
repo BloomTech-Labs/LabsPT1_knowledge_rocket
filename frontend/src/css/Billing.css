@@ -21,7 +21,9 @@
     }
 
     .form-check-label span {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        width: 100%;
     }
     .form-check-input {
         margin-top: 0.5rem;
