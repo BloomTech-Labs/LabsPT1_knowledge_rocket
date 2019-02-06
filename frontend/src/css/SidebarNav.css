@@ -1,6 +1,7 @@
 
 .sidebar {
     display: flex;
+    right: 50%;
     align-items: flex-start;
     border-radius: 35px;
     border: solid 2px #ff7400;
@@ -8,9 +9,10 @@
 }
 a.nav-link {
     border-radius: 35px
+
 }
 a.nav-link:hover {
-    color: white !important;
+    color: white;
     background-color: #ff7400;
     border-radius: 10px;
 }
