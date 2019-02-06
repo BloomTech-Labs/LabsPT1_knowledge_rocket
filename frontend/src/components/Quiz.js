@@ -23,30 +23,36 @@ class Quiz extends Component {
   }
 
   render() {
-    console.log(this.props.state);
+    console.log('HERE', this.props.state);
     return (
       <Container className="recap">
-      <Button onClick={this.getRocket2D}>Get Data</Button>
+        <Button onClick={this.getRocket2D}>Get Data</Button>
         <Form>
           <Row>
             <Col>
               <FormGroup>
-                <h2>{this.props.className}</h2>
-                <h2> {this.props.rocketName}- Two Day Boost</h2>
-                {/* rocketName */}
-                {/* reviewText */}
+                {this.props.state.question ? (
+                  <div>
+                    <h2>{this.props.state.question.class}</h2>
+                    <h2>
+                     { this.props.state.question.question[0].day2ReviewText}-
+                      Two Day Boost
+                    </h2>
+                  </div>
+                ) : null}
+
                 <p>
-                  Recap textLorem ipsum dolor sit amet, consectetur adipiscing
-                  elit. Quisque eget semper nibh. Donec sem nunc, ultricies at
-                  felis quis, facilisis cursus nisl. Praesent urna dolor,
-                  rhoncus sagittis mattis ac, finibus quis ante.
+                  Recap textLorem ipsum dolor sit amet, consectetur
+                  adipiscing elit. Quisque eget semper nibh. Donec sem nunc,
+                  ultricies at felis quis, facilisis cursus nisl. Praesent
+                  urna dolor, rhoncus sagittis mattis ac, finibus quis ante.
                 </p>
                 <p>
-                  Phasellus scelerisque cursus lorem, in aliquam nisi vehicula
-                  vel. Vestibulum fermentum volutpat arcu, consequat elementum
-                  risus elementum eu. Cras varius lorem in augue rhoncus
-                  vulputate. Duis sed augue ullamcorper, facilisis tellus et,
-                  porttitor ipsum.
+                  Phasellus scelerisque cursus lorem, in aliquam nisi
+                  vehicula vel. Vestibulum fermentum volutpat arcu,
+                  consequat elementum risus elementum eu. Cras varius lorem
+                  in augue rhoncus vulputate. Duis sed augue ullamcorper,
+                  facilisis tellus et, porttitor ipsum.
                 </p>
                 <p>
                   Curabitur nec varius felis, vitae posuere neque. Donec

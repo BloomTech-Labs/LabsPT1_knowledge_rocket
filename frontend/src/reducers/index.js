@@ -28,7 +28,8 @@ const defaultState = {
   errorMsg: "",
   redirect: false,
   rocket: "",
-  classes: ""
+  classes: "",
+  question: ""
 };
 
 export default (state = defaultState, action) => {
@@ -55,7 +56,7 @@ export default (state = defaultState, action) => {
       return { ...state, rockets: [action.payload], success: true };
 
     case GET_2_DAY:
-      return { ...state, rockets: [action.payload], success: true };
+      return { ...state, question: action.payload, success: true };
 
     case UPDATE_PASSWORD:
       return { ...state, user: [action.payload], success: true };

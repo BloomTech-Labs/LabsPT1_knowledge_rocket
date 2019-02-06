@@ -157,7 +157,7 @@ export const createRocket = (rocket) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
-    const userKey = localStorage.getItem('token')
+    const userKey = localStorage.getItem('token');
     axios
       .post("http://127.0.0.1:8000/addrocket/", rocket, {
         headers: { Authorization: `token ${userKey}` }
@@ -195,12 +195,16 @@ export const getRockets = (userKey, className) => {
   };
 };
 
-export const get_2_Day = (className, rocketName) => {
+export const get_2_Day = () => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem("token");
+    const data = {"className": "Math", "rocketName": "TestRocket2313"}
     axios
-      .post("http://127.0.0.1:8000/getquestion2d/", className, rocketName)
+      .post("http://127.0.0.1:8000/getquestion2d/", data, {
+        headers: { Authorization: `token ${userKey}` }
+      })
       .then(response => {
         dispatch({ type: GET_2_DAY, payload: response.data });
       })
