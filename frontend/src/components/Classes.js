@@ -65,7 +65,7 @@ class Classes extends Component {
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
                       <CardTitle className="text-center">New Class</CardTitle>
-                      <Link to={"/createClass"}>
+                      <Link to={"/classes/create"}>
                         <Badge
                           href="#"
                           color="light"
