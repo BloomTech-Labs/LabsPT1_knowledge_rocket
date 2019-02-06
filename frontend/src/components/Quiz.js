@@ -14,19 +14,21 @@ class Quiz extends Component {
 
   getRocket2D = () => {
     const className = "Reading";
-    const rocketName = "TestRocket2313"
+    const rocketName = "TestRocket2313";
     this.props.get_2_Day(className, rocketName);
-  }
+  };
 
-   componentWillMount() {
+  onButtonClick = () => {
+    console.log('teehee')
+  }
+  componentWillMount() {
     this.getRocket2D();
   }
 
   render() {
-    console.log('HERE', this.props.state);
+    console.log("HERE", this.props.state);
     return (
       <Container className="recap">
-        <Button onClick={this.getRocket2D}>Get Data</Button>
         <Form>
           <Row>
             <Col>
@@ -34,30 +36,14 @@ class Quiz extends Component {
                 {this.props.state.question ? (
                   <div>
                     <h2>{this.props.state.question.class}</h2>
-                    <h2>
-                     { this.props.state.question.question[0].day2ReviewText}-
-                      Two Day Boost
+                    <h2>{this.props.state.question.rocket} - Two Day Boost
                     </h2>
+                    <p>{ this.props.state.question.question[0].day2ReviewText }</p>
+                    <p>
+                      {this.props.state.question.question[0].day2QuestionText}
+                    </p>
                   </div>
                 ) : null}
-
-                <p>
-                  Recap textLorem ipsum dolor sit amet, consectetur
-                  adipiscing elit. Quisque eget semper nibh. Donec sem nunc,
-                  ultricies at felis quis, facilisis cursus nisl. Praesent
-                  urna dolor, rhoncus sagittis mattis ac, finibus quis ante.
-                </p>
-                <p>
-                  Phasellus scelerisque cursus lorem, in aliquam nisi
-                  vehicula vel. Vestibulum fermentum volutpat arcu,
-                  consequat elementum risus elementum eu. Cras varius lorem
-                  in augue rhoncus vulputate. Duis sed augue ullamcorper,
-                  facilisis tellus et, porttitor ipsum.
-                </p>
-                <p>
-                  Curabitur nec varius felis, vitae posuere neque. Donec
-                  hendrerit iaculis nisi, a elementum leo ullamcorper id.
-                </p>
               </FormGroup>
             </Col>
           </Row>
@@ -65,41 +51,42 @@ class Quiz extends Component {
             <Col>
               <FormGroup>
                 <h2>Question:</h2>
-                {/* questionText */}
-                <p>
-                  Curabitur nec varius felis, vitae posuere neque. Donec
-                  hendrerit iaculis nisi, a elementum leo ullamcorper id.
-                </p>
+                { this.props.state.question ? (
+                <p> { this.props.state.question.question[0].day2QuestionText }</p>): null}
               </FormGroup>
             </Col>
           </Row>
           <Row>
             <Col>
               <FormGroup tag="fieldset">
+              {this.props.state.question ? (
+                <div>
                 <FormGroup check>
                   <Label check>
-                    <Input type="radio" name="radio1" /> Answer 1
+                    <Input type="radio" name="radio1" /> {this.props.state.question.question[0].day2AnswerA}
                   </Label>
                 </FormGroup>
                 <FormGroup check>
                   <Label check>
-                    <Input type="radio" name="radio1" /> Answer 2
+                        <Input type="radio" name="radio1" /> { this.props.state.question.question[0].day2AnswerB }
                   </Label>
                 </FormGroup>
                 <FormGroup check disabled>
                   <Label check>
-                    <Input type="radio" name="radio1" /> Answer 3
+                        <Input type="radio" name="radio1" /> { this.props.state.question.question[0].day2AnswerC }
                   </Label>
                 </FormGroup>
                 <FormGroup check disabled>
                   <Label check>
-                    <Input type="radio" name="radio1" /> Answer 4
+                        <Input type="radio" name="radio1" /> { this.props.state.question.question[0].day2AnswerD }
                   </Label>
                 </FormGroup>
+                  </div>
+                ): null}
               </FormGroup>
             </Col>
           </Row>
-          <Button>Submit</Button>
+          <Button onClick = {this.onButtonClick}>Submit</Button>
         </Form>
       </Container>
     );
@@ -111,4 +98,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {get_2_Day})(Quiz);
+export default connect(
+  mapStateToProps,
+  { get_2_Day }
+)(Quiz);
