@@ -15,10 +15,10 @@ class Quiz extends Component {
     const className = "Reading";
     const rocketName = "TestRocket2313";
     this.props.get_2_Day(className, rocketName);
-    this.setState({correctAnswer: this.props.state.question})
   };
   handleRadioSelect = e => {
     this.setState({ selectedAnser : e.target.value });
+    // this.setState({ correctAnswer: this.props.state.question[0].day2CorrectAnswer.value })
   }
   onButtonClick = () => {
     console.log('teehee')
@@ -29,7 +29,7 @@ class Quiz extends Component {
 
   render() {
     console.log("STATE", this.state);
-    console.log("PROPS", this.props.state);
+    console.log("PROPS", this.props.state.question);
     return (
       <Container className="recap">
         <Form>
@@ -38,10 +38,10 @@ class Quiz extends Component {
               <FormGroup>
                 {this.props.state.question ? (
                   <div>
-                    <h2>{this.props.state.question.class}</h2>
-                    <h2>
+                    <h3>{this.props.state.question.class}</h3>
+                    <h3>
                       {this.props.state.question.rocket} - Two Day Boost
-                    </h2>
+                    </h3>
                     <p>
                       {this.props.state.question.question[0].day2ReviewText}
                     </p>
@@ -53,10 +53,9 @@ class Quiz extends Component {
           <Row>
             <Col>
               <FormGroup>
-                <h2>Question:</h2>
+                <h3>Question:</h3>
                 {this.props.state.question ? (
                   <p>
-                    {" "}
                     {this.props.state.question.question[0].day2QuestionText}
                   </p>
                 ) : null}
