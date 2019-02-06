@@ -1,19 +1,8 @@
 @media (min-width: 992px) {
     .form-check {
-        padding: 3%;
+        padding: 1%;
         margin: 0 auto;
         width: 50%;
-        transform: scale(1.2);
-    }
-
-    .cc-text {
-        font-size: 1.5rem;
-        font-weight: bold;
-    }
-
-    .cc-element {
-        margin: 15px 10px 15px 5px;
-        border-bottom: 2px solid black;
     }
 
     a {

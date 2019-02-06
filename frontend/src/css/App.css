@@ -4,7 +4,7 @@
 @media (min-width: 992px) {
 
   .fa-stack {
-    width: 40%;
+    width: 75%;
     height: 19rem;
     overflow: hidden;
     position: relative;
@@ -21,7 +21,8 @@
     border: 1px grey;
     max-width: 1750px;
     padding: 10px;
-    border: 1px solid rgb(78, 78, 78);
+    border: 1px solid grey;
+    box-shadow: 12px 12px 2px 1px rgb(73, 73, 73);
   }
   @keyframes flames {
     0% {
@@ -136,38 +137,85 @@
     border-radius: 50%;
     background-image: radial-gradient(circle at 40% 80%, #ddc997 10%, transparent 0), radial-gradient(circle at 55% 70%, #ddc997 5%, transparent 0), radial-gradient(circle at 58% 85%, #ddc997 6%, transparent 0), radial-gradient(circle at 80% 40%, #ddc997 12%, transparent 0), radial-gradient(circle at 87% 58%, #ddc997 4%, transparent 0);
   }
-  /* Text container splash page */
-  .cta-container {
-    bottom: 8rem;
-    right: 18%;
-    overflow: hidden;
-    position: relative;
+  /* Text animation */
+  .animation-container {
+      width: 75%;
+      right: 20%;
+      height: 27.5rem;
+      overflow: hidden;
+      position: relative;
+  }
+  @keyframes rightFadeInOut {
+    0% {
+      position: absolute;
+      right: -3rem;
+      opacity: 0;
+    }
+    75% {
+      position: absolute;
+      right: 12rem;
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      right: 10rem;
+    }
+  }
+
   }
   .first-text {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-family: "Righteous", cursive;
+    position: absolute;
+    top: 4.5rem;
+    opacity: 0;
+    animation-name: rightFadeInOut;
+    animation-duration: 5s;
     color: #17a2b8;
   }
   .second-text {
-    font-size: 2.3rem;
+    font-size: 2.8rem;
     font-family: "Righteous", cursive;
+    position: absolute;
+    top: 8.5rem;
+    opacity: 0;
+    animation-name: rightFadeInOut;
+    animation-delay: 3s;
+    animation-duration: 7s;
     color: #17a2b8;
   }
-  .fourth-text {
-    font-size: 2.3rem;
+  .third-text {
+    transform: rotate(-90deg);
+    font-size: 2.8rem;
     font-family: "Righteous", cursive;
-    left: 10%;
+    position: absolute;
+    top: 50%;
+    opacity: 0;
+    animation-name: rightFadeInOut;
+    animation-delay: 5s;
+    animation-duration: 7s;
     color: #17a2b8;
+    white-space: nowrap;
+  }
+  .fourth-text {
+    font-size: 2.4rem;
+    font-family: "Righteous", cursive;
+    position: absolute;
+    top: 15.5rem;
+    left: 10%;
+    opacity: 0;
+    color: #17a2b8;
+    animation-name: rightFadeInOut;
+    animation-delay: 7s;
+    animation-duration: 9s;
   }
   .App {
     min-height: 100vh;
     padding: 1%;
   }
   header {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 45rem;
+    padding: 10px;
+    text-align: right;
   }
   .row h1 {
     width: 100%;
@@ -176,9 +224,9 @@
     font-family: "Righteous", cursive;
   }
   button.btn {
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    border-radius: 15px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 35px;
     width: 15rem;
     transform: scale(0.8);
     background: #fff;
@@ -199,4 +247,3 @@
     border-color: #ff7400;
     color: #ff7400;
   }
-}

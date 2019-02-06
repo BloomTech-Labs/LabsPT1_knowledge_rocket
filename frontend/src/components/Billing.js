@@ -48,9 +48,9 @@ class BillingForm extends Component {
     return {
       style: {
         base: {
-          fontSize: '1.5rem',
+          fontSize,
           color: '#424770',
-          letterSpacing: '0.055em',
+          letterSpacing: '0.025em',
           fontFamily: 'Source Code Pro, monospace',
           '::placeholder': {
             color: '#aab7c4',
@@ -79,8 +79,8 @@ class BillingForm extends Component {
             <Row>
               <Form onSubmit={this.submit}>
                 <FormGroup>
-                  <Label className="cc-text" for="cardNumber">Card number</Label>
-                  <CardNumberElement className="cc-element"
+                  <Label for="cardNumber">Card number</Label>
+                  <CardNumberElement
                       id="cardNumber"
                       onBlur={this.handleBlur}
                       onChange={this.handleChange}
@@ -91,8 +91,8 @@ class BillingForm extends Component {
                 </FormGroup>
 
                 <FormGroup>
-                  <Label className="cc-text" for="expirationDate">Expiration Date</Label>
-                  <CardExpiryElement className="cc-element"
+                  <Label for="expirationDate">Expiration Date</Label>
+                  <CardExpiryElement
                       id="expirationDate"
                       onBlur={this.handleBlur}
                       onChange={this.handleChange}
@@ -103,8 +103,8 @@ class BillingForm extends Component {
                 </FormGroup>
 
                 <FormGroup>
-                  <Label className="cc-text" for="cvc">CVC</Label>
-                  <CardCVCElement className="cc-element"
+                  <Label for="cvc">CVC</Label>
+                  <CardCVCElement
                       id="cvc"
                       onBlur={this.handleBlur}
                       onChange={this.handleChange}
@@ -115,8 +115,8 @@ class BillingForm extends Component {
                 </FormGroup>  
 
                 <FormGroup>
-                  <Label className="cc-text" for="postal_code">Postal Code</Label>
-                  <PostalCodeElement className="cc-element"
+                  <Label for="postal_code">Postal Code</Label>
+                  <PostalCodeElement
                       id="postal_code"
                       onBlur={this.handleBlur}
                       onChange={this.handleChange}

@@ -35,11 +35,14 @@ class App extends Component {
                 </div>
             </div>
             {/* rocket close */}
-              <div className="cta-container">
-                <li class="first-text">A tool for Teachers</li>
-                <li class="second-text">Promotes effective learning</li>
-                <li class="fourth-text">Through virtual online quizzes</li>
+            <section className="animation-container">
+              <div>
+                <div class="first-text">A tool for Teachers</div>
+                <div class="second-text">Promotes effective learning</div>
+                <div class="third-text">(:</div>
+                <div class="fourth-text">Through virtual online quizzes</div>
               </div>
+            </section>
           </Row>
         </Container>
       </div>

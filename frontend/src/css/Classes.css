@@ -1,3 +1,29 @@
+.classRoom {
+    color: white;
+    border: 1px solid white;
+}
+
+.card {
+    border: 1px solid grey;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    border-radius: 15px;
+}
+
+.card-img {
+    height: auto;
+    max-height: 50%;
+    max-width: 65%;
+    align-items: center;
+}
+img.card-img{
+    margin-left: 35px;
+}
+h1 {
+    padding: 15px;
+    font-size: 4em;
+}
 @media (min-width: 992px) {
     .classRoom {
         color: white;
