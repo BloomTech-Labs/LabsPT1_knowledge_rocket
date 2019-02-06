@@ -3,20 +3,19 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, Input, FormGroup, Label } from "reactstrap";
 import { connect } from "react-redux";
-import { getClass, get_2_Day } from "../actions";
+import { get_2_Day } from "../actions";
 import "../css/Quiz.css";
 
 class Quiz extends Component {
-  state = {
-    rocket: {},
-    correct_answer: ""
-  };
+  // state = {
+  //   rocket: {},
+  //   correct_answer: ""
+  // };
 
   getRocket2D = () => {
     const className = "Reading";
     const rocketName = "TestRocket2313"
     this.props.get_2_Day(className, rocketName);
-    this.setState({ rocket: '' })
   }
 
    componentWillMount() {
@@ -24,7 +23,7 @@ class Quiz extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props.state);
     return (
       <Container className="recap">
       <Button onClick={this.getRocket2D}>Get Data</Button>
@@ -106,4 +105,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {getClass, get_2_Day})(Quiz);
+export default connect(mapStateToProps, {get_2_Day})(Quiz);

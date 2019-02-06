@@ -202,7 +202,7 @@ export const get_2_Day = (className, rocketName) => {
     axios
       .post("http://127.0.0.1:8000/getquestion2d/", className, rocketName)
       .then(response => {
-        dispatch({ type: GET_ROCKETS, payload: response.data });
+        dispatch({ type: GET_2_DAY, payload: response.data });
       })
       .catch(error => {
         dispatch({ type: CHANGE_LOADING });
