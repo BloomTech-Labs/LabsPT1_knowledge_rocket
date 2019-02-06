@@ -4,6 +4,7 @@
 }
 
 .card {
+    border: 1px solid grey;
     height: 100%;
     width: auto;
     max-width: 100%;
@@ -12,22 +13,21 @@
 
 .card-img {
     height: auto;
-    max-height: 35%;
-    max-width: 35%;
+    max-height: 50%;
+    max-width: 65%;
     align-items: center;
 }
 img.card-img{
     margin-left: 35px;
 }
-
-h1.wel {
-    padding: 1%;
-    margin-bottom: 10%;
+h1 {
+    padding: 15px;
     font-size: 4em;
 }
 @media (min-width: 992px) {
     h1.wel {
         padding: 1%;
+        margin-top: 10%;
         font-size: 5em;
     }
 }
