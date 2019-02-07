@@ -141,7 +141,6 @@ class CreateClass extends Component {
                                                 value={this.state.studentLastName}
                                                 onChange={this.handleChange}
                                                 required
-                                                className="create-student-input"
                                             />
                                             {/* <FormText className="create-class-help-text" >
                                                         *required.
@@ -157,7 +156,6 @@ class CreateClass extends Component {
                                                 value={this.state.studentFirstName}
                                                 onChange={this.handleChange}
                                                 required
-                                                className="create-student-input"
                                             />
                                             {/* <FormText className="create-class-help-text" >
                                                         *required.
@@ -173,7 +171,6 @@ class CreateClass extends Component {
                                                 value={this.state.studentEmail}
                                                 onChange={this.handleChange}
                                                 required
-                                                className="create-student-input"
                                             />
                                             {/* <FormText className="create-class-help-text" >
                                                         *required.
