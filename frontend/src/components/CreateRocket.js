@@ -81,8 +81,13 @@ class CreateRocket extends Component {
           <Col lg="9">
             <Row>
               <Col>
-                <Form>
-                  <FormGroup>
+                <Row>
+                  <Col>
+                  {/* </div> */}
+                  </Col>
+                </Row>
+                <Form className="f">
+                  <FormGroup className="fg">
                     {/* <h3> all fields must be filled out</h3> */}
                     <Label for="rocketName">Rocket Name</Label>
                     <Input
