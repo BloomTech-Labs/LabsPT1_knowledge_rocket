@@ -190,7 +190,7 @@ class CreateClass extends Component {
                                 <Row>
                                     {this.props.state.students.map((student, id) => {                                
                                         return (
-                                            <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
+                                            <Col lg="4" className="mb-4" key={id}>
                                             <RemoveStudent student={student}
                                                            handleRemoveStudent={this.handleRemoveStudent}
                                             />

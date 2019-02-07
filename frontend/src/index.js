@@ -44,7 +44,7 @@ ReactDOM.render(
           <Route path="/rockets" component={ Rocket } />
           <Route path="/createRocket" component={CreateRocket} />
           <Route exact path="/classes" component={Classes} />
-          <Route path="/classes/create" component={CreateClass} />
+          <Route path="/createClass" component={CreateClass} />
           <Elements>
             <Route
               path="/billing"
