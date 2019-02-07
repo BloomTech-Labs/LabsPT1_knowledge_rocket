@@ -57,7 +57,7 @@ export default (state = defaultState, action) => {
         //     return {...state, classes: [action.payload], success: true }
 
         case GET_ROCKETS:
-            return { ...state, rockets: [action.payload], success: true }
+            return { ...state, rockets: action.payload, success: true }
 
         case UPDATE_PASSWORD:
             return {...state, user: [action.payload], success: true }
