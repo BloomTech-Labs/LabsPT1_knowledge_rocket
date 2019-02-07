@@ -6,10 +6,11 @@ import { connect } from "react-redux";
 import { get_2_Day } from "../actions";
 import "../css/Quiz.css";
 
-class Quiz extends Component {
+class Quiz2D extends Component {
   state = {
     selectedAnser: "",
-    correctAnswer: ""
+    correctAnswer: "",
+    selectedRadio: ""
   }
   getRocket2D = () => {
     const className = "Reading";
@@ -18,6 +19,7 @@ class Quiz extends Component {
   };
   handleRadioSelect = e => {
     this.setState({ selectedAnser : e.target.value });
+    this.setState({selectedRadio: e.target.id})
     // this.setState({ correctAnswer: this.props.state.question[0].day2CorrectAnswer.value })
   }
   onButtonClick = () => {
@@ -73,6 +75,7 @@ class Quiz extends Component {
                           type="radio"
                           name="radio1"
                           value="day2AnswerA"
+                          id = "A"
                           onChange={this.handleRadioSelect}
                         />{" "}
                         {this.props.state.question.question[0].day2AnswerA}
@@ -84,6 +87,7 @@ class Quiz extends Component {
                           type="radio"
                           name="radio1"
                           value="day2AnswerB"
+                          id = "B"
                           onChange={this.handleRadioSelect}
                         />{" "}
                         {this.props.state.question.question[0].day2AnswerB}
@@ -94,6 +98,7 @@ class Quiz extends Component {
                         <Input
                           type="radio"
                           name="radio1"
+                          id = "C"
                           value="day2AnswerC"
                           onChange={this.handleRadioSelect}
                         />{" "}
@@ -106,6 +111,7 @@ class Quiz extends Component {
                           type="radio"
                           name="radio1"
                           value="day2AnswerD"
+                          id = "D"
                           onChange={this.handleRadioSelect}
                         />{" "}
                         {this.props.state.question.question[0].day2AnswerD}
@@ -131,4 +137,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { get_2_Day }
-)(Quiz);
+)(Quiz2D);

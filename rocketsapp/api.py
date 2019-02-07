@@ -436,6 +436,7 @@ class GetQuestion2W(generics.CreateAPIView):
         question = list(Question2W.objects.filter(rocket = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
+            "rocket": rocketName,
             "question": question
             })
         return response

@@ -19,6 +19,8 @@ export const GET_ROCKETS_BY_CLASS = 'GET_ROCKETS_BY_CLASS';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_2_DAY = 'GET_2_DAY';
+export const GET_2_WEEK = "GET_2_WEEK";
+
 
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
@@ -346,3 +348,24 @@ export const get_2_Day = () => {
       });
   };
 }
+
+export const get_2_Week = () => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem("token");
+    const data = { className: "Math", rocketName: "TestRocket2313" };
+    axios
+      .post("http://127.0.0.1:8000/getquestion2w/", data, {
+        headers: { Authorization: `token ${userKey}` }
+      })
+      .then(response => {
+        dispatch({ type: GET_2_DAY, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};

@@ -20,7 +20,9 @@ import CreateRocket from "./components/CreateRocket.js";
 import Rocket from "./components/Rocket.js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
-import Quiz from "./components/Quiz";
+import Quiz2D from "./components/Quiz2D";
+import Quiz2W from "./components/Quiz2W";
+import Quiz2M from "./components/Quiz2M";
 import CreateClass from "./components/CreateClass.js";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -54,8 +56,9 @@ ReactDOM.render(
               )}
             />
           </Elements>
-          <Route path="/quiz/" component={Quiz} />
-          {/* <Route path="/getquestion2d/" component={Quiz} /> */}
+          <Route path="/quiz2D" component={Quiz2D} />
+          <Route path="/quiz2W" component={Quiz2W} />
+          <Route path="/quiz2M" component={Quiz2M} />
         </div>
       </Router>
     </StripeProvider>
