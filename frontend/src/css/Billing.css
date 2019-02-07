@@ -1,16 +1,30 @@
 @media (min-width: 992px) {
     .form-check {
-        padding: 1%;
+        padding: 3%;
         margin: 0 auto;
         width: 50%;
+        transform: scale(1.2);
+    }
+
+    .cc-text {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .cc-element {
+        margin: 15px 10px 15px 5px;
+        border-bottom: 2px solid black;
     }
 
     a {
         font-size: 1rem;
     }
 
+    /* Subscribe text */
     .form-check-label span {
-        font-size: 0.7rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        width: 100%;
     }
     .form-check-input {
         margin-top: 0.5rem;

@@ -49,8 +49,8 @@ export default (state = defaultState, action) => {
     case GET_USER:
       return { ...state, user: [action.payload], success: true };
 
-    case GET_CLASSES:
-      return { ...state, classes: [action.payload], success: true };
+        case GET_ROCKETS:
+            return { ...state, rockets: action.payload, success: true }
 
     case GET_ROCKETS:
       return { ...state, rockets: [action.payload], success: true };

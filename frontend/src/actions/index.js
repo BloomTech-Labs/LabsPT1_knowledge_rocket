@@ -21,7 +21,7 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const GET_QUIZ = 'GET_QUIZ';
 
 
-// https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
+// http://127.0.0.1:8000/ ** group deploy
 // http://127.0.0.1:8000/ **quick ref local deploy
 
 export const registerUser = (user) => {
@@ -214,24 +214,6 @@ export const getStudents = (className) => {
         .post("http://127.0.0.1:8000/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_STUDENTS, payload: response.data });
-        })
-        .catch(error => {
-          dispatch({ type: CHANGE_LOADING });
-          dispatch({ type: ERROR, payload: error.response.data.error });
-          console.log( error.response.data);
-        });
-  };
-};
-
-export const getClasses = () => {
-  return dispatch => {
-      dispatch({ type: LOADING });
-      dispatch({ type: CLEAR_ERROR });
-      const userKey = localStorage.getItem('token')
-      axios
-        .get("http://127.0.0.1:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
-        .then(response => {
-          dispatch({ type: GET_CLASSES, payload: response.data });
         })
         .catch(error => {
           dispatch({ type: CHANGE_LOADING });

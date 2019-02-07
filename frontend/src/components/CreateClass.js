@@ -97,9 +97,9 @@ class CreateClass extends Component {
                         <Row className="create-class-contents">
                             <Form className="create-class-form">
                                 <FormGroup className="form-group-create-class">
-                                    <h3>Select Class</h3>
+                                    <h3 className="text-header">Select Class</h3>
                                     <Row>
-                                        <Col lg="4" style={{paddingRight: 0, marginRight: 0}}>
+                                        <Col lg="4" style={{marginRight: "5%"}}>
                                             <SelectClass 
                                                 classes={this.props.state.classes}
                                                 handleSelectClass={this.handleSelectClass}
@@ -122,7 +122,7 @@ class CreateClass extends Component {
                             </Form>
                             <Form onSubmit={this.handleAddStudent} className="create-class-form">
                                 <FormGroup className="form-group-create-class">
-                                    <h3>Add Students</h3>
+                                    <h3 className="text-header">Add Student</h3>
                                     {this.state.studentDetailsError !== "" &&
                                         <Row className="create-class-alert-row">
                                             <Alert color="danger" className="create-class-alert-box">
@@ -130,9 +130,9 @@ class CreateClass extends Component {
                                             </Alert>
                                         </Row>
                                     }
-                                    <Row>
+                                    <Row className="add-student-form-row">
                                         <Col lg="3">
-                                            <Input
+                                            <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentLastName" 
                                                 id="lastname" 
@@ -146,7 +146,7 @@ class CreateClass extends Component {
                                             </FormText>  
                                         </Col>
                                         <Col lg="3">
-                                            <Input
+                                            <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentFirstName" 
                                                 id="firstname" 
@@ -160,8 +160,8 @@ class CreateClass extends Component {
                                             </FormText>
                                         </Col>
                                         <Col lg="4">
-                                            <Input
-                                                type="text" 
+                                            <Input className="stdnt-input"
+                                                type="email" 
                                                 name="studentEmail" 
                                                 id="email" 
                                                 maxLength="50"
@@ -173,63 +173,59 @@ class CreateClass extends Component {
                                                         *required.
                                             </FormText>
                                         </Col>
-                                        <Col lg="2">
-                                            <Button className="create-class-add-student-btn">
-                                                <img className="card-img p-0 b-0 m-0" 
-                                                     style={{maxHeight: "2.25rem", maxWidth: "3rem"}}
-                                                     src={add_icon} alt="Add Class" 
-                                                />
-                                            </Button>
-                                            
+                                        <Col lg="2" className="create-student-btn">
+                                                <Input className="create-student-img" type="image" src={add_icon} alt="Add Class" />
                                         </Col>
+                                    </Row>
+                                    <hr/>
+                            {/* </Form> */}
+                            {/* <Form className="create-class-form"> */}
+                                <h3>Students</h3>
+                                    <Row className="create-class-display-students">
+                                        {this.props.state.students.map((student, id) => {                                
+                                            return (
+                                                <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
+                                                <RemoveStudent student={student}
+                                                            handleRemoveStudent={this.handleRemoveStudent}
+                                                            />
+                                                </Col>
+                                        )})}
                                     </Row>
                                 </FormGroup>
                             </Form>
                             <Form className="create-class-form">
-                                <h3>Students</h3>
-                                <Row>
-                                    {this.props.state.students.map((student, id) => {                                
-                                        // const studentName = `${student.studentName}`
-                                        return (
+                                <FormGroup className="form-group-create-class">
+                                    <h3>Knowledge Rockets</h3>
+                                    {this.props.state.classRockets && this.state.clsName && 
+                                        <Row>{this.props.state.classRockets.map((rocket, id) => (
                                             <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
-                                            <RemoveStudent student={student}
-                                                           handleRemoveStudent={this.handleRemoveStudent}
-                                            />
-                                    </Col>
-                                    )})}
-                                </Row>
-                            </Form>
-                            <Form className="create-class-form">
-                                <h3>Knowledge Rockets</h3>
-                                {this.props.state.classRockets && this.state.clsName && 
-                                    <Row>{this.props.state.classRockets.map((rocket, id) => (
-                                        <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
-                                        <Card>
-                                            <CardBody className="create-class-rocket-box">
-                                                <CardTitle className="text-center">
-                                                    {rocket.rocketname}
-                                                </CardTitle>
-                                                <div className="create-class-date-picker">
-                                                    <DatePicker
-                                                        selected={this.state.startDate}
-                                                        onChange={this.handleDateChange}
-                                                    />
-                                                </div>
-                                            </CardBody>
-                                        </Card>
-                                    </Col>
-                                    ))}
-                                    <Col md="4" sm="6" xs="12" className="mb-4">
-                                        <Card body>
-                                            <CardTitle className="text-center">New Rocket</CardTitle>
-                                            <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
-                                                {/* <Badge href="#" color="light" style={{borderRadius: 0, top: 0, backgroundColor: "white"}}> */}
-                                                    <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
-                                                {/* </Badge> */}
-                                            </Link>
-                                        </Card>
-                                    </Col>
-                                </Row>}
+                                            <Card>
+                                                <CardBody className="create-class-rocket-box">
+                                                    <CardTitle className="text-center">
+                                                        {rocket.rocketname}
+                                                    </CardTitle>
+                                                    <div className="create-class-date-picker">
+                                                        <DatePicker
+                                                            selected={this.state.startDate}
+                                                            onChange={this.handleDateChange}
+                                                        />
+                                                    </div>
+                                                </CardBody>
+                                            </Card>
+                                        </Col>
+                                        ))}
+                                        <Col md="4" sm="6" xs="12" className="mb-4">
+                                            <Card body>
+                                                <CardTitle className="text-center">New Rocket</CardTitle>
+                                                <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
+                                                    {/* <Badge href="#" color="light" style={{borderRadius: 0, top: 0, backgroundColor: "white"}}> */}
+                                                        <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
+                                                    {/* </Badge> */}
+                                                </Link>
+                                            </Card>
+                                        </Col>
+                                    </Row>}
+                                </FormGroup>
                             </Form>
                         </Row>
                     </Col>

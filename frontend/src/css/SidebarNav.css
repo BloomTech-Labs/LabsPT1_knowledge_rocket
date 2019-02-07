@@ -4,7 +4,6 @@
     right: 50%;
     align-items: flex-start;
     border-radius: 35px;
-    border: solid 2px #ff7400;
     margin-bottom: 15px;
 }
 a.nav-link {
@@ -12,7 +11,7 @@ a.nav-link {
 
 }
 a.nav-link:hover {
-    color: white;
+    color: white !important;
     background-color: #ff7400;
     border-radius: 10px;
 }
@@ -20,24 +19,29 @@ a.nav-link:hover {
 @media (min-width: 992px) {
     .sidebar {
         display: flex;
-        border-radius: 35px;
-        border: solid 2px #ff7400;
+        border-radius: 15px;
         align-items: flex-start;
         min-height: 100vh;
     }
+    .nav-header {
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-bottom: 2px solid black;
+    }
     a.nav-link {
+        display: block;
         position: relative;
+        width: 230px;
         top: 3rem;
-        right: 12rem;
-        display: flex;
+        right: 15rem;
         font-size: 1.5rem;
         justify-content: flex-start;
-        margin: 10px 10px 10px 10px;
+        margin: 20px 10px 10px 10px;
     }
     a.nav-link:hover {
         color: white !important;
         background-color: #ff7400;
-        border-radius: 35px;
+        border-radius: 15px;
     }
     .collapse {
         display: flex;

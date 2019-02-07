@@ -38,7 +38,7 @@ class AddClass extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                 <ModalHeader toggle={this.toggle}>Add New Class</ModalHeader>
                 <ModalBody>
-                    <Input placeholder="Class Name" 
+                    <Input className="m-input" placeholder="Class Name" 
                         onChange={this.handleChange}
                         name="clsName"
                         value={this.state.clsName}
