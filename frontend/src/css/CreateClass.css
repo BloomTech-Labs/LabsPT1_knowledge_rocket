@@ -3,10 +3,13 @@
 }
 
 .create-class-contents {
+    margin-top: 1%;
+    padding: 1%;
     height: 100%;
 }
 
 .create-class-form {
+    margin-right: 500px;
     width: 100%;
 }
 
@@ -15,8 +18,18 @@
 }
 
 .form-group-create-class {
-    margin: 0;
+    margin: 10px;
+    left: 2%;
     width: 100%;
+}
+
+.text-header {
+    margin-bottom: 4%;
+}
+
+input.stdnt-input {
+    width: 100%;
+    display: block;
 }
 
 .create-class-cc-checkbox {
@@ -54,10 +67,23 @@
 }
 
 button.btn {
-    width: 80%;
-    padding: .375rem 0.25rem;
-    margin: 0 auto;
-    border: solid 1px black !important;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    width: 15rem;
+    transform: scale(0.8);
+    background: #fff;
+    /* fallback for browsers that don't understand rgba */
+    border: solid 2px #ff7400;
+    /* fallback for browsers that don't understand rgba */
+    background-color: #ff7400;
+    /* slighly transparent white */
+    border-color: #ff7400;
+    /*Very transparent black*/
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    box-shadow: 0 0 0 #ff7400;
 }
 
 .create-class-rocket-box {
@@ -88,7 +114,7 @@ button.btn {
 .remove-student-name, .select-class-dd-txt, .add-class-btn-txt {
     display: inline-block;
     width: 90%;
-    font-size: 1rem;
+    font-size: 1.8rem;
     vertical-align: text-bottom;
 }
 
@@ -104,5 +130,6 @@ button.btn {
 
     .create-class-contents {
         height: 100%;
+        width: 150%;
     }
 }

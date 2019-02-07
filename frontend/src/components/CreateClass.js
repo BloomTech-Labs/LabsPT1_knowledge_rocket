@@ -97,7 +97,7 @@ class CreateClass extends Component {
                         <Row className="create-class-contents">
                             <Form className="create-class-form">
                                 <FormGroup className="form-group-create-class">
-                                    <h3>Select Class</h3>
+                                    <h3 className="text-header">Select Class</h3>
                                     <Row>
                                         <Col lg="4" style={{paddingRight: 0, marginRight: 0}}>
                                             <SelectClass 
@@ -122,7 +122,7 @@ class CreateClass extends Component {
                             </Form>
                             <Form onSubmit={this.handleAddStudent} className="create-class-form">
                                 <FormGroup className="form-group-create-class">
-                                    <h3>Add Students</h3>
+                                    <h3 className="text-header">Add Students</h3>
                                     {this.state.studentDetailsError !== "" &&
                                         <Row className="create-class-alert-row">
                                             <Alert color="danger" className="create-class-alert-box">
@@ -132,7 +132,7 @@ class CreateClass extends Component {
                                     }
                                     <Row>
                                         <Col lg="3">
-                                            <Input
+                                            <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentLastName" 
                                                 id="lastname" 
@@ -147,7 +147,7 @@ class CreateClass extends Component {
                                             </FormText>   */}
                                         </Col>
                                         <Col lg="3">
-                                            <Input
+                                            <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentFirstName" 
                                                 id="firstname" 
@@ -162,7 +162,7 @@ class CreateClass extends Component {
                                             </FormText> */}
                                         </Col>
                                         <Col lg="4">
-                                            <Input
+                                            <Input className="stdnt-input"
                                                 type="email" 
                                                 name="studentEmail" 
                                                 id="email" 

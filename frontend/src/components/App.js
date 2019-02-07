@@ -11,8 +11,8 @@ class App extends Component {
     return (
       <div className="App">
       <header>
-        <Link to={"/login"}><Button className="btn">Login</Button></Link>
-        <Link to={"/register"}><Button>Sign Up</Button></Link>
+        <Link to={"/login"}><Button className="btn-splash">Login</Button></Link>
+        <Link to={"/register"}><Button className="btn-splash">Sign Up</Button></Link>
       </header>
         <Container>
           <Row>
