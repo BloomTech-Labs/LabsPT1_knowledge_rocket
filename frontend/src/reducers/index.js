@@ -14,8 +14,7 @@ import {
   GET_ROCKETS,
   UPDATE_PASSWORD,
   UPDATE_USER,
-  GET_2_DAY,
-  GET_2_WEEK
+  GET_QUIZ
 } from "../actions";
 
 // team discussion on what the state should look like
@@ -56,10 +55,7 @@ export default (state = defaultState, action) => {
     case GET_ROCKETS:
       return { ...state, rockets: [action.payload], success: true };
 
-    case GET_2_DAY:
-      return { ...state, question: action.payload, success: true };
-
-    case GET_2_WEEK:
+    case GET_QUIZ:
       return { ...state, question: action.payload, success: true };
 
     case UPDATE_PASSWORD:

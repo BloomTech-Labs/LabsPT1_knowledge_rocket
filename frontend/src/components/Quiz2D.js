@@ -10,42 +10,35 @@ class Quiz2D extends Component {
   state = {
     className: "",
     rocketName: "",
-    selectedAnser: "",
-    correctAnswer: ""
-  }
-
-  
+    selectedRadio: ""
+  };
   addParams = () => {
     this.setState({
-      className : this.props.match.params.className
-    })
+      className: this.props.match.params.className
+    });
     this.setState({
-      rocketName : this.props.match.params.rocketName
-    })
-  }
-  
+      rocketName: this.props.match.params.rocketName
+    });
+  };
   getRocket2D = () => {
-    console.log("getState", this.state)
     const request = {
-      className : this.state.className,
-      rocketName : this.state.rocketName
+      className: this.state.className,
+      rocketName: this.state.rocketName
     }
-      this.props.get_2_Day(request);
+    this.props.get_2_Day(request);
   };
 
   handleRadioSelect = e => {
-    this.setState({ selectedAnser : e.target.value });
-    this.setState({selectedRadio: e.target.id})
-    // this.setState({ correctAnswer: this.props.state.question[0].day2CorrectAnswer.value })
-  }
-  onButtonClick = () => {
-    console.log('teehee')
-  }
-
+    this.setState({ selectedAnser: e.target.value });
+    this.setState({ selectedRadio: e.target.id });
+  };
+  onButtonClick = e => {
+    e.preventDefault();
+    alert(`The correct answer is ${this.props.state.question.question[0].day2CorrectAnswer}`)
+  };
   componentDidMount() {
     this.getRocket2D();
   }
-  
   componentWillMount() {
     this.addParams();
   }
@@ -62,9 +55,7 @@ class Quiz2D extends Component {
                 {this.props.state.question ? (
                   <div>
                     <h3>{this.props.state.question.class}</h3>
-                    <h3>
-                      {this.props.state.question.rocket} - Two Day Boost
-                    </h3>
+                    <h3>{this.props.state.question.rocket} - Two Day Boost</h3>
                     <p>
                       {this.props.state.question.question[0].day2ReviewText}
                     </p>
@@ -96,7 +87,7 @@ class Quiz2D extends Component {
                           type="radio"
                           name="radio1"
                           value="day2AnswerA"
-                          id = "A"
+                          id="A"
                           onChange={this.handleRadioSelect}
                         />{" "}
                         {this.props.state.question.question[0].day2AnswerA}
@@ -108,7 +99,7 @@ class Quiz2D extends Component {
                           type="radio"
                           name="radio1"
                           value="day2AnswerB"
-                          id = "B"
+                          id="B"
                           onChange={this.handleRadioSelect}
                         />{" "}
                         {this.props.state.question.question[0].day2AnswerB}
@@ -119,7 +110,7 @@ class Quiz2D extends Component {
                         <Input
                           type="radio"
                           name="radio1"
-                          id = "C"
+                          id="C"
                           value="day2AnswerC"
                           onChange={this.handleRadioSelect}
                         />{" "}
@@ -132,7 +123,7 @@ class Quiz2D extends Component {
                           type="radio"
                           name="radio1"
                           value="day2AnswerD"
-                          id = "D"
+                          id="D"
                           onChange={this.handleRadioSelect}
                         />{" "}
                         {this.props.state.question.question[0].day2AnswerD}

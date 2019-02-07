@@ -5,7 +5,8 @@ from .models import Rocket, Class, Question2D, Question2M, Question2W, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
-from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer
+from django.core.mail import send_mail
+from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer, EmailSerializer
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
@@ -106,7 +107,7 @@ class GetStudents(generics.CreateAPIView):
         className = request.data.get("className")
         rocketClass = Class.objects.get(className = className)
         students = list(Student.objects.filter(className = rocketClass).values("studentName", "studentEmail"))
-        response =  JsonResponse(students, safe=False)
+        response =  JsonResponse(students, safe = False, status = status.HTTP_200_OK)
         return response
 
 class UpdateStudent(generics.CreateAPIView):
@@ -371,10 +372,9 @@ class UpdateQuestion2D(generics.CreateAPIView):
 
 class GetQuestion2D(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
-    # permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        # username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
@@ -424,10 +424,9 @@ class UpdateQuestion2W(generics.CreateAPIView):
 
 class GetQuestion2W(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
@@ -477,10 +476,9 @@ class UpdateQuestion2M(generics.CreateAPIView):
 
 class GetQuestion2M(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
@@ -489,6 +487,7 @@ class GetQuestion2M(generics.CreateAPIView):
         question = list(Question2M.objects.filter(rocket = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
+            "rocket": rocketName,
             "question": question
             })
         return response
@@ -573,3 +572,32 @@ class GetClasses(generics.CreateAPIView):
         username = request.user
         classList = list(Class.objects.filter(user=username).values("className"))
         return JsonResponse( classList, safe=False, status=status.HTTP_200_OK )
+
+class BuildEmail(generics.CreateAPIView):
+    serializer_class = EmailSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        teacherEmail = request.user.email
+        url = request.data.get("url")
+        title = request.data.get("title")
+        message = request.data.get("message")
+        className = request.data.get("className")
+
+        className = Class.objects.get(className = className)
+        studentList = list(Student.objects.filter(className = className).values_list("studentEmail", flat=True))
+        if(studentList):
+
+            send_mail(
+                f'{title}',
+                f'{message} \n {url}',
+                f'{teacherEmail}',
+                studentList,
+                fail_silently=False,
+            )
+
+            return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        else:
+            return JsonResponse( {"error": "Need a list of students to send emails to"}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+ 

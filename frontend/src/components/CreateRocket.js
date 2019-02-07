@@ -9,8 +9,6 @@ import {
   Container,
   Row,
   Col,
-  Breadcrumb,
-  BreadcrumbItem
 } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";
@@ -32,7 +30,7 @@ class CreateRocket extends Component {
     day2AnswerB: '',
     day2AnswerC: '',
     day2AnswerD: '',
-    day2CorrectAnswer: '2dAA',
+    day2CorrectAnswer: 'd2',
 
     week2QuestionName: '',
     week2ReviewText: '',
@@ -41,7 +39,7 @@ class CreateRocket extends Component {
     week2AnswerB: '',
     week2AnswerC: '',
     week2AnswerD: '',
-    week2CorrectAnswer: '2wAA',
+    week2CorrectAnswer: 'w2',
 
     month2QuestionName: '',
     month2ReviewText: '',
@@ -50,7 +48,7 @@ class CreateRocket extends Component {
     month2AnswerB: '',
     month2AnswerC: '',
     month2AnswerD: '',
-    month2CorrectAnswer: '2mAA',
+    month2CorrectAnswer: 'm2',
   }
 
   handleInputChange = e => {
@@ -83,18 +81,10 @@ class CreateRocket extends Component {
               <Col>
                 <Row>
                   <Col>
-                    {/* </div> */ }
                   </Col>
                 </Row>
                 <Form className="f">
-                  {/* <Breadcrumb className="crumb">
-                    <BreadcrumbItem active>Create Rocket</BreadcrumbItem>
-                    <BreadcrumbItem>
-                        <a href="/">Logout</a>
-                    </BreadcrumbItem> 
-                  </Breadcrumb> */}
                   <FormGroup className="fg">
-                    {/* <h3> all fields must be filled out</h3> */}
                     <Input
                       type="text"
                       name="rocketName"
@@ -159,8 +149,8 @@ class CreateRocket extends Component {
                       <Input type="radio"
                         id="day2AnswerA"
                         name="day2CorrectAnswer"
-                        value={"day2AnswerA"}
-                        checked={this.state.day2CorrectAnswer === "day2AnswerA"}
+                        value={this.state.day2AnswerA}
+                        checked={this.state.day2CorrectAnswer === this.state.day2AnswerA}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
@@ -179,8 +169,8 @@ class CreateRocket extends Component {
                         type="radio"
                         id="day2AnswerB"
                         name="day2CorrectAnswer"
-                        value={"day2AnswerB"}
-                        checked={this.state.day2CorrectAnswer === "day2AnswerB"}
+                        value={this.state.day2AnswerB}
+                        checked={this.state.day2CorrectAnswer === this.state.day2AnswerB}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
@@ -199,8 +189,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="day2CorrectAnswer"
                         id="day2AnswerC"
-                        value={"day2AnswerC"}
-                        checked={this.state.day2CorrectAnswer === "day2AnswerC"}
+                        value={this.state.day2AnswerC}
+                        checked={this.state.day2CorrectAnswer === this.state.day2AnswerC}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
@@ -219,8 +209,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="day2CorrectAnswer"
                         id="day2AnswerD"
-                        value={"day2AnswerD"}
-                        checked={this.state.day2CorrectAnswer === "day2AnswerD"}
+                        value={this.state.day2AnswerD}
+                        checked={this.state.day2CorrectAnswer === this.state.day2AnswerD}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
@@ -280,8 +270,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="week2CorrectAnswer"
                         id="week2AnswerA"
-                        value={"week2AnswerA"}
-                        checked={this.state.week2CorrectAnswer === "week2AnswerA"}
+                        value={this.state.week2AnswerA}
+                        checked={this.state.week2CorrectAnswer === this.state.week2AnswerA}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
@@ -300,8 +290,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="week2CorrectAnswer"
                         id="week2AnswerB"
-                        value={"week2AnswerB"}
-                        checked={this.state.week2CorrectAnswer === "week2AnswerB"}
+                        value={this.state.week2AnswerB}
+                        checked={this.state.week2CorrectAnswer === this.state.week2AnswerB}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
@@ -320,8 +310,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="week2CorrectAnswer"
                         id="week2AnswerC"
-                        value={"week2AnswerC"}
-                        checked={this.state.week2CorrectAnswer === "week2AnswerC"}
+                        value={this.state.week2AnswerC}
+                        checked={this.state.week2CorrectAnswer === this.state.week2AnswerC}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
@@ -340,8 +330,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="week2CorrectAnswer"
                         id="week2AnswerD"
-                        value={"week2AnswerD"}
-                        checked={this.state.week2CorrectAnswer === "week2AnswerD"}
+                        value={this.state.week2AnswerD}
+                        checked={this.state.week2CorrectAnswer === this.state.week2AnswerD}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
@@ -401,8 +391,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="month2CorrectAnswer"
                         id="month2AnswerA"
-                        value={"month2AnswerA"}
-                        checked={this.state.month2CorrectAnswer === "month2AnswerA"}
+                        value={this.state.month2AnswerA}
+                        checked={this.state.month2CorrectAnswer === this.state.month2AnswerA}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a1">Answer 1
@@ -421,8 +411,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="month2CorrectAnswer"
                         id="month2AnswerB"
-                        value={"month2AnswerB"}
-                        checked={this.state.month2CorrectAnswer === "month2AnswerB"}
+                        value={this.state.month2AnswerB}
+                        checked={this.state.month2CorrectAnswer === this.state.month2AnswerB}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a2">Answer 2
@@ -441,8 +431,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="month2CorrectAnswer"
                         id="month2AnswerC"
-                        value={"month2AnswerC"}
-                        checked={this.state.month2CorrectAnswer === "month2AnswerC"}
+                        value={this.state.month2AnswerC}
+                        checked={this.state.month2CorrectAnswer === this.state.month2AnswerC}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a3">Answer 3
@@ -461,8 +451,8 @@ class CreateRocket extends Component {
                         type="radio"
                         name="month2CorrectAnswer"
                         id="month2AnswerD"
-                        value={"month2AnswerD"}
-                        checked={this.state.month2CorrectAnswer === "month2AnswerD"}
+                        value={this.state.month2AnswerD}
+                        checked={this.state.month2CorrectAnswer === this.state.month2AnswerD}
                         onChange={this.handleRadioSelect}
                       />
                       <Label for="a4">Answer 4
@@ -496,6 +486,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps,{ createRocket } )(CreateRocket);
-
-
-
