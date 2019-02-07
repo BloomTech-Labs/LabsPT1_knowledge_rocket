@@ -329,14 +329,13 @@ export const getRockets = (userKey, className) => {
   };
 };
 
-export const get_2_Day = () => {
+export const get_2_Day = (request) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
-    const userKey = localStorage.getItem("token");
-    const data = { "className": "UX", "rocketName": "Areas in Math"}
+    const userKey = localStorage.getItem("token")
     axios
-      .post("http://127.0.0.1:8000/getquestion2d/", data, {
+      .post("http://127.0.0.1:8000/getquestion2d/", request, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
