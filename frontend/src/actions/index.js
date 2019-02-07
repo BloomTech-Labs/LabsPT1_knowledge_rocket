@@ -334,7 +334,7 @@ export const get_2_Day = () => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem("token");
-    const data = {"className": "UX", "rocketName": "CSS Styling"}
+    const data = { "className": "UX", "rocketName": "Areas in Math"}
     axios
       .post("http://127.0.0.1:8000/getquestion2d/", data, {
         headers: { Authorization: `token ${userKey}` }
@@ -355,7 +355,7 @@ export const get_2_Week = () => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem("token");
-    const data = { className: "UX", rocketName: "CSS Styling" };
+    const data = { className: "UX", rocketName: "Areas in Math" };
     axios
       .post("http://127.0.0.1:8000/getquestion2w/", data, {
         headers: { Authorization: `token ${userKey}` }
@@ -376,7 +376,7 @@ export const get_2_Month = () => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem("token");
-    const data = { className: "UX", rocketName: "CSS Styling" };
+    const data = { className: "UX", rocketName: "Areas in Math" };
     axios
       .post("http://127.0.0.1:8000/getquestion2m/", data, {
         headers: { Authorization: `token ${userKey}` }

@@ -9,7 +9,7 @@ import "../css/Quiz.css";
 class Quiz2M extends Component {
     state = {
         selectedAnser: "",
-        correctAnswer: ""
+        correctAnswer: "3"
     };
     getRocket2M = () => {
         const className = "Reading";
@@ -19,7 +19,8 @@ class Quiz2M extends Component {
     handleRadioSelect = e => {
         this.setState({ selectedAnser: e.target.value });
     };
-    onButtonClick = () => {
+    onButtonClick = e => {
+        e.preventDefault();
         console.log("teehee");
     };
     componentWillMount() {
@@ -71,9 +72,9 @@ class Quiz2M extends Component {
                                                 <Input
                                                     type="radio"
                                                     name="radio1"
-                                                    value="month2AnswerA"
+                                                    value={ this.props.state.question.question[0].month2AnswerA }
                                                     onChange={ this.handleRadioSelect }
-                                                />{ " " }
+                                                />
                                                 { this.props.state.question.question[0].month2AnswerA }
                                             </Label>
                                         </FormGroup>
@@ -82,7 +83,7 @@ class Quiz2M extends Component {
                                                 <Input
                                                     type="radio"
                                                     name="radio1"
-                                                    value="month2AnswerB"
+                                                    value={this.props.state.question.question[0].month2AnswerB}
                                                     onChange={ this.handleRadioSelect }
                                                 />{ " " }
                                                 { this.props.state.question.question[0].month2AnswerB }
@@ -93,7 +94,7 @@ class Quiz2M extends Component {
                                                 <Input
                                                     type="radio"
                                                     name="radio1"
-                                                    value="month2AnswerC"
+                                                    value={ this.props.state.question.question[0].month2AnswerC }
                                                     onChange={ this.handleRadioSelect }
                                                 />{ " " }
                                                 { this.props.state.question.question[0].month2AnswerC }
@@ -104,7 +105,7 @@ class Quiz2M extends Component {
                                                 <Input
                                                     type="radio"
                                                     name="radio1"
-                                                    value="month2AnswerD"
+                                                    value={ this.props.state.question.question[0].month2AnswerD }
                                                     onChange={ this.handleRadioSelect }
                                                 />{ " " }
                                                 { this.props.state.question.question[0].month2AnswerD }
