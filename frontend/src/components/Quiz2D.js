@@ -30,10 +30,10 @@ class Quiz2D extends Component {
   handleRadioSelect = e => {
     this.setState({ selectedAnser: e.target.value });
     this.setState({ selectedRadio: e.target.id });
-    // this.setState({ correctAnswer: this.props.state.question[0].day2CorrectAnswer.value })
   };
-  onButtonClick = () => {
-    console.log("teehee");
+  onButtonClick = e => {
+    e.preventDefault();
+    alert(`The correct answer is ${this.props.state.question.question[0].day2CorrectAnswer}`)
   };
   componentDidMount() {
     this.getRocket2D();

@@ -32,7 +32,7 @@ class Quiz2M extends Component {
   };
   onButtonClick = e => {
     e.preventDefault();
-    alert("The correct answer is candy")
+    alert(`The correct answer is ${this.props.state.question.question[0].month2CorrectAnswer}`)
   };
   componentDidMount() {
     this.getRocket2M();

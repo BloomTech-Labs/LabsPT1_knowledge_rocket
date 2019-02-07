@@ -25,13 +25,14 @@ class Quiz2W extends Component {
             className: this.state.className,
             rocketName: this.state.rocketName
         }
-        this.props.get_2_Day(request);
+        this.props.get_2_Week(request);
     };
     handleRadioSelect = e => {
         this.setState({ selectedAnser: e.target.value });
     };
-    onButtonClick = () => {
-        console.log("teehee");
+    onButtonClick = e => {
+        e.preventDefault();
+        alert(`The correct answer is ${this.props.state.question.question[0].week2CorrectAnswer}`)
     };
     componentDidMount() {
         this.getRocket2W();
