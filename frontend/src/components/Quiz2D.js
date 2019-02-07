@@ -10,8 +10,6 @@ class Quiz2D extends Component {
   state = {
     className: "",
     rocketName: "",
-    selectedAnswer: "",
-    correctAnswer: "",
     selectedRadio: ""
   };
   addParams = () => {

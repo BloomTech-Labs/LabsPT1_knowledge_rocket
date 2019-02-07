@@ -10,8 +10,6 @@ class Quiz2W extends Component {
     state = {
         className: "",
         rocketName: "",
-        selectedAnswer: "",
-        correctAnswer: "",
         selectedRadio: ""
     };
     addParams = () => {
