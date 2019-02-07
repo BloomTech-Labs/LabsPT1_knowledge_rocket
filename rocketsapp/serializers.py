@@ -101,6 +101,8 @@ class UpdateQuestion2MSerializer(serializers.Serializer):
 class SubscriptionSerializer(serializers.Serializer):
     source = serializers.CharField(max_length=256)
 
-
-
-
+class EmailSerializer(serializers.Serializer):
+    url = serializers.CharField(max_length=256)
+    className = serializers.CharField(max_length=100)
+    message = serializers.CharField(max_length=512)
+    title = serializers.CharField(max_length=100)
