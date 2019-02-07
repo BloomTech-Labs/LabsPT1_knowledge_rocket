@@ -126,7 +126,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-    // mapStateToProps,
-    // { get_2_Week }
     mapStateToProps,
+    { get_2_Week }
 )(Quiz2W);

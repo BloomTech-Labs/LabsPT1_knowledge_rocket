@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, Input, FormGroup, Label } from "reactstrap";
 import { connect } from "react-redux";
-// import { get_2_Month } from "../actions";
+import { get_2_Month } from "../actions";
 import "../css/Quiz.css";
 
 class Quiz2M extends Component {
@@ -128,7 +128,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(
-    // mapStateToProps,
-    // { get_2_Month }
     mapStateToProps,
+    { get_2_Month }
 )(Quiz2M);

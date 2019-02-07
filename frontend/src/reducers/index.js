@@ -15,7 +15,8 @@ import {
   UPDATE_PASSWORD,
   UPDATE_USER,
   GET_2_DAY,
-  GET_2_WEEK
+  GET_2_WEEK,
+  GET_2_MONTH
 } from "../actions";
 
 // team discussion on what the state should look like
@@ -60,6 +61,9 @@ export default (state = defaultState, action) => {
       return { ...state, question: action.payload, success: true };
 
     case GET_2_WEEK:
+      return { ...state, question: action.payload, success: true };
+
+    case GET_2_MONTH:
       return { ...state, question: action.payload, success: true };
 
     case UPDATE_PASSWORD:

@@ -20,6 +20,7 @@ export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_2_DAY = 'GET_2_DAY';
 export const GET_2_WEEK = "GET_2_WEEK";
+export const GET_2_MONTH = "GET_2_MONTH";
 
 
 
@@ -333,7 +334,7 @@ export const get_2_Day = () => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem("token");
-    const data = {"className": "Math", "rocketName": "TestRocket2313"}
+    const data = {"className": "UX", "rocketName": "CSS Styling"}
     axios
       .post("http://127.0.0.1:8000/getquestion2d/", data, {
         headers: { Authorization: `token ${userKey}` }
@@ -354,7 +355,7 @@ export const get_2_Week = () => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem("token");
-    const data = { className: "Math", rocketName: "TestRocket2313" };
+    const data = { className: "UX", rocketName: "CSS Styling" };
     axios
       .post("http://127.0.0.1:8000/getquestion2w/", data, {
         headers: { Authorization: `token ${userKey}` }
@@ -369,3 +370,25 @@ export const get_2_Week = () => {
       });
   };
 };
+
+export const get_2_Month = () => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem("token");
+    const data = { className: "UX", rocketName: "CSS Styling" };
+    axios
+      .post("http://127.0.0.1:8000/getquestion2m/", data, {
+        headers: { Authorization: `token ${userKey}` }
+      })
+      .then(response => {
+        dispatch({ type: GET_2_DAY, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
+
