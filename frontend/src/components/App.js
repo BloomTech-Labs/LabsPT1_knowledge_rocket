@@ -21,24 +21,24 @@ class App extends Component {
           <Row>
             <div id="moon"></div>
             <div className="fa-stack">
-              <div class="jc-rocket-container">
-                  <div class="jc-rocket">
-                    <div class="jc-rocket-head">
+              <div className="jc-rocket-container">
+                  <div className="jc-rocket">
+                    <div className="jc-rocket-head">
                     </div>
-                    <div class="jc-rocket-window">
+                    <div className="jc-rocket-window">
                     </div>
-                    <div class="jc-booster">
+                    <div className="jc-booster">
                     </div>
-                    <div class="jc-booster-flames">
+                    <div className="jc-booster-flames">
                     </div>
                   </div>
                 </div>
             </div>
             {/* rocket close */}
               <div className="cta-container">
-                <div class="first-text">A tool for Teachers</div>
-                <div class="second-text">Promotes effective learning</div>
-                <div class="fourth-text">Through virtual online quizzes</div>
+                <div className="first-text">A tool for Teachers</div>
+                <div className="second-text">Promotes effective learning</div>
+                <div className="fourth-text">Through virtual online quizzes</div>
               </div>
           </Row>
         </Container>
