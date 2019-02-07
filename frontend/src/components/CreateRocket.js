@@ -79,14 +79,9 @@ class CreateRocket extends Component {
             <SidebarNav />
           </Col>
           <Col lg="9">
-            <Row>
-              <Col>
-                <Row>
-                  <Col>
-                  {/* </div> */}
-                  </Col>
-                </Row>
+            <Row className="rkt-content">
                 <Form className="f">
+                <h2>Create a Rocket</h2>
                   <FormGroup className="fg">
                     {/* <h3> all fields must be filled out</h3> */}
                     <Input
@@ -106,7 +101,7 @@ class CreateRocket extends Component {
                     Instead, they ask the student to "reload" the mental maps they acquired during the lesson.
                     </div>
                     <br></br>
-                    <Label for="day2ReviewText">
+                    <Label className="txt-box-header" for="day2ReviewText">
                       Two Days - Review Text
                     </Label>
                     <Textarea
@@ -230,7 +225,7 @@ class CreateRocket extends Component {
                     </div>
                   </FormGroup>
                   <FormGroup className="fg">
-                  <Label for="week2ReviewText">Two Weeks - Review Text</Label>
+                  <Label className="txt-box-header" for="week2ReviewText">Two Weeks - Review Text</Label>
                     <Textarea
                       className="Textarea"
                       countLimit="512"
@@ -351,7 +346,7 @@ class CreateRocket extends Component {
                     </div>
                   </FormGroup>
                   <FormGroup className="fg">
-                    <Label for="month2ReviewText" id="question">Two Months - Review Text</Label>
+                    <Label className="txt-box-header" for="month2ReviewText" id="question">Two Months - Review Text</Label>
                     <Textarea
                       className="Textarea"
                       countLimit="512"
@@ -469,12 +464,11 @@ class CreateRocket extends Component {
                           onChange={this.handleInputChange}
                         /></Label>
                     </div>
-                    <Button className="rkt-btn" color="info" onClick={this.handleSubmit}>
+                  </FormGroup>
+                  <Button className="rkt-btn" color="info" onClick={this.handleSubmit}>
                     Create Rocket!
                     </Button>
-                  </FormGroup>
                 </Form>
-              </Col>
             </Row>
           </Col>
         </Row>
