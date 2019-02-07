@@ -56,9 +56,9 @@ ReactDOM.render(
               )}
             />
           </Elements>
-          <Route path="/quiz2D" component={Quiz2D} />
-          <Route path="/quiz2W" component={Quiz2W} />
-          <Route path="/quiz2M" component={Quiz2M} />
+          <Route path="/quiz2D/:className/:rocketName" component={Quiz2D} />
+          <Route path="/quiz2W/:className/:rocketName" component={Quiz2W} />
+          <Route path="/quiz2M/:className/:rocketName" component={Quiz2M} />
         </div>
       </Router>
     </StripeProvider>

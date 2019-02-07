@@ -8,15 +8,31 @@ import "../css/Quiz.css";
 
 class Quiz2D extends Component {
   state = {
+    className: "",
+    rocketName: "",
     selectedAnser: "",
-    correctAnswer: "",
-    selectedRadio: ""
+    correctAnswer: ""
   }
+
+  
+  addParams = () => {
+    this.setState({
+      className : this.props.match.params.className
+    })
+    this.setState({
+      rocketName : this.props.match.params.rocketName
+    })
+  }
+  
   getRocket2D = () => {
-    const className = "Reading";
-    const rocketName = "TestRocket2313";
-    this.props.get_2_Day(className, rocketName);
+    console.log("getState", this.state)
+    const request = {
+      className : this.state.className,
+      rocketName : this.state.rocketName
+    }
+      this.props.get_2_Day(request);
   };
+
   handleRadioSelect = e => {
     this.setState({ selectedAnser : e.target.value });
     this.setState({selectedRadio: e.target.id})
@@ -25,10 +41,15 @@ class Quiz2D extends Component {
   onButtonClick = () => {
     console.log('teehee')
   }
-  componentWillMount() {
+
+  componentDidMount() {
     this.getRocket2D();
   }
-
+  
+  componentWillMount() {
+    this.addParams();
+  }
+  
   render() {
     console.log("STATE", this.state);
     console.log("PROPS", this.props.state.question);
