@@ -1,7 +1,6 @@
 .answerChoices {
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid black;
     width: 55vw;
     height: 40vh;
     align-items: center;
@@ -26,7 +25,11 @@ img.card-img{
     width: 100%;
 }
 
+<<<<<<< HEAD
  /* form */
+=======
+/* form */
+>>>>>>> f427b85cc75dc8b662f8de28a1847db6652dfde4
 .f {
     display: flex;
     flex-direction: column;

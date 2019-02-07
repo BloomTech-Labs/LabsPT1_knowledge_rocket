@@ -11,8 +11,11 @@ export const REDIRECT = 'REDIRECT';
 export const CLEAR_REDIRECT = 'CLEAR_REDIRECT';
 export const CLEAR_STATE = 'CLEAR_STATE';
 export const CREATE_ROCKET = 'CREATE_ROCKET';
-export const GET_CLASSES = 'GET_CLASSES';
 export const GET_ROCKETS = 'GET_ROCKETS';
+export const ADD_STUDENT = 'ADD_STUDENT';
+export const GET_STUDENTS = 'GET_STUDENTS';
+export const GET_CLASSES = 'GET_CLASSES';
+export const GET_ROCKETS_BY_CLASS = 'GET_ROCKETS_BY_CLASS';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
 
@@ -167,6 +170,134 @@ export const createRocket = (rocket) => {
             console.log(error.response.data);
           });
     };
+};
+
+export const addStudent = (student) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(userKey)
+      console.log(student)
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+              dispatch({ type: GET_STUDENTS, payload: response.data });
+            })
+        })
+        
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const getStudents = (className) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token');
+      console.log(userKey);
+      console.log(className);
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_STUDENTS, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const getClasses = () => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      axios
+        .get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_CLASSES, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const getRocketsByClassName = (clsName) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(clsName);
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const addClass = (clsName) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(userKey)
+      console.log(clsName)
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          axios
+            .get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+            dispatch({ type: GET_CLASSES, payload: response.data });
+          })
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
+export const removeStudent = (student) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      console.log(userKey)
+      console.log(student)
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+              dispatch({ type: GET_STUDENTS, payload: response.data });
+            })
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
 };
 
 export const getRockets = (userKey, className) => {
