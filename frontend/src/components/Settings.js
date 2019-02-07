@@ -24,7 +24,7 @@ class Settings extends Component {
 
   handlePasswordSubmit = e => {
     e.preventDefault();
-    this.props.updatePassword( this.state.newPassword ); 
+    this.props.updatePassword({ newPassword: this.state.newPassword }); 
     this.setState({ newPassword: ''})
   };
 
