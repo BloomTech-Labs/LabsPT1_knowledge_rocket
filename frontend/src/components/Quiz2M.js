@@ -8,13 +8,26 @@ import "../css/Quiz.css";
 
 class Quiz2M extends Component {
   state = {
-    selectedAnser: "",
-    correctAnswer: "3"
+    className: "",
+    rocketName: "",
+    selectedAnswer: "",
+    correctAnswer: "",
+    selectedRadio: ""
+  };
+  addParams = () => {
+    this.setState({
+      className: this.props.match.params.className
+    });
+    this.setState({
+      rocketName: this.props.match.params.rocketName
+    });
   };
   getRocket2M = () => {
-    const className = "Reading";
-    const rocketName = "TestRocket2313";
-    this.props.get_2_Month(className, rocketName);
+    const request = {
+      className: this.state.className,
+      rocketName: this.state.rocketName
+    };
+    this.props.get_2_Month(request);
   };
   handleRadioSelect = e => {
     this.setState({ selectedAnser: e.target.value });
@@ -23,8 +36,11 @@ class Quiz2M extends Component {
     e.preventDefault();
     console.log("teehee");
   };
-  componentWillMount() {
+  componentDidMount() {
     this.getRocket2M();
+  }
+  componentWillMount() {
+    this.addParams();
   }
 
   render() {

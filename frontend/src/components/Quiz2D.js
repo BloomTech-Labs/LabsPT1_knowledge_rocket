@@ -10,7 +10,7 @@ class Quiz2D extends Component {
   state = {
     className: "",
     rocketName: "",
-    selectedAnser: "",
+    selectedAnswer: "",
     correctAnswer: "",
     selectedRadio: ""
   };
