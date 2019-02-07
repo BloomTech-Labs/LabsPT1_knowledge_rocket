@@ -47,12 +47,12 @@ class Classes extends Component {
                       Welcome, {this.props.state.user[0].username}!
                     </h1>
                   ) : (
-                    <h1 className="wel">Welcome!</h1>
+                    <h1>Welcome!</h1>
                   )}
                 </div>
                 <Row>
-                  {this.props.state.classes ? (
-                    this.props.state.classes[0].map(unit => (
+                  {this.props.state.classes && (
+                    this.props.state.classes.map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
                           <CardTitle className="text-center">
@@ -61,25 +61,19 @@ class Classes extends Component {
                         </Card>
                       </Col>
                     ))
-                  ) : (
-                    null
                   )}
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
                       <CardTitle className="text-center">New Class</CardTitle>
-                      <Link to={"/createClass"}>
+                      <Link to={"/classes/create"}>
                         <Badge
                           href="#"
                           color="light"
                           className="p-0 b-0"
                           style={{ "border-radius": 0, top: 0 }}
                         >
-                          <img
-                            className="card-img"
-                            src={add_icon}
-                            alt="Add Class"
-                          />
                         </Badge>
+                        <img className="card-img" src={add_icon} alt="Add Class" />
                       </Link>
                     </Card>
                   </Col>
