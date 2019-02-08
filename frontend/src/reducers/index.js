@@ -17,7 +17,10 @@ import {
     UPDATE_PASSWORD,
     UPDATE_USER,
     GET_QUIZ,
+<<<<<<< HEAD
     SEND_EMAIL
+=======
+>>>>>>> master
 
 } from '../actions';
 
@@ -61,6 +64,9 @@ export default (state = defaultState, action) => {
 
         // case GET_CLASSES:
         //     return {...state, classes: [action.payload], success: true }
+
+        case GET_QUIZ:
+        return { ...state, question: action.payload, success: true };  
 
         case GET_ROCKETS:
             return { ...state, rockets: action.payload, success: true }

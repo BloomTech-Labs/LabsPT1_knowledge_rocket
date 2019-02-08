@@ -79,6 +79,11 @@ All other routes require an active Authorization header:
 Authorization token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InRlc3R1c2VyMzIzIiwiZXhwIjoxNTQ4Mzk0NDgwLCJlbWFpbCI6InRlc3R1c2VyMTIzQHRlc3QuY29tIn0.fkBJi6NXPFTOj54dlMFsso5K67H6Q7XMdYdt_nZW8hg
 
 
+To load quizzes:
+http://127.0.0.1:8000/quiz2d/className/rocketName
+http://127.0.0.1:8000/quiz2w/className/rocketName
+http://127.0.0.1:8000/quiz2m/className/rocketName
+
 http://127.0.0.1:8000/register/
 {
 	"username": "testuser123",

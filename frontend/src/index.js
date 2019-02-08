@@ -20,6 +20,9 @@ import CreateRocket from "./components/CreateRocket.js";
 import Rocket from "./components/Rocket.js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
+import Quiz2D from "./components/Quiz2D";
+import Quiz2W from "./components/Quiz2W";
+import Quiz2M from "./components/Quiz2M";
 import CreateClass from "./components/CreateClass.js";
 import SendEmail from "./components/SendEmail.js";
 
@@ -42,7 +45,7 @@ ReactDOM.render(
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/settings" component={Settings} />
-          <Route path="/rockets" component={ Rocket } />
+          <Route path="/rockets" component={Rocket} />
           <Route path="/createRocket" component={CreateRocket} />
           <Route exact path="/classes" component={Classes} />
           <Route path="/createClass" component={CreateClass} />
@@ -54,8 +57,10 @@ ReactDOM.render(
                 <BillingForm {...props} fontSize={elementFontSize} />
               )}
             />
-            {/* <Route path="/billing" component={BillingForm fontSize={elementFontSize}} /> */}
           </Elements>
+          <Route path="/quiz2D/:className/:rocketName" component={Quiz2D} />
+          <Route path="/quiz2W/:className/:rocketName" component={Quiz2W} />
+          <Route path="/quiz2M/:className/:rocketName" component={Quiz2M} />
         </div>
       </Router>
     </StripeProvider>

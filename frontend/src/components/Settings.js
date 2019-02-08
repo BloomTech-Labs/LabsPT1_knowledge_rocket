@@ -16,6 +16,9 @@ class Settings extends Component {
   state = {
     newPassword: "",
     newEmail: "",
+    notify: false,
+    notifyMsg: "",
+    notifyMsg2: ""
   };
 
   handleInputChange = e => {
@@ -24,14 +27,26 @@ class Settings extends Component {
 
   handlePasswordSubmit = e => {
     e.preventDefault();
-    this.props.updatePassword( this.state.newPassword ); 
+    this.setState({ notify: false });
+    this.props.updatePassword({ newPassword: this.state.newPassword }); 
     this.setState({ newPassword: ''})
+
+    this.setState({
+      notify: true,
+      notifyMsg: "Your password has been updated."
+    });
   };
 
   handleEmailSubmit = e => {
     e.preventDefault();
+    this.setState({ notify: false });
     this.props.updateEmail({ newEmail: this.state.newEmail  }); 
     this.setState({ newEmail: ''})
+
+    this.setState({
+      notify: true,
+      notifyMsg2: "Your email has been updated."
+    });
   };
 
   render() {
@@ -66,6 +81,7 @@ class Settings extends Component {
                       Update
                     </Button>
                   </Form>
+                  <div>{this.state.notify ? <p>{this.state.notifyMsg}</p> : null}</div>
                   <Form>
                     <FormGroup>
                       
@@ -83,6 +99,7 @@ class Settings extends Component {
                       Update
                     </Button>
                     </Form>
+                    <div>{this.state.notify ? <p>{this.state.notifyMsg2}</p> : null}</div>
               </Col>
             </Row>
           </Col>
