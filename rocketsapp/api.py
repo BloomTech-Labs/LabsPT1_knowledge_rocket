@@ -372,10 +372,9 @@ class UpdateQuestion2D(generics.CreateAPIView):
 
 class GetQuestion2D(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
@@ -384,6 +383,7 @@ class GetQuestion2D(generics.CreateAPIView):
         question = list(Question2D.objects.filter(rocket = rocketQuery, className = classQuery, day2QuestionName = str(questionName)).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
+            "rocket": rocketName,
             "question": question
             })
         return response
@@ -424,10 +424,9 @@ class UpdateQuestion2W(generics.CreateAPIView):
 
 class GetQuestion2W(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
@@ -436,6 +435,7 @@ class GetQuestion2W(generics.CreateAPIView):
         question = list(Question2W.objects.filter(rocket = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
+            "rocket": rocketName,
             "question": question
             })
         return response
@@ -476,10 +476,9 @@ class UpdateQuestion2M(generics.CreateAPIView):
 
 class GetQuestion2M(generics.CreateAPIView):
     serializer_class = GetQuestionSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.AllowAny,)
 
     def post(self, request):
-        username = request.user
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
@@ -488,6 +487,7 @@ class GetQuestion2M(generics.CreateAPIView):
         question = list(Question2M.objects.filter(rocket = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
+            "rocket": rocketName,
             "question": question
             })
         return response

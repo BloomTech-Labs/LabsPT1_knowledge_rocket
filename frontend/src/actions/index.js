@@ -18,6 +18,7 @@ export const GET_CLASSES = 'GET_CLASSES';
 export const GET_ROCKETS_BY_CLASS = 'GET_ROCKETS_BY_CLASS';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
+export const GET_QUIZ = 'GET_QUIZ';
 
 
 // http://127.0.0.1:8000/ ** group deploy
@@ -45,36 +46,36 @@ export const registerUser = (user) => {
 };
 
 export const loginUser = (user) => {
-    return dispatch => {
-        dispatch({ type: LOADING });
-        dispatch({ type: CLEAR_ERROR });
-        dispatch({ type: CLEAR_REDIRECT });
-        axios
-          .post("http://127.0.0.1:8000/login/", user)
-          .then(response => {
-            const token = response.data.token;
-            localStorage.setItem("token", token);
-            dispatch({ type: LOGIN, payload: response.data });
-            dispatch({ type: REDIRECT });
-          })
-          .catch(error => {
-            dispatch({ type: CHANGE_LOADING });
-            dispatch({
-              type: ERROR,
-              payload: error.response.data.non_field_errors[0]
-            });
-            console.log(error.response.data);
-          });
-    };
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    dispatch({ type: CLEAR_REDIRECT });
+    axios
+      .post("http://127.0.0.1:8000/login/", user)
+      .then(response => {
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        dispatch({ type: LOGIN, payload: response.data });
+        dispatch({ type: REDIRECT });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({
+          type: ERROR,
+          payload: error.response.data.non_field_errors[0]
+        });
+        console.log(error.response.data);
+      });
+  };
 };
 
 export const logoutUser = () => {
   return dispatch => {
-      dispatch({ type: LOADING });
-      dispatch({ type: CLEAR_ERROR });
-      dispatch({ type: CLEAR_REDIRECT });
-      localStorage.clear();
-      dispatch({ type: CLEAR_STATE });
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    dispatch({ type: CLEAR_REDIRECT });
+    localStorage.clear();
+    dispatch({ type: CLEAR_STATE });
   };
 };
 
@@ -84,14 +85,14 @@ export const updatePassword = (updatePass) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post("http://127.0.0.1:8000/updatepassword/", updatePass, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .post("http://127.0.0.1:8000/updatepassword/", updatePass, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: UPDATE_PASSWORD, payload: response.data });
       })
       .catch(error => {
         dispatch({ type: CHANGE_LOADING });
         dispatch({ type: ERROR, payload: error.response.data.error });
-        console.log( error.response.data);
+        console.log(error.response.data);
       });
   };
 };
@@ -102,36 +103,38 @@ export const updateEmail = (updateEmail) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post("http://127.0.0.1:8000/updateuser/", updateEmail, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .post("http://127.0.0.1:8000/updateuser/", updateEmail, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: UPDATE_USER, payload: response.data });
       })
       .catch(error => {
         dispatch({ type: CHANGE_LOADING });
         dispatch({ type: ERROR, payload: error.response.data.error });
-        console.log( error.response.data);
+        console.log(error.response.data);
       });
   };
 };
 
 export const getUser = (userKey) => {
-    return dispatch => {
-        dispatch({ type: LOADING });
-        dispatch({ type: CLEAR_ERROR });
-        axios
-          .get("http://127.0.0.1:8000/getuser/", { 'headers': { 'Authorization': `token ${userKey}` }})
-          .then(response => {
-            dispatch({ type: GET_USER, payload: response.data });
-          })
-          .catch(error => {
-            dispatch({ type: CHANGE_LOADING });
-            dispatch({
-              type: ERROR,
-              payload: error.response.data.error
-            });
-            console.log(error.response.data);
-          });
-    };
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .get("http://127.0.0.1:8000/getuser/", {
+        headers: { Authorization: `token ${userKey}` }
+      })
+      .then(response => {
+        dispatch({ type: GET_USER, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({
+          type: ERROR,
+          payload: error.response.data.error
+        });
+        console.log(error.response.data);
+      });
+  };
 };
 
 export const getClass = (userKey) => {
@@ -139,7 +142,9 @@ export const getClass = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get("http://127.0.0.1:8000/getclasses/", { 'headers': { 'Authorization': `token ${userKey}` } })
+      .get("http://127.0.0.1:8000/getclasses/", {
+        headers: { Authorization: `token ${userKey}` }
+      })
       .then(response => {
         dispatch({ type: GET_CLASSES, payload: response.data });
       })
@@ -152,24 +157,26 @@ export const getClass = (userKey) => {
 };
 
 export const createRocket = (rocket) => {
-    return dispatch => {
-        dispatch({ type: LOADING });
-        dispatch({ type: CLEAR_ERROR });
-        const userKey = localStorage.getItem('token')
-        axios
-          .post("http://127.0.0.1:8000/addrocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
-          .then(response => {
-            dispatch({ type: CREATE_ROCKET, payload: response.data });
-          })
-          .catch(error => {
-            dispatch({ type: CHANGE_LOADING });
-            dispatch({
-              type: ERROR,
-              payload: error.response.data.error
-            });
-            console.log(error.response.data);
-          });
-    };
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem('token');
+    axios
+      .post("http://127.0.0.1:8000/addrocket/", rocket, {
+        headers: { Authorization: `token ${userKey}` }
+      })
+      .then(response => {
+        dispatch({ type: CREATE_ROCKET, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({
+          type: ERROR,
+          payload: error.response.data.error
+        });
+        console.log(error.response.data);
+      });
+  };
 };
 
 export const addStudent = (student) => {
@@ -216,22 +223,22 @@ export const getStudents = (className) => {
   };
 };
 
-export const getClasses = () => {
-  return dispatch => {
-      dispatch({ type: LOADING });
-      dispatch({ type: CLEAR_ERROR });
-      const userKey = localStorage.getItem('token')
-      axios
-        .get("http://127.0.0.1:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
-        .then(response => {
-          dispatch({ type: GET_CLASSES, payload: response.data });
-        })
-        .catch(error => {
-          dispatch({ type: CHANGE_LOADING });
-          dispatch({ type: ERROR, payload: error.response.data.error });
-          console.log( error.response.data);
-        });
-  };
+export const getClasses = () => {	
+  return dispatch => {	
+      dispatch({ type: LOADING });	
+      dispatch({ type: CLEAR_ERROR });	
+      const userKey = localStorage.getItem('token')	
+      axios	
+        .get("http://127.0.0.1:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
+        .then(response => {	
+          dispatch({ type: GET_CLASSES, payload: response.data });	
+        })	
+        .catch(error => {	
+          dispatch({ type: CHANGE_LOADING });	
+          dispatch({ type: ERROR, payload: error.response.data.error });	
+          console.log( error.response.data);	
+        });	
+  };	
 };
 
 export const getRocketsByClassName = (clsName) => {
@@ -305,7 +312,9 @@ export const getRockets = (userKey, className) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post("http://127.0.0.1:8000/getrockets/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .post("http://127.0.0.1:8000/getrockets/", className, {
+        headers: { Authorization: `token ${userKey}` }
+      })
       .then(response => {
         dispatch({ type: GET_ROCKETS, payload: response.data });
       })
@@ -316,3 +325,56 @@ export const getRockets = (userKey, className) => {
       });
   };
 };
+
+export const get_2_Day = (request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("http://127.0.0.1:8000/getquestion2d/", request)
+      .then(response => {
+        dispatch({ type: GET_QUIZ, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+}
+
+export const get_2_Week = (request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+  
+    axios
+      .post("http://127.0.0.1:8000/getquestion2w/", request)
+      .then(response => {
+        dispatch({ type: GET_QUIZ, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
+
+export const get_2_Month = (request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("http://127.0.0.1:8000/getquestion2m/", request)
+      .then(response => {
+        dispatch({ type: GET_QUIZ, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
+
