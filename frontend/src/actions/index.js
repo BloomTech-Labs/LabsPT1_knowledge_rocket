@@ -137,7 +137,7 @@ export const getUser = (userKey) => {
   };
 };
 
-export const getClass = (userKey) => {
+export const getClasses = (userKey) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
