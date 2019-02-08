@@ -21,9 +21,7 @@ import Rocket from "./components/Rocket.js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
 import CreateClass from "./components/CreateClass.js";
-import SendQ2D from "./components/SendQ2D.js";
-import SendQ2W from "./components/SendQ2W.js";
-import SendQ2M from "./components/SendQ2M.js";
+import SendEmail from "./components/SendEmail.js";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -48,9 +46,7 @@ ReactDOM.render(
           <Route path="/createRocket" component={CreateRocket} />
           <Route exact path="/classes" component={Classes} />
           <Route path="/createClass" component={CreateClass} />
-          <Route path="/createQuiz2D" component={SendQ2D} />
-          <Route path="/createQuiz2W" component={SendQ2W} />
-          <Route path="/createQuiz2M" component={SendQ2M} />
+          <Route path="/createEmail" component={SendEmail} />
           <Elements>
             <Route
               path="/billing"

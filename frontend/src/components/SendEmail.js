@@ -11,7 +11,8 @@ class Send2D extends Component {
         className: "",
         rocketName: "",
         emailTitle:"",
-        emailMessage:""
+        emailMessage:"",
+        interval: ""
     };
 
     getRocket2D = () => {
@@ -20,6 +21,7 @@ class Send2D extends Component {
         rocketName: this.state.rocketName
       }
       this.props.get_2_Day(request);
+      this.setState({ interval: 'quiz2d' })
 
     };
     getRocket2W = () => {
@@ -28,6 +30,8 @@ class Send2D extends Component {
             rocketName: this.state.rocketName
         }
         this.props.get_2_Week(request);
+        this.setState({ interval: 'quiz2w' })
+
 
     };
     getRocket2M = () => {
@@ -36,16 +40,20 @@ class Send2D extends Component {
         rocketName: this.state.rocketName
       }
       this.props.get_2_Month(request);
+      this.setState({ interval: 'quiz2m' })
+
 
     };
     buildAndSendEmail = () => {
+        const userKey = localStorage.getItem('token')
+
         const request = {
             className: this.state.className,
             title: this.state.emailTitle,
             message: this.state.emailMessage,
-            url:`http://127.0.0.1:8000/quiz2d/${this.props.state.question.class}/${this.props.state.question.rocket}`
+            url:`http://127.0.0.1:3000/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`
           }
-          this.props.sendEmail(request);
+          this.props.sendEmail(userKey, request);
     
     }
 
@@ -155,7 +163,7 @@ class Send2D extends Component {
               <FormGroup>
                 <Input type="text" name="emailTitle" placeholder="emailTitle" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
                 <Input type="text" name="emailMessage" placeholder="emailMessage" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
-                <h1> URL preview: {`http://127.0.0.1:8000/quiz2d/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h1>
+                <h5> URL preview: {`http://127.0.0.1:3000/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
                 <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>
               </FormGroup>
             </Form>
