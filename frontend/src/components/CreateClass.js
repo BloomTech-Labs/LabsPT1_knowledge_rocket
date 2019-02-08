@@ -111,10 +111,10 @@ class CreateClass extends Component {
                                         </Col>
                                         <Col lg="5">
                                         <FormGroup check className="create-class-cc-checkbox">
-                                            <Label check>
+                                            {/* <Label check>
                                                 <Input type="checkbox" />{' '}
                                                 <span>CC Me On Rocket Emails</span>
-                                            </Label>
+                                            </Label> */}
                                         </FormGroup>
                                         </Col>
                                     </Row>
@@ -140,10 +140,11 @@ class CreateClass extends Component {
                                                 placeholder="Last Name"
                                                 value={this.state.studentLastName}
                                                 onChange={this.handleChange}
+                                                required
                                             />
-                                            <FormText className="create-class-help-text" >
+                                            {/* <FormText className="create-class-help-text" >
                                                         *required.
-                                            </FormText>  
+                                            </FormText>   */}
                                         </Col>
                                         <Col lg="3">
                                             <Input className="stdnt-input"
@@ -154,24 +155,26 @@ class CreateClass extends Component {
                                                 placeholder="First Name"
                                                 value={this.state.studentFirstName}
                                                 onChange={this.handleChange}
+                                                required
                                             />
-                                            <FormText className="create-class-help-text" >
+                                            {/* <FormText className="create-class-help-text" >
                                                         *required.
-                                            </FormText>
+                                            </FormText> */}
                                         </Col>
                                         <Col lg="4">
                                             <Input className="stdnt-input"
                                                 type="email" 
                                                 name="studentEmail" 
                                                 id="email" 
-                                                maxLength="50"
+                                                maxLength="256"
                                                 placeholder="Email"
                                                 value={this.state.studentEmail}
                                                 onChange={this.handleChange}
+                                                required
                                             />
-                                            <FormText className="create-class-help-text" >
+                                            {/* <FormText className="create-class-help-text" >
                                                         *required.
-                                            </FormText>
+                                            </FormText> */}
                                         </Col>
                                         <Col lg="2" className="create-student-btn">
                                                 <Input className="create-student-img" type="image" src={add_icon} alt="Add Class" />
