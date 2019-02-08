@@ -19,11 +19,7 @@ export const GET_ROCKETS_BY_CLASS = 'GET_ROCKETS_BY_CLASS';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
 export const GET_QUIZ = 'GET_QUIZ';
-<<<<<<< HEAD
 export const SEND_EMAIL = 'SEND_EMAIL';
-=======
->>>>>>> master
-
 
 // http://127.0.0.1:8000/ ** group deploy
 // http://127.0.0.1:8000/ **quick ref local deploy
@@ -351,11 +347,7 @@ export const get_2_Week = (request) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> master
     axios
       .post("http://127.0.0.1:8000/getquestion2w/", request)
       .then(response => {
@@ -386,7 +378,6 @@ export const get_2_Month = (request) => {
   };
 };
 
-<<<<<<< HEAD
 export const sendEmail = (userKey, request) => {
   return dispatch => {
     dispatch({ type: LOADING });
