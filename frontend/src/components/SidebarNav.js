@@ -51,6 +51,9 @@ class Sidebar_Nav extends Component {
                 <NavLink href="billing">Billing</NavLink>
               </NavItem>
               <NavItem>
+                <NavLink href="createEmail">Email</NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink href="settings">Settings</NavLink>
               </NavItem>
               <NavItem>

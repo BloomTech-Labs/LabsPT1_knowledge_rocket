@@ -24,6 +24,7 @@ import Quiz2D from "./components/Quiz2D";
 import Quiz2W from "./components/Quiz2W";
 import Quiz2M from "./components/Quiz2M";
 import CreateClass from "./components/CreateClass.js";
+import SendEmail from "./components/SendEmail.js";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -48,6 +49,7 @@ ReactDOM.render(
           <Route path="/createRocket" component={CreateRocket} />
           <Route exact path="/classes" component={Classes} />
           <Route path="/createClass" component={CreateClass} />
+          <Route path="/createEmail" component={SendEmail} />
           <Elements>
             <Route
               path="/billing"

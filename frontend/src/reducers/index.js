@@ -17,6 +17,10 @@ import {
     UPDATE_PASSWORD,
     UPDATE_USER,
     GET_QUIZ,
+<<<<<<< HEAD
+    SEND_EMAIL
+=======
+>>>>>>> master
 
 } from '../actions';
 
@@ -35,7 +39,10 @@ const defaultState = {
     students: [],
     classes: [],
     classRockets: [],
-    rocket: ''
+    rocket: '',
+    question: "",
+    emailConfirmation: ''
+
 }
 
 export default (state = defaultState, action) => {
@@ -100,6 +107,12 @@ export default (state = defaultState, action) => {
 
         case GET_ROCKETS_BY_CLASS:
             return { ...state, classRockets: action.payload }
+        
+        case GET_QUIZ:
+            return { ...state, question: action.payload, success: true };
+
+        case SEND_EMAIL:
+            return { ...state, emailConfirmation: action.payload, success:true };
 
         default:
             return state;
