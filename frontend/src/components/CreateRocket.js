@@ -58,9 +58,7 @@ class CreateRocket extends Component {
   
   handleSubmit = e => {
     e.preventDefault();
-
     this.props.createRocket(this.state)
-
   }
 
   handleRadioSelect = e => {
@@ -80,6 +78,15 @@ class CreateRocket extends Component {
             <Row className="rkt-content">
                 <Form className="f">
                 <h2>Create a Rocket</h2>
+                  <Input className="m-input"
+                        type="text"
+                        name="className"
+                        placeholder="class Name"
+                        id="className"
+                        maxLength="95"
+                        value={this.state.className}
+                        onChange={this.handleInputChange}
+                      />
                   <FormGroup className="fg">
                     <Input
                       type="text"
