@@ -18,6 +18,8 @@ export const GET_CLASSES = 'GET_CLASSES';
 export const GET_ROCKETS_BY_CLASS = 'GET_ROCKETS_BY_CLASS';
 export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
 export const UPDATE_USER = 'UPDATE_USER';
+export const GET_QUIZ = 'GET_QUIZ';
+export const SEND_EMAIL = 'SEND_EMAIL';
 
 
 // http://127.0.0.1:8000/ ** group deploy
@@ -316,3 +318,76 @@ export const getRockets = (userKey, className) => {
       });
   };
 };
+
+export const get_2_Day = (request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("http://127.0.0.1:8000/getquestion2d/", request)
+      .then(response => {
+        dispatch({ type: GET_QUIZ, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+}
+
+export const get_2_Week = (request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+
+    axios
+      .post("http://127.0.0.1:8000/getquestion2w/", request)
+      .then(response => {
+        dispatch({ type: GET_QUIZ, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
+
+export const get_2_Month = (request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("http://127.0.0.1:8000/getquestion2m/", request)
+      .then(response => {
+        dispatch({ type: GET_QUIZ, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
+
+export const sendEmail = (userKey, request) => {
+  return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    axios
+      .post("http://127.0.0.1:8000/buildemail/", request, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .then(response => {
+        dispatch({ type: SEND_EMAIL, payload: response.data });
+      })
+      .catch(error => {
+        dispatch({ type: CHANGE_LOADING });
+        dispatch({ type: ERROR, payload: error.response.data.error });
+        console.log(error.response.data);
+      });
+  };
+};
+
+
+
+
