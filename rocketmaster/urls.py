@@ -29,12 +29,8 @@ from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, \
                            GetQuestion2W, GetQuestion2M, UpdateClass, UpdateStudent, \
                            UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, \
                            UpdateQuestion2M, CreateSubscription, GetRocketsByClassName, \
-<<<<<<< HEAD
-                           RemoveStudent, BuildEmail
-=======
                            RemoveStudent, \
                            BuildEmail
->>>>>>> master
 
 # endpoints for oAuth
 oauth2_endpoint_views = [

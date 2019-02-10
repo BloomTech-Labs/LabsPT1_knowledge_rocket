@@ -590,7 +590,7 @@ class BuildEmail(generics.CreateAPIView):
 
             send_mail(
                 f'{title}',
-                f'{message} \n {url}',
+                f'{message} \n <{url}>',
                 f'{teacherEmail}',
                 studentList,
                 fail_silently=False,

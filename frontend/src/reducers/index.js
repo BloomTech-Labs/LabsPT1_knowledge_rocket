@@ -17,10 +17,7 @@ import {
     UPDATE_PASSWORD,
     UPDATE_USER,
     GET_QUIZ,
-<<<<<<< HEAD
     SEND_EMAIL
-=======
->>>>>>> master
 
 } from '../actions';
 
