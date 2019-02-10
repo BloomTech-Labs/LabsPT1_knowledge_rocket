@@ -6,7 +6,11 @@ from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
 from django.core.mail import send_mail
-from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer, EmailSerializer
+from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, \
+                        UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, \
+                        UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, \
+                        UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer, \
+                        EmailSerializer
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
@@ -590,7 +594,7 @@ class BuildEmail(generics.CreateAPIView):
 
             send_mail(
                 f'{title}',
-                f'{message} \n <{url}>',
+                f'{message} \n {url}',
                 f'{teacherEmail}',
                 studentList,
                 fail_silently=False,
