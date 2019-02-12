@@ -10,13 +10,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <header>
-        <Link to={"/login"}><Button className="btn">Login</Button></Link>
-        <Link to={"/register"}><Button className="btn">Sign Up</Button></Link>
-      </header>
+      
         <Container>
           <Row>
-            <h1>Knowledge Rocket</h1>
+            <h1 id="kr">Knowledge Rocket</h1>
           </Row>
           <Row>
             <div id="moon"></div>
@@ -41,6 +38,10 @@ class App extends Component {
                 <div className="fourth-text">Through virtual online quizzes</div>
               </div>
           </Row>
+          <header>
+            <Link to={ "/login" }><Button className="btn">Login</Button></Link>
+            <Link to={ "/register" }><Button className="btn">Sign Up</Button></Link>
+          </header>
         </Container>
       </div>
     );
