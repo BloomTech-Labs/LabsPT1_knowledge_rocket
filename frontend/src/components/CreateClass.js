@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import "react-datepicker/dist/react-datepicker.css";
 
 import { Link } from "react-router-dom";
-import { Button, Form, Label, CardBody, Input, 
+import { Form, CardBody, Input, 
          FormGroup, Container, Row, Col, Card,
-         Badge, CardTitle, FormText, Alert 
+         CardTitle, Alert 
         } from "reactstrap";
 
 import RemoveStudent from './RemoveStudent';

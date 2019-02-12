@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import { Button, Form, Label, Input, FormGroup } from "reactstrap";
+import { Button, Form, Input, FormGroup } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";

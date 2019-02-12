@@ -51,7 +51,7 @@ class Send2D extends Component {
             className: this.state.className,
             title: this.state.emailTitle,
             message: this.state.emailMessage,
-            url:`http://127.0.0.1:3000/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`
+            url:`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`
           }
           this.props.sendEmail(userKey, request);
     
@@ -77,95 +77,14 @@ class Send2D extends Component {
                         <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
                         <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
                     </FormGroup>
-                  <FormGroup>
-                    {this.props.state.question ? (
-                      <div>
-                        <h3>{this.props.state.question.class}</h3>
-                        <h3>{this.props.state.question.rocket} - Two Day Boost</h3>
-                        <p>
-                          {this.props.state.question.question[0].day2ReviewText}
-                        </p>
-                      </div>
-                    ) : null}
-                  </FormGroup>
-                </Col>
+                    <FormGroup>
+                        <Input type="text" name="emailTitle" placeholder="emailTitle" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
+                        <Input type="text" name="emailMessage" placeholder="emailMessage" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
+                        <h5> URL preview: {`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
+                        <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>
+                    </FormGroup>
+                  </Col>
               </Row>
-              <Row>
-                <Col>
-                  <FormGroup>
-                    <h3>Question:</h3>
-                    {this.props.state.question ? (
-                      <p>
-                        {this.props.state.question.question[0].day2QuestionText}
-                      </p>
-                    ) : null}
-                  </FormGroup>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <FormGroup tag="fieldset">
-                    {this.props.state.question ? (
-                      <div>
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="radio"
-                              name="radio1"
-                              value="day2AnswerA"
-                              id="A"
-                              onChange={this.handleRadioSelect}
-                            />{" "}
-                            {this.props.state.question.question[0].day2AnswerA}
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="radio"
-                              name="radio1"
-                              value="day2AnswerB"
-                              id="B"
-                              onChange={this.handleRadioSelect}
-                            />{" "}
-                            {this.props.state.question.question[0].day2AnswerB}
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check disabled>
-                          <Label check>
-                            <Input
-                              type="radio"
-                              name="radio1"
-                              id="C"
-                              value="day2AnswerC"
-                              onChange={this.handleRadioSelect}
-                            />{" "}
-                            {this.props.state.question.question[0].day2AnswerC}
-                          </Label>
-                        </FormGroup>
-                        <FormGroup check disabled>
-                          <Label check>
-                            <Input
-                              type="radio"
-                              name="radio1"
-                              value="day2AnswerD"
-                              id="D"
-                              onChange={this.handleRadioSelect}
-                            />{" "}
-                            {this.props.state.question.question[0].day2AnswerD}
-                          </Label>
-                        </FormGroup>
-                      </div>
-                    ) : null}
-                  </FormGroup>
-                </Col>
-              </Row>
-              <FormGroup>
-                <Input type="text" name="emailTitle" placeholder="emailTitle" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
-                <Input type="text" name="emailMessage" placeholder="emailMessage" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
-                <h5> URL preview: {`http://127.0.0.1:3000/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
-                <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>
-              </FormGroup>
             </Form>
           </Container>
         );
