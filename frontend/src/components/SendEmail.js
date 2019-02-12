@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Container, Row, Col } from "reactstrap";
-import { Button, Form, Input, FormGroup, Label } from "reactstrap";
+import { Button, Form, Input, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
 import { get_2_Day, get_2_Week, get_2_Month, sendEmail } from "../actions";
 import "../css/Quiz.css";
@@ -12,35 +12,48 @@ class Send2D extends Component {
         rocketName: "",
         emailTitle:"",
         emailMessage:"",
-        interval: ""
+        interval: "",
+        unixTimeStamp: ""
     };
 
     getRocket2D = () => {
       const request = {
         className: this.state.className,
-        rocketName: this.state.rocketName
+        rocketName: this.state.rocketName,
       }
+      const createBatchInterval = (Date.now() + 86400*2*1000)
       this.props.get_2_Day(request);
-      this.setState({ interval: 'quiz2d' })
+      this.setState({ 
+        interval: 'quiz2d',
+        unixTimeStamp: createBatchInterval 
+      })
 
     };
     getRocket2W = () => {
         const request = {
             className: this.state.className,
-            rocketName: this.state.rocketName
+            rocketName: this.state.rocketName,
         }
+        const createBatchInterval = (Date.now() + 604800*2*1000)
         this.props.get_2_Week(request);
-        this.setState({ interval: 'quiz2w' })
+        this.setState({ 
+          interval: 'quiz2w',
+          unixTimeStamp: createBatchInterval 
+        })
 
 
     };
     getRocket2M = () => {
       const request = {
         className: this.state.className,
-        rocketName: this.state.rocketName
+        rocketName: this.state.rocketName,
       }
+      const createBatchInterval = (Date.now() + 2629743*2*1000)
       this.props.get_2_Month(request);
-      this.setState({ interval: 'quiz2m' })
+      this.setState({
+         interval: 'quiz2m',
+         unixTimeStamp: createBatchInterval
+      })
 
 
     };
@@ -51,7 +64,8 @@ class Send2D extends Component {
             className: this.state.className,
             title: this.state.emailTitle,
             message: this.state.emailMessage,
-            url:`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`
+            url:`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`,
+            unixTimeStamp: this.state.unixTimeStamp
           }
           this.props.sendEmail(userKey, request);
     

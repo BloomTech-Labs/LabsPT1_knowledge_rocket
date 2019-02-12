@@ -5,7 +5,8 @@ from .models import Rocket, Class, Question2D, Question2M, Question2W, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+from smtpapi import SMTPAPIHeader
 from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, \
                         UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, \
                         UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, \
@@ -587,21 +588,24 @@ class BuildEmail(generics.CreateAPIView):
         title = request.data.get("title")
         message = request.data.get("message")
         className = request.data.get("className")
-
+        unixTimeStamp = request.data.get('unixTimeStamp')
+        # smtpHeader = {
+        #     "send_at": unixTimeStamp
+        # }
         className = Class.objects.get(className = className)
         studentList = list(Student.objects.filter(className = className).values_list("studentEmail", flat=True))
         if(studentList):
 
-            send_mail(
+            emailBatch = EmailMessage(
                 f'{title}',
                 f'{message} \n {url}',
                 f'{teacherEmail}',
-                studentList,
-                fail_silently=False,
+                to=studentList,
+                # headers={"x-smtpapi": json.dumps(smtpHeader)}
             )
+            emailBatch.send(fail_silently=False)
 
             return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
 
         else:
             return JsonResponse( {"error": "Need a list of students to send emails to"}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
- 

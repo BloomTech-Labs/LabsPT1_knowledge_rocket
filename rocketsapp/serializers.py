@@ -106,3 +106,4 @@ class EmailSerializer(serializers.Serializer):
     className = serializers.CharField(max_length=100)
     message = serializers.CharField(max_length=512)
     title = serializers.CharField(max_length=100)
+    unixTimeStamp = serializers.DateTimeField(input_formats=['%d'])
