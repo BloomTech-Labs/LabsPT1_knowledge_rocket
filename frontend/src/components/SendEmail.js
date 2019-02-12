@@ -70,20 +70,102 @@ class Send2D extends Component {
             <Form>
               <Row>
                 <Col>
-                    <FormGroup>
-                        <Input type="text" name="className" placeholder="className" id="className" maxLength="95" value={this.state.className} onChange={this.handleInputChange} />
-                        <Input type="text" name="rocketName" placeholder="rocketName" id="rocketName" maxLength="95" value={this.state.rocketName} onChange={this.handleInputChange} />
-                        <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
-                        <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
-                        <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="text" name="emailTitle" placeholder="emailTitle" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
-                        <Input type="text" name="emailMessage" placeholder="emailMessage" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
-                        <h5> URL preview: {`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
-                        <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>
-                    </FormGroup>
-                  </Col>
+                  <FormGroup>
+                    <Input type="text" name="className" placeholder="className" id="className" maxLength="95" value={this.state.className} onChange={this.handleInputChange} />
+                    <Input type="text" name="rocketName" placeholder="rocketName" id="rocketName" maxLength="95" value={this.state.rocketName} onChange={this.handleInputChange} />
+                  </FormGroup>
+                      <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
+                      <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
+                      <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
+                  <FormGroup>
+                    <Input type="text" name="emailTitle" placeholder="emailTitle" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
+                    <Input type="text" name="emailMessage" placeholder="emailMessage" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
+                    <h5> URL preview: {`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
+                  </FormGroup>
+                    <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>
+                  <FormGroup>
+                    {this.props.state.question && this.state.interval === "quiz2d" ? (
+                      <div>
+                        <h3>{this.props.state.question.class}</h3>
+                        <h3>{this.props.state.question.rocket} - Two Day Boost</h3>
+                        <p>
+                          {this.props.state.question.question[0].day2ReviewText}
+                        </p>
+                        <p>
+                          {this.props.state.question.question[0].day2QuestionText}
+                        </p>
+                        <h4>Answers:</h4>
+                        <div>
+                          <div>
+                            {this.props.state.question.question[0].day2AnswerA}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].day2AnswerB}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].day2AnswerC}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].day2AnswerD}
+                          </div>
+                        </div>
+                      </div>
+                    ) : this.props.state.question && this.state.interval === "quiz2w" ? (
+                      <div>
+                        <h3>{this.props.state.question.class}</h3>
+                        <h3>{this.props.state.question.rocket} - Two Week Boost</h3>
+                        <p>
+                          {this.props.state.question.question[0].week2ReviewText}
+                        </p>
+                        <p>
+                          {this.props.state.question.question[0].week2QuestionText}
+                        </p>
+                        <h4>Answers:</h4>
+                        <div>
+                          <div>
+                            {this.props.state.question.question[0].week2AnswerA}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].week2AnswerB}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].week2AnswerC}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].week2AnswerD}
+                          </div>
+                        </div>
+                      </div>
+                    ) : this.props.state.question && this.state.interval === "quiz2m" ? (
+                      <div>
+                        <h3>{this.props.state.question.class}</h3>
+                        <h3>{this.props.state.question.rocket} - Two Month Boost</h3>
+                        <p>
+                          {this.props.state.question.question[0].month2ReviewText}
+                        </p>
+                        <p>
+                          {this.props.state.question.question[0].month2QuestionText}
+                        </p>
+                        <h4>Answers:</h4>
+                        <div>
+                          <div>
+                            {this.props.state.question.question[0].month2AnswerA}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].month2AnswerB}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].month2AnswerC}
+                          </div>
+                          <div>
+                            {this.props.state.question.question[0].month2AnswerD}
+                          </div>
+                        </div>
+                      </div>
+                    ) : null
+                    }
+                  </FormGroup>
+                </Col>
               </Row>
             </Form>
           </Container>
