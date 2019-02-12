@@ -61,10 +61,10 @@ class Login extends Component {
                     />
                   </FormGroup>
                   <div className="func-btn">
-                      <Button color="info" onClick={this.handleSubmit}>
+                      <Button type = "submit" onClick={this.handleSubmit}>
                         Login
                       </Button>
-                      <Link to={"/"}> <Button color="info">
+                      <Link to={"/"}> <Button>
                         Home
                       </Button> 
                       </Link>
