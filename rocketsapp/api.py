@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
 from django.core.mail import EmailMessage
-from smtpapi import SMTPAPIHeader
 from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, \
                         UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, \
                         UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, \
