@@ -1,23 +1,31 @@
-
 .sidebar {
     display: flex;
-    right: 50%;
     align-items: flex-start;
-    border-radius: 35px;
     margin-bottom: 15px;
 }
-a.nav-link {
-    border-radius: 35px
 
+a.nav-link {
+    border-radius: 35px;
+    font-size: 1rem;
 }
+
 a.nav-link:hover {
     color: white !important;
     background-color: #ff7400;
     border-radius: 10px;
 }
 
+.nav-header.navbar-brand {
+    font-weight: bolder;
+}
+
 @media (min-width: 992px) {
+    .navbar-brand {
+       font-size: 90%;
+    }
     .sidebar {
+        min-width: 100%;
+        border-radius: 25px;
         display: flex;
         border-radius: 15px;
         align-items: flex-start;
@@ -31,7 +39,7 @@ a.nav-link:hover {
     a.nav-link {
         display: block;
         position: relative;
-        width: 230px;
+        width: 150%;
         top: 3rem;
         right: 15rem;
         font-size: 1.5rem;
@@ -49,9 +57,7 @@ a.nav-link:hover {
     .navbar-nav {
         margin: 0;
     }
-    .navbar-expand-sm .navbar-nav {
+    .navbar-expand-md .navbar-nav {
         flex-direction: column;
     }
 }
-
-

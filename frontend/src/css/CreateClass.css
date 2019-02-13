@@ -1,4 +1,4 @@
-.create-class-cc-checkbox {
+/* .create-class-cc-checkbox {
     padding: 0;
     margin: 0;
     margin-left: 0.5rem;
@@ -39,22 +39,18 @@ button.btn {
     width: 15rem;
     transform: scale(0.8);
     background: #fff;
-    /* fallback for browsers that don't understand rgba */
     border: solid 2px #ff7400;
-    /* fallback for browsers that don't understand rgba */
     background-color: #ff7400;
-    /* slighly transparent white */
     border-color: #ff7400;
-    /*Very transparent black*/
     color: white;
     font-size: 2rem;
     font-weight: bold;
     box-shadow: 0 0 0 #ff7400;
-}
+} */
 
-.create-class-rocket-box {
+/* .create-class-rocket-box {
     padding-left: 0.2rem;
-    padding-right:0.2rem;
+    padding-right: 0.2rem;
     margin: 0 auto;
     display: inline;
 }
@@ -63,8 +59,7 @@ button.btn {
     content: "Lesson";
 }
 
-.create-class-date-picker, .create-class-date-picker .react-datepicker-wrapper,
-.create-class-date-picker .react-datepicker__input-container {
+.create-class-date-picker, .create-class-date-picker .react-datepicker-wrapper, .create-class-date-picker .react-datepicker__input-container {
     display: inline;
 }
 
@@ -119,20 +114,16 @@ input.m-input {
     .create-class-sidebar {
         height: auto;
     }
-
     .create-class-contents {
         height: 100%;
         width: 150%;
     }
-
     .create-student-input {
         width: 100% !important;
     }
-
     .create-class-modal {
         width: 100% !important;
     }
-
     .create-student-img {
         padding: 0;
         margin: 0 !important;
@@ -140,13 +131,12 @@ input.m-input {
         width: 50% !important;
         height: 85%;
     }
-
     .create-student-btn {
         margin-top: 1%;
     }
-} */
+}
 
-
+*/
 
 create-class-sidebar {
     height: auto;
@@ -223,19 +213,17 @@ button.btn {
     width: 15rem;
     transform: scale(0.8);
     background: #fff;
-    /* fallback for browsers that don't understand rgba */
     border: solid 2px #ff7400;
-    /* fallback for browsers that don't understand rgba */
     background-color: #ff7400;
-    /* slighly transparent white */
     border-color: #ff7400;
-    /*Very transparent black*/
     color: white;
     font-size: 2rem;
     font-weight: bold;
     box-shadow: 0 0 0 #ff7400;
 }
 
+*/
+/* 
 .create-class-rocket-box {
     padding-left: 0.2rem;
     padding-right:0.2rem;
@@ -276,15 +264,15 @@ button.btn {
 input.m-input {
     width: 90%;
     display: block;
-}
+} */
 
 @media screen and (min-width: 992px) {
-    .create-class-sidebar {
+    /* .create-class-sidebar {
         height: auto;
     }
 
     .create-class-contents {
         height: 100%;
         width: 150%;
-    }
+    } */
 }
