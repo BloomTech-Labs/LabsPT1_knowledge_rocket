@@ -1,4 +1,4 @@
-.answerChoices {
+/* .answerChoices {
     display: flex;
     flex-wrap: wrap;
     width: 40vw;
@@ -14,7 +14,8 @@
     max-width: 65%;
     align-items: center;
 }
-img.card-img{
+
+img.card-img {
     margin-left: 35px;
 }
 
@@ -22,14 +23,16 @@ img.card-img{
     width: 24vw;
     height: 10vh;
 }
+
 .Textarea {
     width: 100%;
 }
 
- /* form */
- .rkt-content {
-     width: 150%;
- }
+
+
+.rkt-content {
+    width: 150%;
+}
 
 .f {
     display: flex;
@@ -41,13 +44,14 @@ img.card-img{
     border-bottom: 2px solid black;
 }
 
- /* form-group */
+
+
 .fg {
-     margin-top: 5%;
-     left: 2%;
-     font-size: 1.2rem;
-     font-weight: 600;
-     width: 90%;
+    margin-top: 5%;
+    left: 2%;
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 90%;
 }
 
 .fg input {
@@ -61,29 +65,31 @@ img.card-img{
     width: 110%;
 }
 
- .rocketDesc {
+.rocketDesc {
     margin-bottom: 5%;
     color: #6c757d;
 }
 
- label {
-    font-weight: bold;   
-  }
+label {
+    font-weight: bold;
+}
 
-   @media (min-width: 992px) {
-      .f {
-          margin-top: 0;
-      }
-      .fg {
-          margin: 5% 0 0 0;
-      }
-      .fg input {
-          margin-left: 0;
-      }
-  }
+@media (min-width: 992px) {
+    .f {
+        margin-top: 0;
+    }
+    .fg {
+        margin: 5% 0 0 0;
+    }
+    .fg input {
+        margin-left: 0;
+    }
+}
+
 #questionName {
     width: 50%;
 }
+
 .rkt-btn {
     margin-top: 5%;
     -moz-border-radius: 10px;
@@ -92,15 +98,11 @@ img.card-img{
     width: 15rem;
     transform: scale(0.8);
     background: #fff;
-    /* fallback for browsers that don't understand rgba */
     border: solid 2px #ff7400;
-    /* fallback for browsers that don't understand rgba */
     background-color: #ff7400;
-    /* slighly transparent white */
     border-color: #ff7400;
-    /*Very transparent black*/
     color: white;
     font-size: 2rem;
     font-weight: bold;
     box-shadow: 0 0 0 #ff7400;
-  }
+} */

@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
+<<<<<<< HEAD
 import { Row, Col, Container, Form, FormGroup, Label, Input, Button  } from 'reactstrap';
+=======
+import { Row, Col, Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
+>>>>>>> master
 import SidebarNav from "./SidebarNav";
 import "../css/Billing.css";
 
@@ -77,6 +81,7 @@ class BillingForm extends Component {
               </Col>
             </Row>
             <Row>
+              <Col>
               <Form onSubmit={this.submit}>
                 <FormGroup>
                   <Label className="cc-text" for="cardNumber">Card number</Label>
@@ -135,7 +140,7 @@ class BillingForm extends Component {
                 
                 <Button>Buy Now</Button>
               </Form>
-              
+              </Col>
             </Row>
             
             </Col>
