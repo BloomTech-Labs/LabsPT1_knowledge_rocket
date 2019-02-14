@@ -22,11 +22,11 @@ class Send2D extends Component {
         rocketName: this.state.rocketName,
       }
       const createBatchInterval = (Date.now() + 86400*2*1000)
-      this.props.get_2_Day(request);
       this.setState({ 
         interval: 'quiz2d',
         unixTimeStamp: createBatchInterval 
       })
+      this.props.get_2_Day(request);
     }
 
     getRocket2W = () => {
@@ -61,7 +61,9 @@ class Send2D extends Component {
             title: this.state.emailTitle,
             message: this.state.emailMessage,
             url:`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`,
-            unixTimeStamp: this.state.unixTimeStamp
+            unixTimeStamp: this.state.unixTimeStamp,
+            interval: this.state.interval,
+            rocketName: this.state.rocketName
           }
           this.props.sendEmail(userKey, request);
     }
@@ -79,15 +81,15 @@ class Send2D extends Component {
               <Row>
                 <Col>
                   <FormGroup>
-                    <Input type="text" name="className" placeholder="className" id="className" maxLength="95" value={this.state.className} onChange={this.handleInputChange} />
-                    <Input type="text" name="rocketName" placeholder="rocketName" id="rocketName" maxLength="95" value={this.state.rocketName} onChange={this.handleInputChange} />
+                    <Input type="text" name="className" placeholder="Class Name" id="className" maxLength="95" value={this.state.className} onChange={this.handleInputChange} />
+                    <Input type="text" name="rocketName" placeholder="Rocket Name" id="rocketName" maxLength="95" value={this.state.rocketName} onChange={this.handleInputChange} />
                   </FormGroup>
                       <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
                       <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
                       <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
                   <FormGroup>
-                    <Input type="text" name="emailTitle" placeholder="emailTitle" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
-                    <Input type="text" name="emailMessage" placeholder="emailMessage" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
+                    <Input type="text" name="emailTitle" placeholder="Email Title" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
+                    <Input type="text" name="emailMessage" placeholder="Email Message" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
                     <h5> URL preview: {`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
                   </FormGroup>
                     <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>

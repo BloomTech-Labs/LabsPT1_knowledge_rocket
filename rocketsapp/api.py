@@ -383,8 +383,8 @@ class GetQuestion2D(generics.CreateAPIView):
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
         rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
-        questionName = Question2D.objects.get(className = classQuery, rocket = rocketQuery)
-        question = list(Question2D.objects.filter(rocket = rocketQuery, className = classQuery, day2QuestionName = str(questionName)).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
+        questionName = Question2D.objects.get(className = classQuery, rocketName = rocketQuery)
+        question = list(Question2D.objects.filter(rocketName = rocketQuery, className = classQuery, day2QuestionName = str(questionName)).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "rocket": rocketName,
@@ -587,10 +587,41 @@ class BuildEmail(generics.CreateAPIView):
         title = request.data.get("title")
         message = request.data.get("message")
         className = request.data.get("className")
-        unixTimeStamp = request.data.get('unixTimeStamp')
-        # smtpHeader = {
-        #     "send_at": unixTimeStamp
-        # }
+        # rocketName = request.data.get("rocketName")
+        # interval = request.data.get("interval")
+        # unixTimeStamp = request.data.get('unixTimeStamp')
+        # className = Class.objects.get(className = className)
+        # rocketName = Rocket.objects.get(className = className, rocketName = rocketName)
+        # if (interval == "quiz2d"):
+        #     Question2D.objects.filter(className = className, rocketName = rocketName).update(
+        #         url = url,
+        #         emailTitle = title,
+        #         emailMessage = message,
+        #         send_at = unixTimeStamp
+        #     )
+        #     return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        # elif (interval == "quiz2w"):
+        #     Question2W.objects.filter(className = className, rocketName = rocketName).update(
+        #         url = url,
+        #         emailTitle = title,
+        #         emailMessage = message,
+        #         send_at = unixTimeStamp
+        #     )
+        #     return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        # elif (interval == "quiz2m"):
+        #     Question2M.objects.filter(className = className, rocketName = rocketName).update(
+        #         url = url,
+        #         emailTitle = title,
+        #         emailMessage = message,
+        #         send_at = unixTimeStamp
+        #     )
+        #     return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        # else:
+        #     return JsonResponse( {"error": "error processing your request"}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
         className = Class.objects.get(className = className)
         studentList = list(Student.objects.filter(className = className).values_list("studentEmail", flat=True))
         if(studentList):
@@ -600,7 +631,6 @@ class BuildEmail(generics.CreateAPIView):
                 f'{message} \n {url}',
                 f'{teacherEmail}',
                 to=studentList,
-                # headers={"x-smtpapi": json.dumps(smtpHeader)}
             )
             emailBatch.send(fail_silently=False)
 

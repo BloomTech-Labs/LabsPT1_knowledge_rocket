@@ -22,7 +22,7 @@ export const GET_QUIZ = 'GET_QUIZ';
 export const SEND_EMAIL = 'SEND_EMAIL';
 
 // https://cspt1knowledgerocket.herokuapp.com/ ** group deploy
-// http://127.0.0.1:8000/ **quick ref local deploy
+// http://127.0.0.1:8000./ **quick ref local deploy
 
 export const registerUser = (user) => {
   return dispatch => {
@@ -382,6 +382,7 @@ export const sendEmail = (userKey, request) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
+    console.log("request", request)
     axios
       .post("https://cspt1knowledgerocket.herokuapp.com/buildemail/", request, { 'headers': { 'Authorization': `token ${userKey}` }})
       .then(response => {
