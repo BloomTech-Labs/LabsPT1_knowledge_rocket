@@ -7,7 +7,6 @@ import { get_2_Day, get_2_Week, get_2_Month, sendEmail } from "../actions";
 import "../css/Quiz.css";
 
 class Send2D extends Component {
-<<<<<<< HEAD
     state = {
         className: "",
         rocketName: "",
@@ -28,15 +27,6 @@ class Send2D extends Component {
         interval: 'quiz2d',
         unixTimeStamp: createBatchInterval 
       })
-=======
-  state = {
-    className: "",
-    rocketName: "",
-    emailTitle: "",
-    emailMessage: "",
-    interval: ""
-  };
->>>>>>> master
 
   getRocket2D = () => {
     const request = {

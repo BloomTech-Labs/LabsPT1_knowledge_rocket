@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
-<<<<<<< HEAD
-import { Row, Col, Container, Form, FormGroup, Label, Input, Button  } from 'reactstrap';
-=======
 import { Row, Col, Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
->>>>>>> master
 import SidebarNav from "./SidebarNav";
 import "../css/Billing.css";
 
