@@ -45,7 +45,7 @@ const defaultState = {
 export default (state = defaultState, action) => {
     switch(action.type) {
         case LOADING:
-            return {...state, loading: true }
+        return {...state, loading: true, success: false }
 
         case REGISTER:
             return {...state, userKey: [ action.payload ], success: true}
@@ -88,7 +88,7 @@ export default (state = defaultState, action) => {
             return { ...state, redirect: false } 
 
         case CREATE_ROCKET:
-            return { ...state, rocket: action.payload }
+        return { ...state, rocket: action.payload, success: true }
         
         case CLEAR_STATE:
             return {};
