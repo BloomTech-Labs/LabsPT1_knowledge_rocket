@@ -64,7 +64,7 @@ class Classes extends Component {
                   )}
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
-                      <CardTitle className="text-center">New Class</CardTitle>
+                      <CardTitle className="create-class">New Class</CardTitle>
                       <Link to={"/createClass"}>
                         <i class="fas fa-plus-circle" />
                       </Link>
