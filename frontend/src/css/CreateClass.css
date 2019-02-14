@@ -83,9 +83,9 @@ button.btn {
     margin-bottom: 3%;
 }
 
-.select-class-dd-txt, .remove-student-name {
+/* .select-class-dd-txt, .remove-student-name {
     margin-left: -2rem;
-}
+} */
 
 .dropdown-toggle {
     width: 125% !important;
@@ -110,34 +110,7 @@ input.m-input {
     margin-right: 30px;
 }
 
-@media screen and (min-width: 992px) {
-    .create-class-sidebar {
-        height: auto;
-    }
-    .create-class-contents {
-        height: 100%;
-        width: 150%;
-    }
-    .create-student-input {
-        width: 100% !important;
-    }
-    .create-class-modal {
-        width: 100% !important;
-    }
-    .create-student-img {
-        padding: 0;
-        margin: 0 !important;
-        border: 0;
-        width: 50% !important;
-        height: 85%;
-    }
-    .create-student-btn {
-        margin-top: 1%;
-    }
-}
-
-
-create-class-sidebar {
+.create-class-sidebar {
     height: auto;
 }
 
@@ -169,6 +142,8 @@ create-class-sidebar {
 input.stdnt-input {
     width: 100%;
     display: block;
+    margin: 0 auto !important;
+    max-width: 100% !important;
 }
 
 .create-class-cc-checkbox {
@@ -250,7 +225,7 @@ button.btn {
 .remove-student-name, .select-class-dd-txt, .add-class-btn-txt {
     display: inline-block;
     width: 90%;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     vertical-align: text-bottom;
 }
 
@@ -272,5 +247,26 @@ input.m-input {
     .create-class-contents {
         height: 100%;
         width: 150%;
+    }
+
+    .create-class-sidebar {
+        height: auto;
+    }
+    .create-class-contents {
+        height: 100%;
+        width: 150%;
+    }
+    .create-student-input {
+        width: 100% !important;
+    }
+    .create-class-modal {
+        width: 100% !important;
+    }
+    .create-student-img {
+        padding: 0;
+        margin: 0 !important;
+        border: 0;
+        width: 50% !important;
+        height: 85%;
     }
 }

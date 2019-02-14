@@ -58,7 +58,7 @@ class CreateClass extends Component {
                 return;
         }        
         const student = { className: this.state.clsName, 
-                          studentName: this.state.studentFirstName,
+                          studentName: `${this.state.studentFirstName} ${' '} ${this.state.studentLastName}`,
                           studentEmail: this.state.studentEmail }
         this.props.addStudent(student);
         this.setState({ studentFirstName: "", studentLastName: "", studentEmail:"",
@@ -187,11 +187,9 @@ class CreateClass extends Component {
                                     <Row className="create-class-display-students">
                                         {this.props.state.students.map((student, id) => {                                
                                             return (
-                                                <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
-                                                <RemoveStudent student={student}
-                                                            handleRemoveStudent={this.handleRemoveStudent}
-                                                            />
-                                                </Col>
+                                                <RemoveStudent key={id} student={student}
+                                                    handleRemoveStudent={this.handleRemoveStudent}
+                                                />
                                         )})}
                                     </Row>
                                 </FormGroup>
@@ -202,29 +200,34 @@ class CreateClass extends Component {
                                     {this.props.state.classRockets && this.state.clsName && 
                                         <Row>{this.props.state.classRockets.map((rocket, id) => (
                                             <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
-                                            <Card>
+                                            <Card style={{height: "80%"}}>
                                                 <CardBody className="create-class-rocket-box">
                                                     <CardTitle className="text-center">
                                                         {rocket.rocketname}
                                                     </CardTitle>
-                                                    <div className="create-class-date-picker">
+                                                    {/* <div className="create-class-date-picker">
                                                         <DatePicker
                                                             selected={this.state.startDate}
                                                             onChange={this.handleDateChange}
                                                         />
-                                                    </div>
+                                                    </div> */}
                                                 </CardBody>
                                             </Card>
                                         </Col>
                                         ))}
                                         <Col md="4" sm="6" xs="12" className="mb-4">
-                                            <Card body>
-                                                <CardTitle className="text-center">New Rocket</CardTitle>
-                                                <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
-                                                    {/* <Badge href="#" color="light" style={{borderRadius: 0, top: 0, backgroundColor: "white"}}> */}
-                                                        <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
-                                                    {/* </Badge> */}
-                                                </Link>
+                                            <Card style={{height: "80%"}}>
+                                                <CardBody>
+                                                    <CardTitle style={{marginBottom: "0"}} className="text-center">New Rocket</CardTitle>
+                                                    {/* <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
+                                                            <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
+                                                    </Link> */}
+                                                    <div style={{textAlign: "center"}}>
+                                                        <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
+                                                                <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
+                                                        </Link>
+                                                    </div>
+                                                </CardBody>
                                             </Card>
                                         </Col>
                                     </Row>}
