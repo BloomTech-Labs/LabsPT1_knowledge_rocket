@@ -36,7 +36,7 @@ class Sidebar_Nav extends Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="sm" className="sidebar">
+        <Navbar color="light" light expand="md" className="sidebar">
           <NavbarBrand className="nav-header" href="/">Knowledge Rocket</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

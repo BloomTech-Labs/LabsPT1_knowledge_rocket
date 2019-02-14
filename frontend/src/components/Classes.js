@@ -66,14 +66,7 @@ class Classes extends Component {
                     <Card body>
                       <CardTitle className="text-center">New Class</CardTitle>
                       <Link to={"/createClass"}>
-                        <Badge
-                          href="#"
-                          color="light"
-                          className="p-0 b-0"
-                          style={{ "border-radius": 0, top: 0 }}
-                        >
-                        </Badge>
-                        <img className="card-img" src={add_icon} alt="Add Class" />
+                        <i class="fas fa-plus-circle" />
                       </Link>
                     </Card>
                   </Col>

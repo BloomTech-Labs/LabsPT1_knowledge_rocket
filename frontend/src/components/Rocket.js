@@ -72,7 +72,7 @@ class Rocket extends Component {
                 <Card body>
                   <CardTitle className="text-center">New Rocket</CardTitle>
                   <Link to={"/createRocket"}>
-                    <img className="card-img" src={add_icon} alt="Add Rocket" />
+                    <i class="fas fa-plus-circle" />
                   </Link>
                 </Card>
               </Col>
