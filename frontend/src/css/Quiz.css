@@ -1,11 +1,15 @@
-/* .recap p{
+.recap p{
     text-align: left;
     color: black;
+    background-color: transparent;
 }
 
-Input {
-    display: block;
-} */
+.review {
+    color: black;
+    background-color: transparent;
+    font-weight: bolder;
+    text-align: left;
+}
 
 .form-group {
     max-width: 90%;

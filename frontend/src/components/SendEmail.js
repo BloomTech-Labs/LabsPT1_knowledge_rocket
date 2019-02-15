@@ -180,10 +180,10 @@ class Send2D extends Component {
                         <h3>
                           {this.props.state.question.rocket} - Two Day Boost
                         </h3>
-                        <p>
+                        <p className="review">
                           {this.props.state.question.question[0].day2ReviewText}
                         </p>
-                        <p>
+                        <p className="review">
                           {
                             this.props.state.question.question[0]
                               .day2QuestionText
@@ -212,13 +212,13 @@ class Send2D extends Component {
                         <h3>
                           {this.props.state.question.rocket} - Two Week Boost
                         </h3>
-                        <p>
+                        <p className="review">
                           {
                             this.props.state.question.question[0]
                               .week2ReviewText
                           }
                         </p>
-                        <p>
+                        <p className="review">
                           {
                             this.props.state.question.question[0]
                               .week2QuestionText
@@ -247,18 +247,20 @@ class Send2D extends Component {
                         <h3>
                           {this.props.state.question.rocket} - Two Month Boost
                         </h3>
-                        <p>
+
+                        <p className="review">
                           {
                             this.props.state.question.question[0]
                               .month2ReviewText
                           }
                         </p>
-                        <p>
+                        <p className="review">
                           {
                             this.props.state.question.question[0]
                               .month2QuestionText
                           }
                         </p>
+
                         <h4>Answers:</h4>
                         <div>
                           <div>
