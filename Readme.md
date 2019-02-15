@@ -19,68 +19,129 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 - [Encryption](#encryption)
 - [Team](#team-members)
 - [License](#license)
+- [EndPoints](#endpoints)
 - [Running Front End](#running-front-end)
 - [Running Back End](#running-back-end)
 - [Environment Variables](#environment-variables)
+- [Instructions](#instructions)
 
 ## Knowledge Rocket Stack:
 
 ## Front End:
-- React/React-Dom
-	JS framework that utilizes JS and JSX to create single page applications.
-- Redux
-	React - addon to React that allows for app wide storage of data.
-- React-Redux
-	Connects React and Redux
-- Axios
-	HTTP framework that works with JS to send data between client and server
-- React Router
-	React addon used to organize a project and simplify routing between react "pages"
-- Reactstrap/Bootstrap
-	Component styling providing by bootstrap and adapted to work with react library
-- React-Datepicker
-- React-Scripts
-- React-Stripe-Elements
-- Styled-Components
+- React/React-Dom | [Learn More](https://www.npmjs.com/package/react)
+	- JS framework that utilizes JS and JSX to create single page applications.
+
+- Redux | [Learn More](https://www.npmjs.com/package/redux)
+	- React - addon to React that allows for app wide storage of data.
+
+- React-Redux | [Learn More](https://www.npmjs.com/package/react-redux)
+	- Connects React and Redux
+
+- Axios | [Learn More](https://www.npmjs.com/package/axios)
+	- HTTP framework that works with JS to send data between client and server
+
+- React Router | [Learn More](https://www.npmjs.com/package/react-router)
+	- React addon used to organize a project and simplify routing between 
+	react "pages"
+
+- Reactstrap/Bootstrap | [Reactstrap](https://www.npmjs.com/package/reactstrap) / [Bootstrap](https://www.npmjs.com/package/bootstrap)
+	- Component styling providing by bootstrap and adapted to work with react library
+
+- React-Datepicker | [Learn More](https://www.npmjs.com/package/react-datepicker/)
+	- DatePick component for React
+
+- React-Scripts | [Learn More](https://www.npmjs.com/package/react-scripts)
+	- This package includes scripts and configuration used by Create React App.
+
+- React-Stripe-Elements | [Learn More](https://www.npmjs.com/package/react-stripe-elements)
+	- React components to utilize with stripe integration
+
+- Styled-Components | [Learn More](https://www.npmjs.com/package/styled-components)
+	- Out of the box styled components for React
 
 **Dev Dependencies**
-- Nodemon
-	Allow for easy restarting of React application upon saving changes
-- Redux-Logger
-	Redux middleware for viewing redux state before/during/action actions are executed
+- Nodemon | [Learn More](https://www.npmjs.com/package/nodemon)
+	- Allow for easy restarting of React application upon saving changes
+
+- Redux-Logger | [Learn More](https://www.npmjs.com/package/redux-logger)
+	- Redux middleware for viewing redux state before/during/action actions are executed
 
 ### Middleware:
-- Redux-Thunk
-	Adds a layer of abstraction to Redux Actions to make them more readable and callable via function.
+- Redux-Thunk | [Learn More](https://www.npmjs.com/package/redux-thunk)
+
+	- Adds a layer of abstraction to Redux Actions to make them more readable and callable via function.
 
 ## Back End:
-- Django
-	
-- Python
+- Django | [Learn More](https://www.djangoproject.com/)
+	- Python Web Framework designed for rapid deployment of web applications, works well with Sqlite3
 
+- Gunicorn | [Learn More](https://pypi.org/project/gunicorn/)
+	- Used to support Django/Python deployment on Heroku; a Python WSGI HTTP Server for UNIX
+
+- Psycopg2-binary | [Learn More](https://pypi.org/project/psycopg2-binary/)
+	- PostgreSQL database adapter; allows the application to link up to the postgreSQL db supplied by Heroku
+
+- Dj-database-url | [Learn More](https://pypi.org/project/dj-database-url/)
+	- Package used to allow easy switching between local and deployed databases by changing the database based on environment variable which varies from deployed to local
+
+- Python-decouple | [Learn More](https://pypi.org/project/python-decouple/)
+	- Allows for masking and changing settings parameters without redeployment.
+
+- Whitenoise | [Learn More](https://pypi.org/project/whitenoise/)
+	- Allows for direct serving of static files without relying on additional services
+
+- Djangorestframework | [Learn More](https://pypi.org/project/djangorestframework/)
+	- Toolkit used for building Web APIs
+
+- Django-rest-auth | [Learn More](https://pypi.org/project/django-rest-auth/)
+	- Supplies REST API endpoints for Authentication and Registration
+
+- Django-allauth | [Learn More](https://pypi.org/project/django-allauth/)
+	- Part of our eventual attempt at oAuth, which was unsuccessful; this is a set of Django applications to assist in the registration, authentication and account management of 3rd party account authentication
+
+- Django-heroku | [Learn More](https://pypi.org/project/django-heroku/)
+	- Library of Django apps to assist in the deployment of Django server to Heroku
+
+- Django-rest-api | [Learn More](https://pypi.org/project/django-rest-api/)
+	- Django rest framework used to build API's
+
+- Djangorestframework-jwt | [Learn More](https://pypi.org/project/djangorestframework-jwt/)
+	- JSON Web Token Authentication support for Django REST Framework
+
+- Django-cors-headers | [Learn More](https://pypi.org/project/django-cors-headers/)
+	- Django App that adds CORS (Cross-Origin Resource Sharing) headers to responses.
+
+- Django-oauth-toolkit | [Learn More](https://github.com/jazzband/django-oauth-toolkit)
+	- Framework intended to provide oAuth support; oAuth integration was not completed
+	
 ## Database:
-- SQL lite3 (postgresql when deployed)
+- SQL lite3 | [Learn More](https://www.sqlite.org/about.html)
+	- Heroku postgresql when deployed
+	- Used to allow for relational database building to link complex data tables
 
 ## Server Host:
-- Heroku
+- Heroku | [Learn More](https://www.heroku.com/home)
+	- Online hosting for backend server code
 
 ## Front End Host:
-- Netlify
+- Netlify | [Learn More](https://www.netlify.com/)
+	- Online hosting for frontend server code
 
 ## Billing:
-- Stripe
-	Billing API used to allow users to sign up for premium app features at a fee.
+- Stripe | [Learn More](https://stripe.com/)
+	- Billing API used to allow users to sign up for premium app features at a fee.
+
 ## Notifications:
-- Sendgrid
+- Sendgrid | [Learn More](https://sendgrid.com/)
+	- Transactional Email API used to send emails programatically through the application
 
 ## Auth:
-- JWT
+- JSON Web Token | [Learn More](https://jwt.io/)
+	- Token based authentication, allows for secure transmission of encoded data to allow access to restricted resources
 
 ## Encryption:
-- Bcrypt
-
-## Linter:
-- ES Lint
+- Bcrypt | [Learn More](https://pypi.org/project/bcrypt/)
+	Password hashing/encryption technology used to encrypt passwords stored by Django
 
 ## Team Members:
 - [Lisa Canini](https://github.com/LisaCee)--Pacific Time Zone
@@ -92,20 +153,28 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 ## License:
 Knowledge Rocket is [MIT licensed](https://opensource.org/licenses/MIT).
 
-JSON for Routes
-Be logged in for all but http://127.0.0.1:8000/register/ and http://127.0.0.1:8000/login/
+## Endpoints:
 
-All other routes require an active Authorization header:
+Be logged in for all but <br> http://127.0.0.1:8000/register/ and <br>http://127.0.0.1:8000/login/
 
+*URL links built within app can also be access without authentication*
+
+You can substitute http://127.0.0.1:8000/ for https://cspt1knowledgerocket.herokuapp.com/<br> in order to interact with deployed Heroku database
+
+**All other routes require an active Authorization header:**
+
+Auth Header:
+<pre>
 Authorization token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InRlc3R1c2VyMzIzIiwiZXhwIjoxNTQ4Mzk0NDgwLCJlbWFpbCI6InRlc3R1c2VyMTIzQHRlc3QuY29tIn0.fkBJi6NXPFTOj54dlMFsso5K67H6Q7XMdYdt_nZW8hg
 
 
-To load quizzes:
-http://127.0.0.1:8000/quiz2d/className/rocketName
-http://127.0.0.1:8000/quiz2w/className/rocketName
-http://127.0.0.1:8000/quiz2m/className/rocketName
 
-http://127.0.0.1:8000/register/
+To load quizzes:
+	http://127.0.0.1:8000/quiz2d/className/rocketName
+	http://127.0.0.1:8000/quiz2w/className/rocketName
+	http://127.0.0.1:8000/quiz2m/className/rocketName
+
+<pre>http://127.0.0.1:8000/register/
 {
 	"username": "testuser123",
 	"email": "testuser123@test.com",
@@ -139,6 +208,7 @@ http://127.0.0.1:8000/addclass/
 http://127.0.0.1:8000/getclasses/
 
 **all fields must be unique to all rocket/questions currently in table(all users)**
+
 http://127.0.0.1:8000/addrocket/
 {
 
@@ -195,7 +265,7 @@ http://127.0.0.1:8000/updatestudent/
 	"newStudentEmail": "teacher@student.com"
 }
 
-**classes must already be created and exit**
+**classes must already be created**
 http://127.0.0.1:8000/updaterocket/
 {
 	"oldRocketName":"TestRocket3331",
@@ -246,6 +316,14 @@ http://127.0.0.1:8000/updatequestion2m/
 }
 
 http://127.0.0.1:8000/getrockets/
+{
+	"className" : "CSPT1"
+}
+
+http://127.0.0.1:8000/getrocketsbyclassname/
+{
+	"className" : "CSPT1"
+}
 
 http://127.0.0.1:8000/getquestion2d/
 {
@@ -269,6 +347,7 @@ http://127.0.0.1:8000/buildemail/
 	"message": "hopefully this works?",
 	"url": "https://giphy.com/gifs/soccer-celebrations-u2us-CFciH20rL836M"
 }
+</pre>
 
 ## Running Front End:
 
@@ -317,7 +396,7 @@ PLAN_ID=plan_ELRmurC5Sg6j16
 </p>
 </details>
 
-## Steps to build and send your first email:
+## Instructions
 	Step 1
 		Create User/Login
 
