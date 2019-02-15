@@ -44,8 +44,6 @@ class Quiz2D extends Component {
   }
   
   render() {
-    console.log("STATE", this.state);
-    console.log("PROPS", this.props.state.question);
     return (
       <Container className="recap">
         <Form>

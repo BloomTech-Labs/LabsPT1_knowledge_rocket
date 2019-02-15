@@ -28,8 +28,6 @@ class AddClass extends Component {
     }
 
     render() {
-        // const { handleAddClass } = this.props;
-
         return (
             <div>
                 <Button color="danger" onClick={this.toggle}>

@@ -111,10 +111,6 @@ class CreateClass extends Component {
                                         </Col>
                                         <Col lg="5">
                                         <FormGroup check className="create-class-cc-checkbox">
-                                            {/* <Label check>
-                                                <Input type="checkbox" />{' '}
-                                                <span>CC Me On Rocket Emails</span>
-                                            </Label> */}
                                         </FormGroup>
                                         </Col>
                                     </Row>
@@ -142,9 +138,6 @@ class CreateClass extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                            {/* <FormText className="create-class-help-text" >
-                                                        *required.
-                                            </FormText>   */}
                                         </Col>
                                         <Col lg="3">
                                             <Input className="stdnt-input"
@@ -157,9 +150,6 @@ class CreateClass extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                            {/* <FormText className="create-class-help-text" >
-                                                        *required.
-                                            </FormText> */}
                                         </Col>
                                         <Col lg="4">
                                             <Input className="stdnt-input"
@@ -172,17 +162,12 @@ class CreateClass extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                            {/* <FormText className="create-class-help-text" >
-                                                        *required.
-                                            </FormText> */}
                                         </Col>
                                         <Col lg="2" className="create-student-btn">
                                                 <Input className="create-student-img" type="image" src={add_icon} alt="Add Class" />
                                         </Col>
                                     </Row>
                                     <hr/>
-                            {/* </Form> */}
-                            {/* <Form className="create-class-form"> */}
                                 <h3>Students</h3>
                                     <Row className="create-class-display-students">
                                         {this.props.state.students.map((student, id) => {                                
@@ -221,9 +206,7 @@ class CreateClass extends Component {
                                             <Card body>
                                                 <CardTitle className="text-center">New Rocket</CardTitle>
                                                 <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
-                                                    {/* <Badge href="#" color="light" style={{borderRadius: 0, top: 0, backgroundColor: "white"}}> */}
                                                         <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
-                                                    {/* </Badge> */}
                                                 </Link>
                                             </Card>
                                         </Col>

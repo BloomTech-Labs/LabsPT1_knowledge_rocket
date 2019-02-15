@@ -184,8 +184,6 @@ export const addStudent = (student) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
-      console.log(userKey)
-      console.log(student)
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
@@ -208,8 +206,6 @@ export const getStudents = (className) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token');
-      console.log(userKey);
-      console.log(className);
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
@@ -246,7 +242,6 @@ export const getRocketsByClassName = (clsName) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
-      console.log(clsName);
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
@@ -265,8 +260,6 @@ export const addClass = (clsName) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
-      console.log(userKey)
-      console.log(clsName)
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
@@ -289,8 +282,6 @@ export const removeStudent = (student) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
-      console.log(userKey)
-      console.log(student)
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
@@ -383,7 +374,6 @@ export const sendEmail = (userKey, request) => {
   return dispatch => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
-    console.log("request", request)
     axios
       .post("https://cspt1knowledgerocket.herokuapp.com/buildemail/", request, { 'headers': { 'Authorization': `token ${userKey}` }})
       .then(response => {

@@ -45,11 +45,6 @@ class Register extends Component {
     } else {
       this.props.registerUser(this.state);
     }
-
-    // if(this.props.state.success) {
-    //     this.props.history.push('/')
-    // }
-
     this.setState({ username: "", email: "", password1: "", password2: "" });
   };
 
