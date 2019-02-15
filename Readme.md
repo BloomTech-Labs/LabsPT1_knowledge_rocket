@@ -141,7 +141,7 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 
 ## Encryption:
 - Bcrypt | [Learn More](https://pypi.org/project/bcrypt/)
-	Password hashing/encryption technology used to encrypt passwords stored by Django
+	- Password hashing/encryption technology used to encrypt passwords stored by Django
 
 ## Team Members:
 - [Lisa Canini](https://github.com/LisaCee)--Pacific Time Zone
@@ -427,27 +427,40 @@ PLAN_ID=plan_ELRmurC5Sg6j16
 	Step 2
 		Navigate to create class page (selecting new class from post-login splash screen).
 		create a new class (class name must be unique).
+
 		add at least 1 student via add student section of create class page.
 		
 	Step 3 
 		Navigate to create rocket page (selecting new rocket from bottom of create class page).
+
 		Follow the onscreen instructions; select your newly created class then proceed to fill out available fields.
+
 		The answer fields are multiple choice answer pertaining to the previous question.
+
 		Each question has 1 correct answer that you select by clicking the corresponding radio buttons.
+
 		After you have completed the form click submit and you will be redirected to the rocket page that lists all the rockets according to the selected class.
 
 	Step 4
-		Navigate to the build and send email section of the application. (Linked in the Email portion of the Navigation bar)
+		Navigate to the build and send email section of the application. (Linked in the Email portion of the Navigation bar).
+
 		Use the drop downs to select a class first; then select the rocket second.
+
 		Once a valid class and rocket have been selected click the button that corresponds to the interval you wish to send.
+
 		Each interval corresponds the rocket fields you filled out in the create rocket page.
+
 		Once you have selected the interval that portion of your rocket will be previewed at the bottom of the page.
+
 		Enter an email title and short message to your students.
+
 		If that data is correct click the build and send email button; this will build an email with a the submitted title and message as well as a URL that corresponds to the interval and portion of the rocket that you selected.
+
 		The email will then be sent to every student in the selected class.
 	
 	Step 5
 		Once your students receive your email the email will inherit the title and message you submitted; as well as a hyperlink student can use to display the quiz.
+
 		By navigating to the hyperlink a quiz will load; students then read the review text and question; submit their answer and an alert will pop up indicating the correct answer.
 
 **Note due to time constraints and issues the delayed sending functionality was not completed, emails do however send immediately toall class students**
