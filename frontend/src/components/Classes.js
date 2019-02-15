@@ -61,11 +61,11 @@ class Classes extends Component {
                     this.props.state.classes.map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
-                          <CardTitle className="text-center">
                           <Link to={{ pathname: "/createClass",  state: { className: unit.className }}}>
+                          <CardTitle className="text-center">
                             {unit.className}
-                          </Link>
                           </CardTitle>
+                          </Link>
                         </Card>
                       </Col>
                     ))
