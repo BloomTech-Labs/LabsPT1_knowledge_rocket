@@ -220,6 +220,10 @@ body {
     width: 100%;
 }
 
+.select-class-dropdown button {
+    width: auto !important
+}
+
 .create-class-contents {
     margin-top: 1%;
     padding: 1%;
