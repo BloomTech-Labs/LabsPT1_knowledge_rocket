@@ -46,8 +46,8 @@ class AddClass extends Component {
                     />
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={() => this.handleAddClass(this.state.clsName)}>Add</Button>{' '}
-                    <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    <Button  className="modal-btn" onClick={() => this.handleAddClass(this.state.clsName)}>Add</Button>{' '}
+                    <Button  className="modal-btn" onClick={this.toggle}>Cancel</Button>
                 </ModalFooter>
                 </Modal>
             </div>
