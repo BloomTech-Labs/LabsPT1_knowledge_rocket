@@ -15,9 +15,8 @@ class Rocket extends Component {
   };
 
   handleRocket = () => {
-    const token = localStorage.getItem("token");
     const className = this.state
-    this.props.getRockets(token, className);
+    this.props.getRockets(className);
     this.setState({ className: ''})
   };
 
