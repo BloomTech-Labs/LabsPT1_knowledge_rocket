@@ -279,7 +279,7 @@ For a net- hosted frontend + backend without having to set it up locally, you ca
 | `PLAN_ID`     |
 
 > **Note:** Without this file, and variables defined. Knowledge Rocket will fail to load up.
-> **Note:** We will provide you with the defined variables.
+> We will provide you with the defined variables.
 
 <details><summary>Provided Variables for Local Host</summary>
 <p>
