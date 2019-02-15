@@ -172,9 +172,9 @@ Authorization token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2V
 
 
 To load quizzes:
-	http://127.0.0.1:8000/quiz2d/className/rocketName
-	http://127.0.0.1:8000/quiz2w/className/rocketName
-	http://127.0.0.1:8000/quiz2m/className/rocketName
+	http://127.0.0.1:3000/quiz2d/className/rocketName
+	http://127.0.0.1:3000/quiz2w/className/rocketName
+	http://127.0.0.1:3000/quiz2m/className/rocketName
 
 
 http://127.0.0.1:8000/register/
