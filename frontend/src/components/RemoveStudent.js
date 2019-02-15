@@ -18,7 +18,7 @@ class RemoveStudent extends Component {
         const { student, handleRemoveStudent } = this.props;
 
         return (
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <Dropdown style={{margin: "0 auto", fontSize: "1rem"}}isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>
                 <div className="remove-student-name">{student.studentName}</div>
               </DropdownToggle>
