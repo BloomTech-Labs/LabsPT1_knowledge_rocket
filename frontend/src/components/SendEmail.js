@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { get_2_Day, get_2_Week, get_2_Month, sendEmail, getClasses, getRocketsByClassName } from "../actions";
 import SelectClass  from "./SelectClass";
 import SelectRocket from "./SelectRocket";
+import SidebarNav from "./SidebarNav";
 import "../css/Quiz.css";
 
 class Send2D extends Component {
@@ -95,10 +96,12 @@ class Send2D extends Component {
   };
 
     render() {
-        console.log("STATE", this.state);
-        console.log("PROPS", this.props.state.question);
         return (
           <Container className="recap">
+            <Row>
+            <Col lg="3">
+              <SidebarNav className="create-class-sidebar"/>
+            </Col>
             <Form>
               <Row>
                 <Col>
@@ -126,10 +129,6 @@ class Send2D extends Component {
                       </Col>
                     </Row>
                 </FormGroup>
-                  {/* <FormGroup>
-                    <Input type="text" name="className" placeholder="Class Name" id="className" maxLength="95" value={this.state.className} onChange={this.handleInputChange} />
-                    <Input type="text" name="rocketName" placeholder="Rocket Name" id="rocketName" maxLength="95" value={this.state.rocketName} onChange={this.handleInputChange} />
-                  </FormGroup> */}
                       <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
                       <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
                       <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
@@ -224,6 +223,7 @@ class Send2D extends Component {
                 </Col>
               </Row>
             </Form>
+            </Row>
           </Container>
         );
       }
