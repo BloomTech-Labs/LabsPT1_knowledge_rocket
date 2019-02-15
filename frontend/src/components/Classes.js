@@ -66,7 +66,7 @@ class Classes extends Component {
                     <Card body>
                       <CardTitle className="create-class">New Class</CardTitle>
                       <Link to={"/createClass"}>
-                        <i class="fas fa-plus-circle" />
+                        <i className="fas fa-plus-circle" />
                       </Link>
                     </Card>
                   </Col>

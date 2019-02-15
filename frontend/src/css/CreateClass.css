@@ -239,6 +239,10 @@ input.m-input {
     display: block;
 }
 
+.select-class-dropdown button {
+    width: auto !important
+}
+
 @media screen and (min-width: 992px) {
     .create-class-sidebar {
         height: auto;

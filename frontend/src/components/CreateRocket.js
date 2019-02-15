@@ -12,16 +12,18 @@ import {
 } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";
-import { createRocket } from '../actions';
+import { createRocket, getClasses } from '../actions';
 import Textarea from './Textarea.js';
 
 import "../css/SidebarNav.css";
 import "../css/CreateRocket.css";
 
+import SelectClass from './SelectClass';
+
 class CreateRocket extends Component {
   state = {
     rocketName: '',
-    className:'',
+    className: this.props.history.location.state ? this.props.history.location.state.className : "",
 
     day2QuestionName: '',
     day2ReviewText: '',
@@ -51,6 +53,10 @@ class CreateRocket extends Component {
     month2CorrectAnswer: 'm2',
   }
 
+  componentDidMount() {
+    this.props.getClasses();
+  }
+
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -67,6 +73,10 @@ class CreateRocket extends Component {
     });
   }
 
+  handleSelectClass = (clsName) => {
+    this.setState({className: clsName});
+  }
+
   render() {
     return (
       <Container className="container" >
@@ -75,18 +85,23 @@ class CreateRocket extends Component {
             <SidebarNav />
           </Col>
           <Col lg="9">
+             
             <Row className="rkt-content">
+                <h2 style={{textAlign: "center", width: "100%", marginTop: "3%"}}>Create a Rocket</h2>
                 <Form className="f">
-                <h2>Create a Rocket</h2>
-                  <Input className="m-input"
-                        type="text"
-                        name="className"
-                        placeholder="Class Name"
-                        id="questionName"
-                        maxLength="95"
-                        value={this.state.className}
-                        onChange={this.handleInputChange}
-                      />
+                  <FormGroup>
+                    <h3>Select Class</h3>
+                    <Row>
+                      <Col>
+                        <SelectClass 
+                            classes={this.props.state.classes}
+                            handleSelectClass={this.handleSelectClass}
+                            clsName={this.state.className}
+                        />
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  
                   <FormGroup className="fg">
                     <Input
                       type="text"
@@ -487,4 +502,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{ createRocket } )(CreateRocket);
+export default connect(mapStateToProps,{ createRocket, getClasses } )(CreateRocket);
