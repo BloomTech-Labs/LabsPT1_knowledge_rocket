@@ -8,6 +8,9 @@ Students are registered by teachers and do not need or use accounts of their own
 
 Knowledge rockets are short paragraphs followed by a multiple choice question. These are automatically sent two days, two weeks, and two months after a lesson is taught and are intended to cause the student to recall what they have learned. The rockets should not be used to provide an exhaustive review. Instead, they ask the student to "reload" the mental maps the acquired during the lesson.
 
+Link to online Application:
+- [Knowledge Rocket](https://infallible-euler-24eb8a.netlify.com/)
+
 ## Contents:
 - [Front End](#front-end)
 - [Back End](#back-end)
