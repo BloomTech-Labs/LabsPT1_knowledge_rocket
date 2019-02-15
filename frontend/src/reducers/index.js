@@ -99,7 +99,7 @@ export default (state = defaultState, action) => {
             return { ...state, classRockets: action.payload }
 
         case SEND_EMAIL:
-            return { ...state, emailConfirmation: action.payload, success:true };
+            return { ...state, emailConfirmation: action.payload };
 
         default:
             return state;
