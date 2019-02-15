@@ -10,6 +10,9 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
+
+
 
 import SidebarNav from "./SidebarNav";
 import { createRocket } from '../actions';
@@ -475,6 +478,9 @@ class CreateRocket extends Component {
                 </Form>
             </Row>
           </Col>
+          <div>
+            { this.props.state.redirect ? <Redirect to="/rockets" /> : null }
+          </div>
         </Row>
       </Container>
     )
