@@ -36,7 +36,7 @@ class RegisterClasses(generics.CreateAPIView):
                 )
             else:
                 pass
-                
+
         if(Class.objects.filter(className = className)):
             response = JsonResponse({
                     'error': 'class already exists'
@@ -450,8 +450,8 @@ class GetQuestion2W(generics.CreateAPIView):
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
         rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
-        questionName = Question2W.objects.get(className = classQuery, rocket = rocketQuery)
-        question = list(Question2W.objects.filter(rocket = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
+        questionName = Question2W.objects.get(className = classQuery, rocketName = rocketQuery)
+        question = list(Question2W.objects.filter(rocketName = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "rocket": rocketName,
@@ -502,8 +502,8 @@ class GetQuestion2M(generics.CreateAPIView):
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
         rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
-        questionName = Question2M.objects.get(className = classQuery, rocket = rocketQuery)
-        question = list(Question2M.objects.filter(rocket = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
+        questionName = Question2M.objects.get(className = classQuery, rocketName = rocketQuery)
+        question = list(Question2M.objects.filter(rocketName = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "rocket": rocketName,

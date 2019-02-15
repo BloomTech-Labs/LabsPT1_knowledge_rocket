@@ -3,12 +3,14 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, Input, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
-import { get_2_Day, get_2_Week, get_2_Month, sendEmail } from "../actions";
+import { get_2_Day, get_2_Week, get_2_Month, sendEmail, getClasses, getRocketsByClassName } from "../actions";
+import SelectClass  from "./SelectClass";
+import SelectRocket from "./SelectRocket";
 import "../css/Quiz.css";
 
 class Send2D extends Component {
     state = {
-        className: "",
+        clsName: "",
         rocketName: "",
         emailTitle:"",
         emailMessage:"",
@@ -16,9 +18,24 @@ class Send2D extends Component {
         unixTimeStamp: ""
     };
 
+    componentWillMount() {
+      this.props.getClasses();
+
+    }
+
+    handleSelectClass = (clsName) => {
+      this.setState({clsName 
+       });
+      this.props.getRocketsByClassName({className: clsName});
+      }
+
+    handleSelectRocket = (rocketName) => {
+      this.setState({ rocketName })
+    }
+
     getRocket2D = () => {
       const request = {
-        className: this.state.className,
+        className: this.state.clsName,
         rocketName: this.state.rocketName,
       }
       const createBatchInterval = (Date.now() + 86400*2*1000)
@@ -27,37 +44,42 @@ class Send2D extends Component {
         unixTimeStamp: createBatchInterval 
       })
       this.props.get_2_Day(request);
+      this.setState({ rocketName: ""})
     }
 
     getRocket2W = () => {
         const request = {
-            className: this.state.className,
+            className: this.state.clsName,
             rocketName: this.state.rocketName,
         }
         const createBatchInterval = (Date.now() + 604800*2*1000)
-        this.props.get_2_Week(request);
         this.setState({ 
           interval: 'quiz2w',
           unixTimeStamp: createBatchInterval 
         })
+        this.props.get_2_Week(request);
+        this.setState({ rocketName: ""})
     };
+
     getRocket2M = () => {
       const request = {
-        className: this.state.className,
+        className: this.state.clsName,
         rocketName: this.state.rocketName,
       }
       const createBatchInterval = (Date.now() + 2629743*2*1000)
-      this.props.get_2_Month(request);
       this.setState({
-         interval: 'quiz2m',
-         unixTimeStamp: createBatchInterval
+        interval: 'quiz2m',
+        unixTimeStamp: createBatchInterval
       })
+      this.props.get_2_Month(request);
+      this.setState({ rocketName: ""})
     };
+
     buildAndSendEmail = () => {
         const userKey = localStorage.getItem('token')
 
         const request = {
-            className: this.state.className,
+            className: this.state.clsName,
             title: this.state.emailTitle,
             message: this.state.emailMessage,
             url:`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`,
@@ -80,10 +102,34 @@ class Send2D extends Component {
             <Form>
               <Row>
                 <Col>
-                  <FormGroup>
+                <FormGroup>
+                    <h3>Select Class</h3>
+                    <Row>
+                      <Col>
+                        <SelectClass 
+                          classes={this.props.state.classes}
+                          handleSelectClass={this.handleSelectClass}
+                          clsName={this.state.clsName}
+                        />
+                      </Col>
+                    </Row>
+                </FormGroup>
+                <FormGroup>
+                  <h3>Select Rocket</h3>
+                    <Row>
+                      <Col>
+                        <SelectRocket
+                          rockets={this.props.state.classRockets}
+                          handleSelectRocket={this.handleSelectRocket}
+                          rocketName={this.state.rocketName}
+                        />
+                      </Col>
+                    </Row>
+                </FormGroup>
+                  {/* <FormGroup>
                     <Input type="text" name="className" placeholder="Class Name" id="className" maxLength="95" value={this.state.className} onChange={this.handleInputChange} />
                     <Input type="text" name="rocketName" placeholder="Rocket Name" id="rocketName" maxLength="95" value={this.state.rocketName} onChange={this.handleInputChange} />
-                  </FormGroup>
+                  </FormGroup> */}
                       <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
                       <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
                       <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
@@ -191,5 +237,5 @@ class Send2D extends Component {
 
 export default connect(
   mapStateToProps,
-  { get_2_Day, get_2_Month, get_2_Week, sendEmail }
+  { get_2_Day, get_2_Month, get_2_Week, sendEmail, getClasses, getRocketsByClassName  }
 )(Send2D);
