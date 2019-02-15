@@ -23,7 +23,20 @@ class RegisterClasses(generics.CreateAPIView):
  
     def post(self, request, *args, **kwargs):
         username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
+        premiumCheck = request.user.is_premium
         className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
+        if (premiumCheck is False):
+            count = Class.objects.filter(user = username).count()
+            if(count >= 10):
+                return JsonResponse({ 
+                    'error': 'Class count has exceeded 10, you need a premium account to continue.'
+                    },
+                    safe = True,
+                    status = status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            else:
+                pass
+                
         if(Class.objects.filter(className = className)):
             response = JsonResponse({
                     'error': 'class already exists'
@@ -44,17 +57,6 @@ class RegisterClasses(generics.CreateAPIView):
                 status=status.HTTP_201_CREATED
             )
             return response
-
-# class GetClasses(generics.CreateAPIView):
-#     permission_classes = (permissions.IsAuthenticated,)
-
-#     def get(self, request):
-#         username = request.user
-#         classes = Class.objects.filter(user = username)
-#         class_list = []
-#         for clas in classes:
-#             class_list.append({'className': clas.className})
-#         return JsonResponse(class_list, safe=False)
 
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
@@ -190,6 +192,7 @@ class RegisterRockets(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
 
         username = request.user
+        premiumCheck = request.user.is_premium
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
 
@@ -222,6 +225,18 @@ class RegisterRockets(generics.CreateAPIView):
 
         className = Class.objects.get(className = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
         rocketCheck = Rocket.objects.filter(rocketName = rocketName).filter(className = className)
+        if (premiumCheck is False):
+            count = Rocket.objects.filter(user = username).count()
+            if(count >= 10):
+                return JsonResponse({ 
+                    'error': 'Rocket count has exceeded 10, you need a premium account to continue.'
+                    },
+                    safe = True,
+                    status = status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            else:
+                pass
+
         if (rocketCheck):
             return JsonResponse({ 
                 'error': 'A rocket for this class already exists'
@@ -239,7 +254,7 @@ class RegisterRockets(generics.CreateAPIView):
                 rocket = Rocket.objects.filter(rocketName = rocketName).get(className = className)
                 Question2D(
                     className = className,
-                    rocket = rocket,
+                    rocketName = rocket,
                     day2QuestionName = day2QuestionName,
                     day2ReviewText = day2ReviewText,
                     day2QuestionText = day2QuestionText,
@@ -251,7 +266,7 @@ class RegisterRockets(generics.CreateAPIView):
                 ).save()
                 Question2W(
                     className = className,
-                    rocket = rocket,
+                    rocketName = rocket,
                     week2QuestionName = week2QuestionName,
                     week2ReviewText = week2ReviewText,
                     week2QuestionText = week2QuestionText,
@@ -263,7 +278,7 @@ class RegisterRockets(generics.CreateAPIView):
                 ).save()
                 Question2M(
                     className = className,
-                    rocket = rocket,
+                    rocketName = rocket,
                     month2QuestionName = month2QuestionName,
                     month2ReviewText = month2ReviewText,
                     month2QuestionText = month2QuestionText,
@@ -273,9 +288,9 @@ class RegisterRockets(generics.CreateAPIView):
                     month2AnswerD = month2AnswerD,
                     month2CorrectAnswer = month2CorrectAnswer
                 ).save()
-                question2d = Question2D.objects.get(rocket = rocket, className = className, day2QuestionName = day2QuestionName)
-                question2w = Question2W.objects.get(rocket = rocket, className = className, week2QuestionName = week2QuestionName)
-                question2m = Question2M.objects.get(rocket = rocket, className = className, month2QuestionName = month2QuestionName)
+                question2d = Question2D.objects.get(rocketName = rocket, className = className, day2QuestionName = day2QuestionName)
+                question2w = Question2W.objects.get(rocketName = rocket, className = className, week2QuestionName = week2QuestionName)
+                question2m = Question2M.objects.get(rocketName = rocket, className = className, month2QuestionName = month2QuestionName)
                 Rocket.objects.filter(rocketName = rocketName).filter(className = className).update(
                     question2d = question2d, 
                     question2w = question2w, 
