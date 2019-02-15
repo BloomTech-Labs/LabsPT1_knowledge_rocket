@@ -6,3 +6,28 @@
 Input {
     display: block;
 } */
+
+.form-group {
+    max-width: 90%;
+    margin: 3% auto;
+}
+
+button.dropdown-toggle.btn {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+h5 {
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+.bold {
+    font-weight: bolder;
+}
+
+@media (min-width: 768px) {
+    h5 {
+        font-size: 1rem;
+    }
+}
