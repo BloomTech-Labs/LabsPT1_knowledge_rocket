@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody,
          ModalFooter, Button, Input } from 'reactstrap';
 import "../css/CreateClass.css";
+import "../css/Classes.css";
 
 class AddClass extends Component {
     
@@ -32,9 +33,9 @@ class AddClass extends Component {
 
         return (
             <div>
-                <Button color="danger" onClick={this.toggle}>
-                    <div className="add-class-btn-txt">Add Class</div>
-                </Button>
+                <div className="text-center">
+                    <i class="fas fa-plus-circle" onClick={this.toggle}/>
+                </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                 <ModalHeader toggle={this.toggle}>Add New Class</ModalHeader>
                 <ModalBody>

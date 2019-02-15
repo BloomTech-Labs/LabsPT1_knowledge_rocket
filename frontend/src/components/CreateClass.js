@@ -25,7 +25,7 @@ import "../css/CreateClass.css";
 
 class CreateClass extends Component {
     state = {
-        clsName: '',
+        clsName: "",
         studentLastName: '',
         studentFirstName: '',
         studentEmail: '',
@@ -84,6 +84,7 @@ class CreateClass extends Component {
 
     componentDidMount() {
         this.props.getClasses();
+        this.handleSelectClass(this.props.history.location.state ? this.props.history.location.state.className : "");
     }
 
     render() {
@@ -99,23 +100,12 @@ class CreateClass extends Component {
                                 <FormGroup className="form-group-create-class">
                                     <h3 className="text-header">Select Class</h3>
                                     <Row>
-                                        <Col lg="4" style={{marginRight: "5%"}}>
+                                        <Col lg="4">
                                             <SelectClass 
                                                 classes={this.props.state.classes}
                                                 handleSelectClass={this.handleSelectClass}
                                                 clsName={this.state.clsName}
                                             />
-                                        </Col>
-                                        <Col lg="3" style={{paddingLeft: 0}}>
-                                            <AddClass handleAddClass={this.handleAddClass}/>
-                                        </Col>
-                                        <Col lg="5">
-                                        <FormGroup check className="create-class-cc-checkbox">
-                                            {/* <Label check>
-                                                <Input type="checkbox" />{' '}
-                                                <span>CC Me On Rocket Emails</span>
-                                            </Label> */}
-                                        </FormGroup>
                                         </Col>
                                     </Row>
                                 </FormGroup>
