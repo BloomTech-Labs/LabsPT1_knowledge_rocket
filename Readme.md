@@ -160,7 +160,7 @@ Knowledge Rocket is [MIT licensed](https://opensource.org/licenses/MIT).
 
 Be logged in for all but <br> http://127.0.0.1:8000/register/ and <br>http://127.0.0.1:8000/login/
 
-*URL links built within app can also be access without authentication*
+*URL links built within app can also be accessed without authentication*
 
 You can substitute http://127.0.0.1:8000/ for https://cspt1knowledgerocket.herokuapp.com/<br> in order to interact with deployed Heroku database
 
@@ -360,7 +360,7 @@ http://127.0.0.1:8000/buildemail/
 	"className": "CSPT4",
 	"title": "test email",
 	"message": "hopefully this works?",
-	"url": "https://giphy.com/gifs/soccer-celebrations-u2us-CFciH20rL836M"
+	"url": "http://127.0.0.1:3000/quiz2d/CSPT1/JSEssentialsReview"
 }
 
 http://127.0.0.1:8000/subscribe/
@@ -466,5 +466,5 @@ PLAN_ID=plan_ELRmurC5Sg6j16
 
 		By navigating to the hyperlink a quiz will load; students then read the review text and question; submit their answer and an alert will pop up indicating the correct answer.
 
-**Note due to time constraints and issues the delayed sending functionality was not completed, emails do however send immediately toall class students**
+**Note due to time constraints and issues the delayed sending functionality was not completed, emails do however send immediately to all class students**
 
