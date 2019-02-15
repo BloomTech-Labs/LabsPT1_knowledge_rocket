@@ -13,11 +13,16 @@
     margin: 0 auto;
     /* border: 1px solid grey; */
     border-radius: 15px;
+    height: 80%;
 }
 
 i.fas.fa-plus-circle {
     color: black;
-    font-size: 100px;
+    font-size: 2rem;
+}
+
+.create-class {
+    margin: 0 auto;
 }
 
 .card a {
