@@ -16,7 +16,7 @@ class BillingForm extends Component {
     let {token} = await this.props.stripe.createToken();
     console.log(token.id);
     console.log(`token ${localStorage.getItem('token')}`);
-    let response = await fetch("http://localhost:8000/subscribe", {
+    let response = await fetch("https://cspt1knowledgerocket.herokuapp.com/subscribe", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
