@@ -269,14 +269,34 @@ For a net- hosted frontend + backend without having to set it up locally, you ca
 
 ## Environment Variables
 
-| Variable         | Description                     |
-| :--------------- | :------------------------------ |
-| `SECRET_KEY`      | *type references here* TO EDIT LATER |
-| `DATABASE_URL` | *type references here* TO EDIT LATER |
-| `ALLOWED_HOSTS`       | *type references here* TO EDIT LATER |
-| `EMAIL_HOST_PASSWORD`     | *type references here* TO EDIT LATER |
-| `STRIPE_SECRET_KEY`     | *type references here* TO EDIT LATER |
-| `PLAN_ID`     | *type references here* TO EDIT LATER |
+| Variable         |
+| :--------------- | 
+| `SECRET_KEY`      |
+| `DATABASE_URL` |
+| `ALLOWED_HOSTS`       |
+| `EMAIL_HOST_PASSWORD`     |
+| `STRIPE_SECRET_KEY`     |
+| `PLAN_ID`     |
 
+> **Note:** Without this file, and variables defined. Knowledge Rocket will fail to load up.
+> **Note:** We will provide you with the defined variables.
 
-WILL NEED TO EDIT CHART FOR APPROPRIATE ENV FILE STRUCTURE
+<details><summary>Provided Variables for Local Host</summary>
+<p>
+
+#### ENV file example that can be used
+In your root directory just create a file called ```.env```, and copy and paste these
+variables into it.
+
+```python
+SECRET_KEY=2^sl@j+c(btlk_k8h+r(guaw^%am0vx4t&@*qh+3o05dbxg^a4
+DEBUG=false
+DATABASE_URL=sqlite:///db.sqlite3
+ALLOWED_HOSTS=*
+EMAIL_HOST_PASSWORD=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
+STRIPE_SECRET_KEY=sk_test_alE5N19wkDsLtJTtrq9i5I7G
+PLAN_ID=plan_ELRmurC5Sg6j16
+```
+
+</p>
+</details>
