@@ -7,7 +7,8 @@ import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { getUser, getClass } from "../actions";
+import { getUser, getClass, addClass } from "../actions";
+import AddClass from './AddClass';
 
 class Classes extends Component {
   handleGet = () => {
@@ -30,6 +31,11 @@ class Classes extends Component {
     this.props.logoutUser();
     this.props.history.push("/");
   };
+
+  handleAddClass = (clsName) => {
+    this.props.addClass({className: clsName});
+    this.props.history.push({pathname: "/createClass", state: {className: clsName}});
+  }
 
   render() {
     return (
@@ -55,19 +61,19 @@ class Classes extends Component {
                     this.props.state.classes.map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
                         <Card body>
+                          <Link to={{ pathname: "/createClass",  state: { className: unit.className }}}>
                           <CardTitle className="text-center">
                             {unit.className}
                           </CardTitle>
+                          </Link>
                         </Card>
                       </Col>
                     ))
                   )}
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
-                      <CardTitle className="create-class">New Class</CardTitle>
-                      <Link to={"/createClass"}>
-                        <i className="fas fa-plus-circle" />
-                      </Link>
+                      <CardTitle className="text-center">New Class</CardTitle>
+                      <AddClass handleAddClass={this.handleAddClass}/>
                     </Card>
                   </Col>
                 </Row>
@@ -88,5 +94,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUser, getClass }
+  { getUser, getClass, addClass }
 )(Classes);

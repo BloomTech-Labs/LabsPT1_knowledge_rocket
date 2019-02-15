@@ -5,7 +5,7 @@ from .models import Rocket, Class, Question2D, Question2M, Question2W, Student
 from django.contrib.auth.models import User
 from rest_framework_jwt.settings import api_settings
 from rocketsapp.utilities.billing_helper import SubscribeCustomer
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage
 from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSerializer, \
                         UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, \
                         UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, \
@@ -23,7 +23,20 @@ class RegisterClasses(generics.CreateAPIView):
  
     def post(self, request, *args, **kwargs):
         username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
+        premiumCheck = request.user.is_premium
         className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
+        if (premiumCheck is False):
+            count = Class.objects.filter(user = username).count()
+            if(count >= 10):
+                return JsonResponse({ 
+                    'error': 'Class count has exceeded 10, you need a premium account to continue.'
+                    },
+                    safe = True,
+                    status = status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            else:
+                pass
+
         if(Class.objects.filter(className = className)):
             response = JsonResponse({
                     'error': 'class already exists'
@@ -44,17 +57,6 @@ class RegisterClasses(generics.CreateAPIView):
                 status=status.HTTP_201_CREATED
             )
             return response
-
-# class GetClasses(generics.CreateAPIView):
-#     permission_classes = (permissions.IsAuthenticated,)
-
-#     def get(self, request):
-#         username = request.user
-#         classes = Class.objects.filter(user = username)
-#         class_list = []
-#         for clas in classes:
-#             class_list.append({'className': clas.className})
-#         return JsonResponse(class_list, safe=False)
 
 class UpdateClass(generics.CreateAPIView):
     serializer_class = UpdateClassSerializer
@@ -190,6 +192,7 @@ class RegisterRockets(generics.CreateAPIView):
     def post(self, request, *args, **kwargs):
 
         username = request.user
+        premiumCheck = request.user.is_premium
         rocketName = request.data.get("rocketName")
         className = request.data.get("className")
 
@@ -222,6 +225,18 @@ class RegisterRockets(generics.CreateAPIView):
 
         className = Class.objects.get(className = className) #Searches class table to find matching class name then sets it to variable, which is then applied to Rocket.save()
         rocketCheck = Rocket.objects.filter(rocketName = rocketName).filter(className = className)
+        if (premiumCheck is False):
+            count = Rocket.objects.filter(user = username).count()
+            if(count >= 10):
+                return JsonResponse({ 
+                    'error': 'Rocket count has exceeded 10, you need a premium account to continue.'
+                    },
+                    safe = True,
+                    status = status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+            else:
+                pass
+
         if (rocketCheck):
             return JsonResponse({ 
                 'error': 'A rocket for this class already exists'
@@ -239,7 +254,7 @@ class RegisterRockets(generics.CreateAPIView):
                 rocket = Rocket.objects.filter(rocketName = rocketName).get(className = className)
                 Question2D(
                     className = className,
-                    rocket = rocket,
+                    rocketName = rocket,
                     day2QuestionName = day2QuestionName,
                     day2ReviewText = day2ReviewText,
                     day2QuestionText = day2QuestionText,
@@ -251,7 +266,7 @@ class RegisterRockets(generics.CreateAPIView):
                 ).save()
                 Question2W(
                     className = className,
-                    rocket = rocket,
+                    rocketName = rocket,
                     week2QuestionName = week2QuestionName,
                     week2ReviewText = week2ReviewText,
                     week2QuestionText = week2QuestionText,
@@ -263,7 +278,7 @@ class RegisterRockets(generics.CreateAPIView):
                 ).save()
                 Question2M(
                     className = className,
-                    rocket = rocket,
+                    rocketName = rocket,
                     month2QuestionName = month2QuestionName,
                     month2ReviewText = month2ReviewText,
                     month2QuestionText = month2QuestionText,
@@ -273,9 +288,9 @@ class RegisterRockets(generics.CreateAPIView):
                     month2AnswerD = month2AnswerD,
                     month2CorrectAnswer = month2CorrectAnswer
                 ).save()
-                question2d = Question2D.objects.get(rocket = rocket, className = className, day2QuestionName = day2QuestionName)
-                question2w = Question2W.objects.get(rocket = rocket, className = className, week2QuestionName = week2QuestionName)
-                question2m = Question2M.objects.get(rocket = rocket, className = className, month2QuestionName = month2QuestionName)
+                question2d = Question2D.objects.get(rocketName = rocket, className = className, day2QuestionName = day2QuestionName)
+                question2w = Question2W.objects.get(rocketName = rocket, className = className, week2QuestionName = week2QuestionName)
+                question2m = Question2M.objects.get(rocketName = rocket, className = className, month2QuestionName = month2QuestionName)
                 Rocket.objects.filter(rocketName = rocketName).filter(className = className).update(
                     question2d = question2d, 
                     question2w = question2w, 
@@ -383,8 +398,8 @@ class GetQuestion2D(generics.CreateAPIView):
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
         rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
-        questionName = Question2D.objects.get(className = classQuery, rocket = rocketQuery)
-        question = list(Question2D.objects.filter(rocket = rocketQuery, className = classQuery, day2QuestionName = str(questionName)).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
+        questionName = Question2D.objects.get(className = classQuery, rocketName = rocketQuery)
+        question = list(Question2D.objects.filter(rocketName = rocketQuery, className = classQuery, day2QuestionName = str(questionName)).values("day2ReviewText","day2QuestionText","day2AnswerA","day2AnswerB","day2AnswerC","day2AnswerD","day2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "rocket": rocketName,
@@ -435,8 +450,8 @@ class GetQuestion2W(generics.CreateAPIView):
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
         rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
-        questionName = Question2W.objects.get(className = classQuery, rocket = rocketQuery)
-        question = list(Question2W.objects.filter(rocket = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
+        questionName = Question2W.objects.get(className = classQuery, rocketName = rocketQuery)
+        question = list(Question2W.objects.filter(rocketName = rocketQuery, className = classQuery, week2QuestionName = str(questionName)).values("week2ReviewText","week2QuestionText","week2AnswerA","week2AnswerB","week2AnswerC","week2AnswerD","week2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "rocket": rocketName,
@@ -487,8 +502,8 @@ class GetQuestion2M(generics.CreateAPIView):
         className = request.data.get("className")
         classQuery = Class.objects.get(className = className)
         rocketQuery = Rocket.objects.get(className = classQuery, rocketName = rocketName)
-        questionName = Question2M.objects.get(className = classQuery, rocket = rocketQuery)
-        question = list(Question2M.objects.filter(rocket = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
+        questionName = Question2M.objects.get(className = classQuery, rocketName = rocketQuery)
+        question = list(Question2M.objects.filter(rocketName = rocketQuery, className = classQuery, month2QuestionName = str(questionName)).values("month2ReviewText","month2QuestionText","month2AnswerA","month2AnswerB","month2AnswerC","month2AnswerD","month2CorrectAnswer"))
         response = JsonResponse({
             "class": className,
             "rocket": rocketName,
@@ -587,21 +602,54 @@ class BuildEmail(generics.CreateAPIView):
         title = request.data.get("title")
         message = request.data.get("message")
         className = request.data.get("className")
+        # rocketName = request.data.get("rocketName")
+        # interval = request.data.get("interval")
+        # unixTimeStamp = request.data.get('unixTimeStamp')
+        # className = Class.objects.get(className = className)
+        # rocketName = Rocket.objects.get(className = className, rocketName = rocketName)
+        # if (interval == "quiz2d"):
+        #     Question2D.objects.filter(className = className, rocketName = rocketName).update(
+        #         url = url,
+        #         emailTitle = title,
+        #         emailMessage = message,
+        #         send_at = unixTimeStamp
+        #     )
+        #     return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
 
+        # elif (interval == "quiz2w"):
+        #     Question2W.objects.filter(className = className, rocketName = rocketName).update(
+        #         url = url,
+        #         emailTitle = title,
+        #         emailMessage = message,
+        #         send_at = unixTimeStamp
+        #     )
+        #     return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        # elif (interval == "quiz2m"):
+        #     Question2M.objects.filter(className = className, rocketName = rocketName).update(
+        #         url = url,
+        #         emailTitle = title,
+        #         emailMessage = message,
+        #         send_at = unixTimeStamp
+        #     )
+        #     return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
+
+        # else:
+        #     return JsonResponse( {"error": "error processing your request"}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
         className = Class.objects.get(className = className)
         studentList = list(Student.objects.filter(className = className).values_list("studentEmail", flat=True))
         if(studentList):
 
-            send_mail(
+            emailBatch = EmailMessage(
                 f'{title}',
                 f'{message} \n {url}',
                 f'{teacherEmail}',
-                studentList,
-                fail_silently=False,
+                to=studentList,
             )
+            emailBatch.send(fail_silently=False)
 
             return JsonResponse( {"message": "Email batch sent successfully... at least there weren't any server errors..."}, safe=False, status=status.HTTP_200_OK )
 
         else:
             return JsonResponse( {"error": "Need a list of students to send emails to"}, safe=False, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
- 

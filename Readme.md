@@ -19,6 +19,9 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 - [Encryption](#encryption)
 - [Team](#team-members)
 - [License](#license)
+- [Running Front End](#running-front-end)
+- [Running Back End](#running-back-end)
+- [Environment Variables](#environment-variables)
 
 ## Knowledge Rocket Stack:
 
@@ -248,3 +251,32 @@ http://127.0.0.1:8000/buildemail/
 	"message": "hopefully this works?",
 	"url": "https://giphy.com/gifs/soccer-celebrations-u2us-CFciH20rL836M"
 }
+
+## Running Front End:
+
+From root folder on your command prompt of choice ( We used git bash ) type `cd frontend`: then in there you will have to run `yarn install` or `npm install` ( your preference ), to install all frontend dependencies. After that is complete, you can proceed to `npm start`, or `yarn start`. This should locally host the frontend.
+
+## Running Back End
+
+From root folder on your command prompt of choice ( We used git bash ), type `pipenv install`, then after the dependencies have been installed you can proceed to then type `pipenv shell`. You have now created a virtualEnv for the backend, now you can type, `python ./manage.py makemigrations`. If it says "No changes detected", you will still want to migrate, considering you cloned a local project, you still need to fill the DB with Django tables for it to organize the data. So after you made migrations, type `python ./manage.py migrate`, you will notice, it migrates the DB!
+
+You are almost complete, after you have successfully migrated the server, you will then type `python ./manage.py runserver`. Viola, you have now locally hosted the backend!
+
+
+
+For a net- hosted frontend + backend without having to set it up locally, you can visit: https://infallible-euler-24eb8a.netlify.com
+
+
+## Environment Variables
+
+| Variable         | Description                     |
+| :--------------- | :------------------------------ |
+| `SECRET_KEY`      | *type references here* TO EDIT LATER |
+| `DATABASE_URL` | *type references here* TO EDIT LATER |
+| `ALLOWED_HOSTS`       | *type references here* TO EDIT LATER |
+| `EMAIL_HOST_PASSWORD`     | *type references here* TO EDIT LATER |
+| `STRIPE_SECRET_KEY`     | *type references here* TO EDIT LATER |
+| `PLAN_ID`     | *type references here* TO EDIT LATER |
+
+
+WILL NEED TO EDIT CHART FOR APPROPRIATE ENV FILE STRUCTURE
