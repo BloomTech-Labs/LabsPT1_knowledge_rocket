@@ -104,5 +104,8 @@ class SubscriptionSerializer(serializers.Serializer):
 class EmailSerializer(serializers.Serializer):
     url = serializers.CharField(max_length=256)
     className = serializers.CharField(max_length=100)
+    rocketName = serializers.CharField(max_length=100)
+    interval = serializers.CharField(max_length=100)
     message = serializers.CharField(max_length=512)
     title = serializers.CharField(max_length=100)
+    unixTimeStamp = serializers.DateTimeField(input_formats=['%d'])

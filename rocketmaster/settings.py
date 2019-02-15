@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rocketsapp',
     'corsheaders',
     'oauth2_provider',
+    
 ]
 
 MIDDLEWARE = [
