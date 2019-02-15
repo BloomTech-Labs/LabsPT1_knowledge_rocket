@@ -168,13 +168,13 @@ Auth Header:
 Authorization token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJ1c2VybmFtZSI6InRlc3R1c2VyMzIzIiwiZXhwIjoxNTQ4Mzk0NDgwLCJlbWFpbCI6InRlc3R1c2VyMTIzQHRlc3QuY29tIn0.fkBJi6NXPFTOj54dlMFsso5K67H6Q7XMdYdt_nZW8hg
 
 
-
 To load quizzes:
 	http://127.0.0.1:8000/quiz2d/className/rocketName
 	http://127.0.0.1:8000/quiz2w/className/rocketName
 	http://127.0.0.1:8000/quiz2m/className/rocketName
 
-<pre>http://127.0.0.1:8000/register/
+
+http://127.0.0.1:8000/register/
 {
 	"username": "testuser123",
 	"email": "testuser123@test.com",
@@ -265,6 +265,18 @@ http://127.0.0.1:8000/updatestudent/
 	"newStudentEmail": "teacher@student.com"
 }
 
+http://127.0.0.1:8000/getstudents/
+{
+	"className" : "CSPT1"
+}
+
+http://127.0.0.1:8000/removestudent/
+{
+	"className": "CSPT1"
+	"studentName": "Lambda School"
+	"studentEmail": "Lambda@school.com
+}
+
 **classes must already be created**
 http://127.0.0.1:8000/updaterocket/
 {
@@ -347,6 +359,17 @@ http://127.0.0.1:8000/buildemail/
 	"message": "hopefully this works?",
 	"url": "https://giphy.com/gifs/soccer-celebrations-u2us-CFciH20rL836M"
 }
+
+http://127.0.0.1:8000/subscribe/
+	**Used directly by stripe, no postman application**
+
+http://127.0.0.1:8000/o/
+http://127.0.0.1:8000/api/test/
+**All oAuth endpoints are not currently is use**
+
+http://127.0.0.1:8000/admin/
+	Used to access Django's built in admin functionality with superuser credentials
+
 </pre>
 
 ## Running Front End:
@@ -397,6 +420,7 @@ PLAN_ID=plan_ELRmurC5Sg6j16
 </details>
 
 ## Instructions
+
 	Step 1
 		Create User/Login
 
