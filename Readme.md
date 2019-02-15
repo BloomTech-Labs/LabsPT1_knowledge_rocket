@@ -26,18 +26,36 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 ## Knowledge Rocket Stack:
 
 ## Front End:
-- React
+- React/React-Dom
+	JS framework that utilizes JS and JSX to create single page applications.
 - Redux
-- Stripe
+	React - addon to React that allows for app wide storage of data.
+- React-Redux
+	Connects React and Redux
 - Axios
+	HTTP framework that works with JS to send data between client and server
 - React Router
+	React addon used to organize a project and simplify routing between react "pages"
+- Reactstrap/Bootstrap
+	Component styling providing by bootstrap and adapted to work with react library
+- React-Datepicker
+- React-Scripts
+- React-Stripe-Elements
+- Styled-Components
+
+**Dev Dependencies**
+- Nodemon
+	Allow for easy restarting of React application upon saving changes
+- Redux-Logger
+	Redux middleware for viewing redux state before/during/action actions are executed
 
 ### Middleware:
-- Thunk
-- Logger
+- Redux-Thunk
+	Adds a layer of abstraction to Redux Actions to make them more readable and callable via function.
 
 ## Back End:
 - Django
+	
 - Python
 
 ## Database:
@@ -51,7 +69,7 @@ Knowledge rockets are short paragraphs followed by a multiple choice question. T
 
 ## Billing:
 - Stripe
-
+	Billing API used to allow users to sign up for premium app features at a fee.
 ## Notifications:
 - Sendgrid
 
