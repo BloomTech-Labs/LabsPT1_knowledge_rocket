@@ -3,7 +3,9 @@
     color: black;
     background-color: transparent;
 }
-
+button.email-btn.btn {
+    background-color: black;
+}
 .review {
     color: black;
     background-color: transparent;

@@ -5,8 +5,15 @@ import { Button, Form, Input, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { get_2_Day, get_2_Week, get_2_Month, sendEmail, getClasses, getRocketsByClassName } from "../actions";
-import SelectClass  from "./SelectClass";
+import {
+  get_2_Day,
+  get_2_Week,
+  get_2_Month,
+  sendEmail,
+  getClasses,
+  getRocketsByClassName
+} from "../actions";
+import SelectClass from "./SelectClass";
 import SelectRocket from "./SelectRocket";
 import SidebarNav from "./SidebarNav";
 
@@ -133,9 +140,15 @@ class Send2D extends Component {
                       </Col>
                     </Row>
                   </FormGroup>
-                  <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
-                  <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
-                  <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
+                  <Button className="email-btn" onClick={this.getRocket2D}>
+                    Get 2 Day Rocket
+                  </Button>
+                  <Button className="email-btn" onClick={this.getRocket2W}>
+                    Get 2 Week Rocket
+                  </Button>
+                  <Button className="email-btn" onClick={this.getRocket2M}>
+                    Get 2 Month Rocket
+                  </Button>
                   <FormGroup>
                     <Input
                       type="text"
@@ -291,20 +304,20 @@ class Send2D extends Component {
               </Row>
             </Form>
           </Col>
-            <div>
-            { this.props.state.redirect ? <Redirect to="/classes" /> : null }
-            </div>
-          </Row>
-        </Container>
-        );
-      }
-    }
-    
-    const mapStateToProps = state => {
-      return {
-        state: state
-      };
-    };
+          <div>
+            {this.props.state.redirect ? <Redirect to="/classes" /> : null}
+          </div>
+        </Row>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    state: state
+  };
+};
 
 export default connect(
   mapStateToProps,
