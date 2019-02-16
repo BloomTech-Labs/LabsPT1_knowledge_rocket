@@ -29,8 +29,6 @@ class AddClass extends Component {
     }
 
     render() {
-        // const { handleAddClass } = this.props;
-
         return (
             <div>
                 <div className="text-center">
