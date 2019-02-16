@@ -44,7 +44,6 @@ class Quiz2D extends Component {
   }
   
   render() {
-
     return (
       <Container className="recap">
         <Form>

@@ -72,7 +72,6 @@ class CreateRocket extends Component {
 
   handleRadioSelect = e => {
     this.setState({ [e.target.name]: e.target.value }, () => {
-      console.log(this.state);
     });
   }
 
@@ -163,8 +162,6 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
-                  {/* <h3> Select Radio button for correct answer, limit 1 per question</h3> */}
-                  {/* <h3> To make only one selectable at a time, we simply give them the same name </h3> */}
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"

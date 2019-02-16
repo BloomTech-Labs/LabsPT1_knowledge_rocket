@@ -31,7 +31,6 @@ class App extends Component {
                   </div>
                 </div>
             </div>
-            {/* rocket close */}
               <div className="cta-container">
                 <div className="first-text">A tool for Teachers</div>
                 <div className="second-text">Promotes effective learning</div>

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
 import { Card, CardTitle, Input, Button, Form, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
-import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 import SelectClass from './SelectClass.js';
 

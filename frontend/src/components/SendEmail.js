@@ -290,11 +290,12 @@ class Send2D extends Component {
                 </Col>
               </Row>
             </Form>
+          </Col>
             <div>
             { this.props.state.redirect ? <Redirect to="/classes" /> : null }
             </div>
-            </Row>
-          </Container>
+          </Row>
+        </Container>
         );
       }
     }

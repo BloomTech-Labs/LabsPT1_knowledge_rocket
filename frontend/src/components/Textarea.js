@@ -3,14 +3,6 @@ import PropTypes from 'prop-types';
 
 import "../css/Textarea.css";
 
-// this is a Textarea class
-// it keeps track of how many chars the user has typed
-// pretty cool, huh?
-
-// TO DO: 
-// * Disable text input when count >= 512
-// * Turn counter text red
-
 export default class Textarea extends Component {
     static propTypes = {
         countLimit: PropTypes.oneOfType([
@@ -61,7 +53,6 @@ export default class Textarea extends Component {
 
     render() {
         const { countLimit, countShow, ...restProps } = this.props;
-        // did some serious tweaking on the render function
         if (this.state.count >= 512 && this.state.styler.color === "#6c757d") {
             this.setState({"styler": {"color":"red"}})
         } else if (this.state.count < 512 && this.state.styler.color === "red") {
@@ -70,7 +61,6 @@ export default class Textarea extends Component {
         return (
             <div className="textarea__wrapper">
                 <textarea className="textarea"
-                    // gotta add rows 
                     rows={this.state.rows}
                     {...restProps}
                     ref={ref => (this.textarea = ref)}
