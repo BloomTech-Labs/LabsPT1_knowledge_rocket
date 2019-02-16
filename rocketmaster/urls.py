@@ -30,7 +30,7 @@ from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, \
                            UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, \
                            UpdateQuestion2M, CreateSubscription, GetRocketsByClassName, \
                            RemoveStudent, \
-                           BuildEmail
+                           BuildEmail, IsPremium
 
 # endpoints for oAuth
 oauth2_endpoint_views = [
@@ -89,4 +89,5 @@ urlpatterns = [
     re_path(r'^home/', csrf_exempt(GetUser.as_view())),
     re_path(r'^subscribe', csrf_exempt(CreateSubscription.as_view())),
     re_path(r'^api/test', ApiEndpoint.as_view()),
+    re_path(r'^ispremium', csrf_exempt(IsPremium.as_view()))
 ]
