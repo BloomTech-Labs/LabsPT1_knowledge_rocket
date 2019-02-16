@@ -32,7 +32,7 @@ class AddClass extends Component {
         return (
             <div>
                 <div className="text-center">
-                    <i class="fas fa-plus-circle" onClick={this.toggle}/>
+                    <i className="fas fa-plus-circle" onClick={this.toggle}/>
                 </div>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
                 <ModalHeader toggle={this.toggle}>Add New Class</ModalHeader>
