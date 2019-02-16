@@ -13,115 +13,116 @@ import SidebarNav from "./SidebarNav";
 import "../css/Quiz.css";
 
 class Send2D extends Component {
-    state = {
-        clsName: "",
-        rocketName: "",
-        emailTitle:"",
-        emailMessage:"",
-        interval: "",
-        unixTimeStamp: ""
+  state = {
+    clsName: "",
+    rocketName: "",
+    emailTitle: "",
+    emailMessage: "",
+    interval: "",
+    unixTimeStamp: ""
+  };
+
+  componentWillMount() {
+    this.props.getClasses();
+  }
+
+  handleSelectClass = clsName => {
+    this.setState({ clsName });
+    this.props.getRocketsByClassName({ className: clsName });
+  };
+
+  handleSelectRocket = rocketName => {
+    this.setState({ rocketName });
+  };
+
+  getRocket2D = () => {
+    const request = {
+      className: this.state.clsName,
+      rocketName: this.state.rocketName
     };
+    const createBatchInterval = Date.now() + 86400 * 2 * 1000;
+    this.setState({
+      interval: "quiz2d",
+      unixTimeStamp: createBatchInterval
+    });
+    this.props.get_2_Day(request);
+    this.setState({ rocketName: "" });
+  };
 
-    componentWillMount() {
-      this.props.getClasses();
-
-    }
-
-    handleSelectClass = (clsName) => {
-      this.setState({clsName 
-       });
-      this.props.getRocketsByClassName({className: clsName});
-      }
-
-    handleSelectRocket = (rocketName) => {
-      this.setState({ rocketName })
-    }
-
-    getRocket2D = () => {
-      const request = {
-        className: this.state.clsName,
-        rocketName: this.state.rocketName,
-      }
-      const createBatchInterval = (Date.now() + 86400*2*1000)
-      this.setState({ 
-        interval: 'quiz2d',
-        unixTimeStamp: createBatchInterval 
-      })
-      this.props.get_2_Day(request);
-      this.setState({ rocketName: ""})
-    }
-
-    getRocket2W = () => {
-        const request = {
-            className: this.state.clsName,
-            rocketName: this.state.rocketName,
-        }
-        const createBatchInterval = (Date.now() + 604800*2*1000)
-        this.setState({ 
-          interval: 'quiz2w',
-          unixTimeStamp: createBatchInterval 
-        })
-        this.props.get_2_Week(request);
-        this.setState({ rocketName: ""})
+  getRocket2W = () => {
+    const request = {
+      className: this.state.clsName,
+      rocketName: this.state.rocketName
     };
+    const createBatchInterval = Date.now() + 604800 * 2 * 1000;
+    this.setState({
+      interval: "quiz2w",
+      unixTimeStamp: createBatchInterval
+    });
+    this.props.get_2_Week(request);
+    this.setState({ rocketName: "" });
+  };
 
-    getRocket2M = () => {
-      const request = {
-        className: this.state.clsName,
-        rocketName: this.state.rocketName,
-      }
-      const createBatchInterval = (Date.now() + 2629743*2*1000)
-      this.setState({
-        interval: 'quiz2m',
-        unixTimeStamp: createBatchInterval
-      })
-      this.props.get_2_Month(request);
-      this.setState({ rocketName: ""})
+  getRocket2M = () => {
+    const request = {
+      className: this.state.clsName,
+      rocketName: this.state.rocketName
     };
+    const createBatchInterval = Date.now() + 2629743 * 2 * 1000;
+    this.setState({
+      interval: "quiz2m",
+      unixTimeStamp: createBatchInterval
+    });
+    this.props.get_2_Month(request);
+    this.setState({ rocketName: "" });
+  };
 
-    buildAndSendEmail = () => {
-        const userKey = localStorage.getItem('token')
+  buildAndSendEmail = () => {
+    const userKey = localStorage.getItem("token");
 
-        const request = {
-            className: this.state.clsName,
-            title: this.state.emailTitle,
-            message: this.state.emailMessage,
-            url:`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`,
-            unixTimeStamp: this.state.unixTimeStamp,
-            interval: this.state.interval,
-            rocketName: this.state.rocketName
-          }
-          this.props.sendEmail(userKey, request);
-    }
+    const request = {
+      className: this.state.clsName,
+      title: this.state.emailTitle,
+      message: this.state.emailMessage,
+      url: `https://infallible-euler-24eb8a.netlify.com/${
+        this.state.interval
+      }/${this.props.state.question.class}/${this.props.state.question.rocket}`,
+      unixTimeStamp: this.state.unixTimeStamp,
+      interval: this.state.interval,
+      rocketName: this.state.rocketName
+    };
+    this.props.sendEmail(userKey, request);
+  };
 
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-    render() {
-        return (
-          <Container className="recap">
-            <Row>
-            <Col lg="3">
-              <SidebarNav className="create-class-sidebar"/>
-            </Col>
+  render() {
+    return (
+      <Container className="recap">
+        <Row>
+          <Col sm="md" lg="3">
+            <SidebarNav />
+          </Col>
+          <Col>
             <Form>
               <Row>
                 <Col>
-                <FormGroup>
+                  <FormGroup>
                     <h3>Select Class</h3>
                     <Row>
                       <Col>
-                        <SelectClass 
+                        <SelectClass
                           classes={this.props.state.classes}
                           handleSelectClass={this.handleSelectClass}
                           clsName={this.state.clsName}
                         />
                       </Col>
                     </Row>
-                </FormGroup>
-                <FormGroup>
-                  <h3>Select Rocket</h3>
+                  </FormGroup>
+                  <FormGroup>
+                    <h3>Select Rocket</h3>
                     <Row>
                       <Col>
                         <SelectRocket
@@ -131,26 +132,58 @@ class Send2D extends Component {
                         />
                       </Col>
                     </Row>
-                </FormGroup>
-                      <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
-                      <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
-                      <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
-                  <FormGroup>
-                    <Input type="text" name="emailTitle" placeholder="Email Title" id="emailTitle" maxLength="95" value={this.state.emailTitle} onChange={this.handleInputChange} />
-                    <Input type="text" name="emailMessage" placeholder="Email Message" id="emailMessage" maxLength="95" value={this.state.emailMessage} onChange={this.handleInputChange} />
-                    <h5> URL preview: {`https://infallible-euler-24eb8a.netlify.com/${this.state.interval}/${this.props.state.question.class}/${this.props.state.question.rocket}`}</h5>
                   </FormGroup>
-                    <Button onClick={this.buildAndSendEmail}>Build URL and Send Email Batch</Button>
+                  <Button onClick={this.getRocket2D}>Get 2 Day Rocket</Button>
+                  <Button onClick={this.getRocket2W}>Get 2 Week Rocket</Button>
+                  <Button onClick={this.getRocket2M}>Get 2 Month Rocket</Button>
                   <FormGroup>
-                    {this.props.state.question && this.state.interval === "quiz2d" ? (
+                    <Input
+                      type="text"
+                      name="emailTitle"
+                      placeholder="Email Title"
+                      id="emailTitle"
+                      maxLength="95"
+                      value={this.state.emailTitle}
+                      onChange={this.handleInputChange}
+                    />
+                    <Input
+                      type="text"
+                      name="emailMessage"
+                      placeholder="Email Message"
+                      id="emailMessage"
+                      maxLength="95"
+                      value={this.state.emailMessage}
+                      onChange={this.handleInputChange}
+                    />
+                    <h5>
+                      {" "}
+                      <span className="bold">URL preview:</span>{" "}
+                      {`https://infallible-euler-24eb8a.netlify.com/${
+                        this.state.interval
+                      }/${this.props.state.question.class}/${
+                        this.props.state.question.rocket
+                      }`}
+                    </h5>
+                  </FormGroup>
+                  <Button onClick={this.buildAndSendEmail}>
+                    Build URL and Send Email Batch
+                  </Button>
+                  <FormGroup>
+                    {this.props.state.question &&
+                    this.state.interval === "quiz2d" ? (
                       <div>
                         <h3>{this.props.state.question.class}</h3>
-                        <h3>{this.props.state.question.rocket} - Two Day Boost</h3>
-                        <p>
+                        <h3>
+                          {this.props.state.question.rocket} - Two Day Boost
+                        </h3>
+                        <p className="review">
                           {this.props.state.question.question[0].day2ReviewText}
                         </p>
-                        <p>
-                          {this.props.state.question.question[0].day2QuestionText}
+                        <p className="review">
+                          {
+                            this.props.state.question.question[0]
+                              .day2QuestionText
+                          }
                         </p>
                         <h4>Answers:</h4>
                         <div>
@@ -168,15 +201,24 @@ class Send2D extends Component {
                           </div>
                         </div>
                       </div>
-                    ) : this.props.state.question && this.state.interval === "quiz2w" ? (
+                    ) : this.props.state.question &&
+                      this.state.interval === "quiz2w" ? (
                       <div>
                         <h3>{this.props.state.question.class}</h3>
-                        <h3>{this.props.state.question.rocket} - Two Week Boost</h3>
-                        <p>
-                          {this.props.state.question.question[0].week2ReviewText}
+                        <h3>
+                          {this.props.state.question.rocket} - Two Week Boost
+                        </h3>
+                        <p className="review">
+                          {
+                            this.props.state.question.question[0]
+                              .week2ReviewText
+                          }
                         </p>
-                        <p>
-                          {this.props.state.question.question[0].week2QuestionText}
+                        <p className="review">
+                          {
+                            this.props.state.question.question[0]
+                              .week2QuestionText
+                          }
                         </p>
                         <h4>Answers:</h4>
                         <div>
@@ -194,34 +236,56 @@ class Send2D extends Component {
                           </div>
                         </div>
                       </div>
-                    ) : this.props.state.question && this.state.interval === "quiz2m" ? (
+                    ) : this.props.state.question &&
+                      this.state.interval === "quiz2m" ? (
                       <div>
                         <h3>{this.props.state.question.class}</h3>
-                        <h3>{this.props.state.question.rocket} - Two Month Boost</h3>
-                        <p>
-                          {this.props.state.question.question[0].month2ReviewText}
+                        <h3>
+                          {this.props.state.question.rocket} - Two Month Boost
+                        </h3>
+
+                        <p className="review">
+                          {
+                            this.props.state.question.question[0]
+                              .month2ReviewText
+                          }
                         </p>
-                        <p>
-                          {this.props.state.question.question[0].month2QuestionText}
+                        <p className="review">
+                          {
+                            this.props.state.question.question[0]
+                              .month2QuestionText
+                          }
                         </p>
+
                         <h4>Answers:</h4>
                         <div>
                           <div>
-                            {this.props.state.question.question[0].month2AnswerA}
+                            {
+                              this.props.state.question.question[0]
+                                .month2AnswerA
+                            }
                           </div>
                           <div>
-                            {this.props.state.question.question[0].month2AnswerB}
+                            {
+                              this.props.state.question.question[0]
+                                .month2AnswerB
+                            }
                           </div>
                           <div>
-                            {this.props.state.question.question[0].month2AnswerC}
+                            {
+                              this.props.state.question.question[0]
+                                .month2AnswerC
+                            }
                           </div>
                           <div>
-                            {this.props.state.question.question[0].month2AnswerD}
+                            {
+                              this.props.state.question.question[0]
+                                .month2AnswerD
+                            }
                           </div>
                         </div>
                       </div>
-                    ) : null
-                    }
+                    ) : null}
                   </FormGroup>
                 </Col>
               </Row>
@@ -243,5 +307,12 @@ class Send2D extends Component {
 
 export default connect(
   mapStateToProps,
-  { get_2_Day, get_2_Month, get_2_Week, sendEmail, getClasses, getRocketsByClassName  }
+  {
+    get_2_Day,
+    get_2_Month,
+    get_2_Week,
+    sendEmail,
+    getClasses,
+    getRocketsByClassName
+  }
 )(Send2D);

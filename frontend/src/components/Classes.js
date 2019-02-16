@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-import { Card, Badge, CardTitle } from "reactstrap";
+import { Card, CardTitle } from "reactstrap";
 import { connect } from "react-redux";
-import add_icon from "../img/add_icon.png";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
