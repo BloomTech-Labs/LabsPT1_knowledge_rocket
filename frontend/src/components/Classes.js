@@ -57,9 +57,9 @@ class Classes extends Component {
                 </div>
                 <Row>
                   {this.props.state.classes && (
-                    this.props.state.classes.map((unit, id) => (
+                    this.props.state.classes.map(unit => (
                       <Col md="4" sm="6" xs="12" className="mb-4">
-                        <Card body key={id}>
+                        <Card body>
                           <Link to={{ pathname: "/createClass",  state: { className: unit.className }}}>
                           <CardTitle className="text-center">
                             {unit.className}
