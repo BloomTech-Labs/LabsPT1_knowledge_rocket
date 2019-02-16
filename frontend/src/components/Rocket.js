@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-import { Card, CardTitle, Input, Button, Form, FormGroup } from "reactstrap";
+import { Card, CardTitle, Form, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
 import "../css/Classes.css";
 import SelectClass from './SelectClass.js';
@@ -19,10 +19,6 @@ class Rocket extends Component {
     this.props.getRockets(className);
     this.setState({ className: ''})
   };
-
-  // componentWillMount() {
-  //   this.handleRocket();
-  // }
 
   componentDidMount() {
     console.log(this.props.history.location);
@@ -63,19 +59,14 @@ class Rocket extends Component {
                   />
                 </FormGroup>
               </Form>
-            {/* </Row>   */}
-            {/* <Row> */}
               <Form style={{width: "80%"}}>
                 <FormGroup style={{maxWidth: "100%"}}>
                 <Row>{this.props.state.classRockets && 
-                    this.props.state.classRockets.map(unit => (
-                      <Col md="4" sm="6" xs="12" className="mb-4">
-                        <Card body>
-                          <CardTitle className="text-center">
+                    this.props.state.classRockets.map((unit, id) => (
+                      <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
+                        <Card body >
+                          <CardTitle className="text-center" >
                             {unit.rocketname}
-                          </CardTitle>
-                          <CardTitle className="text-center">
-                            { unit.className }
                           </CardTitle>
                           <Link to={"/createRocket"}>
                             <button>Edit</button>
