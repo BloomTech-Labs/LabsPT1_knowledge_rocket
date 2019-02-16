@@ -60,7 +60,7 @@ class Login extends Component {
                     placeholder="Password"
                   />
                   <div className="func-btn">
-                    <Button onClick={ this.handleSubmit }>Login</Button>
+                    <Button onClick={ this.handleSubmit } type="submit">Login</Button>
                     <Link to={ "/" }>
                       { " " }
                       <Button>Home</Button>

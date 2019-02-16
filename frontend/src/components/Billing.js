@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
-import { Row, Col, Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import { Row, Col, Container, Form, FormGroup, Label, Input, Button, Alert} from 'reactstrap';
 import SidebarNav from "./SidebarNav";
 import "../css/Billing.css";
 
@@ -9,21 +9,57 @@ class BillingForm extends Component {
   constructor(props) {
     super(props);
     this.submit = this.submit.bind(this);
+    this.state = {
+      "is_premium": false,
+      "message": ""
+    }
+  }
+
+  async componentDidMount() {
+    try {
+      let response = await fetch("https://cspt1knowledgerocket.herokuapp.com/ispremium", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          "Authorization": `token ${localStorage.getItem('token')}`
+        })
+      });
+      if (response.status === 401) {
+        this.props.history.push("/login");
+      }
+      if (response.status === 400) {
+        let err = await response.json();
+        throw new Error(err);
+      }
+      if (response.ok) {
+        let res = await response.json();
+        if (JSON.parse(res).is_premium === "True") {
+          this.setState({is_premium: true, message: "Customer already has premium subscription."})
+        }
+      }
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   async submit(e) {
     e.preventDefault();
     let {token} = await this.props.stripe.createToken();
-    let response = await fetch("https://cspt1knowledgerocket.herokuapp.com/subscribe", {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "Authorization": `token ${localStorage.getItem('token')}`
-      }),
-      body: JSON.stringify({ source: token.id })
-    });
-  
-    if (response.ok) console.log("Purchase Complete!")
+    try {
+      let response = await fetch("https://cspt1knowledgerocket.herokuapp.com/subscribe", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          "Authorization": `token ${localStorage.getItem('token')}`
+        }),
+        body: JSON.stringify({ source: token.id })
+      });
+      if (response.ok) {
+        this.setState({is_premium: true, message: "Customer subscribed successfully."})
+      }
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   handleBlur = () => {
@@ -71,10 +107,15 @@ class BillingForm extends Component {
           <Col lg="9">
             <Row>
               <Col>
-              <h1>Billing</h1>
+                <h1>Billing</h1>
               </Col>
             </Row>
-            <Row>
+            {this.state.is_premium && 
+              <Alert color="dark">
+                {this.state.message}
+              </Alert>
+            }
+            {!this.state.is_premium && <Row>
               <Col>
               <Form onSubmit={this.submit}>
                 <FormGroup>
@@ -127,7 +168,7 @@ class BillingForm extends Component {
 
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" name="subPrice" />{' '}
+                    <Input type="checkbox" name="subPrice" required/>{' '}
                     <span>1 Year Subscription - $9.99</span>
                   </Label>
                 </FormGroup>
@@ -135,7 +176,7 @@ class BillingForm extends Component {
                 <Button>Buy Now</Button>
               </Form>
               </Col>
-            </Row>
+            </Row>}
             
             </Col>
           </Row>
