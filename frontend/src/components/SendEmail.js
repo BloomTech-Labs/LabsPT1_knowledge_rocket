@@ -155,7 +155,7 @@ class Send2D extends Component {
                       value={this.state.emailMessage}
                       onChange={this.handleInputChange}
                     />
-                    <h5>
+                    <h6>
                       {" "}
                       <span className="bold">URL preview:</span>{" "}
                       {`https://infallible-euler-24eb8a.netlify.com/${
@@ -163,7 +163,7 @@ class Send2D extends Component {
                       }/${this.props.state.question.class}/${
                         this.props.state.question.rocket
                       }`}
-                    </h5>
+                    </h6>
                   </FormGroup>
                   <Button onClick={this.buildAndSendEmail}>
                     Build URL and Send Email Batch

@@ -184,10 +184,10 @@ class CreateClass extends Component {
                                         <Col md="4" sm="6" xs="12" className="mb-4">
                                             <Card style={{height: "80%"}}>
                                                 <CardBody>
-                                                    <CardTitle style={{marginBottom: "0"}} className="text-center">New Rocket</CardTitle>
+                                                    <CardTitle className="text-center">New Rocket</CardTitle>
                                                     <div style={{textAlign: "center"}}>
-                                                        <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
-                                                                <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
+                                                        <Link to={"/createRocket"}>
+                                                               <i class="fas fa-plus-circle"/>
                                                         </Link>
                                                     </div>
                                                 </CardBody>
