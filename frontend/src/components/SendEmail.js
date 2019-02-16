@@ -178,7 +178,7 @@ class Send2D extends Component {
                       }`}
                     </h5>
                   </FormGroup>
-                  <Button onClick={this.buildAndSendEmail}>
+                  <Button className="email-btn" onClick={this.buildAndSendEmail}>
                     Build URL and Send Email Batch
                   </Button>
                   <FormGroup>

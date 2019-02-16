@@ -4,7 +4,7 @@
     background-color: transparent;
 }
 button.email-btn.btn {
-    background-color: black;
+    max-width: 90%;
 }
 .review {
     color: black;
