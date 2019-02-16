@@ -5,13 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import { Form, CardBody, Input, 
          FormGroup, Container, Row, Col, Card,
-         CardTitle, Alert 
+         CardTitle 
         } from "reactstrap";
 
 import RemoveStudent from './RemoveStudent';
 import SelectClass from './SelectClass';
-import AddClass from './AddClass';
-import DatePicker from 'react-datepicker';
 import add_icon from '../img/add_icon.png';
 import { getRockets, addStudent, getStudents, getClasses, 
          getRocketsByClassName, addClass, removeStudent 
