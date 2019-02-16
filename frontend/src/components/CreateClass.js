@@ -100,7 +100,7 @@ class CreateClass extends Component {
                                 <FormGroup className="form-group-create-class">
                                     <h3 className="text-header">Select Class</h3>
                                     <Row>
-                                        <Col lg="4">
+                                        <Col lg="12">
                                             <SelectClass 
                                                 classes={this.props.state.classes}
                                                 handleSelectClass={this.handleSelectClass}
@@ -114,7 +114,7 @@ class CreateClass extends Component {
                                 <FormGroup className="form-group-create-class">
                                     <h3 className="text-header">Add Student</h3>
                                     <Row className="add-student-form-row">
-                                        <Col lg="3">
+                                        <Col lg="9">
                                             <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentLastName" 
@@ -126,7 +126,7 @@ class CreateClass extends Component {
                                                 required
                                             />
                                         </Col>
-                                        <Col lg="3">
+                                        <Col lg="9">
                                             <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentFirstName" 
@@ -138,7 +138,7 @@ class CreateClass extends Component {
                                                 required
                                             />
                                         </Col>
-                                        <Col lg="4">
+                                        <Col lg="9">
                                             <Input className="stdnt-input"
                                                 type="email" 
                                                 name="studentEmail" 
@@ -150,7 +150,7 @@ class CreateClass extends Component {
                                                 required
                                             />
                                         </Col>
-                                        <Col lg="2" className="create-student-btn">
+                                        <Col lg="4" className="create-student-btn">
                                                 <Input className="create-student-img" type="image" src={add_icon} alt="Add Class" />
                                         </Col>
                                     </Row>
