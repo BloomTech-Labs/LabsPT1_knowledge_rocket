@@ -55,7 +55,7 @@ class Register extends Component {
           <Row>
             <Col>
               <Form>
-                <FormGroup>
+                <FormGroup className="loginReg">
                   <h1>Sign Up</h1>
                   <Input
                     type="text"

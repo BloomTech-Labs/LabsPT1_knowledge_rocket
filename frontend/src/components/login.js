@@ -43,7 +43,7 @@ class Login extends Component {
           <Row>
             <Col>
               <Form>
-                <FormGroup>
+                <FormGroup className = "loginReg">
                   <h1>Login</h1>
                   <Input
                     type="text"
