@@ -20,10 +20,6 @@ class Rocket extends Component {
     this.setState({ className: ''})
   };
 
-  // componentWillMount() {
-  //   this.handleRocket();
-  // }
-
   componentDidMount() {
     console.log(this.props.history.location);
     this.props.getClasses();
@@ -63,19 +59,14 @@ class Rocket extends Component {
                   />
                 </FormGroup>
               </Form>
-            {/* </Row>   */}
-            {/* <Row> */}
               <Form style={{width: "80%"}}>
                 <FormGroup style={{maxWidth: "100%"}}>
                 <Row>{this.props.state.classRockets && 
-                    this.props.state.classRockets.map(unit => (
-                      <Col md="4" sm="6" xs="12" className="mb-4">
-                        <Card body>
-                          <CardTitle className="text-center">
-                            {unit.rocketName}
-                          </CardTitle>
-                          <CardTitle className="text-center">
-                            { unit.className }
+                    this.props.state.classRockets.map((unit, id) => (
+                      <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
+                        <Card body >
+                          <CardTitle className="text-center" >
+                            {unit.rocketname}
                           </CardTitle>
                           <Link to={"/createRocket"}>
                             <button>Edit</button>
