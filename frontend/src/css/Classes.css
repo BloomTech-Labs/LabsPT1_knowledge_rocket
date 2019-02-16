@@ -28,12 +28,18 @@ i.fas.fa-plus-circle {
 .card a {
     text-align: center;
     margin: 1rem auto;
+    color: black;
 }
 
 .card:hover {
     border: 4px solid #ff7400;
 }
 
+@media (min-width: 768px) {
+    .wel {
+        margin-bottom: 2rem;
+    }
+}
 @media (min-width: 992px) {
     .card {
         max-width: 100%;
