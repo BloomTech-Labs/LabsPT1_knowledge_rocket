@@ -2,10 +2,6 @@ body {
     width: 100%;
 }
 
-.select-class-dropdown button {
-    width: auto !important
-}
-
 .create-class-form {
     width: 90%;
 }
@@ -15,8 +11,7 @@ body {
 }
 
 .form-group-create-class {
-    margin: 2%;
-    margin-top: 5%;
+    max-width: 100%;
 }
 
 .text-header {
@@ -50,14 +45,18 @@ body {
 input.stdnt-input {
     width: 100%;
     display: block;
-    margin: 5% auto !important;
-    max-width: 100% !important;
+    margin: 5% auto;
+    max-width: 100%;
 }
 
 .create-student-img {
     width: 50%;
     height: 65%;
     transform: scale(0.5);
+}
+
+.add-student-form-row {
+    justify-content: center;
 }
 
 .create-class-display-students {
@@ -78,16 +77,16 @@ input.stdnt-input {
     }
     
     .create-class-form:first-child {
-        margin-top: 0;
-    }
-    
-    .form-group-create-class {
-        margin: 2%;
-        left: 2%;
+        margin-top: 5%;
     }
     
     .text-header {
         margin-bottom: 4%;
+    }
+
+    .select-class-dropdown, .btn-secondary {
+        margin: 0 auto;
+        width: 25rem;
     }
     
     .remove-student-name, .select-class-dd-txt {
@@ -113,19 +112,6 @@ input.stdnt-input {
         box-shadow: 0 0 0 #ff7400;
     }
     
-    input.stdnt-input {
-        width: 100%;
-        display: block;
-        margin: 5% auto !important;
-        max-width: 100% !important;
-    }
-    
-    .create-student-img {
-        width: 50%;
-        height: 65%;
-        transform: scale(0.8);
-    }
-    
     .create-class-display-students {
         margin-left: -30px;
         margin-right: 30px;
@@ -144,35 +130,34 @@ input.stdnt-input {
         height: auto;
     }
 
+    .text-header {
+        text-align: left;
+    }
+
     .create-class-contents {
         margin-top: 1%;
         height: 100%;
     }
 
     .create-class-form {
-        width: 100%;
+        margin-left: 5%;
     }
 
     .create-class-form:first-child {
         margin-top: 5%;
     }
 
-    .remove-student-name, .select-class-dd-txt {
-        width: 100%;
+    .dropdown-toggle::after {
+        margin: 0 auto;
+    }
+
+    .remove-student-name {
         font-size: 1.8rem;
         vertical-align: text-bottom;
     }
 
-    .stdnt-input {
-        width: 100%;
-        margin: 3%;
+    input.stdnt-input, .form-control {
+        margin: 0;
     }
-    
-    .create-student-img {
-        width: 50%;
-        height: 65%;
-        transform: scale(0.8);
-    }
-
 }
 
