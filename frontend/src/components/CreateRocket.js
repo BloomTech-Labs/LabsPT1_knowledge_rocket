@@ -18,7 +18,7 @@ import SidebarNav from "./SidebarNav";
 import { createRocket, getClasses } from '../actions';
 import Textarea from './Textarea.js';
 
-import "../css/SidebarNav.css";
+// import "../css/SidebarNav.css";
 import "../css/CreateRocket.css";
 
 import SelectClass from './SelectClass';
@@ -89,8 +89,8 @@ class CreateRocket extends Component {
           <Col lg="9">
              
             <Row className="rkt-content">
-                <h2 style={{textAlign: "center", width: "100%", marginTop: "3%"}}>Create a Rocket</h2>
                 <Form className="f">
+                <h2 style={{textAlign: "center", width: "100%", marginTop: "3%"}}>Create a Rocket</h2>
                   <FormGroup>
                     <h3>Select Class</h3>
                     <Row>

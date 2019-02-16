@@ -4,10 +4,13 @@
     width: 40vw;
     height: 40vh;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     margin-bottom: 8%;
 }
 
+input.form-control {
+    margin: 0;
+}
 @media (max-width: 992px) {
     .answerChoices {
         /* border: 1px solid blue; */
@@ -144,4 +147,4 @@ h2 {
     font-size: 2rem;
     font-weight: bold;
     box-shadow: 0 0 0 #ff7400;
-  }
+  }     
