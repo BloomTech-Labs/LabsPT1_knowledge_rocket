@@ -65,7 +65,6 @@ class Settings extends Component {
                 <Form>
                     <FormGroup>
                       <Input
-                      
                         type="newPassword"
                         name="newPassword"
                         id="current_password"
@@ -74,7 +73,7 @@ class Settings extends Component {
                         onChange={this.handleInputChange}
                       />
                     <div className="func-btn">
-                    <Button onClick={this.handlePasswordSubmit}>
+                    <Button onClick={this.handlePasswordSubmit} type="submit">
                       Update
                     </Button>
                     </div>
@@ -93,7 +92,7 @@ class Settings extends Component {
                         onChange={this.handleInputChange}
                       />
                     <div className="func-btn">
-                      <Button onClick={this.handleEmailSubmit}>
+                      <Button onClick={this.handleEmailSubmit} type="submit">
                       Update
                     </Button>
                     </div>

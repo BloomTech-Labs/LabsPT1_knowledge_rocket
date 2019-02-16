@@ -524,6 +524,32 @@ class GetRockets(generics.CreateAPIView):
 
         return JsonResponse(rocket_list, safe=False)
 
+class IsPremium(generics.CreateAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        token = request.META.get('HTTP_AUTHORIZATION').split()[1]
+    
+        try:
+            payload = jwt_decode_handler(token)
+        except jwt.ExpiredSignature:
+            msg = _('Signature has expired.')
+            raise exceptions.AuthenticationFailed(msg)
+        except jwt.DecodeError:
+            msg = _('Error decoding signature.')
+            raise exceptions.AuthenticationFailed(msg)
+        except jwt.InvalidTokenError:
+            raise exceptions.AuthenticationFailed()
+
+        response = JsonResponse(json.dumps({
+                    "is_premium": f'{request.user.is_premium}'
+                }),
+                safe=False,
+                status=status.HTTP_200_OK
+            )
+
+        return response
+
 class CreateSubscription(generics.CreateAPIView):
     serializer_class = SubscriptionSerializer
     permission_classes = (permissions.IsAuthenticated,)

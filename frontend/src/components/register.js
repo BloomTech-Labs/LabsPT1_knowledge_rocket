@@ -86,7 +86,7 @@ class Register extends Component {
                     placeholder="Confirm Password"
                   />
                   <div className="func-btn">
-                    <Button onClick={this.handleSubmit}>
+                    <Button onClick={this.handleSubmit} type="submit">
                       Sign Up
                     </Button>
                     <Link to={"/"}>
