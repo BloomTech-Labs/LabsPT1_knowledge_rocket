@@ -25,7 +25,7 @@ import "../css/CreateClass.css";
 
 class CreateClass extends Component {
     state = {
-        clsName: '',
+        clsName: "",
         studentLastName: '',
         studentFirstName: '',
         studentEmail: '',
@@ -84,6 +84,7 @@ class CreateClass extends Component {
 
     componentDidMount() {
         this.props.getClasses();
+        this.handleSelectClass(this.props.history.location.state ? this.props.history.location.state.className : "");
     }
 
     render() {
@@ -99,23 +100,12 @@ class CreateClass extends Component {
                                 <FormGroup className="form-group-create-class">
                                     <h3 className="text-header">Select Class</h3>
                                     <Row>
-                                        <Col lg="4" style={{marginRight: "5%"}}>
+                                        <Col lg="4">
                                             <SelectClass 
                                                 classes={this.props.state.classes}
                                                 handleSelectClass={this.handleSelectClass}
                                                 clsName={this.state.clsName}
                                             />
-                                        </Col>
-                                        <Col lg="3" style={{paddingLeft: 0}}>
-                                            <AddClass handleAddClass={this.handleAddClass}/>
-                                        </Col>
-                                        <Col lg="5">
-                                        <FormGroup check className="create-class-cc-checkbox">
-                                            {/* <Label check>
-                                                <Input type="checkbox" />{' '}
-                                                <span>CC Me On Rocket Emails</span>
-                                            </Label> */}
-                                        </FormGroup>
                                         </Col>
                                     </Row>
                                 </FormGroup>
@@ -123,13 +113,6 @@ class CreateClass extends Component {
                             <Form onSubmit={this.handleAddStudent} className="create-class-form">
                                 <FormGroup className="form-group-create-class">
                                     <h3 className="text-header">Add Student</h3>
-                                    {this.state.studentDetailsError !== "" &&
-                                        <Row className="create-class-alert-row">
-                                            <Alert color="danger" className="create-class-alert-box">
-                                                { this.state.studentDetailsError }
-                                            </Alert>
-                                        </Row>
-                                    }
                                     <Row className="add-student-form-row">
                                         <Col lg="3">
                                             <Input className="stdnt-input"
@@ -142,9 +125,6 @@ class CreateClass extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                            {/* <FormText className="create-class-help-text" >
-                                                        *required.
-                                            </FormText>   */}
                                         </Col>
                                         <Col lg="3">
                                             <Input className="stdnt-input"
@@ -157,9 +137,6 @@ class CreateClass extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                            {/* <FormText className="create-class-help-text" >
-                                                        *required.
-                                            </FormText> */}
                                         </Col>
                                         <Col lg="4">
                                             <Input className="stdnt-input"
@@ -172,17 +149,12 @@ class CreateClass extends Component {
                                                 onChange={this.handleChange}
                                                 required
                                             />
-                                            {/* <FormText className="create-class-help-text" >
-                                                        *required.
-                                            </FormText> */}
                                         </Col>
                                         <Col lg="2" className="create-student-btn">
                                                 <Input className="create-student-img" type="image" src={add_icon} alt="Add Class" />
                                         </Col>
                                     </Row>
                                     <hr/>
-                            {/* </Form> */}
-                            {/* <Form className="create-class-form"> */}
                                 <h3>Students</h3>
                                     <Row className="create-class-display-students">
                                         {this.props.state.students.map((student, id) => {                                
@@ -205,12 +177,6 @@ class CreateClass extends Component {
                                                     <CardTitle className="text-center">
                                                         {rocket.rocketname}
                                                     </CardTitle>
-                                                    {/* <div className="create-class-date-picker">
-                                                        <DatePicker
-                                                            selected={this.state.startDate}
-                                                            onChange={this.handleDateChange}
-                                                        />
-                                                    </div> */}
                                                 </CardBody>
                                             </Card>
                                         </Col>
@@ -219,9 +185,6 @@ class CreateClass extends Component {
                                             <Card style={{height: "80%"}}>
                                                 <CardBody>
                                                     <CardTitle style={{marginBottom: "0"}} className="text-center">New Rocket</CardTitle>
-                                                    {/* <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
-                                                            <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
-                                                    </Link> */}
                                                     <div style={{textAlign: "center"}}>
                                                         <Link to={"/createRocket"} style={{borderRadius: 0, top: 0, backgroundColor: "white", textAlign: "center"}}>
                                                                 <img className="card-img p-0 b-0 m-0" src={add_icon} alt="Add Class" />
