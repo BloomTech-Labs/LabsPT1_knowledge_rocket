@@ -114,7 +114,7 @@ class CreateClass extends Component {
                                 <FormGroup className="form-group-create-class">
                                     <h3 className="text-header">Add Student</h3>
                                     <Row className="add-student-form-row">
-                                        <Col lg="9">
+                                        <Col lg="4">
                                             <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentLastName" 
@@ -126,7 +126,7 @@ class CreateClass extends Component {
                                                 required
                                             />
                                         </Col>
-                                        <Col lg="9">
+                                        <Col lg="4">
                                             <Input className="stdnt-input"
                                                 type="text" 
                                                 name="studentFirstName" 
@@ -138,7 +138,7 @@ class CreateClass extends Component {
                                                 required
                                             />
                                         </Col>
-                                        <Col lg="9">
+                                        <Col lg="4">
                                             <Input className="stdnt-input"
                                                 type="email" 
                                                 name="studentEmail" 
@@ -150,9 +150,9 @@ class CreateClass extends Component {
                                                 required
                                             />
                                         </Col>
-                                        <Col lg="4" className="create-student-btn">
+                                        <div className="create-student-btn">
                                                 <Input className="create-student-img" type="image" src={add_icon} alt="Add Class" />
-                                        </Col>
+                                        </div>
                                     </Row>
                                     <hr/>
                                 <h3>Students</h3>
