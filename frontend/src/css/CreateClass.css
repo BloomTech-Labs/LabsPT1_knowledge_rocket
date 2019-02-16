@@ -64,6 +64,10 @@ input.stdnt-input {
     margin-right: 30px;
 }
 
+.create-class-display-students button {
+    max-width: 100% !important;
+}
+
 .create-class-rocket-box {
     padding-left: 0.2rem;
     padding-right:0.2rem;
