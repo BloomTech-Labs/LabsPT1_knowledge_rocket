@@ -65,8 +65,6 @@ class Rocket extends Component {
                   />
                 </FormGroup>
               </Form>
-              {/* </Row>   */}
-              {/* <Row> */}
               <Form style={{ width: "80%" }}>
                 <FormGroup style={{ maxWidth: "100%" }}>
                   <Row>
