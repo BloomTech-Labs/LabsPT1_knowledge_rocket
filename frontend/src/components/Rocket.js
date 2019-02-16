@@ -76,7 +76,10 @@ class Rocket extends Component {
                         </Card>
                       </Col>
                     ))}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7cd82a3ea05dc4adfb3b40627978eed1af7d737d
                     <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
                       <Card body>
                         <CardTitle className="text-center">
