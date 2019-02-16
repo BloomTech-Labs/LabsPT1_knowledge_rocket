@@ -411,8 +411,8 @@ For a net- hosted frontend + backend without having to set it up locally:
 #### ENV file example that can be used
 In your root directory just create a file called ```.env```, and copy and paste these
 variables into it.
-
-```SECRET_KEY=2^sl@j+c(btlk_k8h+r(guaw^%am0vx4t&@*qh+3o05dbxg^a4
+```
+SECRET_KEY=2^sl@j+c(btlk_k8h+r(guaw^%am0vx4t&@*qh+3o05dbxg^a4
 DEBUG=False
 DATABASE_URL=sqlite:///db.sqlite3
 ALLOWED_HOSTS=*
