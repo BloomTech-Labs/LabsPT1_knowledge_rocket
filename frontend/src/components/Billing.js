@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {CardNumberElement, CardExpiryElement, CardCVCElement, 
         injectStripe, PostalCodeElement} from 'react-stripe-elements';
-import { Row, Col, Container, Form, FormGroup, Label, Input, Button, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Row, Col, Container, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import SidebarNav from "./SidebarNav";
 import "../css/Billing.css";
 
@@ -14,9 +14,7 @@ class BillingForm extends Component {
   async submit(e) {
     e.preventDefault();
     let {token} = await this.props.stripe.createToken();
-    console.log(token.id);
-    console.log(`token ${localStorage.getItem('token')}`);
-    let response = await fetch("http://localhost:8000/subscribe", {
+    let response = await fetch("https://cspt1knowledgerocket.herokuapp.com/subscribe", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -77,6 +75,7 @@ class BillingForm extends Component {
               </Col>
             </Row>
             <Row>
+              <Col>
               <Form onSubmit={this.submit}>
                 <FormGroup>
                   <Label className="cc-text" for="cardNumber">Card number</Label>
@@ -135,7 +134,7 @@ class BillingForm extends Component {
                 
                 <Button>Buy Now</Button>
               </Form>
-              
+              </Col>
             </Row>
             
             </Col>

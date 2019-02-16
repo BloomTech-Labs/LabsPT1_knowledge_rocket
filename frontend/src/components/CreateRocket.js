@@ -10,18 +10,23 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { Redirect } from "react-router-dom";
+
+
 
 import SidebarNav from "./SidebarNav";
-import { createRocket } from '../actions';
+import { createRocket, getClasses } from '../actions';
 import Textarea from './Textarea.js';
 
 import "../css/SidebarNav.css";
 import "../css/CreateRocket.css";
 
+import SelectClass from './SelectClass';
+
 class CreateRocket extends Component {
   state = {
     rocketName: '',
-    className:'',
+    className: this.props.history.location.state ? this.props.history.location.state.className : "",
 
     day2QuestionName: '',
     day2ReviewText: '',
@@ -51,6 +56,10 @@ class CreateRocket extends Component {
     month2CorrectAnswer: 'm2',
   }
 
+  componentDidMount() {
+    this.props.getClasses();
+  }
+
   handleInputChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -63,8 +72,11 @@ class CreateRocket extends Component {
 
   handleRadioSelect = e => {
     this.setState({ [e.target.name]: e.target.value }, () => {
-      console.log(this.state);
     });
+  }
+
+  handleSelectClass = (clsName) => {
+    this.setState({className: clsName});
   }
 
   render() {
@@ -75,18 +87,23 @@ class CreateRocket extends Component {
             <SidebarNav />
           </Col>
           <Col lg="9">
+             
             <Row className="rkt-content">
+                <h2 style={{textAlign: "center", width: "100%", marginTop: "3%"}}>Create a Rocket</h2>
                 <Form className="f">
-                <h2>Create a Rocket</h2>
-                  <Input className="m-input"
-                        type="text"
-                        name="className"
-                        placeholder="Class Name"
-                        id="questionName"
-                        maxLength="95"
-                        value={this.state.className}
-                        onChange={this.handleInputChange}
-                      />
+                  <FormGroup>
+                    <h3>Select Class</h3>
+                    <Row>
+                      <Col>
+                        <SelectClass 
+                            classes={this.props.state.classes}
+                            handleSelectClass={this.handleSelectClass}
+                            clsName={this.state.className}
+                        />
+                      </Col>
+                    </Row>
+                  </FormGroup>
+                  
                   <FormGroup className="fg">
                     <Input
                       type="text"
@@ -145,8 +162,6 @@ class CreateRocket extends Component {
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
-                  {/* <h3> Select Radio button for correct answer, limit 1 per question</h3> */}
-                  {/* <h3> To make only one selectable at a time, we simply give them the same name </h3> */}
                   <FormGroup className="answerChoices">
                     <div className="answer">
                       <Input type="radio"
@@ -475,6 +490,9 @@ class CreateRocket extends Component {
                 </Form>
             </Row>
           </Col>
+          <div>
+            { this.props.state.redirect ? <Redirect to="/rockets" /> : null }
+          </div>
         </Row>
       </Container>
     )
@@ -487,4 +505,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,{ createRocket } )(CreateRocket);
+export default connect(mapStateToProps,{ createRocket, getClasses } )(CreateRocket);

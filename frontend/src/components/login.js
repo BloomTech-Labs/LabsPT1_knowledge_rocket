@@ -42,45 +42,47 @@ class Login extends Component {
         <Container>
           <Row>
             <Col>
-              <h1>Login</h1>
-                <Form>
-                  <FormGroup>
-                    <Input
-                      type="text"
-                      name="username"
-                      value={this.state.username}
-                      onChange={this.handleInputChange}
-                      placeholder="Username"
-                    />
-                    <Input
-                      type="password"
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.handleInputChange}
-                      placeholder="Password"
-                    />
-                  </FormGroup>
+              <Form>
+                <FormGroup>
+                  <h1>Login</h1>
+                  <Input
+                    type="text"
+                    name="username"
+                    value={ this.state.username }
+                    onChange={ this.handleInputChange }
+                    placeholder="Username"
+                  />
+                  <Input
+                    type="password"
+                    name="password"
+                    value={ this.state.password }
+                    onChange={ this.handleInputChange }
+                    placeholder="Password"
+                  />
                   <div className="func-btn">
-                      <Button color="info" onClick={this.handleSubmit}>
-                        Login
-                      </Button>
-                      <Link to={"/"}> <Button color="info">
-                        Home
-                      </Button> 
-                      </Link>
-                    </div>
-                </Form>
-                <div>{this.state.error ? <p>{this.state.errorMsg}</p> : null}</div>
-                <div>
-                  {this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}
-                </div>
-                <div>
-                  {this.props.state.redirect ? <Redirect to="/classes" /> : null}
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>
+                    <Button onClick={ this.handleSubmit }>Login</Button>
+                    <Link to={ "/" }>
+                      { " " }
+                      <Button>Home</Button>
+                    </Link>
+                  </div>
+                </FormGroup>
+              </Form>
+              <div>
+                { this.state.error ? <p>{ this.state.errorMsg }</p> : null }
+              </div>
+              <div>
+                { this.props.state.error ? (
+                  <p>{ this.props.state.errorMsg }</p>
+                ) : null }
+              </div>
+              <div>
+                { this.props.state.redirect ? <Redirect to="/classes" /> : null }
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

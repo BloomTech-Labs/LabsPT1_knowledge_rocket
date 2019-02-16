@@ -3,10 +3,10 @@ import { Dropdown, DropdownToggle, DropdownMenu,
          DropdownItem } from 'reactstrap';
 import "../css/CreateClass.css";
 
-class SelectClass extends Component {
+class SelectRocket extends Component {
     state = {
         dropdownOpen: false,
-        selectedClass: ""
+        selectedRocket: ""
     }
 
     toggle = () => {
@@ -16,22 +16,22 @@ class SelectClass extends Component {
     }
 
     render() {
-        const { classes, handleSelectClass, clsName } = this.props;
+        const { rockets, handleSelectRocket, rocketName } = this.props;
 
         return (
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="select-class-dropdown">
+            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle caret>
                 <div className="select-class-dd-txt">
-                    { clsName === "" || clsName === undefined ? "" : clsName }
+                    { rocketName === "" || rocketName === undefined ? "" : rocketName }
                 </div>
                 
               </DropdownToggle>
               <DropdownMenu>
 
-              {classes.map((clss, id) => {
+              {rockets.map((rockts, id) => {
                 return (
-                    <DropdownItem key={id} onClick={() => handleSelectClass(clss.className)}>
-                        { clss.className }
+                    <DropdownItem key={id} onClick={() => handleSelectRocket(rockts.rocketname)}>
+                        { rockts.rocketname }
                     </DropdownItem>
                 )
                 })}
@@ -41,4 +41,4 @@ class SelectClass extends Component {
     }
 }
 
-export default SelectClass;
+export default SelectRocket;

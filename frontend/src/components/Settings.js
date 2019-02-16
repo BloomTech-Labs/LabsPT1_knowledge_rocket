@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import { Button, Form, Label, Input, FormGroup } from "reactstrap";
+import { Button, Form, Input, FormGroup } from "reactstrap";
 import { Container, Row, Col } from "reactstrap";
 
 import SidebarNav from "./SidebarNav";
@@ -59,7 +57,7 @@ class Settings extends Component {
           <Col>
             <Row>
               <Col>
-              <h2>Update your User password and/ or email</h2>
+              <h1>Update</h1>
               </Col>
             </Row>
             <Row>
@@ -75,11 +73,12 @@ class Settings extends Component {
                         value={this.state.password}
                         onChange={this.handleInputChange}
                       />
-
-                    </FormGroup>
-                    <Button style={{ margin: 0, marginTop: 20, transform: .5 }}color="info" onClick={this.handlePasswordSubmit}>
+                    <div className="func-btn">
+                    <Button onClick={this.handlePasswordSubmit}>
                       Update
                     </Button>
+                    </div>
+                    </FormGroup>
                   </Form>
                   <div>{this.state.notify ? <p>{this.state.notifyMsg}</p> : null}</div>
                   <Form>
@@ -93,11 +92,12 @@ class Settings extends Component {
                         value={this.state.newEmail}
                         onChange={this.handleInputChange}
                       />
-
-                      </FormGroup>
-                      <Button style={{ margin: 0, marginTop: 20, transform: .5 }}color="info" onClick={this.handleEmailSubmit}>
+                    <div className="func-btn">
+                      <Button onClick={this.handleEmailSubmit}>
                       Update
                     </Button>
+                    </div>
+                      </FormGroup>
                     </Form>
                     <div>{this.state.notify ? <p>{this.state.notifyMsg2}</p> : null}</div>
               </Col>

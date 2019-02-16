@@ -44,8 +44,6 @@ class Quiz2D extends Component {
   }
   
   render() {
-    console.log("STATE", this.state);
-    console.log("PROPS", this.props.state.question);
     return (
       <Container className="recap">
         <Form>
@@ -56,7 +54,7 @@ class Quiz2D extends Component {
                   <div>
                     <h3>{this.props.state.question.class}</h3>
                     <h3>{this.props.state.question.rocket} - Two Day Boost</h3>
-                    <p>
+                    <p className = "review">
                       {this.props.state.question.question[0].day2ReviewText}
                     </p>
                   </div>
@@ -69,7 +67,7 @@ class Quiz2D extends Component {
               <FormGroup>
                 <h3>Question:</h3>
                 {this.props.state.question ? (
-                  <p>
+                  <p className="review">
                     {this.props.state.question.question[0].day2QuestionText}
                   </p>
                 ) : null}

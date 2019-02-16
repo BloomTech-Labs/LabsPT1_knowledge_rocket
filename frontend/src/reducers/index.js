@@ -59,11 +59,8 @@ export default (state = defaultState, action) => {
         case GET_USER:
             return {...state, user: [action.payload], success: true }
 
-        // case GET_CLASSES:
-        //     return {...state, classes: [action.payload], success: true }
-
         case GET_QUIZ:
-        return { ...state, question: action.payload, success: true };  
+            return { ...state, question: action.payload, success: true };  
 
         case GET_ROCKETS:
             return { ...state, rockets: action.payload, success: true }
@@ -74,7 +71,6 @@ export default (state = defaultState, action) => {
         case UPDATE_USER:
             return {...state, user: [action.payload], success: true }
 
-        
         case ERROR:
             return {...state, error: true, errorMsg: action.payload}
         
@@ -91,10 +87,7 @@ export default (state = defaultState, action) => {
         return { ...state, rocket: action.payload, success: true }
         
         case CLEAR_STATE:
-            return {};
-
-        // case GET_ROCKETS:
-        //     return { ...state, rockets: action.payload }    
+            return {}; 
 
         case GET_STUDENTS:
             return { ...state, students: action.payload }
@@ -104,12 +97,9 @@ export default (state = defaultState, action) => {
 
         case GET_ROCKETS_BY_CLASS:
             return { ...state, classRockets: action.payload }
-        
-        case GET_QUIZ:
-            return { ...state, question: action.payload, success: true };
 
         case SEND_EMAIL:
-            return { ...state, emailConfirmation: action.payload, success:true };
+            return { ...state, emailConfirmation: action.payload };
 
         default:
             return state;
