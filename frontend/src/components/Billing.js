@@ -17,7 +17,7 @@ class BillingForm extends Component {
 
   async componentDidMount() {
     try {
-      let response = await fetch("http://localhost:8000/ispremium", {
+      let response = await fetch("https://cspt1knowledgerocket.herokuapp.com/ispremium", {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
