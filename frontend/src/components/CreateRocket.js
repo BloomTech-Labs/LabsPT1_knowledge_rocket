@@ -484,7 +484,7 @@ class CreateRocket extends Component {
                         /></Label>
                     </div>
                   </FormGroup>
-                  <Button className="rkt-btn" color="info" onClick={this.handleSubmit}>
+                  <Button className="rkt-btn" onClick={this.handleSubmit} type="submit">
                     Create Rocket!
                     </Button>
                 </Form>
