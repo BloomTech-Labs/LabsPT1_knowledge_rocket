@@ -387,7 +387,8 @@ You are almost complete, after you have successfully migrated the server, you wi
 
 
 
-For a net- hosted frontend + backend without having to set it up locally, you can visit: https://infallible-euler-24eb8a.netlify.com
+For a net- hosted frontend + backend without having to set it up locally:
+- [Knowledge Rocket](https://infallible-euler-24eb8a.netlify.com/)
 
 
 ## Environment Variables
