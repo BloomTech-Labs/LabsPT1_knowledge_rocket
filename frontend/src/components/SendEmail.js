@@ -3,17 +3,13 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, Input, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
-import {
-  get_2_Day,
-  get_2_Week,
-  get_2_Month,
-  sendEmail,
-  getClasses,
-  getRocketsByClassName
-} from "../actions";
-import SelectClass from "./SelectClass";
+import { Redirect } from "react-router-dom";
+
+import { get_2_Day, get_2_Week, get_2_Month, sendEmail, getClasses, getRocketsByClassName } from "../actions";
+import SelectClass  from "./SelectClass";
 import SelectRocket from "./SelectRocket";
 import SidebarNav from "./SidebarNav";
+
 import "../css/Quiz.css";
 
 class Send2D extends Component {
@@ -294,18 +290,20 @@ class Send2D extends Component {
                 </Col>
               </Row>
             </Form>
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    state: state
-  };
-};
+            <div>
+            { this.props.state.redirect ? <Redirect to="/classes" /> : null }
+            </div>
+            </Row>
+          </Container>
+        );
+      }
+    }
+    
+    const mapStateToProps = state => {
+      return {
+        state: state
+      };
+    };
 
 export default connect(
   mapStateToProps,

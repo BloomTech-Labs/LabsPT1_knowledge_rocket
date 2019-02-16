@@ -19,7 +19,7 @@ class SelectClass extends Component {
         const { classes, handleSelectClass, clsName } = this.props;
 
         return (
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="select-class-dropdown">
               <DropdownToggle caret>
                 <div className="select-class-dd-txt">
                     { clsName === "" || clsName === undefined ? "" : clsName }

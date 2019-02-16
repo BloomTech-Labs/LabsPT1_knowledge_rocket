@@ -83,7 +83,6 @@ class RegisterStudents(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,) #takes the authorization header and decodes it to provide access to the gated route
  
     def post(self, request, *args, **kwargs):
-        print("here")
         username = request.user #This sets the username to request.user which was provided by the token which was authenticated prior to getting to this point in the code.
         className = request.data.get("className") #this retrieves the data sent via the request (from the client) and allows it to be accessed by the backend.
         studentName = request.data.get("studentName")
@@ -305,7 +304,6 @@ class RegisterRockets(generics.CreateAPIView):
 
             except IntegrityError:
                 Rocket.objects.filter(rocketName = rocketName).delete()
-                print(f'Integrity Error')
                 return JsonResponse({ 
                     'error': 'Error, There were some'
                     },
@@ -602,6 +600,9 @@ class BuildEmail(generics.CreateAPIView):
         title = request.data.get("title")
         message = request.data.get("message")
         className = request.data.get("className")
+
+        ## To be used when implementing server side programmatic email sending
+
         # rocketName = request.data.get("rocketName")
         # interval = request.data.get("interval")
         # unixTimeStamp = request.data.get('unixTimeStamp')
