@@ -1,3 +1,5 @@
+# To be used when server side programatic email sending implemented
+# 
 # from django.core.mail import EmailMessage
 # from models import Rocket, Class, Question2D, Question2M, Question2W, Student
 # from django.contrib.auth.models import User
