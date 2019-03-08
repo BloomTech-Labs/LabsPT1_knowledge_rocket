@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
+import { Elements, StripeProvider } from "react-stripe-elements";
 import * as serviceWorker from "./serviceWorker";
 
 import "./index.css";
@@ -18,7 +19,6 @@ import Classes from "./components/Classes.js";
 import Settings from "./components/Settings.js";
 import CreateRocket from "./components/CreateRocket.js";
 import Rocket from "./components/Rocket.js";
-import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "./components/Billing";
 import Quiz2D from "./components/Quiz2D";
 import Quiz2W from "./components/Quiz2W";
