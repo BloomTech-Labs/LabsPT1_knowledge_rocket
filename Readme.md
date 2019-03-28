@@ -418,7 +418,7 @@ DATABASE_URL=sqlite:///db.sqlite3
 ALLOWED_HOSTS=*
 EMAIL_HOST_PASSWORD= SendGrid API
 STRIPE_SECRET_KEY= Stripe Secret Key
-PLAN_ID= Stripe Plan
+PLAN_ID= Stripe Plan ID
 ```
 
 </p>
