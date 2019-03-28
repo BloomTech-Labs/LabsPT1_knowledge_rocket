@@ -416,9 +416,9 @@ SECRET_KEY=2^sl@j+c(btlk_k8h+r(guaw^%am0vx4t&@*qh+3o05dbxg^a4
 DEBUG=False
 DATABASE_URL=sqlite:///db.sqlite3
 ALLOWED_HOSTS=*
-EMAIL_HOST_PASSWORD=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
-STRIPE_SECRET_KEY=sk_test_alE5N19wkDsLtJTtrq9i5I7G
-PLAN_ID=plan_ELRmurC5Sg6j16
+EMAIL_HOST_PASSWORD= SendGrid API
+STRIPE_SECRET_KEY= Stripe Secret Key
+PLAN_ID= Stripe Plan
 ```
 
 </p>
