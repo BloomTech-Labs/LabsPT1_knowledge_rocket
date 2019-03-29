@@ -25,12 +25,14 @@ i.fas.fa-plus-circle {
     margin: 0 auto;
 }
 
-.card a {
+/* .card a {
     text-align: center;
     margin: 1rem auto;
     color: black;
+} */
+h5.text-center.card-title {
+    color: black;
 }
-
 .card:hover {
     border: 4px solid #ff7400;
 }
