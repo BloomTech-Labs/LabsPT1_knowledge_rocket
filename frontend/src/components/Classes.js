@@ -7,7 +7,7 @@ import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
 import { getUser, getClass, addClass } from "../actions";
-import AddClass from './AddClass';
+import AddClass from "./AddClass";
 
 class Classes extends Component {
   handleGet = () => {
@@ -31,10 +31,13 @@ class Classes extends Component {
     this.props.history.push("/");
   };
 
-  handleAddClass = (clsName) => {
-    this.props.addClass({className: clsName});
-    this.props.history.push({pathname: "/createClass", state: {className: clsName}});
-  }
+  handleAddClass = clsName => {
+    this.props.addClass({ className: clsName });
+    this.props.history.push({
+      pathname: "/createClass",
+      state: { className: clsName }
+    });
+  };
 
   render() {
     return (
@@ -56,23 +59,27 @@ class Classes extends Component {
                   )}
                 </div>
                 <Row>
-                  {this.props.state.classes && (
+                  {this.props.state.classes &&
                     this.props.state.classes.map((unit, id) => (
-                      <Col md="4" sm="6" xs="12" className="mb-4"  key={id}>
-                        <Card body>
-                          <Link to={{ pathname: "/createClass",  state: { className: unit.className }}}>
-                          <CardTitle className="text-center" >
-                            {unit.className}
-                          </CardTitle>
-                          </Link>
-                        </Card>
+                      <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
+                        <Link
+                          to={{
+                            pathname: "/createClass",
+                            state: { className: unit.className }
+                          }}
+                        >
+                          <Card body>
+                            <CardTitle className="text-center">
+                              {unit.className}
+                            </CardTitle>
+                          </Card>
+                        </Link>
                       </Col>
-                    ))
-                  )}
+                    ))}
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
                       <CardTitle className="text-center">New Class</CardTitle>
-                      <AddClass handleAddClass={this.handleAddClass}/>
+                      <AddClass handleAddClass={this.handleAddClass} />
                     </Card>
                   </Col>
                 </Row>
