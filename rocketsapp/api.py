@@ -687,7 +687,7 @@ class BuildEmail(generics.CreateAPIView):
 
             emailBatch = EmailMessage(
                 f'{title}',
-                f'{message} \n ''<a href={url}></a>',
+                f'{message} \n {url}',
                 f'{teacherEmail}',
                 to=studentList,
             )
