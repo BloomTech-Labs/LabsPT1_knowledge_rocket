@@ -3,7 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu,
          DropdownItem } from 'reactstrap';
 import "../css/CreateClass.css";
 
-class RemoveStudent extends Component {
+class RemoveRocket extends Component {
     state = {
         dropdownOpen: false
     }
@@ -32,4 +32,4 @@ class RemoveStudent extends Component {
     }
 }
 
-export default RemoveStudent;
+export default RemoveRocket;
