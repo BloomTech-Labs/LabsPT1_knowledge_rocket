@@ -31,7 +31,7 @@ export const registerUser = (user) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post("http://127.0.0.1:8000/register/", user)
+      .post("https://cspt1knowledgerocket.herokuapp.com/register/", user)
       .then(response => {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -52,7 +52,7 @@ export const loginUser = (user) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post("http://127.0.0.1:8000/login/", user)
+      .post("https://cspt1knowledgerocket.herokuapp.com/login/", user)
       .then(response => {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -85,7 +85,7 @@ export const updatePassword = (updatePass) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post("http://127.0.0.1:8000/updatepassword/", updatePass, { 'headers': { 'Authorization': `token ${userKey}` } })
+      .post("https://cspt1knowledgerocket.herokuapp.com/updatepassword/", updatePass, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: SUCCESS })
         dispatch({ type: UPDATE_PASSWORD, payload: response.data });
@@ -104,7 +104,7 @@ export const updateEmail = (updateEmail) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post("http://127.0.0.1:8000/updateuser/", updateEmail, { 'headers': { 'Authorization': `token ${userKey}` } })
+      .post("https://cspt1knowledgerocket.herokuapp.com/updateuser/", updateEmail, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: UPDATE_USER, payload: response.data });
       })
@@ -121,7 +121,7 @@ export const getUser = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get("http://127.0.0.1:8000/getuser/", {
+      .get("https://cspt1knowledgerocket.herokuapp.com/getuser/", {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -143,7 +143,7 @@ export const getClass = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get("http://127.0.0.1:8000/getclasses/", {
+      .get("https://cspt1knowledgerocket.herokuapp.com/getclasses/", {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -165,7 +165,7 @@ export const createRocket = (rocket) => {
 
     const userKey = localStorage.getItem('token');
     axios
-      .post("http://127.0.0.1:8000/addrocket/", rocket, {
+      .post("https://cspt1knowledgerocket.herokuapp.com/addrocket/", rocket, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -189,9 +189,9 @@ export const addStudent = (student) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post("http://127.0.0.1:8000/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/addstudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post("http://127.0.0.1:8000/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_STUDENTS, payload: response.data });
             })
@@ -211,7 +211,7 @@ export const getStudents = (className) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token');
       axios
-        .post("http://127.0.0.1:8000/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", className, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_STUDENTS, payload: response.data });
         })
@@ -229,7 +229,7 @@ export const getClasses = () => {
       dispatch({ type: CLEAR_ERROR });	
       const userKey = localStorage.getItem('token')	
       axios	
-        .get("http://127.0.0.1:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
+        .get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
         .then(response => {	
           dispatch({ type: GET_CLASSES, payload: response.data });	
         })	
@@ -247,7 +247,7 @@ export const getRocketsByClassName = (clsName) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post("http://127.0.0.1:8000/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
         })
@@ -265,10 +265,10 @@ export const addClass = (clsName) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post("http://127.0.0.1:8000/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/addclass/", clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           axios
-            .get("http://127.0.0.1:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
+            .get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
             dispatch({ type: GET_CLASSES, payload: response.data });
           })
@@ -287,9 +287,9 @@ export const removeStudent = (student) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post("http://127.0.0.1:8000/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/removestudent/", student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post("http://127.0.0.1:8000/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getstudents/", {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_STUDENTS, payload: response.data });
             })
@@ -309,9 +309,9 @@ export const removeClass = (classname) => {
       const userKey = localStorage.getItem('token')
       console.log(classname)
       axios
-        .post("http://127.0.0.1:8000/removeclass/", classname, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post("https://cspt1knowledgerocket.herokuapp.com/removeclass/", classname, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.get("http://127.0.0.1:8000/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
+          return axios.get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
           .then(response => {	
             dispatch({ type: GET_CLASSES, payload: response.data });	
           })
@@ -330,7 +330,7 @@ export const getRockets = (className) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post("http://127.0.0.1:8000/getrockets/", className, {
+      .post("https://cspt1knowledgerocket.herokuapp.com/getrockets/", className, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -349,7 +349,7 @@ export const get_2_Day = (request) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post("http://127.0.0.1:8000/getquestion2d/", request)
+      .post("https://cspt1knowledgerocket.herokuapp.com/getquestion2d/", request)
       .then(response => {
         dispatch({ type: GET_QUIZ, payload: response.data });
       })
@@ -367,7 +367,7 @@ export const get_2_Week = (request) => {
     dispatch({ type: CLEAR_ERROR });
 
     axios
-      .post("http://127.0.0.1:8000/getquestion2w/", request)
+      .post("https://cspt1knowledgerocket.herokuapp.com/getquestion2w/", request)
       .then(response => {
         dispatch({ type: GET_QUIZ, payload: response.data });
       })
@@ -384,7 +384,7 @@ export const get_2_Month = (request) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post("http://127.0.0.1:8000/getquestion2m/", request)
+      .post("https://cspt1knowledgerocket.herokuapp.com/getquestion2m/", request)
       .then(response => {
         dispatch({ type: GET_QUIZ, payload: response.data });
       })
@@ -402,7 +402,7 @@ export const sendEmail = (userKey, request) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post("http://127.0.0.1:8000/buildemail/", request, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .post("https://cspt1knowledgerocket.herokuapp.com/buildemail/", request, { 'headers': { 'Authorization': `token ${userKey}` }})
       .then(response => {
         dispatch({ type: SEND_EMAIL, payload: response.data });
         dispatch({ type: REDIRECT });
