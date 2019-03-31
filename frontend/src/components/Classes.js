@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { getUser, getClass, addClass} from "../actions";
+import { getUser, getClass, addClass } from "../actions";
 import AddClass from "./AddClass";
 
 class Classes extends Component {
@@ -108,5 +108,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUser, getClass, addClass, }
+  { getUser, getClass, addClass }
 )(Classes);
