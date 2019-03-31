@@ -6,10 +6,11 @@ import { connect } from "react-redux";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { getUser, getClass, addClass } from "../actions";
+import { getUser, getClass, addClass, clearError } from "../actions";
 import AddClass from "./AddClass";
 
 class Classes extends Component {
+
   handleGet = () => {
     const token = localStorage.getItem("token");
     this.props.getUser(token);
@@ -32,11 +33,16 @@ class Classes extends Component {
   };
 
   handleAddClass = clsName => {
-    this.props.addClass({ className: clsName });
-    this.props.history.push({
-      pathname: "/createClass",
-      state: { className: clsName }
-    });
+      this.props.addClass({ className: clsName });
+
+      // if(!this.state.error){
+      //   return
+      // } else {
+      //   this.props.history.push({
+      //     pathname: "/createClass",
+      //     state: { className: clsName }
+      //   });
+      // }
   };
 
   render() {
@@ -81,6 +87,8 @@ class Classes extends Component {
                       <CardTitle className="text-center">New Class</CardTitle>
                       <AddClass handleAddClass={this.handleAddClass} />
                     </Card>
+                    <div>{this.props.state.error ? <p>{this.props.state.errorMsg}</p> : null}</div>
+
                   </Col>
                 </Row>
               </Col>
@@ -100,5 +108,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUser, getClass, addClass }
+  { getUser, getClass, addClass, clearError }
 )(Classes);
