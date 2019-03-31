@@ -303,6 +303,8 @@ class Send2D extends Component {
                 </Col>
               </Row>
             </Form>
+          <div>{this.props.state.emailConfirmation ? <p>{this.props.state.emailConfirmation}</p> : null}</div>
+          <div>{this.props.state.errorMsg ? <p>{this.props.state.errorMsg }</p> : null}</div>
           </Col>
           <div>
             {this.props.state.redirect ? <Redirect to="/classes" /> : null}
