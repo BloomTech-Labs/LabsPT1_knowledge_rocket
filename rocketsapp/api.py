@@ -150,6 +150,21 @@ class UpdateStudent(generics.CreateAPIView):
         )
         return response
 
+class RemoveClass(generics.CreateAPIView):
+    serializer_class = ClassSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        className = request.data.get("className")
+        classDelete = Class.objects.get(className = className).delete()
+
+        return JsonResponse({
+            'msg': 'class removed successfully'
+        },
+            safe = True,
+            status=status.HTTP_200_OK
+        )
+
 class RemoveStudent(generics.CreateAPIView):
     serializer_class = StudentSerializer
     permission_classes = (permissions.IsAuthenticated,)
