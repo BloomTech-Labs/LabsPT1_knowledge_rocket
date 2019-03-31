@@ -393,9 +393,3 @@ export const sendEmail = (userKey, request) => {
   };
 };
 
-export const clearError = () => {
-  return dispatch => {
-    dispatch({type: CLEAR_ERROR});
-  }
-}
-
