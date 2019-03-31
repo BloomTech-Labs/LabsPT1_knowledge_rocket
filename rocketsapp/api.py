@@ -670,7 +670,7 @@ class BuildEmail(generics.CreateAPIView):
 
             emailBatch = EmailMessage(
                 f'{title}',
-                f'{message} \n Please copy and paste the following URL into your browser to access your quiz \n {url}',
+                f'{message} \n Please copy and paste the following URL into your browser to access your quiz: \n {url}',
                 f'{teacherEmail}',
                 to=studentList,
             )
