@@ -70,9 +70,9 @@ class Rocket extends Component {
                           <CardTitle className="text-center" >
                             {unit.rocketname}
                           </CardTitle>
-                          <Link to={"/createRocket"}>
+                          {/* <Link to={"/createRocket"}>
                             <button>Edit</button>
-                          </Link>
+                          </Link> */}
                         </Card>
                       </Col>
                     ))}
