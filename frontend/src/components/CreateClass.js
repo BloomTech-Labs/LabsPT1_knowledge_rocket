@@ -9,10 +9,12 @@ import { Form, CardBody, Input,
         } from "reactstrap";
 
 import RemoveStudent from './RemoveStudent';
+import RemoveRocket from './RemoveRocket';
 import SelectClass from './SelectClass';
 import add_icon from '../img/add_icon.png';
 import { getRockets, addStudent, getStudents, getClasses, 
-         getRocketsByClassName, addClass, removeStudent 
+         getRocketsByClassName, addClass, removeStudent, 
+         removeRocket 
        } from '../actions';
 
 
@@ -71,6 +73,12 @@ class CreateClass extends Component {
                                   studentEmail: student.studentEmail,
                                   className: this.state.clsName});
     }
+
+    handleRemoveRocket = (rocket) => {
+        this.props.removeRocket({ rocketName: rocket,
+                                  className: this.state.clsName});
+    }
+    
 
     handleSelectClass = (clsName) => {
         this.setState({clsName, 
@@ -171,7 +179,8 @@ class CreateClass extends Component {
                                 <FormGroup className="form-group-create-class">
                                     <h3>Knowledge Rockets</h3>
                                     {this.props.state.classRockets && this.state.clsName && 
-                                        <Row>{this.props.state.classRockets.map((rocket, id) => (
+                                        <Row>{this.props.state.classRockets.map((rocket, id) => {
+                                            return (
                                             <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
                                             <Card style={{height: "80%"}}>
                                                 <CardBody className="create-class-rocket-box">
@@ -179,9 +188,12 @@ class CreateClass extends Component {
                                                         {rocket.rocketname}
                                                     </CardTitle>
                                                 </CardBody>
+                                            <RemoveRocket key={id} rocket={rocket.rocketname}
+                                            handleRemoveRocket={this.handleRemoveRocket}
+                                            />
                                             </Card>
                                         </Col>
-                                        ))}
+                                        )})}
                                         <Col md="4" sm="6" xs="12" className="mb-4">
                                             <Card style={{height: "80%"}}>
                                                 <CardBody>
@@ -219,4 +231,4 @@ const mapStateToProps = (state) => {
   
 export default connect(mapStateToProps,{ getRockets, getStudents, addStudent, 
                                         getClasses, getRocketsByClassName, 
-                                        addClass, removeStudent } )(CreateClass);
+                                        addClass, removeStudent, removeRocket } )(CreateClass);

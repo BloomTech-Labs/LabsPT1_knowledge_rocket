@@ -10,7 +10,7 @@ from .serializers import ClassSerializer,  UpdateClassSerializer, StudentSeriali
                         UpdateStudentSerializer, RocketSerializer, UpdateRocketSerializer, \
                         UpdateQuestion2DSerializer, GetQuestionSerializer, UpdateQuestion2WSerializer, \
                         UpdateQuestion2WSerializer, UpdateQuestion2MSerializer, SubscriptionSerializer, \
-                        EmailSerializer
+                        EmailSerializer, GetRocketSerializer
 
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 jwt_get_username_from_payload = api_settings.JWT_PAYLOAD_GET_USERNAME_HANDLER
@@ -29,7 +29,7 @@ class RegisterClasses(generics.CreateAPIView):
             count = Class.objects.filter(user = username).count()
             if(count >= 10):
                 return JsonResponse({ 
-                    'error': 'Class count has exceeded 10, you need a premium account to continue.'
+                    'error': 'Class count has exceeded 10, you will need a premium account to or delete exisiting classes to continue.'
                     },
                     safe = True,
                     status = status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -184,6 +184,23 @@ class RemoveStudent(generics.CreateAPIView):
             status=status.HTTP_200_OK
         )
 
+class RemoveRocket(generics.CreateAPIView):
+    serializer_class = GetRocketSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        className = request.data.get("className")
+        rocketName = request.data.get("rocketName")
+        className = Class.objects.get(className = className) 
+        rocket = Rocket.objects.filter(className = className).filter(rocketName = rocketName).delete()
+        
+        return JsonResponse({
+                'msg': 'rocket removed successfully'
+            },
+            safe=True,
+            status=status.HTTP_200_OK
+        )
+
 class RegisterRockets(generics.CreateAPIView):
     serializer_class = RocketSerializer
     permission_classes = (permissions.IsAuthenticated,)
@@ -228,7 +245,7 @@ class RegisterRockets(generics.CreateAPIView):
             count = Rocket.objects.filter(user = username).count()
             if(count >= 10):
                 return JsonResponse({ 
-                    'error': 'Rocket count has exceeded 10, you need a premium account to continue.'
+                    'error': 'Rocket count has exceeded 10, you will need a premium account or delete existing rockets to continue.'
                     },
                     safe = True,
                     status = status.HTTP_500_INTERNAL_SERVER_ERROR
@@ -670,7 +687,7 @@ class BuildEmail(generics.CreateAPIView):
 
             emailBatch = EmailMessage(
                 f'{title}',
-                f'{message} \n {url}',
+                f'{message} \n Please copy and paste the following URL into your browser to access your quiz: \n {url}',
                 f'{teacherEmail}',
                 to=studentList,
             )
