@@ -7,7 +7,7 @@ import "../css/Classes.css";
 import SelectClass from "./SelectClass.js";
 
 import SidebarNav from "./SidebarNav.js";
-import { getRockets, getRocketsByClassName, getClasses, removeRocket } from "../actions";
+import { getRocketsByClassName, getClasses, removeRocket } from "../actions";
 
 class Rocket extends Component {
   state = {
@@ -16,15 +16,9 @@ class Rocket extends Component {
       : ""
   };
 
-  handleRocket = () => {
-    const className = this.state;
-    this.props.getRockets(className);
-    this.setState({ className: "" });
-  };
-
   componentDidMount() {
-    console.log(this.props.history.location);
     this.props.getClasses();
+    this.props.getRocketsByClassName(this.state)
   }
 
   handleInputChange = e => {
@@ -37,10 +31,10 @@ class Rocket extends Component {
     this.props.getRocketsByClassName({ className: clsName });
   };
 
-  handleRemoveRocket = (rocketname) => {
+  handleRemoveRocket = (rocketName) => {
     const rocket = {
       className: this.state.className,
-      rocketName: rocketname
+      rocketName: rocketName
     }
     this.props.removeRocket(rocket)
 }
@@ -116,5 +110,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getRockets, getRocketsByClassName, getClasses, removeRocket }
+  { getRocketsByClassName, getClasses, removeRocket }
 )(Rocket);

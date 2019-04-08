@@ -308,9 +308,9 @@ export const removeClass = (classname) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post("https://cspt1knowledgerocket.herokuapp.com/removeclass/", classname, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${localUrl}/removeclass/`, classname, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
+          return axios.get(`${localUrl}/getclasses/`, { 'headers': { 'Authorization': `token ${userKey}` }})	
           .then(response => {	
             dispatch({ type: GET_CLASSES, payload: response.data });	
           })
@@ -329,9 +329,9 @@ export const removeRocket = (rocket) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
       axios
-        .post("https://cspt1knowledgerocket.herokuapp.com/removerocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${localUrl}/removerocket/`, rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", {className: rocket.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post(`${localUrl}/getrocketsbyclassname/`, {className: rocket.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
             })
