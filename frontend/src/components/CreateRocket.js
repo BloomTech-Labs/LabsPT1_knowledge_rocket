@@ -58,6 +58,7 @@ class CreateRocket extends Component {
 
   componentDidMount() {
     this.props.getClasses();
+
   }
 
   handleInputChange = e => {
@@ -492,7 +493,10 @@ class CreateRocket extends Component {
           </Col>
           <div>{this.props.state.errorMsg ? <p>{this.props.state.errorMsg}</p> : null}</div>
           <div>
-            { this.props.state.redirect ? <Redirect to="/rockets" /> : null }
+            { this.props.state.redirect ? <Redirect to={{
+            pathname: '/rockets',
+            state: { className: this.state.className }
+            }}/> : null }
           </div>
         </Row>
       </Container>

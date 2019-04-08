@@ -31,7 +31,7 @@ export const registerUser = (user) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post(`${localUrl}/register/`, user)
+      .post(`${herokuUrl}/register/`, user)
       .then(response => {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -52,7 +52,7 @@ export const loginUser = (user) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post(`${localUrl}/login/`, user)
+      .post(`${herokuUrl}/login/`, user)
       .then(response => {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -85,7 +85,7 @@ export const updatePassword = (updatePass) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post(`${localUrl}/updatepassword/`, updatePass, { 'headers': { 'Authorization': `token ${userKey}` } })
+      .post(`${herokuUrl}/updatepassword/`, updatePass, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: SUCCESS })
         dispatch({ type: UPDATE_PASSWORD, payload: response.data });
@@ -104,7 +104,7 @@ export const updateEmail = (updateEmail) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post(`${localUrl}/updateuser/`, updateEmail, { 'headers': { 'Authorization': `token ${userKey}` } })
+      .post(`${herokuUrl}/updateuser/`, updateEmail, { 'headers': { 'Authorization': `token ${userKey}` } })
       .then(response => {
         dispatch({ type: UPDATE_USER, payload: response.data });
       })
@@ -121,7 +121,7 @@ export const getUser = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get(`${localUrl}/getuser/`, {
+      .get(`${herokuUrl}/getuser/`, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -143,7 +143,7 @@ export const getClass = (userKey) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .get(`${localUrl}/getclasses/`, {
+      .get(`${herokuUrl}/getclasses/`, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -165,7 +165,7 @@ export const createRocket = (rocket) => {
 
     const userKey = localStorage.getItem('token');
     axios
-      .post(`${localUrl}/addrocket/`, rocket, {
+      .post(`${herokuUrl}/addrocket/`, rocket, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -189,9 +189,9 @@ export const addStudent = (student) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post(`${localUrl}/addstudent/`, student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/addstudent/`, student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post(`${localUrl}/getstudents/`, {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post(`${herokuUrl}/getstudents/`, {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_STUDENTS, payload: response.data });
             })
@@ -211,7 +211,7 @@ export const getStudents = (className) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token');
       axios
-        .post(`${localUrl}/getstudents/`, className, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/getstudents/`, className, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_STUDENTS, payload: response.data });
         })
@@ -229,7 +229,7 @@ export const getClasses = () => {
       dispatch({ type: CLEAR_ERROR });	
       const userKey = localStorage.getItem('token')	
       axios	
-        .get(`${localUrl}/getclasses`, { 'headers': { 'Authorization': `token ${userKey}` }})	
+        .get(`${herokuUrl}/getclasses`, { 'headers': { 'Authorization': `token ${userKey}` }})	
         .then(response => {	
           dispatch({ type: GET_CLASSES, payload: response.data });	
         })	
@@ -247,7 +247,7 @@ export const getRocketsByClassName = (clsName) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post(`${localUrl}/getrocketsbyclassname/`, clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/getrocketsbyclassname/`, clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
         })
@@ -265,10 +265,10 @@ export const addClass = (clsName) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post(`${localUrl}/addclass/`, clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/addclass/`, clsName, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
           axios
-            .get(`${localUrl}/getclasses`, { 'headers': { 'Authorization': `token ${userKey}` }})
+            .get(`${herokuUrl}/getclasses`, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
             dispatch({ type: GET_CLASSES, payload: response.data });
           })
@@ -287,9 +287,9 @@ export const removeStudent = (student) => {
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
       axios
-        .post(`${localUrl}/removestudent/`, student, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/removestudent/`, student, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post(`${localUrl}/getstudents/`, {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post(`${herokuUrl}/getstudents/`, {className: student.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_STUDENTS, payload: response.data });
             })
@@ -307,11 +307,10 @@ export const removeClass = (classname) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
-      console.log(classname)
       axios
-        .post("https://cspt1knowledgerocket.herokuapp.com/removeclass/", classname, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/removeclass/`, classname, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
+          return axios.get(`${herokuUrl}/getclasses/`, { 'headers': { 'Authorization': `token ${userKey}` }})	
           .then(response => {	
             dispatch({ type: GET_CLASSES, payload: response.data });	
           })
@@ -326,10 +325,13 @@ export const removeClass = (classname) => {
 
 export const removeRocket = (rocket) => {
   return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem('token')
       axios
-        .post("https://cspt1knowledgerocket.herokuapp.com/removerocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .post(`${herokuUrl}/removerocket/`, rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
-          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", {className: rocket.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+          return axios.post(`${herokuUrl}/getrocketsbyclassname/`, {className: rocket.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
             .then(response => {
               dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
             })
@@ -348,7 +350,7 @@ export const getRockets = (className) => {
     dispatch({ type: CLEAR_ERROR });
     const userKey = localStorage.getItem('token')
     axios
-      .post(`${localUrl}/getrockets/`, className, {
+      .post(`${herokuUrl}/getrockets/`, className, {
         headers: { Authorization: `token ${userKey}` }
       })
       .then(response => {
@@ -367,7 +369,7 @@ export const get_2_Day = (request) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post(`${localUrl}/getquestion2d/`, request)
+      .post(`${herokuUrl}/getquestion2d/`, request)
       .then(response => {
         dispatch({ type: GET_QUIZ, payload: response.data });
       })
@@ -385,7 +387,7 @@ export const get_2_Week = (request) => {
     dispatch({ type: CLEAR_ERROR });
 
     axios
-      .post(`${localUrl}/getquestion2w/`, request)
+      .post(`${herokuUrl}/getquestion2w/`, request)
       .then(response => {
         dispatch({ type: GET_QUIZ, payload: response.data });
       })
@@ -402,7 +404,7 @@ export const get_2_Month = (request) => {
     dispatch({ type: LOADING });
     dispatch({ type: CLEAR_ERROR });
     axios
-      .post(`${localUrl}/getquestion2m/`, request)
+      .post(`${herokuUrl}/getquestion2m/`, request)
       .then(response => {
         dispatch({ type: GET_QUIZ, payload: response.data });
       })
@@ -420,7 +422,7 @@ export const sendEmail = (userKey, request) => {
     dispatch({ type: CLEAR_ERROR });
     dispatch({ type: CLEAR_REDIRECT });
     axios
-      .post(`${localUrl}/buildemail/`, request, { 'headers': { 'Authorization': `token ${userKey}` }})
+      .post(`${herokuUrl}/buildemail/`, request, { 'headers': { 'Authorization': `token ${userKey}` }})
       .then(response => {
         dispatch({ type: SEND_EMAIL, payload: response.data });
         dispatch({ type: REDIRECT });

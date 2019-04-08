@@ -39,16 +39,11 @@ class Classes extends Component {
   };
 
   handleAddClass = clsName => {
-      this.props.addClass({ className: clsName });
-
-      // if(!this.state.error){
-      //   return
-      // } else {
-      //   this.props.history.push({
-      //     pathname: "/createClass",
-      //     state: { className: clsName }
-      //   });
-      // }
+    this.props.addClass({ className: clsName });
+    this.props.history.push({
+      pathname: "/createClass",
+      state: { className: clsName }
+    });
   };
 
   handleRemoveClass = (classname) => {
@@ -78,14 +73,19 @@ class Classes extends Component {
                   {this.props.state.classes && (
                     this.props.state.classes.map((unit, id) => {
                       return (
-                      <Col md="4" sm="6" xs="12" className="mb-4"  key={id}>
-                        <Card body>
-                          <Link to={{ pathname: "/createClass",  state: { className: unit.className }}}>
-                          <CardTitle className="text-center" >
-                            {unit.className}
-                          </CardTitle>
-                          </Link>
-                        </Card>
+                        <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
+                        <Link
+                          to={{
+                            pathname: "/createClass",
+                            state: { className: unit.className }
+                          }}
+                        >
+                          <Card body>
+                            <CardTitle className="text-center">
+                              {unit.className}
+                            </CardTitle>
+                          </Card>
+                        </Link>
                         <Button onClick={ () => this.handleRemoveClass(unit.className)}>Delete</Button>
                       </Col>
                     )})

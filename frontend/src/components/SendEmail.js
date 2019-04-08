@@ -91,7 +91,7 @@ class Send2D extends Component {
       className: this.state.clsName,
       title: this.state.emailTitle,
       message: this.state.emailMessage,
-      url: `https://infallible-euler-24eb8a.netlify.com/${
+      url: `https://knowledgerocket.site/${
         this.state.interval
       }/${this.props.state.question.class}/${this.props.state.question.rocket}`,
       unixTimeStamp: this.state.unixTimeStamp,
