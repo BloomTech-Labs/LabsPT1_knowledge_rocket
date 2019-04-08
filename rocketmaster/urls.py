@@ -29,7 +29,7 @@ from rocketsapp.api import RegisterClasses, RegisterRockets, RegisterStudents, \
                            GetQuestion2W, GetQuestion2M, UpdateClass, UpdateStudent, \
                            UpdateRocket, UpdateQuestion2D, UpdateQuestion2W, \
                            UpdateQuestion2M, CreateSubscription, GetRocketsByClassName, \
-                           RemoveStudent, RemoveRocket,\
+                           RemoveStudent, RemoveClass, RemoveRocket,\
                            BuildEmail, IsPremium
 
 # endpoints for oAuth
@@ -67,7 +67,12 @@ urlpatterns = [
     re_path(r'^addrocket/', csrf_exempt(RegisterRockets.as_view())),
     re_path(r'^addstudent/', csrf_exempt(RegisterStudents.as_view())),
     re_path(r'^removestudent/', csrf_exempt(RemoveStudent.as_view())),
+<<<<<<< HEAD
+    re_path(r'^removeclass/', csrf_exempt(RemoveClass.as_view())),
+
+=======
     re_path(r'^removerocket/', csrf_exempt(RemoveRocket.as_view())),
+>>>>>>> origin
 
     re_path(r'^getclasses/', csrf_exempt(GetClasses.as_view())),
     re_path(r'^getrockets/', csrf_exempt(GetRockets.as_view())),

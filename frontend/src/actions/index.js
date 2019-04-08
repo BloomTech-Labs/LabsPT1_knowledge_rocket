@@ -302,11 +302,30 @@ export const removeStudent = (student) => {
   };
 };
 
-export const removeRocket = (rocket) => {
+export const removeClass = (classname) => {
   return dispatch => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
+      console.log(classname)
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/removeclass/", classname, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          return axios.get("https://cspt1knowledgerocket.herokuapp.com/getclasses", { 'headers': { 'Authorization': `token ${userKey}` }})	
+          .then(response => {	
+            dispatch({ type: GET_CLASSES, payload: response.data });	
+          })
+          .catch(error => {	
+            dispatch({ type: CHANGE_LOADING });	
+            dispatch({ type: ERROR, payload: error.response.data.error });	
+            console.log( error.response.data);	
+          });
+        })
+  };
+};
+
+export const removeRocket = (rocket) => {
+  return dispatch => {
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/removerocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
