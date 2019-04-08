@@ -307,7 +307,6 @@ export const removeClass = (classname) => {
       dispatch({ type: LOADING });
       dispatch({ type: CLEAR_ERROR });
       const userKey = localStorage.getItem('token')
-      console.log(classname)
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/removeclass/", classname, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
@@ -326,6 +325,9 @@ export const removeClass = (classname) => {
 
 export const removeRocket = (rocket) => {
   return dispatch => {
+    dispatch({ type: LOADING });
+    dispatch({ type: CLEAR_ERROR });
+    const userKey = localStorage.getItem('token')
       axios
         .post("https://cspt1knowledgerocket.herokuapp.com/removerocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
         .then(response => {
