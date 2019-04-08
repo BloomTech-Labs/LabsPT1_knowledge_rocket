@@ -30,7 +30,10 @@ class CreateClass extends Component {
         studentFirstName: '',
         studentEmail: '',
         studentDetailsError: "",
-        startDate: new Date()
+        startDate: new Date(),
+        className: this.props.history.location.state
+        ? this.props.history.location.state.className
+        : ""
     }
     
     handleAddClass = (clsName) => {
@@ -196,9 +199,14 @@ class CreateClass extends Component {
                                                 <CardBody>
                                                     <CardTitle className="text-center">New Rocket</CardTitle>
                                                     <div style={{textAlign: "center"}}>
-                                                        <Link to={"/createRocket"}>
-                                                               <i class="fas fa-plus-circle"/>
-                                                        </Link>
+                                                    <Link
+                                                      to={{
+                                                        pathname: "/createRocket",
+                                                        state: { className: this.state.className }
+                                                      }}
+                                                    >
+                                                        <i class="fas fa-plus-circle"/>
+                                                    </Link>
                                                     </div>
                                                 </CardBody>
                                             </Card>
