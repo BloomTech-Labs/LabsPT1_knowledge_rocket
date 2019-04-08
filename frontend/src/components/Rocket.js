@@ -78,12 +78,6 @@ class Rocket extends Component {
                           <CardTitle className="text-center" >
                             {unit.rocketname}
                           </CardTitle>
-<<<<<<< HEAD
-                          {/* <Link to={"/createRocket"}>
-                            <button>Edit</button>
-                          </Link> */}
-=======
->>>>>>> origin
                         </Card>
                         <Button onClick={ () => this.handleRemoveRocket(unit.rocketname)}>Delete</Button>
                       </Col>
