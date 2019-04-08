@@ -42,7 +42,8 @@ class Send2D extends Component {
     this.setState({ rocketName });
   };
 
-  getRocket2D = () => {
+  getRocket2D = (event) => {
+    event.preventDefault()
     const request = {
       className: this.state.clsName,
       rocketName: this.state.rocketName
@@ -53,10 +54,10 @@ class Send2D extends Component {
       unixTimeStamp: createBatchInterval
     });
     this.props.get_2_Day(request);
-    this.setState({ rocketName: "" });
   };
 
-  getRocket2W = () => {
+  getRocket2W = (event) => {
+    event.preventDefault()
     const request = {
       className: this.state.clsName,
       rocketName: this.state.rocketName
@@ -67,10 +68,10 @@ class Send2D extends Component {
       unixTimeStamp: createBatchInterval
     });
     this.props.get_2_Week(request);
-    this.setState({ rocketName: "" });
   };
 
-  getRocket2M = () => {
+  getRocket2M = (event) => {
+    event.preventDefault()
     const request = {
       className: this.state.clsName,
       rocketName: this.state.rocketName
@@ -81,7 +82,6 @@ class Send2D extends Component {
       unixTimeStamp: createBatchInterval
     });
     this.props.get_2_Month(request);
-    this.setState({ rocketName: "" });
   };
 
   buildAndSendEmail = () => {
@@ -113,6 +113,17 @@ class Send2D extends Component {
             <SidebarNav />
           </Col>
           <Col>
+            <div className="email-instructions">
+            Instructions on how to send an email:
+            1. Select your desired class.
+            2. Select your desired rocket.
+            3. Retrieve your desired interval.
+            4. Input an email subject.
+            5. Input an optional message to your students.
+            6. Click Build and Send; if you are successfully redirected your email sent successfully!
+            ** Some things to note, make sure your students are advised to check their spam/junk email for the quiz email.
+            ** You can preview the quiz and url below
+            </div>
             <Form>
               <Row>
                 <Col>
@@ -303,6 +314,8 @@ class Send2D extends Component {
                 </Col>
               </Row>
             </Form>
+          <div>{this.props.state.emailConfirmation.message ? <p>{this.props.state.emailConfirmation.message}</p> : null}</div>
+          <div>{this.props.state.errorMsg ? <p>{this.props.state.errorMsg }</p> : null}</div>
           </Col>
           <div>
             {this.props.state.redirect ? <Redirect to="/classes" /> : null}

@@ -3,6 +3,10 @@ from rest_framework import serializers
 class ClassSerializer(serializers.Serializer):
     className = serializers.CharField(max_length=100)
 
+class GetRocketSerializer(serializers.Serializer):
+    rocketName: serializers.CharField(max_length=100)
+    className = serializers.CharField(max_length=100)
+
 class UpdateClassSerializer(serializers.Serializer):
     newClassName = serializers.CharField(max_length=100)
     oldClassName = serializers.CharField(max_length=100)
