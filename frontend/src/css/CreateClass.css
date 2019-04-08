@@ -25,6 +25,12 @@ body {
     font-size: 1rem;
     vertical-align: text-bottom;
 }
+.remove-rocket-name, .select-class-dd-txt {
+    display: inline-block;
+    width: 90%;
+    font-size: .85rem;
+    vertical-align: text-bottom;
+}
 
 .modal-btn {
     -moz-border-radius: 15px;

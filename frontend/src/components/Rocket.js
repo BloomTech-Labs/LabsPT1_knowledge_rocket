@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import { Card, CardTitle, Form, FormGroup } from "reactstrap";
 import { connect } from "react-redux";
 import "../css/Classes.css";
 import SelectClass from "./SelectClass.js";
 
 import SidebarNav from "./SidebarNav.js";
-import { getRockets, getRocketsByClassName, getClasses } from "../actions";
+import { getRockets, getRocketsByClassName, getClasses, removeRocket } from "../actions";
 
 class Rocket extends Component {
   state = {
@@ -36,6 +36,14 @@ class Rocket extends Component {
     this.setState({ className: clsName });
     this.props.getRocketsByClassName({ className: clsName });
   };
+
+  handleRemoveRocket = (rocketname) => {
+    const rocket = {
+      className: this.state.className,
+      rocketName: rocketname
+    }
+    this.props.removeRocket(rocket)
+}
 
   render() {
     return (
@@ -70,10 +78,8 @@ class Rocket extends Component {
                           <CardTitle className="text-center" >
                             {unit.rocketname}
                           </CardTitle>
-                          <Link to={"/createRocket"}>
-                            <button>Edit</button>
-                          </Link>
                         </Card>
+                        <Button onClick={ () => this.handleRemoveRocket(unit.rocketname)}>Delete</Button>
                       </Col>
                     ))}
                     <Col md="4" sm="6" xs="12" className="mb-4 addRocket">
@@ -110,5 +116,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getRockets, getRocketsByClassName, getClasses }
+  { getRockets, getRocketsByClassName, getClasses, removeRocket }
 )(Rocket);

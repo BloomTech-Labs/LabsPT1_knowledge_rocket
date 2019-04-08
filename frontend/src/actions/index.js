@@ -302,6 +302,27 @@ export const removeStudent = (student) => {
   };
 };
 
+export const removeRocket = (rocket) => {
+  return dispatch => {
+      dispatch({ type: LOADING });
+      dispatch({ type: CLEAR_ERROR });
+      const userKey = localStorage.getItem('token')
+      axios
+        .post("https://cspt1knowledgerocket.herokuapp.com/removerocket/", rocket, { 'headers': { 'Authorization': `token ${userKey}` }})
+        .then(response => {
+          return axios.post("https://cspt1knowledgerocket.herokuapp.com/getrocketsbyclassname/", {className: rocket.className}, { 'headers': { 'Authorization': `token ${userKey}` }})
+            .then(response => {
+              dispatch({ type: GET_ROCKETS_BY_CLASS, payload: response.data });
+            })
+        })
+        .catch(error => {
+          dispatch({ type: CHANGE_LOADING });
+          dispatch({ type: ERROR, payload: error.response.data.error });
+          console.log( error.response.data);
+        });
+  };
+};
+
 export const getRockets = (className) => {
   return dispatch => {
     dispatch({ type: LOADING });
