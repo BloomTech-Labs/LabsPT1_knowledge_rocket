@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import { Card, CardTitle } from "reactstrap";
 import { connect } from "react-redux";
 import "../css/Classes.css";
 
 import SidebarNav from "./SidebarNav.js";
-import { getUser, getClass, addClass } from "../actions";
-import AddClass from "./AddClass";
+
+import { getUser, getClass, addClass, removeClass } from "../actions";
+import AddClass from './AddClass';
+
 
 class Classes extends Component {
-
+  
   handleGet = () => {
     const token = localStorage.getItem("token");
     this.props.getUser(token);
@@ -20,6 +22,10 @@ class Classes extends Component {
     const token = localStorage.getItem("token");
     this.props.getClass(token);
   };
+
+  handleRemoveClass = (classname) => {
+    this.props.removeClass(classname)
+}
 
   componentWillMount() {
     this.handleGet();
@@ -45,6 +51,10 @@ class Classes extends Component {
       // }
   };
 
+  handleRemoveClass = (classname) => {
+    this.props.removeClass({className: classname})
+  }
+
   render() {
     return (
       <Container className="container">
@@ -65,23 +75,21 @@ class Classes extends Component {
                   )}
                 </div>
                 <Row>
-                  {this.props.state.classes &&
-                    this.props.state.classes.map((unit, id) => (
-                      <Col md="4" sm="6" xs="12" className="mb-4" key={id}>
-                        <Link
-                          to={{
-                            pathname: "/createClass",
-                            state: { className: unit.className }
-                          }}
-                        >
-                          <Card body>
-                            <CardTitle className="text-center">
-                              {unit.className}
-                            </CardTitle>
-                          </Card>
-                        </Link>
+                  {this.props.state.classes && (
+                    this.props.state.classes.map((unit, id) => {
+                      return (
+                      <Col md="4" sm="6" xs="12" className="mb-4"  key={id}>
+                        <Card body>
+                          <Link to={{ pathname: "/createClass",  state: { className: unit.className }}}>
+                          <CardTitle className="text-center" >
+                            {unit.className}
+                          </CardTitle>
+                          </Link>
+                        </Card>
+                        <Button onClick={ () => this.handleRemoveClass(unit.className)}>Delete</Button>
                       </Col>
-                    ))}
+                    )})
+                  )}
                   <Col md="4" sm="6" xs="12" className="mb-4">
                     <Card body>
                       <CardTitle className="text-center">New Class</CardTitle>
@@ -108,5 +116,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getUser, getClass, addClass }
+  { getUser, getClass, addClass, removeClass }
 )(Classes);
