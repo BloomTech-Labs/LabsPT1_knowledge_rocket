@@ -182,7 +182,7 @@ class Send2D extends Component {
                     <h6>
                       {" "}
                       <span className="bold">URL preview:</span>{" "}
-                      {`https://infallible-euler-24eb8a.netlify.com/${
+                      {`https://knowledgerocket.site/${
                         this.state.interval
                       }/${this.props.state.question.class}/${
                         this.props.state.question.rocket
