@@ -2,14 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from 'react-router';
 import { Container, Row, Button } from "reactstrap";
-import ReactGA from 'react-ga';
 
 import "../css/App.css";
-
-function initializeReactGA() {
-  ReactGA.initialize('UA-147224225-1');
-  ReactGA.pageview('/homepage');
-}
 
 class App extends Component {
   render() {
